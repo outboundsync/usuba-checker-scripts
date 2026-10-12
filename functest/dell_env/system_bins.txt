@@ -1,30 +1,31 @@
 # Non-Omarchy executables assumed present on a stock Omarchy Quattro (Arch) install: base/coreutils/util-linux/procps,
 # plus packages Omarchy installs (install/omarchy-base.packages). Plugins may call these by name.
-sh bash zsh dash env true false test [ echo printf cat tac head tail tee cut tr sort uniq wc paste join split fold fmt nl od xxd base64 md5sum sha1sum sha256sum
+# 2026-10-12: pruned to what `command -v` finds on the reference Omarchy 4.0.4-1 install (removed: 1password 7z acpi alacritty bc brave bun cargo cliphist dig elephant ethtool exiftool firefox ghostty gnome-disk-utility go host hypridle hyprlock hyprpaper hyprshot hyprwhspr iwctl java kitty mako makoctl nano nc nvidia-smi ollama paru playerctl powertop qalc rustc satty signal-desktop spotify swaybg swayosd-client tailscale tobi-try typora vim voxtype walker wayfreeze wf-recorder wg wget yq zsh).
+sh bash dash env true false test [ echo printf cat tac head tail tee cut tr sort uniq wc paste join split fold fmt nl od xxd base64 md5sum sha1sum sha256sum
 ls cp mv rm mkdir rmdir ln touch stat readlink realpath basename dirname mktemp chmod chown install du df find xargs file sync
 date sleep timeout nohup nice ionice kill killall pkill pgrep pidof ps top uptime free who whoami id groups hostname hostnamectl uname nproc lscpu lsblk lsusb lspci
-grep egrep fgrep sed awk gawk diff cmp comm expr seq yes rev shuf numfmt bc dc tput stty clear script setsid flock watch which command
-tar gzip gunzip zcat xz unxz zstd unzip zip 7z
-curl wget ping ip ss nc dig host nslookup ssh scp rsync git
+grep egrep fgrep sed awk gawk diff cmp comm expr seq yes rev shuf numfmt dc tput stty clear script setsid flock watch which command
+tar gzip gunzip zcat xz unxz zstd unzip zip
+curl ping ip ss nslookup ssh scp rsync git
 systemctl journalctl loginctl busctl timedatectl localectl resolvectl systemd-run systemd-inhibit systemd-cat udevadm
 dbus-send dbus-monitor gdbus notify-send xdg-open xdg-mime xdg-settings xdg-terminal-exec gtk-launch gio
-hyprctl hyprpicker hyprlock hypridle hyprsunset hyprpaper hyprshot hyprland-preview-share-picker uwsm uwsm-app Hyprland start-hyprland
+hyprctl hyprpicker hyprsunset hyprland-preview-share-picker uwsm uwsm-app Hyprland start-hyprland
 quickshell qs omarchy-shell
-wpctl pactl pamixer pw-cli pw-dump pw-mon pw-record pw-play pw-top wireplumber playerctl
-brightnessctl upower powerprofilesctl acpi sensors nvidia-smi
-nmcli nmtui iwctl bluetoothctl rfkill tailscale wg
-wl-copy wl-paste cliphist grim slurp satty wf-recorder gpu-screen-recorder wayfreeze swayosd-client swaybg mako makoctl walker elephant
-alacritty ghostty kitty foot nautilus imv mpv btop fastfetch fzf rg fd bat eza zoxide jq yq gum lazygit lazydocker nvim vim nano
-chromium firefox brave obsidian signal-desktop spotify localsend pinta typora libreoffice 1password
-python python3 node npm npx bun ruby perl lua luajit go cargo rustc java deno
-pacman yay paru makepkg flatpak mise docker
-fc-match fc-list fc-cache convert magick ffmpeg ffprobe exiftool pdftotext qrencode zbarimg tesseract
+wpctl pactl pamixer pw-cli pw-dump pw-mon pw-record pw-play pw-top wireplumber
+brightnessctl upower powerprofilesctl sensors
+nmcli nmtui bluetoothctl rfkill
+wl-copy wl-paste grim slurp gpu-screen-recorder
+foot nautilus imv mpv btop fastfetch fzf rg fd bat eza zoxide jq gum lazygit lazydocker nvim
+chromium obsidian localsend pinta libreoffice
+python python3 node npm npx ruby perl lua luajit deno
+pacman yay makepkg flatpak mise docker
+fc-match fc-list fc-cache convert magick ffmpeg ffprobe pdftotext qrencode zbarimg tesseract
 gsettings dconf pkexec sudo
-voxtype hyprwhspr ollama
+
 # from install/omarchy-base.packages @ c668141 (package -> its main executables) and base util-linux/procps/kmod/coreutils
 checkupdates paccache pactree expac socat inotifywait inotifywatch udiskie udisksctl tmux less locate plocate updatedb yt-dlp wtype ddcutil inxi whois starship tldr
 fcitx5 fcitx5-remote evince sushi ufw docker-compose aplay amixer arecord speaker-test alsamixer bt-device bt-adapter bt-network lpstat lp lpr avahi-browse avahi-resolve dua cliamp
-aether omacalc omacut omawrite tensaku herdr usage tobi-try obs moonlight xournalpp kdenlive gnome-disk-utility system-config-printer ffmpegthumbnailer magick identify
-setpriv dd modprobe lsmod vmstat stdbuf xkbcli paplay parec pacat pw-cat ldd iconv getent logger mount umount findmnt blkid lsof iw wpa_cli ip ethtool fuser
-nmcli pgrep renice chrt taskset flock lscpu dmesg journalctl coredumpctl systemd-analyze systemd-detect-virt powertop mkfifo base32 sha512sum b2sum cksum truncate sum
-luarocks lua5.1 mise ruby gem clang llvm-config tesseract zbarimg zbarcam qrencode qalc gpg ssh-agent ssh-keygen secret-tool gnome-keyring-daemon
+aether omacalc omacut omawrite tensaku herdr usage obs moonlight xournalpp kdenlive system-config-printer ffmpegthumbnailer magick identify
+setpriv dd modprobe lsmod vmstat stdbuf xkbcli paplay parec pacat pw-cat ldd iconv getent logger mount umount findmnt blkid lsof iw wpa_cli ip fuser
+nmcli pgrep renice chrt taskset flock lscpu dmesg journalctl coredumpctl systemd-analyze systemd-detect-virt mkfifo base32 sha512sum b2sum cksum truncate sum
+luarocks lua5.1 mise ruby gem clang llvm-config tesseract zbarimg zbarcam qrencode gpg ssh-agent ssh-keygen secret-tool gnome-keyring-daemon

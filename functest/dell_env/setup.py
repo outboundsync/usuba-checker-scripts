@@ -13,7 +13,7 @@ sys.path.insert(0, HERE)
 from binaries import KNOWN, OMARCHY_BINS
 OMARCHY_COMMIT = "c668141e9c42b13c80c9ca4ea108e11708c5e8a5"
 GIT = os.environ.get("FT_OMARCHY_GIT", "/opt/ft/omarchy-git")
-DST, THEMES, SHIMS = "/opt/ft/omarchy-dell", "/opt/ft/themes", "/opt/ft/shims-dell"
+DST, THEMES, SHIMS = os.environ.get("FT_OMARCHY", "/opt/ft/omarchy-4.0.4"), "/opt/ft/themes", "/opt/ft/shims-dell"
 THEME_LIST = ("catppuccin-latte", "tokyo-night")
 STAMP = os.path.join(DST, ".ft-stamp")
 
@@ -40,7 +40,7 @@ fi
 exit $rc
 '''
 
-FULL_REF = os.environ.get("FT_DELL_FULL", os.path.join(HERE, "../../dell-ref/omarchy-full"))   # full /usr/share/omarchy from the Dell
+FULL_REF = os.environ.get("FT_DELL_FULL", os.path.join(HERE, "../../dell-ref/omarchy-4.0.4"))   # /usr/share/omarchy from the Dell on 4.0.4-1 (images excluded; extracted from omarchy-4.0.4-tree.tar.gz)   # full /usr/share/omarchy from the Dell
 
 def build():
     import fcntl
@@ -68,7 +68,7 @@ def _build():
         # bin/ on the Dell is symlinks into /usr/bin (packaged layout, contents not captured): compare the name set only
         if set(os.listdir(os.path.join(FULL_REF, "bin"))) != set(os.listdir(os.path.join(tmp, "bin"))):
             raise SystemExit("bin/ name set differs from the Dell")
-        for sub in ("shell", "default", "config", "themes", "install", "migrations", "applications"):
+        for sub in [s for s in ("shell", "default", "config", "themes", "install", "migrations", "applications") if os.path.isdir(os.path.join(FULL_REF, s))]:
             r = subprocess.run(["diff", "-rq", "--no-dereference", os.path.join(FULL_REF, sub), os.path.join(tmp, sub)], capture_output=True, text=True)
             bad = [l for l in r.stdout.splitlines() if not l.startswith("Only in " + tmp)]
             if bad: raise SystemExit(f"{sub}/ differs from the Dell's /usr/share/omarchy:\n" + "\n".join(bad[:20]))

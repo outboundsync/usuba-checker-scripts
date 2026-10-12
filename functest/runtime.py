@@ -14,7 +14,7 @@ import setup as dell_setup
 from binaries import resolves, KNOWN
 
 QS = "/opt/qs611/bin/qs"
-OMARCHY = os.environ.get("FT_OMARCHY", "/opt/ft/omarchy-dell")
+OMARCHY = os.environ.get("FT_OMARCHY", "/opt/ft/omarchy-4.0.4")   # Omarchy 4.0.4-1 (Dell, 2026-10-12); shell/ still == c668141
 THEME = os.environ.get("FT_THEME", "catppuccin-latte")   # light theme like the Dell's: dark-hardcoded widgets lose contrast
 SHIMS = "/opt/ft/shims-dell"
 HYPRCTL = os.path.join(HERE, "dell_env/hyprctl.py")
@@ -85,6 +85,16 @@ DOWNGRADE = re.compile(r"(Cannot assign to read-only property|Unable to assign \
                        r"Binding loop|Detected anchors)", re.I)
 DELL_SURFACE = re.compile(r"(hyprctl|getoption|\b(general|decoration|input|misc|animations):\w|gaps_|omarchy-[a-z]|shell\.json|PluginRegistry|Theme\b|theme colou?r)", re.I)
 QML_CONSOLE_ERR = re.compile(r"\b(WARN|ERROR|CRIT)\b\s+qml:.*\b(unable to|could not|couldn't|failed|error|cannot|invalid|undefined)\b", re.I)
+
+COLOR_REF = re.compile(r"/plugins/[^/]+/(\S+?\.qml)\[(\d+):-?\d+\]: ReferenceError: (\w+) is not defined")
+def _color_ref(ln, pdir):
+    """ReferenceError inside a pure colour binding (e.g. limon.todo's `property color dim: ShellColor.muted`): the colour falls back
+    to its default and the plugin still works on the Dell (dell_ground_truth: limon.todo WORKS). Anything else stays hard."""
+    m = COLOR_REF.search(ln)
+    if not m: return False
+    try: src = open(os.path.join(pdir, m.group(1))).read().splitlines()[int(m.group(2)) - 1]
+    except Exception: return False
+    return bool(re.match(r"\s*(readonly\s+)?(property\s+color\s+\w+|[\w.]*[cC]olor)\s*:", src)) and m.group(3) in src
 
 def _hash(p):
     try: return hashlib.sha1(open(p, "rb").read()).hexdigest()
@@ -305,7 +315,7 @@ def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
             if not attributed and i > 0 and marker in lines[i - 1] and not re.match(r"^\s*(INFO|WARN|ERROR|DEBUG)", ln): attributed = True
             if not attributed: continue
             s = re.sub(r"file://\S*?/plugins/[^/]+/", "", ln.strip())[:300]
-            if SOFT_PAT.search(ln) or DOWNGRADE.search(ln): res["soft"].append(s)
+            if SOFT_PAT.search(ln) or DOWNGRADE.search(ln) or _color_ref(ln, pdir): res["soft"].append(s)
             elif PROC_FAIL.search(ln): continue   # judged by the exec checks below (Dell binary list), not by keyword
             elif HARD_ERR.search(ln): res["errors"].append(s)
             elif re.search(r"\b(WARN|ERROR|FATAL|CRIT)", ln) or ERR_PAT.search(ln): res["soft"].append(s)

@@ -19,7 +19,7 @@ REPO_FOR = {"https://github.com/salted-sorbet/salted.bar": "salted.bar", "https:
             "https://github.com/scottjones/omarchy-flush-bar": "scottjones.flush-bar"}
 def tree_dir(h):
     m = h["meta"]
-    if m["origin"] == "first-party": return "/opt/ft/omarchy/" + m["plugin_path"]
+    if m["origin"] == "first-party": return "/opt/ft/omarchy/" + m["plugin_path"]   # holdout commit tree (newer than the Dell); baseline subtraction absorbs tree-only failures
     return os.path.join(ROOT, "sources/repos", REPO_FOR[m["repo"]])
 CACHE = os.path.join(HERE, "cache"); os.makedirs(CACHE, exist_ok=True)
 # cache entries are only valid for the functest version that produced them
@@ -77,6 +77,13 @@ def score_row(i, h, g):
         if r["runtime"]:
             r["runtime"]["errors"] = [e for e in r["runtime"]["errors"] if norm(e) not in br]
             r["runtime"]["pass"] = not r["runtime"]["errors"]
+        if task == "fix_manifest":
+            # the grader used to accept a bare id ("time-machine") for reserved_id fixes; the contract wants a namespaced,
+            # non-reserved id (SYS prompt: "a namespaced id that never uses the reserved omarchy.* namespace")
+            try: mid = str(json.loads(t.get("manifest.json", "{}")).get("id", ""))
+            except Exception: mid = ""
+            if "." not in mid.strip(".") or mid.startswith("omarchy."):
+                r["static_fails"].append(["fix-id-not-namespaced", f"manifest id {mid!r} is not a namespaced, non-reserved id"])
         r["categories"] = functest.categories(r["static_fails"], r["runtime"])
         r["pass"] = not r["static_fails"] and (r["runtime"] is None or r["runtime"]["pass"])
     rt = r.get("runtime") or {}

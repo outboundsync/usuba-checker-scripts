@@ -1,11 +1,11 @@
 {
  "summary": {
   "old": "44/49",
-  "new": "25/49",
+  "new": "26/49",
   "per_task_new": {
    "add_panel": "1/6",
    "build_from_spec": "8/26",
-   "chunk_add_kind": "2/3",
+   "chunk_add_kind": "3/3",
    "chunk_component": "6/6",
    "chunk_manifest_entry": "3/3",
    "fix_manifest": "5/5"
@@ -27,8 +27,8 @@
     "singleton-unknown: Background.qml: Style.duration does not exist in the real qs.Commons Style singleton"
    ],
    "runtime_errors": [
-    "WARN qml: service plugin load failed for acme.background: Background.qml:270:3: ShellIpc is not a type",
-    "WARN qml: service plugin load failed for acme.background: Background.qml:270:3: ShellIpc is not a type",
+    "WARN qml: service plugin load failed for acme.background: Background.qml:407:7: BackgroundMedia is not a type",
+    "WARN qml: service plugin load failed for acme.background: Background.qml:407:7: BackgroundMedia is not a type",
     "service instance not created"
    ]
   },
@@ -434,7 +434,7 @@
    ],
    "static_fails": [],
    "runtime_errors": [
-    "WARN qml: key-promoter keybinds: /usr/bin/bash: /opt/ft/runs/rplg8uy0n/home/user/omarchy/plugins/fkcodes.key-promoter/bin/keybinds: No such file or directory"
+    "WARN qml: key-promoter keybinds: /usr/bin/bash: /opt/ft/runs/rr658c9e_/home/user/omarchy/plugins/fkcodes.key-promoter/bin/keybinds: No such file or directory"
    ]
   },
   {
@@ -579,21 +579,10 @@
    "holdout_i": 48,
    "task": "chunk_add_kind:menu",
    "old": true,
-   "new": false,
-   "categories": [
-    "rt-js-error"
-   ],
+   "new": true,
+   "categories": [],
    "static_fails": [],
-   "runtime_errors": [
-    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function"
-   ]
+   "runtime_errors": []
   },
   {
    "holdout_i": 49,

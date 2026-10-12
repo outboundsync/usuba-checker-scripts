@@ -11,7 +11,7 @@ import json, os, re, posixpath, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "dell_env"))
 from binaries import resolves, KNOWN
-SHELL = os.environ.get("FT_OMARCHY", "/opt/ft/omarchy-dell") + "/shell"
+SHELL = os.environ.get("FT_OMARCHY", "/opt/ft/omarchy-4.0.4") + "/shell"
 
 def _members(path):
     try: s = open(path).read()
