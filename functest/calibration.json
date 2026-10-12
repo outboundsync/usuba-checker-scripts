@@ -1,0 +1,876 @@
+{
+ "jankeesvw.time-machine": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    23,
+    26
+   ],
+   "widget_slot": [
+    23,
+    26
+   ],
+   "panel_opened": true
+  },
+  "soft": []
+ },
+ "robzolkos.github": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true
+  },
+  "soft": []
+ },
+ "crmne.omastats": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    277,
+    26
+   ],
+   "widget_slot": [
+    277,
+    26
+   ],
+   "panel_opened": true,
+   "service": true
+  },
+  "soft": []
+ },
+ "crmne.mpris": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    0,
+    26
+   ],
+   "widget_slot": [
+    0,
+    0
+   ],
+   "panel_opened": true,
+   "service": true
+  },
+  "soft": [
+   "bar-widget has zero size [0, 0] (conditionally hidden by design)"
+  ]
+ },
+ "jankeesvw.notification-center": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true,
+   "service": true
+  },
+  "soft": [
+   "WARN scene: QML FileView at Service.qml[53:3]: Read of /opt/ft/runs/re80x_eh2/home/user/state/omarchy/notifications.json failed: File does not exist."
+  ]
+ },
+ "tahayvr.postcard": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true,
+   "panel": {
+    "status": 1,
+    "hasItem": true,
+    "w": 0,
+    "h": 0
+   }
+  },
+  "soft": []
+ },
+ "io.github.tyrichards.tray": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": false,
+   "service": true
+  },
+  "soft": [
+   "WARN qml: summon: no live bar widget for: io.github.tyrichards.tray"
+  ]
+ },
+ "akshar.radio-atlas": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true,
+   "panel": {
+    "status": 1,
+    "hasItem": true,
+    "w": 0,
+    "h": 0
+   }
+  },
+  "soft": []
+ },
+ "com.omastorm.radar": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true,
+   "panel": {
+    "status": 1,
+    "hasItem": true,
+    "w": 0,
+    "h": 0
+   }
+  },
+  "soft": [
+   "WARN scene: QML IpcHandler at ui/Theme.qml[84:30]: This IPC handler is enabled but no target is set. This means it is effectively inoperable."
+  ]
+ },
+ "njpatel.omapager": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    0,
+    26
+   ],
+   "widget_slot": [
+    0,
+    26
+   ],
+   "panel_opened": false,
+   "service": true
+  },
+  "soft": [
+   "WARN scene: QML IpcHandler at Service.qml[2168:3]: Handler was registered but will not be used because another handler is registered for target notifications",
+   "bar-widget has zero size [0, 26] (conditionally hidden by design)"
+  ]
+ },
+ "crmne.hyprmoncfg": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true,
+   "service": true
+  },
+  "soft": []
+ },
+ "salted.bar": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "bar_active": true
+  },
+  "soft": []
+ },
+ "jankeesvw.clippy": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "service": true
+  },
+  "soft": []
+ },
+ "zeru.portwatch": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    25,
+    26
+   ],
+   "widget_slot": [
+    25,
+    26
+   ],
+   "panel_opened": false
+  },
+  "soft": [
+   "WARN qml: summon: no live bar widget for: zeru.portwatch"
+  ]
+ },
+ "tornikegomareli.spaces": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    128,
+    26
+   ],
+   "widget_slot": [
+    128,
+    26
+   ],
+   "panel_opened": true
+  },
+  "soft": []
+ },
+ "sanjyay.peekbar(real)": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "bar_active": true
+  },
+  "soft": []
+ },
+ "scottjones.flush-bar(real)": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "service": true
+  },
+  "soft": []
+ },
+ "vimarchy(real)": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "panel": {
+    "status": 1,
+    "hasItem": true,
+    "w": 0,
+    "h": 0
+   }
+  },
+  "soft": []
+ },
+ "fkcodes.key-promoter(real)": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "service": true
+  },
+  "soft": []
+ },
+ "kenhara.rocketlauncher": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    53,
+    26
+   ],
+   "widget_slot": [
+    53,
+    26
+   ],
+   "panel_opened": true
+  },
+  "soft": [
+   "WARN scene: QML QQuickImage at MissionDetail.qml[100:9]: Host thespacedevs-prod.nyc3.digitaloceanspaces.com not found",
+   "WARN scene: QML QQuickImage at MissionDetail.qml[100:9]: Host thespacedevs-prod.nyc3.digitaloceanspaces.com not found"
+  ]
+ },
+ "kenhara.compliantish": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true
+  },
+  "soft": []
+ },
+ "kenhara.enricherino": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true
+  },
+  "soft": []
+ },
+ "kenhara.encyclopedic": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true
+  },
+  "soft": []
+ },
+ "kenhara.scriptural": {
+  "expect": "pass",
+  "got": "pass",
+  "correct": true,
+  "categories": [],
+  "static_fails": [],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true
+  },
+  "soft": []
+ },
+ "acme.background": {
+  "expect": "fail",
+  "got": "fail",
+  "correct": true,
+  "categories": [
+   "entry-not-qml",
+   "fake-api",
+   "no-qml",
+   "rt-load-failed",
+   "rt-not-instantiated"
+  ],
+  "static_fails": [
+   [
+    "entry-not-qml",
+    "entryPoints.service = src/background.service.js (Quickshell loads QML only)"
+   ],
+   [
+    "no-qml",
+    "plugin contains no QML file"
+   ],
+   [
+    "fake-api",
+    "src/background.service.js: ES module import"
+   ],
+   [
+    "fake-api",
+    "src/background.service.js: browser DOM"
+   ],
+   [
+    "fake-api",
+    "src/background.service.js: made-up omarchy JS/QML API"
+   ]
+  ],
+  "runtime_errors": [
+   "WARN qml: service plugin load failed for acme.background: src/background.service.js:1:1: Expected a qualified name id or a string literal",
+   "WARN qml: service plugin load failed for acme.background: src/background.service.js:1:1: Expected a qualified name id or a string literal",
+   "WARN qml: service plugin load failed for acme.background: src/background.service.js:1:1: Expected a qualified name id or a string literal",
+   "service instance not created"
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "service": false
+  },
+  "soft": []
+ },
+ "acme.clipboard": {
+  "expect": "fail",
+  "got": "fail",
+  "correct": true,
+  "categories": [
+   "fake-data",
+   "rt-not-instantiated",
+   "rt-other",
+   "rt-unresolved-type/import"
+  ],
+  "static_fails": [
+   [
+    "fake-data",
+    "'Item 1/2/3' placeholder data"
+   ]
+  ],
+  "runtime_errors": [
+   "WARN scene: overlay.qml[15:16]: Type ClipboardHistoryModel unavailable",
+   "WARN scene: ClipboardHistoryModel.qml[3:1]: Model is not a type",
+   "overlay never instantiated after summon (status=None)"
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "panel": null
+  },
+  "soft": []
+ },
+ "acme.notifications": {
+  "expect": "fail",
+  "got": "fail",
+  "correct": true,
+  "categories": [
+   "entry-not-qml",
+   "fake-api",
+   "no-qml",
+   "rt-not-instantiated",
+   "rt-qml-syntax"
+  ],
+  "static_fails": [
+   [
+    "entry-not-qml",
+    "entryPoints.service = src/service/main.js (Quickshell loads QML only)"
+   ],
+   [
+    "no-qml",
+    "plugin contains no QML file"
+   ],
+   [
+    "fake-api",
+    "src/service/main.js: node require()"
+   ],
+   [
+    "fake-api",
+    "src/service/main.js: CommonJS exports"
+   ]
+  ],
+  "runtime_errors": [
+   "WARN qml: service plugin load failed for acme.notifications: src/service/main.js:1:1: Unexpected token `const'",
+   "WARN qml: service plugin load failed for acme.notifications: src/service/main.js:1:1: Unexpected token `const'",
+   "WARN qml: service plugin load failed for acme.notifications: src/service/main.js:1:1: Unexpected token `const'",
+   "service instance not created"
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "service": false
+  },
+  "soft": []
+ },
+ "acme.speedtest": {
+  "expect": "fail",
+  "got": "fail",
+  "correct": true,
+  "categories": [
+   "bad-import",
+   "fake-api",
+   "rt-not-instantiated",
+   "rt-unresolved-type/import"
+  ],
+  "static_fails": [
+   [
+    "bad-import",
+    "src/panel.qml: unknown module QtNetwork"
+   ],
+   [
+    "fake-api",
+    "src/panel.qml: C++ Qt class used from QML/JS"
+   ]
+  ],
+  "runtime_errors": [
+   "WARN scene: src/panel.qml[4:1]: module \"QtNetwork\" version 5.15 is not installed",
+   "panel never instantiated after summon (status=None)"
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "panel": null
+  },
+  "soft": []
+ },
+ "bobbynicholas.omaland": {
+  "expect": "fail",
+  "got": "fail",
+  "correct": true,
+  "categories": [
+   "dangerous-write",
+   "entry-not-qml",
+   "fake-api",
+   "rt-not-instantiated",
+   "rt-qml-syntax",
+   "rt-unresolved-type/import"
+  ],
+  "static_fails": [
+   [
+    "entry-not-qml",
+    "entryPoints.service = service.js (Quickshell loads QML only)"
+   ],
+   [
+    "fake-api",
+    "service.js: node require()"
+   ],
+   [
+    "fake-api",
+    "service.js: node child_process"
+   ],
+   [
+    "fake-api",
+    "service.js: CommonJS exports"
+   ],
+   [
+    "dangerous-write",
+    "service.js: writes/shell-outs alongside protected path ~/.config/hypr/looknfeel.lua"
+   ]
+  ],
+  "runtime_errors": [
+   "WARN qml: service plugin load failed for bobbynicholas.omaland: service.js:1:1: Unexpected token `const'",
+   "WARN qml: service plugin load failed for bobbynicholas.omaland: service.js:1:1: Unexpected token `const'",
+   "WARN qml: service plugin load failed for bobbynicholas.omaland: service.js:1:1: Unexpected token `const'",
+   "WARN qml: service plugin load failed for bobbynicholas.omaland: service.js:1:1: Unexpected token `const'",
+   "WARN scene: panel.qml[5:1]: Panel is not a type",
+   "panel never instantiated after summon (status=None)",
+   "service instance not created"
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "panel": null,
+   "service": false
+  },
+  "soft": []
+ },
+ "com.example.vimarchy": {
+  "expect": "fail",
+  "got": "fail",
+  "correct": true,
+  "categories": [
+   "placeholder-ui"
+  ],
+  "static_fails": [
+   [
+    "placeholder-ui",
+    "all 5 UI handlers are empty/console.log no-ops: onClicked"
+   ]
+  ],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "panel": {
+    "status": 1,
+    "hasItem": true,
+    "w": 800,
+    "h": 600
+   }
+  },
+  "soft": []
+ },
+ "fkcodes.key-promoter": {
+  "expect": "fail",
+  "got": "fail",
+  "correct": true,
+  "categories": [
+   "entry-not-qml",
+   "fake-api",
+   "no-qml",
+   "rt-load-failed",
+   "rt-not-instantiated"
+  ],
+  "static_fails": [
+   [
+    "entry-not-qml",
+    "entryPoints.service = service/main.js (Quickshell loads QML only)"
+   ],
+   [
+    "no-qml",
+    "plugin contains no QML file"
+   ],
+   [
+    "fake-api",
+    "service/main.js: node child_process"
+   ],
+   [
+    "fake-api",
+    "service/main.js: ES module import"
+   ],
+   [
+    "fake-api",
+    "service/main.js: browser DOM"
+   ],
+   [
+    "fake-api",
+    "service/main.js: made-up omarchy JS/QML API"
+   ]
+  ],
+  "runtime_errors": [
+   "WARN qml: service plugin load failed for fkcodes.key-promoter: service/main.js:1:1: Expected a qualified name id or a string literal",
+   "WARN qml: service plugin load failed for fkcodes.key-promoter: service/main.js:1:1: Expected a qualified name id or a string literal",
+   "WARN qml: service plugin load failed for fkcodes.key-promoter: service/main.js:1:1: Expected a qualified name id or a string literal",
+   "WARN qml: service plugin load failed for fkcodes.key-promoter: service/main.js:1:1: Expected a qualified name id or a string literal",
+   "service instance not created"
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "service": false
+  },
+  "soft": []
+ },
+ "sanjyay.peekbar": {
+  "expect": "fail",
+  "got": "fail",
+  "correct": true,
+  "categories": [
+   "not-shell-surface",
+   "qml-syntax",
+   "rt-load-failed",
+   "rt-not-instantiated",
+   "rt-qml-syntax"
+  ],
+  "static_fails": [
+   [
+    "qml-syntax",
+    "bar/peekbar.qml: QML object declared inside JS block"
+   ],
+   [
+    "not-shell-surface",
+    "bar/peekbar.qml: entry root is ApplicationWindow (desktop app window, not a Quickshell/Omarchy surface)"
+   ]
+  ],
+  "runtime_errors": [
+   "WARN scene: bar/peekbar.qml[29:15]: Expected token `,'",
+   "WARN qml: bar option sanjyay.peekbar failed to load, falling back to omarchy.bar",
+   "WARN scene: bar/peekbar.qml[29:15]: Expected token `,'",
+   "WARN qml: bar option sanjyay.peekbar failed to load, falling back to omarchy.bar",
+   "bar option not active (activeBarId=sanjyay.peekbar)"
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "bar_active": false
+  },
+  "soft": []
+ },
+ "scottjones.flush-bar": {
+  "expect": "fail",
+  "got": "fail",
+  "correct": true,
+  "categories": [
+   "not-shell-surface",
+   "placeholder-ui"
+  ],
+  "static_fails": [
+   [
+    "not-shell-surface",
+    "service/main.qml: entry root is ApplicationWindow (desktop app window, not a Quickshell/Omarchy surface)"
+   ],
+   [
+    "placeholder-ui",
+    "trivial plugin: 20 QML lines, no IO, data or interaction"
+   ]
+  ],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "service": true
+  },
+  "soft": []
+ },
+ "bobbynicholas.omaland(real, hypr editor)": {
+  "expect": "fail",
+  "got": "fail",
+  "correct": true,
+  "categories": [
+   "dangerous-write"
+  ],
+  "static_fails": [
+   [
+    "dangerous-write",
+    "Panel.qml: writes/shell-outs alongside protected path /.config/hypr/looknfeel.lua"
+   ]
+  ],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "panel": {
+    "status": 1,
+    "hasItem": true,
+    "w": 0,
+    "h": 0
+   },
+   "service": true
+  },
+  "soft": [
+   "WARN: Process failed to start, likely because the binary could not be found. Command: QList(\"lua\", \"/opt/ft/runs/rryl8n8ob/home/user/omarchy/plugins/bobbynicholas.omaland/read.lua\", \"/opt/ft/omarchy/default/hypr/looknfeel.lua\")"
+  ]
+ }
+}

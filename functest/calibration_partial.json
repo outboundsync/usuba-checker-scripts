@@ -1,0 +1,263 @@
+{
+ "crmne.mpris": {
+  "expect": "pass",
+  "got": "fail",
+  "correct": false,
+  "categories": [
+   "rt-zero-size"
+  ],
+  "static_fails": [],
+  "runtime_errors": [
+   "bar-widget has zero size [0, 0]"
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    0,
+    26
+   ],
+   "widget_slot": [
+    0,
+    0
+   ],
+   "panel_opened": true,
+   "service": true
+  },
+  "soft": []
+ },
+ "jankeesvw.notification-center": {
+  "expect": "pass",
+  "got": "fail",
+  "correct": false,
+  "categories": [
+   "rt-other"
+  ],
+  "static_fails": [],
+  "runtime_errors": [
+   "WARN scene: QML FileView at Service.qml[53:3]: Read of /opt/ft/runs/rrwwsrg8t/home/user/state/omarchy/notifications.json failed: File does not exist."
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true,
+   "service": true
+  },
+  "soft": []
+ },
+ "io.github.tyrichards.tray": {
+  "expect": "pass",
+  "got": "fail",
+  "correct": false,
+  "categories": [
+   "dangerous-write",
+   "fake-api",
+   "rt-other"
+  ],
+  "static_fails": [
+   [
+    "fake-api",
+    "TrayModel.js: CommonJS exports"
+   ],
+   [
+    "dangerous-write",
+    "Service.qml: FileView writes Quickshell.env(\"HOME\") + \"/.config/omarchy/shell.json\""
+   ]
+  ],
+  "runtime_errors": [
+   "WARN qml: summon: no live bar widget for: io.github.tyrichards.tray"
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": false,
+   "service": true
+  },
+  "soft": []
+ },
+ "com.omastorm.radar": {
+  "expect": "pass",
+  "got": "fail",
+  "correct": false,
+  "categories": [
+   "rt-other"
+  ],
+  "static_fails": [],
+  "runtime_errors": [
+   "WARN scene: QML IpcHandler at ui/Theme.qml[84:30]: This IPC handler is enabled but no target is set. This means it is effectively inoperable."
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true,
+   "panel": {
+    "status": 1,
+    "hasItem": true,
+    "w": 0,
+    "h": 0
+   }
+  },
+  "soft": []
+ },
+ "njpatel.omapager": {
+  "expect": "pass",
+  "got": "fail",
+  "correct": false,
+  "categories": [
+   "rt-other",
+   "rt-zero-size"
+  ],
+  "static_fails": [],
+  "runtime_errors": [
+   "WARN scene: QML IpcHandler at Service.qml[2168:3]: Handler was registered but will not be used because another handler is registered for target notifications",
+   "bar-widget has zero size [0, 26]"
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    0,
+    26
+   ],
+   "widget_slot": [
+    0,
+    26
+   ],
+   "panel_opened": false,
+   "service": true
+  },
+  "soft": []
+ },
+ "crmne.hyprmoncfg": {
+  "expect": "pass",
+  "got": "fail",
+  "correct": false,
+  "categories": [
+   "fake-api"
+  ],
+  "static_fails": [
+   [
+    "fake-api",
+    "IdentifyModel.js: CommonJS exports"
+   ],
+   [
+    "fake-api",
+    "Model.js: CommonJS exports"
+   ]
+  ],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    27,
+    26
+   ],
+   "widget_slot": [
+    27,
+    26
+   ],
+   "panel_opened": true,
+   "service": true
+  },
+  "soft": []
+ },
+ "salted.bar": {
+  "expect": "pass",
+  "got": "fail",
+  "correct": false,
+  "categories": [
+   "fake-api"
+  ],
+  "static_fails": [
+   [
+    "fake-api",
+    "BarModel.js: CommonJS exports"
+   ],
+   [
+    "fake-api",
+    "widgets/KeyboardLayoutModel.js: CommonJS exports"
+   ],
+   [
+    "fake-api",
+    "widgets/TrayModel.js: CommonJS exports"
+   ]
+  ],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "bar_active": true
+  },
+  "soft": []
+ },
+ "jankeesvw.clippy": {
+  "expect": "pass",
+  "got": "fail",
+  "correct": false,
+  "categories": [
+   "dangerous-write"
+  ],
+  "static_fails": [
+   [
+    "dangerous-write",
+    "Service.qml: writes/shell-outs alongside protected path /.config/omarchy/shell.json"
+   ]
+  ],
+  "runtime_errors": [],
+  "runtime_checks": {
+   "registered": true,
+   "service": true
+  },
+  "soft": []
+ },
+ "zeru.portwatch": {
+  "expect": "pass",
+  "got": "fail",
+  "correct": false,
+  "categories": [
+   "rt-other"
+  ],
+  "static_fails": [],
+  "runtime_errors": [
+   "WARN qml: summon: no live bar widget for: zeru.portwatch"
+  ],
+  "runtime_checks": {
+   "registered": true,
+   "widget_component": true,
+   "widget_size": [
+    25,
+    26
+   ],
+   "widget_slot": [
+    25,
+    26
+   ],
+   "panel_opened": false
+  },
+  "soft": []
+ }
+}
