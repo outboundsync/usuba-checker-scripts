@@ -16,7 +16,7 @@ nmcli nmtui iwctl bluetoothctl rfkill tailscale wg
 wl-copy wl-paste cliphist grim slurp satty wf-recorder gpu-screen-recorder wayfreeze swayosd-client swaybg mako makoctl walker elephant
 alacritty ghostty kitty foot nautilus imv mpv btop fastfetch fzf rg fd bat eza zoxide jq yq gum lazygit lazydocker nvim vim nano
 chromium firefox brave obsidian signal-desktop spotify localsend pinta typora libreoffice 1password
-python python3 node npm npx bun ruby perl lua luajit go cargo rustc java
+python python3 node npm npx bun ruby perl lua luajit go cargo rustc java deno
 pacman yay paru makepkg flatpak mise docker
 fc-match fc-list fc-cache convert magick ffmpeg ffprobe exiftool pdftotext qrencode zbarimg tesseract
 gsettings dconf pkexec sudo
