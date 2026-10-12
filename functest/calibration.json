@@ -17,7 +17,13 @@
     23,
     26
    ],
-   "panel_opened": true
+   "widget_x": 1012,
+   "panel_opened": true,
+   "texts": [
+    "\uf1da"
+   ],
+   "widget_ink": 80,
+   "widget_contrast": 12.58
   },
   "soft": []
  },
@@ -39,7 +45,15 @@
     27,
     26
    ],
-   "panel_opened": true
+   "widget_x": 1012,
+   "panel_opened": true,
+   "texts": [
+    "\uf09b",
+    "\uf09b",
+    "\uf09b"
+   ],
+   "widget_ink": 77,
+   "widget_contrast": 7.06
   },
   "soft": []
  },
@@ -54,15 +68,32 @@
    "registered": true,
    "widget_component": true,
    "widget_size": [
-    277,
+    276,
     26
    ],
    "widget_slot": [
-    277,
+    276,
     26
    ],
+   "widget_x": 1012,
    "panel_opened": true,
-   "service": true
+   "texts": [
+    "\udb83\udee0",
+    "CPU",
+    "C\nP\nU",
+    "6%",
+    "\udb80\udf5b",
+    "MEM",
+    "M\nE\nM",
+    "34%",
+    "\udb81\udef3",
+    "NET",
+    "N\nE\nT",
+    "\u2191 0"
+   ],
+   "service": true,
+   "widget_ink": 624,
+   "widget_contrast": 7.06
   },
   "soft": []
  },
@@ -85,6 +116,7 @@
     0
    ],
    "panel_opened": true,
+   "texts": [],
    "service": true
   },
   "soft": [
@@ -109,11 +141,19 @@
     27,
     26
    ],
+   "widget_x": 1012,
    "panel_opened": true,
-   "service": true
+   "texts": [
+    "\udb80\udc9a",
+    "\udb80\udc9a",
+    "\udb80\udc9a"
+   ],
+   "service": true,
+   "widget_ink": 82,
+   "widget_contrast": 7.06
   },
   "soft": [
-   "WARN scene: QML FileView at Service.qml[53:3]: Read of /opt/ft/runs/re80x_eh2/home/user/state/omarchy/notifications.json failed: File does not exist."
+   "WARN scene: QML FileView at Service.qml[53:3]: Read of /opt/ft/runs/rbbsu6phk/home/user/state/omarchy/notifications.json failed: File does not exist."
   ]
  },
  "tahayvr.postcard": {
@@ -127,20 +167,27 @@
    "registered": true,
    "widget_component": true,
    "widget_size": [
-    27,
+    26,
     26
    ],
    "widget_slot": [
-    27,
+    26,
     26
    ],
+   "widget_x": 1012,
    "panel_opened": true,
+   "texts": [
+    "\udb80\udd9f",
+    "\udb80\udd9f"
+   ],
    "panel": {
     "status": 1,
     "hasItem": true,
     "w": 0,
     "h": 0
-   }
+   },
+   "widget_ink": 30,
+   "widget_contrast": 6.46
   },
   "soft": []
  },
@@ -162,8 +209,16 @@
     27,
     26
    ],
+   "widget_x": 1012,
    "panel_opened": false,
-   "service": true
+   "texts": [
+    "\uf053",
+    "\uf053",
+    "\uf053"
+   ],
+   "service": true,
+   "widget_ink": 30,
+   "widget_contrast": 7.06
   },
   "soft": [
    "WARN qml: summon: no live bar widget for: io.github.tyrichards.tray"
@@ -180,20 +235,27 @@
    "registered": true,
    "widget_component": true,
    "widget_size": [
-    27,
+    29,
     26
    ],
    "widget_slot": [
-    27,
+    29,
     26
    ],
+   "widget_x": 1012,
    "panel_opened": true,
+   "texts": [
+    "\uf0ac",
+    "\uf0ac"
+   ],
    "panel": {
     "status": 1,
     "hasItem": true,
     "w": 0,
     "h": 0
-   }
+   },
+   "widget_ink": 102,
+   "widget_contrast": 7.06
   },
   "soft": []
  },
@@ -215,13 +277,17 @@
     27,
     26
    ],
+   "widget_x": 1012,
    "panel_opened": true,
+   "texts": [],
    "panel": {
     "status": 1,
     "hasItem": true,
     "w": 0,
     "h": 0
-   }
+   },
+   "widget_ink": 123,
+   "widget_contrast": 4.8
   },
   "soft": [
    "WARN scene: QML IpcHandler at ui/Theme.qml[84:30]: This IPC handler is enabled but no target is set. This means it is effectively inoperable."
@@ -238,19 +304,27 @@
    "registered": true,
    "widget_component": true,
    "widget_size": [
-    0,
+    21,
     26
    ],
    "widget_slot": [
-    0,
+    21,
     26
    ],
-   "panel_opened": false,
-   "service": true
+   "widget_x": 1012,
+   "panel_opened": true,
+   "texts": [
+    "\udb80\udc9b",
+    "\udb80\udc9b",
+    "\udb80\udc9b"
+   ],
+   "service": true,
+   "widget_ink": 0,
+   "widget_contrast": 1.0
   },
   "soft": [
    "WARN scene: QML IpcHandler at Service.qml[2168:3]: Handler was registered but will not be used because another handler is registered for target notifications",
-   "bar-widget has zero size [0, 26] (conditionally hidden by design)"
+   "bar-widget draws nothing visible on screen (slot 21x26 at x=1012, 0 ink px) (conditionally hidden by design)"
   ]
  },
  "crmne.hyprmoncfg": {
@@ -271,8 +345,16 @@
     27,
     26
    ],
+   "widget_x": 1012,
    "panel_opened": true,
-   "service": true
+   "texts": [
+    "\udb80\udf79",
+    "\udb80\udf79",
+    "\udb80\udf79"
+   ],
+   "service": true,
+   "widget_ink": 70,
+   "widget_contrast": 7.06
   },
   "soft": []
  },
@@ -285,9 +367,18 @@
   "runtime_errors": [],
   "runtime_checks": {
    "registered": true,
-   "bar_active": true
+   "texts": [],
+   "bar_active": true,
+   "bar_ink": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   }
   },
-  "soft": []
+  "soft": [
+   "bar pixels unverifiable: uses GPU layer effects the software renderer cannot draw (edge ink {'top': 0, 'bottom': 0, 'left': 0, 'right': 0})"
+  ]
  },
  "jankeesvw.clippy": {
   "expect": "pass",
@@ -298,6 +389,7 @@
   "runtime_errors": [],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "service": true
   },
   "soft": []
@@ -313,14 +405,20 @@
    "registered": true,
    "widget_component": true,
    "widget_size": [
-    25,
+    31,
     26
    ],
    "widget_slot": [
-    25,
+    31,
     26
    ],
-   "panel_opened": false
+   "widget_x": 1012,
+   "panel_opened": false,
+   "texts": [
+    "\uf233"
+   ],
+   "widget_ink": 130,
+   "widget_contrast": 7.06
   },
   "soft": [
    "WARN qml: summon: no live bar widget for: zeru.portwatch"
@@ -337,14 +435,25 @@
    "registered": true,
    "widget_component": true,
    "widget_size": [
-    128,
+    155,
     26
    ],
    "widget_slot": [
-    128,
+    155,
     26
    ],
-   "panel_opened": true
+   "widget_x": 1012,
+   "panel_opened": true,
+   "texts": [
+    "1",
+    "G",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "widget_ink": 1047,
+   "widget_contrast": 7.06
   },
   "soft": []
  },
@@ -357,7 +466,14 @@
   "runtime_errors": [],
   "runtime_checks": {
    "registered": true,
-   "bar_active": true
+   "texts": [],
+   "bar_active": true,
+   "bar_ink": {
+    "top": 42240,
+    "bottom": 0,
+    "left": 1248,
+    "right": 1248
+   }
   },
   "soft": []
  },
@@ -370,6 +486,7 @@
   "runtime_errors": [],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "service": true
   },
   "soft": []
@@ -383,6 +500,7 @@
   "runtime_errors": [],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "panel": {
     "status": 1,
     "hasItem": true,
@@ -401,6 +519,7 @@
   "runtime_errors": [],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "service": true
   },
   "soft": []
@@ -416,17 +535,23 @@
    "registered": true,
    "widget_component": true,
    "widget_size": [
-    53,
+    57,
     26
    ],
    "widget_slot": [
-    53,
+    57,
     26
    ],
-   "panel_opened": true
+   "widget_x": 1012,
+   "panel_opened": true,
+   "texts": [
+    "\u2003 +32d",
+    "\u2003 +32d"
+   ],
+   "widget_ink": 123,
+   "widget_contrast": 6.54
   },
   "soft": [
-   "WARN scene: QML QQuickImage at MissionDetail.qml[100:9]: Host thespacedevs-prod.nyc3.digitaloceanspaces.com not found",
    "WARN scene: QML QQuickImage at MissionDetail.qml[100:9]: Host thespacedevs-prod.nyc3.digitaloceanspaces.com not found"
   ]
  },
@@ -441,14 +566,21 @@
    "registered": true,
    "widget_component": true,
    "widget_size": [
-    27,
+    21,
     26
    ],
    "widget_slot": [
-    27,
+    21,
     26
    ],
-   "panel_opened": true
+   "widget_x": 1012,
+   "panel_opened": true,
+   "texts": [
+    "\uf023",
+    "\uf023"
+   ],
+   "widget_ink": 65,
+   "widget_contrast": 4.8
   },
   "soft": []
  },
@@ -463,14 +595,21 @@
    "registered": true,
    "widget_component": true,
    "widget_size": [
-    27,
+    26,
     26
    ],
    "widget_slot": [
-    27,
+    26,
     26
    ],
-   "panel_opened": true
+   "widget_x": 1012,
+   "panel_opened": true,
+   "texts": [
+    "\uf007",
+    "\uf007"
+   ],
+   "widget_ink": 50,
+   "widget_contrast": 7.06
   },
   "soft": []
  },
@@ -492,7 +631,14 @@
     27,
     26
    ],
-   "panel_opened": true
+   "widget_x": 1012,
+   "panel_opened": true,
+   "texts": [
+    "\uf002",
+    "\uf002"
+   ],
+   "widget_ink": 40,
+   "widget_contrast": 7.06
   },
   "soft": []
  },
@@ -507,14 +653,21 @@
    "registered": true,
    "widget_component": true,
    "widget_size": [
-    27,
+    26,
     26
    ],
    "widget_slot": [
-    27,
+    26,
     26
    ],
-   "panel_opened": true
+   "widget_x": 1012,
+   "panel_opened": true,
+   "texts": [
+    "\uf02d",
+    "\uf02d"
+   ],
+   "widget_ink": 82,
+   "widget_contrast": 7.06
   },
   "soft": []
  },
@@ -526,7 +679,6 @@
    "entry-not-qml",
    "fake-api",
    "no-qml",
-   "rt-load-failed",
    "rt-not-instantiated"
   ],
   "static_fails": [
@@ -552,16 +704,17 @@
    ]
   ],
   "runtime_errors": [
-   "WARN qml: service plugin load failed for acme.background: src/background.service.js:1:1: Expected a qualified name id or a string literal",
-   "WARN qml: service plugin load failed for acme.background: src/background.service.js:1:1: Expected a qualified name id or a string literal",
-   "WARN qml: service plugin load failed for acme.background: src/background.service.js:1:1: Expected a qualified name id or a string literal",
    "service instance not created"
   ],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "service": false
   },
-  "soft": []
+  "soft": [
+   "WARN qml: service plugin load failed for acme.background: src/background.service.js:1:1: Expected a qualified name id or a string literal",
+   "WARN qml: service plugin load failed for acme.background: src/background.service.js:1:1: Expected a qualified name id or a string literal"
+  ]
  },
  "acme.clipboard": {
   "expect": "fail",
@@ -571,6 +724,7 @@
    "fake-data",
    "rt-not-instantiated",
    "rt-other",
+   "rt-shell-broken",
    "rt-unresolved-type/import"
   ],
   "static_fails": [
@@ -582,10 +736,12 @@
   "runtime_errors": [
    "WARN scene: overlay.qml[15:16]: Type ClipboardHistoryModel unavailable",
    "WARN scene: ClipboardHistoryModel.qml[3:1]: Model is not a type",
+   "shell broke with plugin installed: WARN scene: @shell.qml[1357:-1]: ReferenceError: errorString is not defined",
    "overlay never instantiated after summon (status=None)"
   ],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "panel": null
   },
   "soft": []
@@ -622,11 +778,11 @@
   "runtime_errors": [
    "WARN qml: service plugin load failed for acme.notifications: src/service/main.js:1:1: Unexpected token `const'",
    "WARN qml: service plugin load failed for acme.notifications: src/service/main.js:1:1: Unexpected token `const'",
-   "WARN qml: service plugin load failed for acme.notifications: src/service/main.js:1:1: Unexpected token `const'",
    "service instance not created"
   ],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "service": false
   },
   "soft": []
@@ -639,7 +795,7 @@
    "bad-import",
    "fake-api",
    "rt-not-instantiated",
-   "rt-unresolved-type/import"
+   "rt-shell-broken"
   ],
   "static_fails": [
    [
@@ -652,14 +808,17 @@
    ]
   ],
   "runtime_errors": [
-   "WARN scene: src/panel.qml[4:1]: module \"QtNetwork\" version 5.15 is not installed",
+   "shell broke with plugin installed: WARN scene: @shell.qml[1357:-1]: ReferenceError: errorString is not defined",
    "panel never instantiated after summon (status=None)"
   ],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "panel": null
   },
-  "soft": []
+  "soft": [
+   "WARN scene: src/panel.qml[4:1]: module \"QtNetwork\" version 5.15 is not installed"
+  ]
  },
  "bobbynicholas.omaland": {
   "expect": "fail",
@@ -671,6 +830,7 @@
    "fake-api",
    "rt-not-instantiated",
    "rt-qml-syntax",
+   "rt-shell-broken",
    "rt-unresolved-type/import"
   ],
   "static_fails": [
@@ -698,14 +858,14 @@
   "runtime_errors": [
    "WARN qml: service plugin load failed for bobbynicholas.omaland: service.js:1:1: Unexpected token `const'",
    "WARN qml: service plugin load failed for bobbynicholas.omaland: service.js:1:1: Unexpected token `const'",
-   "WARN qml: service plugin load failed for bobbynicholas.omaland: service.js:1:1: Unexpected token `const'",
-   "WARN qml: service plugin load failed for bobbynicholas.omaland: service.js:1:1: Unexpected token `const'",
    "WARN scene: panel.qml[5:1]: Panel is not a type",
+   "shell broke with plugin installed: WARN scene: @shell.qml[1357:-1]: ReferenceError: errorString is not defined",
    "panel never instantiated after summon (status=None)",
    "service instance not created"
   ],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "panel": null,
    "service": false
   },
@@ -727,6 +887,20 @@
   "runtime_errors": [],
   "runtime_checks": {
    "registered": true,
+   "texts": [
+    "Split Horizontally",
+    "Split Horizontally",
+    "Split Horizontally",
+    "Split Vertically",
+    "Split Vertically",
+    "Split Vertically",
+    "Close Split",
+    "Close Split",
+    "Close Split",
+    "Move to Next Split",
+    "Move to Next Split",
+    "Move to Next Split"
+   ],
    "panel": {
     "status": 1,
     "hasItem": true,
@@ -744,7 +918,6 @@
    "entry-not-qml",
    "fake-api",
    "no-qml",
-   "rt-load-failed",
    "rt-not-instantiated"
   ],
   "static_fails": [
@@ -774,17 +947,17 @@
    ]
   ],
   "runtime_errors": [
-   "WARN qml: service plugin load failed for fkcodes.key-promoter: service/main.js:1:1: Expected a qualified name id or a string literal",
-   "WARN qml: service plugin load failed for fkcodes.key-promoter: service/main.js:1:1: Expected a qualified name id or a string literal",
-   "WARN qml: service plugin load failed for fkcodes.key-promoter: service/main.js:1:1: Expected a qualified name id or a string literal",
-   "WARN qml: service plugin load failed for fkcodes.key-promoter: service/main.js:1:1: Expected a qualified name id or a string literal",
    "service instance not created"
   ],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "service": false
   },
-  "soft": []
+  "soft": [
+   "WARN qml: service plugin load failed for fkcodes.key-promoter: service/main.js:1:1: Expected a qualified name id or a string literal",
+   "WARN qml: service plugin load failed for fkcodes.key-promoter: service/main.js:1:1: Expected a qualified name id or a string literal"
+  ]
  },
  "sanjyay.peekbar": {
   "expect": "fail",
@@ -795,7 +968,8 @@
    "qml-syntax",
    "rt-load-failed",
    "rt-not-instantiated",
-   "rt-qml-syntax"
+   "rt-qml-syntax",
+   "rt-shell-broken"
   ],
   "static_fails": [
    [
@@ -810,12 +984,12 @@
   "runtime_errors": [
    "WARN scene: bar/peekbar.qml[29:15]: Expected token `,'",
    "WARN qml: bar option sanjyay.peekbar failed to load, falling back to omarchy.bar",
-   "WARN scene: bar/peekbar.qml[29:15]: Expected token `,'",
-   "WARN qml: bar option sanjyay.peekbar failed to load, falling back to omarchy.bar",
-   "bar option not active (activeBarId=sanjyay.peekbar)"
+   "shell broke with plugin installed: WARN qml: bar option sanjyay.peekbar failed to load, falling back to omarchy.bar",
+   "bar option not active (activeBarId=omarchy.bar)"
   ],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "bar_active": false
   },
   "soft": []
@@ -841,6 +1015,7 @@
   "runtime_errors": [],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "service": true
   },
   "soft": []
@@ -861,6 +1036,7 @@
   "runtime_errors": [],
   "runtime_checks": {
    "registered": true,
+   "texts": [],
    "panel": {
     "status": 1,
     "hasItem": true,
@@ -869,8 +1045,6 @@
    },
    "service": true
   },
-  "soft": [
-   "WARN: Process failed to start, likely because the binary could not be found. Command: QList(\"lua\", \"/opt/ft/runs/rryl8n8ob/home/user/omarchy/plugins/bobbynicholas.omaland/read.lua\", \"/opt/ft/omarchy/default/hypr/looknfeel.lua\")"
-  ]
+  "soft": []
  }
 }

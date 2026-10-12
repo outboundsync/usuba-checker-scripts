@@ -1,0 +1,662 @@
+{
+ "summary": {
+  "old": "44/49",
+  "new": "25/49",
+  "per_task_new": {
+   "add_panel": "1/6",
+   "build_from_spec": "8/26",
+   "chunk_add_kind": "2/3",
+   "chunk_component": "6/6",
+   "chunk_manifest_entry": "3/3",
+   "fix_manifest": "5/5"
+  }
+ },
+ "rows": [
+  {
+   "holdout_i": 0,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-not-instantiated",
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: Background.qml: Util.isVideoPath does not exist in the real qs.Commons Util singleton",
+    "singleton-unknown: Background.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN qml: service plugin load failed for acme.background: Background.qml:270:3: ShellIpc is not a type",
+    "WARN qml: service plugin load failed for acme.background: Background.qml:270:3: ShellIpc is not a type",
+    "service instance not created"
+   ]
+  },
+  {
+   "holdout_i": 1,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-not-instantiated",
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: Background.qml: Util.isVideoPath does not exist in the real qs.Commons Util singleton",
+    "singleton-unknown: Background.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN qml: service plugin load failed for acme.background: Background.qml:407:7: BackgroundMedia is not a type",
+    "WARN qml: service plugin load failed for acme.background: Background.qml:407:7: BackgroundMedia is not a type",
+    "service instance not created"
+   ]
+  },
+  {
+   "holdout_i": 2,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-not-instantiated",
+    "rt-shell-broken",
+    "rt-unresolved-type/import"
+   ],
+   "static_fails": [],
+   "runtime_errors": [
+    "WARN scene: Clipboard.qml[315:3]: OverlayWindow is not a type",
+    "shell broke with plugin installed: WARN scene: @shell.qml[1357:-1]: ReferenceError: errorString is not defined",
+    "overlay never instantiated after summon (status=None)"
+   ]
+  },
+  {
+   "holdout_i": 3,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-not-instantiated",
+    "rt-shell-broken",
+    "rt-unresolved-type/import"
+   ],
+   "static_fails": [],
+   "runtime_errors": [
+    "WARN scene: Clipboard.qml[315:3]: OverlayWindow is not a type",
+    "shell broke with plugin installed: WARN scene: @shell.qml[1357:-1]: ReferenceError: errorString is not defined",
+    "overlay never instantiated after summon (status=None)"
+   ]
+  },
+  {
+   "holdout_i": 4,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-not-instantiated",
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: components/NotificationCard.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN qml: service plugin load failed for acme.notifications: Service.qml:904:3: ShellIpc is not a type",
+    "WARN qml: service plugin load failed for acme.notifications: Service.qml:904:3: ShellIpc is not a type",
+    "service instance not created"
+   ]
+  },
+  {
+   "holdout_i": 5,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-not-instantiated",
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: components/NotificationCard.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN qml: service plugin load failed for acme.notifications: Service.qml:904:3: ShellIpc is not a type",
+    "WARN qml: service plugin load failed for acme.notifications: Service.qml:904:3: ShellIpc is not a type",
+    "service instance not created"
+   ]
+  },
+  {
+   "holdout_i": 6,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-load-failed",
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN qml: Plugin widget acme.dropbox failed: Panel.qml:159:3: ShellIpc is not a type",
+    "bar-widget component never registered (load failed)"
+   ]
+  },
+  {
+   "holdout_i": 7,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-load-failed",
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN qml: Plugin widget acme.dropbox failed: Panel.qml:159:3: ShellIpc is not a type",
+    "bar-widget component never registered (load failed)"
+   ]
+  },
+  {
+   "holdout_i": 8,
+   "task": "add_panel",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-load-failed",
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN qml: Plugin widget acme.dropbox failed: Panel.qml:159:3: ShellIpc is not a type",
+    "bar-widget component never registered (load failed)"
+   ]
+  },
+  {
+   "holdout_i": 9,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-load-failed",
+    "rt-unresolved-type/import"
+   ],
+   "static_fails": [],
+   "runtime_errors": [
+    "WARN qml: Plugin widget acme.monitor failed: Panel.qml:221:3: ShellIpc is not a type",
+    "bar-widget component never registered (load failed)"
+   ]
+  },
+  {
+   "holdout_i": 10,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-load-failed",
+    "rt-unresolved-type/import"
+   ],
+   "static_fails": [],
+   "runtime_errors": [
+    "WARN qml: Plugin widget acme.monitor failed: Panel.qml:221:3: ShellIpc is not a type",
+    "bar-widget component never registered (load failed)"
+   ]
+  },
+  {
+   "holdout_i": 11,
+   "task": "add_panel",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-load-failed",
+    "rt-unresolved-type/import"
+   ],
+   "static_fails": [],
+   "runtime_errors": [
+    "WARN qml: Plugin widget acme.monitor failed: Panel.qml:221:3: ShellIpc is not a type",
+    "bar-widget component never registered (load failed)"
+   ]
+  },
+  {
+   "holdout_i": 12,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-load-failed",
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton",
+    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN qml: Plugin widget acme.power failed: Panel.qml:178:3: ShellIpc is not a type",
+    "bar-widget component never registered (load failed)"
+   ]
+  },
+  {
+   "holdout_i": 13,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-load-failed",
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton",
+    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN qml: Plugin widget acme.power failed: Panel.qml:178:3: ShellIpc is not a type",
+    "bar-widget component never registered (load failed)"
+   ]
+  },
+  {
+   "holdout_i": 14,
+   "task": "add_panel",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-load-failed",
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton",
+    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN qml: Plugin widget acme.power failed: Panel.qml:178:3: ShellIpc is not a type",
+    "bar-widget component never registered (load failed)"
+   ]
+  },
+  {
+   "holdout_i": 15,
+   "task": "build_from_spec",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 16,
+   "task": "build_from_spec",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 17,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN scene: Panel.qml[479:3]: ShellIpc is not a type"
+   ]
+  },
+  {
+   "holdout_i": 18,
+   "task": "build_from_spec",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN scene: Panel.qml[479:3]: ShellIpc is not a type"
+   ]
+  },
+  {
+   "holdout_i": 19,
+   "task": "add_panel",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-unresolved-type/import",
+    "singleton-unknown"
+   ],
+   "static_fails": [
+    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton"
+   ],
+   "runtime_errors": [
+    "WARN scene: Panel.qml[479:3]: ShellIpc is not a type"
+   ]
+  },
+  {
+   "holdout_i": 20,
+   "task": "build_from_spec",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 21,
+   "task": "build_from_spec",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 22,
+   "task": "build_from_spec",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 23,
+   "task": "add_panel",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 24,
+   "task": "build_from_spec",
+   "old": false,
+   "new": false,
+   "categories": [
+    "rt-js-error",
+    "rt-shell-broken"
+   ],
+   "static_fails": [],
+   "runtime_errors": [
+    "WARN scene: RestoreBrowser.qml[384:9]: TypeError: Cannot read property 'length' of undefined",
+    "WARN scene: Panel.qml[100:-1]: TypeError: Property 'plain' of object TimeMachineStore is not a function",
+    "WARN scene: RestoreBrowser.qml[363:-1]: TypeError: Cannot read property 'length' of undefined",
+    "WARN scene: RestoreBrowser.qml[355:-1]: TypeError: Cannot read property 'length' of undefined",
+    "WARN scene: RestoreBrowser.qml[395:-1]: TypeError: Cannot read property 'length' of undefined",
+    "WARN scene: RestoreBrowser.qml[490:-1]: TypeError: Cannot read property 'length' of undefined",
+    "WARN scene: RestoreBrowser.qml[146:-1]: TypeError: Cannot call method 'lastIndexOf' of undefined",
+    "WARN scene: Panel.qml[78:-1]: TypeError: Property 'refresh' of object TimeMachineStore is not a function"
+   ]
+  },
+  {
+   "holdout_i": 25,
+   "task": "add_panel",
+   "old": false,
+   "new": false,
+   "categories": [
+    "rt-js-error",
+    "rt-shell-broken"
+   ],
+   "static_fails": [],
+   "runtime_errors": [
+    "WARN scene: RestoreBrowser.qml[384:9]: TypeError: Cannot read property 'length' of undefined",
+    "WARN scene: Panel.qml[100:-1]: TypeError: Property 'plain' of object TimeMachineStore is not a function",
+    "WARN scene: RestoreBrowser.qml[363:-1]: TypeError: Cannot read property 'length' of undefined",
+    "WARN scene: RestoreBrowser.qml[355:-1]: TypeError: Cannot read property 'length' of undefined",
+    "WARN scene: RestoreBrowser.qml[395:-1]: TypeError: Cannot read property 'length' of undefined",
+    "WARN scene: RestoreBrowser.qml[490:-1]: TypeError: Cannot read property 'length' of undefined",
+    "WARN scene: RestoreBrowser.qml[146:-1]: TypeError: Cannot call method 'lastIndexOf' of undefined",
+    "WARN scene: Panel.qml[78:-1]: TypeError: Property 'refresh' of object TimeMachineStore is not a function"
+   ]
+  },
+  {
+   "holdout_i": 26,
+   "task": "build_from_spec",
+   "old": false,
+   "new": false,
+   "categories": [
+    "rt-other"
+   ],
+   "static_fails": [],
+   "runtime_errors": [
+    "WARN qml: key-promoter keybinds: /usr/bin/bash: /opt/ft/runs/rplg8uy0n/home/user/omarchy/plugins/fkcodes.key-promoter/bin/keybinds: No such file or directory"
+   ]
+  },
+  {
+   "holdout_i": 27,
+   "task": "build_from_spec",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 28,
+   "task": "build_from_spec",
+   "old": false,
+   "new": false,
+   "categories": [
+    "dangerous-write"
+   ],
+   "static_fails": [
+    "dangerous-write: Panel.qml: writes/shell-outs alongside protected path /.config/hypr/looknfeel.lua"
+   ],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 29,
+   "task": "build_from_spec",
+   "old": false,
+   "new": false,
+   "categories": [
+    "rt-js-error"
+   ],
+   "static_fails": [],
+   "runtime_errors": [
+    "WARN scene: Calendar.qml[166:-1]: TypeError: Cannot read property '2026-09-28' of undefined",
+    "WARN scene: Calendar.qml[394:-1]: TypeError: Cannot read property 'length' of undefined",
+    "WARN scene: Calendar.qml[49:-1]: TypeError: Cannot read property '2026-10-12' of undefined",
+    "WARN scene: Calendar.qml[26:-1]: TypeError: Cannot read property '' of undefined",
+    "WARN scene: Calendar.qml[185:-1]: TypeError: Property 'requestWindow' of object CalendarStore is not a function"
+   ]
+  },
+  {
+   "holdout_i": 30,
+   "task": "build_from_spec",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 31,
+   "task": "build_from_spec",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 36,
+   "task": "chunk_manifest_entry",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 37,
+   "task": "chunk_component",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 38,
+   "task": "chunk_component",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 39,
+   "task": "chunk_manifest_entry",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 40,
+   "task": "chunk_component",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 41,
+   "task": "chunk_component",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 45,
+   "task": "chunk_manifest_entry",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 46,
+   "task": "chunk_add_kind:bar",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 47,
+   "task": "chunk_add_kind:service",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 48,
+   "task": "chunk_add_kind:menu",
+   "old": true,
+   "new": false,
+   "categories": [
+    "rt-js-error"
+   ],
+   "static_fails": [],
+   "runtime_errors": [
+    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+    "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function"
+   ]
+  },
+  {
+   "holdout_i": 49,
+   "task": "chunk_component",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 50,
+   "task": "chunk_component",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 51,
+   "task": "fix_manifest:reserved_id",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 52,
+   "task": "fix_manifest:bad_path_dotdot",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 53,
+   "task": "fix_manifest:reserved_id",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 54,
+   "task": "fix_manifest:bad_path_absolute",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  },
+  {
+   "holdout_i": 55,
+   "task": "fix_manifest:reserved_id",
+   "old": true,
+   "new": true,
+   "categories": [],
+   "static_fails": [],
+   "runtime_errors": []
+  }
+ ]
+}

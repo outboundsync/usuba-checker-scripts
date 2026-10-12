@@ -22,6 +22,10 @@ def tree_dir(h):
     if m["origin"] == "first-party": return "/opt/ft/omarchy/" + m["plugin_path"]
     return os.path.join(ROOT, "sources/repos", REPO_FOR[m["repo"]])
 CACHE = os.path.join(HERE, "cache"); os.makedirs(CACHE, exist_ok=True)
+# cache entries are only valid for the functest version that produced them
+FT_VERSION = hashlib.sha1(b"".join(open(os.path.join(HERE, f), "rb").read() for f in
+    ("functest.py", "runtime.py", "static_checks.py", "dell_checks.py", "dell_env/setup.py", "dell_env/hyprctl.py", "dell_env/binaries.py",
+     "dell_env/system_bins.txt", "dell_env/ftprobe.qml.part"))).hexdigest()[:12]
 
 def norm(e): return re.sub(r"\d+", "N", re.sub(r"/opt/ft/runs/\w+", "", e))
 
@@ -55,7 +59,7 @@ def score_row(i, h, g):
     files = parse(g["output"])
     if not files: return dict(task=h["task"], pass_=False, categories=["no-files-parsed"], finish=g["finish"])
     if task in FULL:
-        key = hashlib.sha1(json.dumps(files, sort_keys=True).encode()).hexdigest()
+        key = FT_VERSION + "-" + hashlib.sha1(json.dumps(files, sort_keys=True).encode()).hexdigest()
         cp = os.path.join(CACHE, key + ".json")
         if os.path.exists(cp): r = json.load(open(cp))
         else:
@@ -63,7 +67,7 @@ def score_row(i, h, g):
     else:
         bs, br, _ = baseline(i, h)
         _, t = build_tree(h, files)
-        key = hashlib.sha1(json.dumps(t, sort_keys=True).encode()).hexdigest()
+        key = FT_VERSION + "-" + hashlib.sha1(json.dumps(t, sort_keys=True).encode()).hexdigest()
         cp = os.path.join(CACHE, key + ".json")
         if os.path.exists(cp): r = json.load(open(cp))
         else:

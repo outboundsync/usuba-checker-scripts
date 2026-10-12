@@ -1,0 +1,40 @@
+    // ---- functest harness probe (not part of Omarchy) ----
+    function ftProbe(id: string): string {
+      function ftTexts(item, out, depth) {
+        if (!item || depth > 40 || out.length > 200) return
+        try {
+          if (item.text !== undefined && item.text !== null && typeof item.text !== "function" && item.visible !== false) {
+            var t = String(item.text)
+            if (t.length) out.push(t.slice(0, 120))
+          }
+        } catch (e) {}
+        var kids = []
+        try { var c = item.children || []; for (var j = 0; j < c.length; j++) kids.push(c[j]) } catch (e) {}   // QQmlListProperty has no indexOf
+        for (var i = 0; i < kids.length; i++) ftTexts(kids[i], out, depth + 1)
+        try { if (item.contentItem && kids.indexOf(item.contentItem) < 0 && depth < 40) ftTexts(item.contentItem, out, depth + 1) } catch (e) {}
+      }
+      var r = { id: id }
+      var m = shell.pluginRegistry.installedPlugins[id]
+      r.installed = !!m
+      r.enabled = m ? shell.pluginRegistry.isEnabled(id) : false
+      r.widgetRegistered = shell.barWidgetRegistry && shell.barWidgetRegistry.has ? shell.barWidgetRegistry.has(id) : false
+      var l = shell.panelLoaders[id]
+      r.panel = l ? { status: l.status, hasItem: !!l.item, w: l.item ? Math.round(l.item.width || l.item.implicitWidth || 0) : 0, h: l.item ? Math.round(l.item.height || l.item.implicitHeight || 0) : 0 } : null
+      r.panelTexts = []
+      if (l && l.item) ftTexts(l.item, r.panelTexts, 0)
+      var sv = shell._services ? shell._services[id] : null
+      r.service = !!sv
+      r.activeBarId = shell.activeBarId
+      r.barLoaded = !!shell.bar
+      try { r.open = shell.isPluginOpen(id) } catch (e) { r.open = false }
+      try { r.bar = (shell.bar && shell.bar.debugBarGeometry ? shell.bar.debugBarGeometry() : []).filter(function(g){ return g.id === id }) } catch (e) { r.bar = String(e) }
+      try { var ga = (shell.bar && shell.bar.debugBarGeometry ? shell.bar.debugBarGeometry() : []); r.barAll = ga.length; r.barGeo = ga.slice(0, 40) } catch (e) { r.barAll = -1 }
+      r.widgetTexts = []
+      try {
+        var slots = shell.bar && shell.bar.moduleSlots ? shell.bar.moduleSlots : []
+        for (var s = 0; s < slots.length; s++) if (slots[s] && slots[s].moduleName === id && slots[s].activeItem) ftTexts(slots[s].activeItem, r.widgetTexts, 0)
+      } catch (e) {}
+      try { var sc = Quickshell.screens[0]; r.screen = sc ? { w: sc.width, h: sc.height } : null } catch (e) { r.screen = null }
+      return JSON.stringify(r)
+    }
+

@@ -1,0 +1,1390 @@
+{
+ "general:border_size": [
+  "Int",
+  "0"
+ ],
+ "general:gaps_in": [
+  "CssGap",
+  "20"
+ ],
+ "general:gaps_out": [
+  "CssGap",
+  "20"
+ ],
+ "general:float_gaps": [
+  "CssGap",
+  "0"
+ ],
+ "general:gaps_workspaces": [
+  "Int",
+  "0"
+ ],
+ "general:col.inactive_border": [
+  "Gradient",
+  "CHyprColor{0xff444444}"
+ ],
+ "general:col.active_border": [
+  "Gradient",
+  "CHyprColor{0xffffffff}"
+ ],
+ "general:col.nogroup_border": [
+  "Gradient",
+  "CHyprColor{0xffffaaff}"
+ ],
+ "general:col.nogroup_border_active": [
+  "Gradient",
+  "CHyprColor{0xffff00ff}"
+ ],
+ "general:layout": [
+  "String",
+  "\"dwindle\""
+ ],
+ "general:no_focus_fallback": [
+  "Bool",
+  "false"
+ ],
+ "general:resize_on_border": [
+  "Bool",
+  "false"
+ ],
+ "general:extend_border_grab_area": [
+  "Int",
+  "15"
+ ],
+ "general:hover_icon_on_border": [
+  "Bool",
+  "true"
+ ],
+ "general:allow_tearing": [
+  "Bool",
+  "false"
+ ],
+ "general:resize_corner": [
+  "Int",
+  "0"
+ ],
+ "general:snap:enabled": [
+  "Bool",
+  "false"
+ ],
+ "general:snap:window_gap": [
+  "Int",
+  "10"
+ ],
+ "general:snap:monitor_gap": [
+  "Int",
+  "10"
+ ],
+ "general:snap:border_overlap": [
+  "Bool",
+  "false"
+ ],
+ "general:snap:respect_gaps": [
+  "Bool",
+  "false"
+ ],
+ "general:modal_parent_blocking": [
+  "Bool",
+  "true"
+ ],
+ "general:locale": [
+  "String",
+  "\"\""
+ ],
+ "decoration:rounding": [
+  "Int",
+  "0"
+ ],
+ "decoration:rounding_power": [
+  "Float",
+  "2"
+ ],
+ "decoration:active_opacity": [
+  "Float",
+  "1"
+ ],
+ "decoration:inactive_opacity": [
+  "Float",
+  "1"
+ ],
+ "decoration:fullscreen_opacity": [
+  "Float",
+  "1"
+ ],
+ "decoration:shadow:enabled": [
+  "Bool",
+  "true"
+ ],
+ "decoration:shadow:range": [
+  "Int",
+  "4"
+ ],
+ "decoration:shadow:render_power": [
+  "Int",
+  "3"
+ ],
+ "decoration:shadow:sharp": [
+  "Bool",
+  "false"
+ ],
+ "decoration:shadow:color": [
+  "Gradient",
+  "CHyprColor{0xee1a1a1a}"
+ ],
+ "decoration:shadow:color_inactive": [
+  "Gradient",
+  "-1"
+ ],
+ "decoration:shadow:offset": [
+  "Vec2",
+  "Config::VEC2{}"
+ ],
+ "decoration:shadow:scale": [
+  "Float",
+  "1"
+ ],
+ "decoration:glow:enabled": [
+  "Bool",
+  "false"
+ ],
+ "decoration:glow:range": [
+  "Int",
+  "10"
+ ],
+ "decoration:glow:render_power": [
+  "Int",
+  "3"
+ ],
+ "decoration:glow:color": [
+  "Gradient",
+  "CHyprColor{0xee33ccff}"
+ ],
+ "decoration:glow:color_inactive": [
+  "Gradient",
+  "-1"
+ ],
+ "decoration:dim_modal": [
+  "Bool",
+  "true"
+ ],
+ "decoration:dim_inactive": [
+  "Bool",
+  "false"
+ ],
+ "decoration:dim_strength": [
+  "Float",
+  "0.5"
+ ],
+ "decoration:dim_special": [
+  "Float",
+  "0.2"
+ ],
+ "decoration:dim_around": [
+  "Float",
+  "0.4"
+ ],
+ "decoration:screen_shader": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "decoration:border_part_of_window": [
+  "Bool",
+  "true"
+ ],
+ "decoration:blur:enabled": [
+  "Bool",
+  "true"
+ ],
+ "decoration:blur:size": [
+  "Int",
+  "8"
+ ],
+ "decoration:blur:passes": [
+  "Int",
+  "1"
+ ],
+ "decoration:blur:ignore_opacity": [
+  "Bool",
+  "true"
+ ],
+ "decoration:blur:new_optimizations": [
+  "Bool",
+  "true"
+ ],
+ "decoration:blur:xray": [
+  "Bool",
+  "false"
+ ],
+ "decoration:blur:noise": [
+  "Float",
+  "0.0117"
+ ],
+ "decoration:blur:contrast": [
+  "Float",
+  "0.8916"
+ ],
+ "decoration:blur:brightness": [
+  "Float",
+  "1"
+ ],
+ "decoration:blur:vibrancy": [
+  "Float",
+  "0.1696"
+ ],
+ "decoration:blur:vibrancy_darkness": [
+  "Float",
+  "0"
+ ],
+ "decoration:blur:special": [
+  "Bool",
+  "false"
+ ],
+ "decoration:blur:popups": [
+  "Bool",
+  "false"
+ ],
+ "decoration:blur:popups_ignorealpha": [
+  "Float",
+  "0.2"
+ ],
+ "decoration:blur:input_methods": [
+  "Bool",
+  "false"
+ ],
+ "decoration:blur:input_methods_ignorealpha": [
+  "Float",
+  "0.2"
+ ],
+ "decoration:motion_blur:enabled": [
+  "Bool",
+  "false"
+ ],
+ "decoration:motion_blur:samples": [
+  "Int",
+  "7"
+ ],
+ "animations:enabled": [
+  "Bool",
+  "true"
+ ],
+ "animations:workspace_wraparound": [
+  "Bool",
+  "false"
+ ],
+ "input:kb_model": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "input:kb_layout": [
+  "String",
+  "\"us\""
+ ],
+ "input:kb_variant": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "input:kb_options": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "input:kb_rules": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "input:kb_file": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "input:numlock_by_default": [
+  "Bool",
+  "false"
+ ],
+ "input:resolve_binds_by_sym": [
+  "Bool",
+  "false"
+ ],
+ "input:repeat_rate": [
+  "Int",
+  "25"
+ ],
+ "input:repeat_delay": [
+  "Int",
+  "600"
+ ],
+ "input:sensitivity": [
+  "Float",
+  "0"
+ ],
+ "input:accel_profile": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "input:force_no_accel": [
+  "Bool",
+  "false"
+ ],
+ "input:rotation": [
+  "Int",
+  "0"
+ ],
+ "input:left_handed": [
+  "Bool",
+  "false"
+ ],
+ "input:scroll_points": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "input:scroll_method": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "input:scroll_button": [
+  "Int",
+  "0"
+ ],
+ "input:scroll_button_lock": [
+  "Bool",
+  "false"
+ ],
+ "input:scroll_factor": [
+  "Float",
+  "1"
+ ],
+ "input:natural_scroll": [
+  "Bool",
+  "false"
+ ],
+ "input:follow_mouse": [
+  "Int",
+  "1"
+ ],
+ "input:follow_mouse_threshold": [
+  "Float",
+  "0"
+ ],
+ "input:focus_on_close": [
+  "Int",
+  "0"
+ ],
+ "input:mouse_refocus": [
+  "Bool",
+  "true"
+ ],
+ "input:special_fallthrough": [
+  "Bool",
+  "false"
+ ],
+ "input:off_window_axis_events": [
+  "Int",
+  "1"
+ ],
+ "input:emulate_discrete_scroll": [
+  "Int",
+  "1"
+ ],
+ "input:touchpad:disable_while_typing": [
+  "Bool",
+  "true"
+ ],
+ "input:touchpad:natural_scroll": [
+  "Bool",
+  "false"
+ ],
+ "input:touchpad:scroll_factor": [
+  "Float",
+  "1"
+ ],
+ "input:touchpad:middle_button_emulation": [
+  "Bool",
+  "false"
+ ],
+ "input:touchpad:tap_button_map": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "input:touchpad:clickfinger_behavior": [
+  "Bool",
+  "false"
+ ],
+ "input:touchpad:tap-to-click": [
+  "Bool",
+  "true"
+ ],
+ "input:touchpad:drag_lock": [
+  "Int",
+  "0"
+ ],
+ "input:touchpad:tap-and-drag": [
+  "Bool",
+  "true"
+ ],
+ "input:touchpad:flip_x": [
+  "Bool",
+  "false"
+ ],
+ "input:touchpad:flip_y": [
+  "Bool",
+  "false"
+ ],
+ "input:touchpad:drag_3fg": [
+  "Int",
+  "0"
+ ],
+ "input:touchdevice:transform": [
+  "Int",
+  "0"
+ ],
+ "input:touchdevice:output": [
+  "String",
+  "\"[[Auto]]\""
+ ],
+ "input:touchdevice:enabled": [
+  "Bool",
+  "true"
+ ],
+ "input:virtualkeyboard:share_states": [
+  "Int",
+  "2"
+ ],
+ "input:virtualkeyboard:release_pressed_on_close": [
+  "Bool",
+  "false"
+ ],
+ "input:tablet:transform": [
+  "Int",
+  "0"
+ ],
+ "input:tablet:output": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "input:tablet:region_position": [
+  "Vec2",
+  "Config::VEC2{}"
+ ],
+ "input:tablet:absolute_region_position": [
+  "Bool",
+  "false"
+ ],
+ "input:tablet:region_size": [
+  "Vec2",
+  "Config::VEC2{}"
+ ],
+ "input:tablet:relative_input": [
+  "Bool",
+  "false"
+ ],
+ "input:tablet:left_handed": [
+  "Bool",
+  "false"
+ ],
+ "input:tablet:active_area_size": [
+  "Vec2",
+  "Config::VEC2{}"
+ ],
+ "input:tablet:active_area_position": [
+  "Vec2",
+  "Config::VEC2{}"
+ ],
+ "input:tablettool:pressure_range_min": [
+  "Float",
+  "-1.0"
+ ],
+ "input:tablettool:pressure_range_max": [
+  "Float",
+  "-1.0"
+ ],
+ "gestures:workspace_swipe_distance": [
+  "Int",
+  "300"
+ ],
+ "gestures:workspace_swipe_touch": [
+  "Bool",
+  "false"
+ ],
+ "gestures:workspace_swipe_invert": [
+  "Bool",
+  "true"
+ ],
+ "gestures:workspace_swipe_touch_invert": [
+  "Bool",
+  "false"
+ ],
+ "gestures:workspace_swipe_min_speed_to_force": [
+  "Int",
+  "30"
+ ],
+ "gestures:workspace_swipe_cancel_ratio": [
+  "Float",
+  "0.5"
+ ],
+ "gestures:workspace_swipe_create_new": [
+  "Bool",
+  "true"
+ ],
+ "gestures:workspace_swipe_direction_lock": [
+  "Bool",
+  "true"
+ ],
+ "gestures:workspace_swipe_direction_lock_threshold": [
+  "Int",
+  "10"
+ ],
+ "gestures:workspace_swipe_forever": [
+  "Bool",
+  "false"
+ ],
+ "gestures:workspace_swipe_use_r": [
+  "Bool",
+  "false"
+ ],
+ "gestures:close_max_timeout": [
+  "Int",
+  "1000"
+ ],
+ "gestures:scrolling:move_snap_to_grid": [
+  "Bool",
+  "true"
+ ],
+ "gestures:scrolling:move_snap_cursor": [
+  "Bool",
+  "true"
+ ],
+ "group:insert_after_current": [
+  "Bool",
+  "true"
+ ],
+ "group:focus_removed_window": [
+  "Bool",
+  "true"
+ ],
+ "group:merge_groups_on_drag": [
+  "Bool",
+  "true"
+ ],
+ "group:merge_groups_on_groupbar": [
+  "Bool",
+  "true"
+ ],
+ "group:col.border_active": [
+  "Gradient",
+  "CHyprColor{0x66ffff00}"
+ ],
+ "group:col.border_inactive": [
+  "Gradient",
+  "CHyprColor{0x66777700}"
+ ],
+ "group:col.border_locked_inactive": [
+  "Gradient",
+  "CHyprColor{0x66ff5500}"
+ ],
+ "group:col.border_locked_active": [
+  "Gradient",
+  "CHyprColor{0x66775500}"
+ ],
+ "group:auto_group": [
+  "Bool",
+  "true"
+ ],
+ "group:drag_into_group": [
+  "Int",
+  "1"
+ ],
+ "group:merge_floated_into_tiled_on_groupbar": [
+  "Bool",
+  "false"
+ ],
+ "group:group_on_movetoworkspace": [
+  "Bool",
+  "false"
+ ],
+ "group:groupbar:enabled": [
+  "Bool",
+  "true"
+ ],
+ "group:groupbar:disable_when_only": [
+  "Bool",
+  "false"
+ ],
+ "group:groupbar:font_family": [
+  "String",
+  "\"[[EMPTY]]\""
+ ],
+ "group:groupbar:font_size": [
+  "Int",
+  "8"
+ ],
+ "group:groupbar:gradients": [
+  "Bool",
+  "false"
+ ],
+ "group:groupbar:height": [
+  "Int",
+  "14"
+ ],
+ "group:groupbar:indicator_gap": [
+  "Int",
+  "0"
+ ],
+ "group:groupbar:indicator_height": [
+  "Int",
+  "3"
+ ],
+ "group:groupbar:stacked": [
+  "Bool",
+  "false"
+ ],
+ "group:groupbar:priority": [
+  "Int",
+  "3"
+ ],
+ "group:groupbar:render_titles": [
+  "Bool",
+  "true"
+ ],
+ "group:groupbar:scrolling": [
+  "Bool",
+  "true"
+ ],
+ "group:groupbar:middle_click_close": [
+  "Bool",
+  "true"
+ ],
+ "group:groupbar:rounding": [
+  "Int",
+  "1"
+ ],
+ "group:groupbar:rounding_power": [
+  "Float",
+  "2"
+ ],
+ "group:groupbar:gradient_rounding": [
+  "Int",
+  "2"
+ ],
+ "group:groupbar:gradient_rounding_power": [
+  "Float",
+  "2"
+ ],
+ "group:groupbar:round_only_edges": [
+  "Bool",
+  "true"
+ ],
+ "group:groupbar:gradient_round_only_edges": [
+  "Bool",
+  "true"
+ ],
+ "group:groupbar:text_color": [
+  "Color",
+  "0xffffffff"
+ ],
+ "group:groupbar:text_color_inactive": [
+  "Color",
+  "-1"
+ ],
+ "group:groupbar:text_color_locked_active": [
+  "Color",
+  "-1"
+ ],
+ "group:groupbar:text_color_locked_inactive": [
+  "Color",
+  "-1"
+ ],
+ "group:groupbar:col.active": [
+  "Gradient",
+  "0x66ffff00"
+ ],
+ "group:groupbar:col.inactive": [
+  "Gradient",
+  "0x66777700"
+ ],
+ "group:groupbar:col.locked_active": [
+  "Gradient",
+  "0x66ff5500"
+ ],
+ "group:groupbar:col.locked_inactive": [
+  "Gradient",
+  "0x66775500"
+ ],
+ "group:groupbar:gaps_out": [
+  "Int",
+  "2"
+ ],
+ "group:groupbar:gaps_in": [
+  "Int",
+  "2"
+ ],
+ "group:groupbar:keep_upper_gap": [
+  "Bool",
+  "true"
+ ],
+ "group:groupbar:text_offset": [
+  "Int",
+  "0"
+ ],
+ "group:groupbar:text_padding": [
+  "Int",
+  "0"
+ ],
+ "group:groupbar:blur": [
+  "Bool",
+  "false"
+ ],
+ "misc:disable_hyprland_logo": [
+  "Bool",
+  "false"
+ ],
+ "misc:disable_splash_rendering": [
+  "Bool",
+  "false"
+ ],
+ "misc:col.splash": [
+  "Color",
+  "0x55ffffff"
+ ],
+ "misc:font_family": [
+  "String",
+  "\"Sans\""
+ ],
+ "misc:splash_font_family": [
+  "String",
+  "\"[[EMPTY]]\""
+ ],
+ "misc:force_default_wallpaper": [
+  "Int",
+  "-1"
+ ],
+ "misc:vrr": [
+  "Int",
+  "0"
+ ],
+ "misc:mouse_move_enables_dpms": [
+  "Bool",
+  "false"
+ ],
+ "misc:key_press_enables_dpms": [
+  "Bool",
+  "false"
+ ],
+ "misc:name_vk_after_proc": [
+  "Bool",
+  "true"
+ ],
+ "misc:always_follow_on_dnd": [
+  "Bool",
+  "true"
+ ],
+ "misc:layers_hog_keyboard_focus": [
+  "Bool",
+  "true"
+ ],
+ "misc:animate_manual_resizes": [
+  "Bool",
+  "false"
+ ],
+ "misc:animate_mouse_windowdragging": [
+  "Bool",
+  "false"
+ ],
+ "misc:disable_autoreload": [
+  "Bool",
+  "false"
+ ],
+ "misc:enable_swallow": [
+  "Bool",
+  "false"
+ ],
+ "misc:swallow_regex": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "misc:swallow_exception_regex": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "misc:focus_on_activate": [
+  "Bool",
+  "false"
+ ],
+ "misc:mouse_move_focuses_monitor": [
+  "Bool",
+  "true"
+ ],
+ "misc:allow_session_lock_restore": [
+  "Bool",
+  "false"
+ ],
+ "misc:session_lock_xray": [
+  "Bool",
+  "false"
+ ],
+ "misc:session_lock_blur": [
+  "Bool",
+  "false"
+ ],
+ "misc:background_color": [
+  "Color",
+  "0xff111111"
+ ],
+ "misc:close_special_on_empty": [
+  "Bool",
+  "true"
+ ],
+ "misc:on_focus_under_fullscreen": [
+  "Int",
+  "2"
+ ],
+ "misc:exit_window_retains_fullscreen": [
+  "Bool",
+  "false"
+ ],
+ "misc:initial_workspace_tracking": [
+  "Int",
+  "1"
+ ],
+ "misc:initial_workspace_token_timeout": [
+  "Int",
+  "10"
+ ],
+ "misc:middle_click_paste": [
+  "Bool",
+  "true"
+ ],
+ "misc:render_unfocused_fps": [
+  "Int",
+  "15"
+ ],
+ "misc:disable_xdg_env_checks": [
+  "Bool",
+  "false"
+ ],
+ "misc:disable_hyprland_guiutils_check": [
+  "Bool",
+  "false"
+ ],
+ "misc:disable_watchdog_warning": [
+  "Bool",
+  "false"
+ ],
+ "misc:lockdead_screen_delay": [
+  "Int",
+  "1000"
+ ],
+ "misc:enable_anr_dialog": [
+  "Bool",
+  "true"
+ ],
+ "misc:anr_missed_pings": [
+  "Int",
+  "5"
+ ],
+ "misc:screencopy_force_8b": [
+  "Bool",
+  "true"
+ ],
+ "misc:disable_scale_notification": [
+  "Bool",
+  "false"
+ ],
+ "misc:size_limits_tiled": [
+  "Bool",
+  "false"
+ ],
+ "binds:pass_mouse_when_bound": [
+  "Bool",
+  "false"
+ ],
+ "binds:scroll_event_delay": [
+  "Int",
+  "300"
+ ],
+ "binds:workspace_back_and_forth": [
+  "Bool",
+  "false"
+ ],
+ "binds:hide_special_on_workspace_change": [
+  "Bool",
+  "false"
+ ],
+ "binds:allow_workspace_cycles": [
+  "Bool",
+  "false"
+ ],
+ "binds:workspace_center_on": [
+  "Int",
+  "1"
+ ],
+ "binds:focus_preferred_method": [
+  "Int",
+  "0"
+ ],
+ "binds:ignore_group_lock": [
+  "Bool",
+  "false"
+ ],
+ "binds:movefocus_cycles_fullscreen": [
+  "Bool",
+  "false"
+ ],
+ "binds:movefocus_cycles_groupfirst": [
+  "Bool",
+  "false"
+ ],
+ "binds:disable_keybind_grabbing": [
+  "Bool",
+  "false"
+ ],
+ "binds:window_direction_monitor_fallback": [
+  "Bool",
+  "true"
+ ],
+ "binds:allow_pin_fullscreen": [
+  "Bool",
+  "false"
+ ],
+ "binds:drag_threshold": [
+  "Int",
+  "0"
+ ],
+ "xwayland:enabled": [
+  "Bool",
+  "true"
+ ],
+ "xwayland:use_nearest_neighbor": [
+  "Bool",
+  "true"
+ ],
+ "xwayland:force_zero_scaling": [
+  "Bool",
+  "false"
+ ],
+ "xwayland:create_abstract_socket": [
+  "Bool",
+  "false"
+ ],
+ "opengl:nvidia_anti_flicker": [
+  "Bool",
+  "true"
+ ],
+ "render:direct_scanout": [
+  "Int",
+  "0"
+ ],
+ "render:expand_undersized_textures": [
+  "Bool",
+  "true"
+ ],
+ "render:xp_mode": [
+  "Bool",
+  "false"
+ ],
+ "render:ctm_animation": [
+  "Int",
+  "2"
+ ],
+ "render:cm_enabled": [
+  "Bool",
+  "true"
+ ],
+ "render:send_content_type": [
+  "Bool",
+  "true"
+ ],
+ "render:cm_auto_hdr": [
+  "Int",
+  "1"
+ ],
+ "render:new_render_scheduling": [
+  "Bool",
+  "false"
+ ],
+ "render:non_shader_cm": [
+  "Int",
+  "3"
+ ],
+ "render:cm_sdr_eotf": [
+  "String",
+  "\"default\""
+ ],
+ "render:commit_timing_enabled": [
+  "Bool",
+  "true"
+ ],
+ "render:icc_vcgt_enabled": [
+  "Bool",
+  "true"
+ ],
+ "render:use_shader_blur_blend": [
+  "Bool",
+  "false"
+ ],
+ "render:use_fp16": [
+  "Int",
+  "2"
+ ],
+ "render:keep_unmodified_copy": [
+  "Int",
+  "2"
+ ],
+ "render:non_shader_cm_interop": [
+  "Int",
+  "2"
+ ],
+ "render:fp16_sdr_tf": [
+  "Int",
+  "0"
+ ],
+ "cursor:invisible": [
+  "Bool",
+  "false"
+ ],
+ "cursor:no_hardware_cursors": [
+  "Int",
+  "2"
+ ],
+ "cursor:no_break_fs_vrr": [
+  "Int",
+  "2"
+ ],
+ "cursor:min_refresh_rate": [
+  "Int",
+  "24"
+ ],
+ "cursor:hotspot_padding": [
+  "Int",
+  "0"
+ ],
+ "cursor:inactive_timeout": [
+  "Float",
+  "0"
+ ],
+ "cursor:no_warps": [
+  "Bool",
+  "false"
+ ],
+ "cursor:persistent_warps": [
+  "Bool",
+  "false"
+ ],
+ "cursor:warp_on_change_workspace": [
+  "Int",
+  "0"
+ ],
+ "cursor:warp_on_toggle_special": [
+  "Int",
+  "0"
+ ],
+ "cursor:default_monitor": [
+  "String",
+  "STRVAL_EMPTY"
+ ],
+ "cursor:zoom_factor": [
+  "Float",
+  "1"
+ ],
+ "cursor:zoom_rigid": [
+  "Bool",
+  "false"
+ ],
+ "cursor:zoom_disable_aa": [
+  "Bool",
+  "false"
+ ],
+ "cursor:zoom_detached_camera": [
+  "Bool",
+  "true"
+ ],
+ "cursor:enable_hyprcursor": [
+  "Bool",
+  "true"
+ ],
+ "cursor:hide_on_key_press": [
+  "Bool",
+  "false"
+ ],
+ "cursor:hide_on_touch": [
+  "Bool",
+  "true"
+ ],
+ "cursor:hide_on_tablet": [
+  "Bool",
+  "false"
+ ],
+ "cursor:use_cpu_buffer": [
+  "Int",
+  "2"
+ ],
+ "cursor:sync_gsettings_theme": [
+  "Bool",
+  "true"
+ ],
+ "cursor:warp_back_after_non_mouse_input": [
+  "Bool",
+  "false"
+ ],
+ "ecosystem:no_update_news": [
+  "Bool",
+  "false"
+ ],
+ "ecosystem:no_donation_nag": [
+  "Bool",
+  "false"
+ ],
+ "ecosystem:enforce_permissions": [
+  "Bool",
+  "false"
+ ],
+ "debug:overlay": [
+  "Bool",
+  "false"
+ ],
+ "debug:damage_blink": [
+  "Bool",
+  "false"
+ ],
+ "debug:gl_debugging": [
+  "Bool",
+  "false"
+ ],
+ "debug:disable_logs": [
+  "Bool",
+  "true"
+ ],
+ "debug:disable_time": [
+  "Bool",
+  "true"
+ ],
+ "debug:damage_tracking": [
+  "Int",
+  "2"
+ ],
+ "debug:enable_stdout_logs": [
+  "Bool",
+  "false"
+ ],
+ "debug:manual_crash": [
+  "Int",
+  "0"
+ ],
+ "debug:suppress_errors": [
+  "Bool",
+  "false"
+ ],
+ "debug:disable_scale_checks": [
+  "Bool",
+  "false"
+ ],
+ "debug:error_limit": [
+  "Int",
+  "5"
+ ],
+ "debug:error_position": [
+  "Int",
+  "0"
+ ],
+ "debug:colored_stdout_logs": [
+  "Bool",
+  "true"
+ ],
+ "debug:log_damage": [
+  "Bool",
+  "false"
+ ],
+ "debug:pass": [
+  "Bool",
+  "false"
+ ],
+ "debug:full_cm_proto": [
+  "Bool",
+  "false"
+ ],
+ "debug:ds_handle_same_buffer": [
+  "Bool",
+  "true"
+ ],
+ "debug:ds_handle_same_buffer_fifo": [
+  "Bool",
+  "true"
+ ],
+ "debug:fifo_pending_workaround": [
+  "Bool",
+  "false"
+ ],
+ "debug:render_solitary_wo_damage": [
+  "Bool",
+  "false"
+ ],
+ "debug:vfr": [
+  "Bool",
+  "true"
+ ],
+ "debug:invalidate_fp16": [
+  "Int",
+  "1"
+ ],
+ "layout:single_window_aspect_ratio": [
+  "Vec2",
+  "Config::VEC2{0, 0}"
+ ],
+ "layout:single_window_aspect_ratio_tolerance": [
+  "Float",
+  "0.1F"
+ ],
+ "dwindle:force_split": [
+  "Int",
+  "0"
+ ],
+ "dwindle:preserve_split": [
+  "Bool",
+  "false"
+ ],
+ "dwindle:smart_split": [
+  "Bool",
+  "false"
+ ],
+ "dwindle:smart_resizing": [
+  "Bool",
+  "true"
+ ],
+ "dwindle:permanent_direction_override": [
+  "Bool",
+  "false"
+ ],
+ "dwindle:special_scale_factor": [
+  "Float",
+  "1"
+ ],
+ "dwindle:split_width_multiplier": [
+  "Float",
+  "1"
+ ],
+ "dwindle:use_active_for_splits": [
+  "Bool",
+  "true"
+ ],
+ "dwindle:default_split_ratio": [
+  "Float",
+  "1"
+ ],
+ "dwindle:split_bias": [
+  "Int",
+  "0"
+ ],
+ "dwindle:precise_mouse_move": [
+  "Bool",
+  "false"
+ ],
+ "master:allow_small_split": [
+  "Bool",
+  "false"
+ ],
+ "master:special_scale_factor": [
+  "Float",
+  "1"
+ ],
+ "master:mfact": [
+  "Float",
+  "0.55"
+ ],
+ "master:new_status": [
+  "String",
+  "\"slave\""
+ ],
+ "master:new_on_top": [
+  "Bool",
+  "false"
+ ],
+ "master:new_on_active": [
+  "String",
+  "\"none\""
+ ],
+ "master:orientation": [
+  "String",
+  "\"left\""
+ ],
+ "master:slave_count_for_center_master": [
+  "Int",
+  "2"
+ ],
+ "master:center_master_fallback": [
+  "String",
+  "\"left\""
+ ],
+ "master:center_ignores_reserved": [
+  "Bool",
+  "false"
+ ],
+ "master:smart_resizing": [
+  "Bool",
+  "true"
+ ],
+ "master:drop_at_cursor": [
+  "Bool",
+  "true"
+ ],
+ "master:always_keep_position": [
+  "Bool",
+  "false"
+ ],
+ "master:focus_master_on_close": [
+  "Bool",
+  "false"
+ ],
+ "scrolling:fullscreen_on_one_column": [
+  "Bool",
+  "true"
+ ],
+ "scrolling:column_width": [
+  "Float",
+  "0.5"
+ ],
+ "scrolling:focus_fit_method": [
+  "Int",
+  "1"
+ ],
+ "scrolling:follow_focus": [
+  "Bool",
+  "true"
+ ],
+ "scrolling:follow_min_visible": [
+  "Float",
+  "0.4"
+ ],
+ "scrolling:explicit_column_widths": [
+  "String",
+  "\"0.333"
+ ],
+ "scrolling:direction": [
+  "String",
+  "\"right\""
+ ],
+ "scrolling:wrap_focus": [
+  "Bool",
+  "true"
+ ],
+ "scrolling:wrap_swapcol": [
+  "Bool",
+  "true"
+ ],
+ "experimental:wp_cm_1_2": [
+  "Bool",
+  "true"
+ ],
+ "input-capture:capture_modifiers": [
+  "Bool",
+  "false"
+ ],
+ "input-capture:enforce_barriers": [
+  "Bool",
+  "true"
+ ],
+ "quirks:prefer_hdr": [
+  "Int",
+  "0"
+ ],
+ "quirks:skip_non_kms_dmabuf_formats": [
+  "Bool",
+  "false"
+ ]
+}
