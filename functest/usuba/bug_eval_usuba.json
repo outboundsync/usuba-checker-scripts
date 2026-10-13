@@ -1,0 +1,1038 @@
+[
+ {
+  "url": "https://github.com/25cent9/omarchy-lmstudio-plugin/commit/acd9b12d39f7ae80766a79bcbf39bab395ce6777",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-A04"
+   ],
+   "sf": [
+    "('usuba-USB-A04', '[USB-A04] PanelContent.qml: line 281: `root.switchPanel()` - `Panel` has no method `switchPanel`. Fix: real `Panel` methods: QObject, _q_createJSWrapper, _q_resourceObjectDeleted, actionCount, actionIndex, actionLoadSlot,"
+   ],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-A04"
+   ],
+   "sf": [
+    "('usuba-USB-A04', '[USB-A04] PanelContent.qml: line 281: `root.switchPanel()` - `Panel` has no method `switchPanel`. Fix: real `Panel` methods: QObject, _q_createJSWrapper, _q_resourceObjectDeleted, actionCount, actionIndex, actionLoadSlot,"
+   ],
+   "rt": []
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/25cent9/omarchy-lmstudio-plugin/commit/d0fd9f3f2223d148d6b0907f6ce443b2e61e5f8d",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "singleton-unknown"
+   ],
+   "sf": [
+    "('singleton-unknown', 'Panel.qml: Style.radius does not exist in the real qs.Commons Style singleton')"
+   ],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "singleton-unknown",
+    "usuba-USB-A04"
+   ],
+   "sf": [
+    "('singleton-unknown', 'PanelContent.qml: Style.radius does not exist in the real qs.Commons Style singleton')",
+    "('usuba-USB-A04', '[USB-A04] PanelContent.qml: line 149: `root.switchPanel()` - `Panel` has no method `switchPanel`. Fix: real `Panel` methods: QObject, _q_createJSWrapper, _q_resourceObjectDeleted, activateModelCursor, anchorItem, bar, bar"
+   ],
+   "rt": []
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/28allday/Motion-Wallpaper-Omarchy/pull/9",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/28allday/Motion-Wallpaper-Omarchy/pull/8",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/28allday/Motion-Wallpaper-Omarchy/pull/2",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "rt-js-error"
+   ],
+   "sf": [],
+   "rt": [
+    "WARN scene: Service.qml[389:-1]: TypeError: Property 'text' of object StdioCollector(0x5629a83de9a0) is not a function"
+   ]
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": true,
+  "flag": true,
+  "old_sep": true
+ },
+ {
+  "url": "https://github.com/28allday/Quattro-Command/commit/b357b6f7f2d98449e32f5342bd923af6a40250ce",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/28allday/omasend-quattro/pull/2",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/gardnmi/omarchy-minimize/pull/3",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B03"
+   ],
+   "sf": [
+    "('usuba-USB-B03', '[USB-B03] BarWidget.qml: `hyprctl dispatch off` is not a Hyprland dispatcher. Fix: see the Hyprland dispatcher list (e.g. killactive, closewindow, togglefloating, movetoworkspacesilent, focuswindow); there is no minimize "
+   ],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B03"
+   ],
+   "sf": [
+    "('usuba-USB-B03', '[USB-B03] BarWidget.qml: `hyprctl dispatch off` is not a Hyprland dispatcher. Fix: see the Hyprland dispatcher list (e.g. killactive, closewindow, togglefloating, movetoworkspacesilent, focuswindow); there is no minimize "
+   ],
+   "rt": []
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/anelcelik/OmarchySearch/pull/1",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-F01"
+   ],
+   "sf": [
+    "('usuba-USB-F01', '[USB-F01] Search.qml: references helper script `/shell/services/hidden-entries.sh`, which the plugin does not ship. Fix: ship `/shell/services/hidden-entries.sh` in the plugin (e.g. bin/hidden-entries.sh) or inline the co"
+   ],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/PSthelyBlog/omarchy-hermes-companion/pull/8",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/ryanyogan/omarchy-fizzy/pull/1",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B01",
+    "usuba-USB-Q01"
+   ],
+   "sf": [
+    "('usuba-USB-B01', \"[USB-B01] dev/shot.sh: script string runs `see`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/system_bins.txt",
+    "('usuba-USB-Q01', '[USB-Q01] dev/shell.qml: line 69: unknown QML type `Panel` - not provided by any module this file imports. Fix: Panel.qml exists but is not in this file\\'s directory; add `import \"..\"`')"
+   ],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/joeyvigil/omarchy-taskbar/pull/6",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/piyush97/omaswitch/pull/7",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/Xfedis/omarchy-torrents/pull/3",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/devgtv/omarchy-docker/pull/12",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/kenhara/omarchy-enricherino/pull/1",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/igor-gorohovsky/omaraoke/pull/5",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/LucaNerlich/omastonk/pull/12",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B01"
+   ],
+   "sf": [
+    "('usuba-USB-B01', \"[USB-B01] scripts/verify-bundle.sh: script string runs `into`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/s",
+    "('usuba-USB-B01', \"[USB-B01] scripts/verify-bundle.sh: script string runs `than`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/s"
+   ],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B01"
+   ],
+   "sf": [
+    "('usuba-USB-B01', \"[USB-B01] scripts/verify-bundle.sh: script string runs `into`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/s",
+    "('usuba-USB-B01', \"[USB-B01] scripts/verify-bundle.sh: script string runs `than`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/s"
+   ],
+   "rt": []
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/chinofmaya/omarchy-spaces/pull/3",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/grichard99/omaproton-vpn/pull/24",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/salemsayed/omaprayers/pull/4",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B01"
+   ],
+   "sf": [
+    "('usuba-USB-B01', \"[USB-B01] prayer-zone.sh: script string runs `zdump`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/system_bin"
+   ],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B01"
+   ],
+   "sf": [
+    "('usuba-USB-B01', \"[USB-B01] prayer-zone.sh: script string runs `zdump`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/system_bin"
+   ],
+   "rt": []
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/keegan-sucks/omarchy-lookup/pull/2",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/rdoupe/omarchy-pixelbuds/pull/1",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/konradk/hass/pull/2",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/thisisgm/omarchy-cliampui/pull/5",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/dlpwaters/omarchy-imagegen/pull/1",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/tornikegomareli/omarchy-spaces/pull/23",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/treramey/omarchy-raindrop-bookmarks/pull/10",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/hominluo/omarchy-google-drive/pull/1",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/Woogy7/omarchy-vitals/pull/8",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/emilsall/omarchy-spotify-wallpaper/pull/2",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "rt-invisible"
+   ],
+   "sf": [],
+   "rt": [
+    "bar-widget draws nothing visible on screen (slot 27x26 at x=1016, 0 ink px)"
+   ]
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "rt-invisible"
+   ],
+   "sf": [],
+   "rt": [
+    "bar-widget draws nothing visible on screen (slot 27x26 at x=1016, 0 ink px)"
+   ]
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/claudsondouglas/arc.dock/pull/7",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/golgor/cloud-sql-tracker-oma-plugin/pull/69",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "rt-missing-binary"
+   ],
+   "sf": [],
+   "rt": [
+    "exec: `cloud-sql-tracker` does not exist on the Dell (Omarchy 4.0.0.alpha bin + system) and is not shipped by the plugin; argv=['cloud-sql-tracker', '--version']"
+   ]
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "rt-missing-binary"
+   ],
+   "sf": [],
+   "rt": [
+    "exec: `cloud-sql-tracker` does not exist on the Dell (Omarchy 4.0.0.alpha bin + system) and is not shipped by the plugin; argv=['cloud-sql-tracker', '--version']"
+   ]
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/omarchy-QOL/omarchy-btop-activity/pull/42",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/farangkao/omarchy-emojis-nerd/pull/6",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/Clifford-Baidoo/Omarchy-music-flow/pull/10",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/LucaNerlich/wireview-pro2-qs/pull/24",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/omarchy-QOL/omarchy-btop-activity/pull/30",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/mtolhuys/fathom/pull/2",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/golgor/cloud-sql-tracker-oma-plugin/pull/70",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "rt-missing-binary"
+   ],
+   "sf": [],
+   "rt": [
+    "exec: `cloud-sql-tracker` does not exist on the Dell (Omarchy 4.0.0.alpha bin + system) and is not shipped by the plugin; argv=['cloud-sql-tracker', '--version']"
+   ]
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "rt-missing-binary"
+   ],
+   "sf": [],
+   "rt": [
+    "exec: `cloud-sql-tracker` does not exist on the Dell (Omarchy 4.0.0.alpha bin + system) and is not shipped by the plugin; argv=['cloud-sql-tracker', '--version']"
+   ]
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/LucaNerlich/obsidian-daily-qs/pull/23",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B01"
+   ],
+   "sf": [
+    "('usuba-USB-B01', \"[USB-B01] scripts/verify-bundle.sh: script string runs `installing`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell",
+    "('usuba-USB-B01', \"[USB-B01] scripts/verify-bundle.sh: script string runs `than`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/s"
+   ],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B01"
+   ],
+   "sf": [
+    "('usuba-USB-B01', \"[USB-B01] scripts/verify-bundle.sh: script string runs `installing`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell",
+    "('usuba-USB-B01', \"[USB-B01] scripts/verify-bundle.sh: script string runs `than`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/s"
+   ],
+   "rt": []
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/DonnieFi/OmarPlugs/pull/13",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B01"
+   ],
+   "sf": [
+    "('usuba-USB-B01', \"[USB-B01] smoke.sh: script string runs `autofind`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/system_bins.t"
+   ],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B01"
+   ],
+   "sf": [
+    "('usuba-USB-B01', \"[USB-B01] smoke.sh: script string runs `autofind`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/system_bins.t"
+   ],
+   "rt": []
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/rdoupe/omarchy-pixelbuds/pull/7",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B01"
+   ],
+   "sf": [
+    "('usuba-USB-B01', \"[USB-B01] status.sh: script string runs `assistant`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/system_bins"
+   ],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B01"
+   ],
+   "sf": [
+    "('usuba-USB-B01', \"[USB-B01] status.sh: script string runs `assistant`, which is not installed on the Dell's Omarchy 4.0.4 (system_bins) and not shipped by the plugin. Fix: use a binary that exists on stock Omarchy (see dell_env/system_bins"
+   ],
+   "rt": []
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/tmn73/omarchy-calendar/pull/14",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B06"
+   ],
+   "sf": [
+    "('usuba-USB-B06', '[USB-B06] Panel.qml: `wl-copy --` is not a valid wl-copy option. Fix: valid options: -o -f -c -p -n -t --clear --foreground --help --paste-once --primary --regular --seat --sensitive --trim-newline --type --version')"
+   ],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "usuba-USB-B06"
+   ],
+   "sf": [
+    "('usuba-USB-B06', '[USB-B06] Panel.qml: `wl-copy --` is not a valid wl-copy option. Fix: valid options: -o -f -c -p -n -t --clear --foreground --help --paste-once --primary --regular --seat --sensitive --trim-newline --type --version')"
+   ],
+   "rt": []
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/golgor/cloud-sql-tracker-oma-plugin/pull/38",
+  "buggy": {
+   "pass_": false,
+   "cats": [
+    "rt-missing-binary",
+    "usuba-USB-A04"
+   ],
+   "sf": [
+    "('usuba-USB-A04', '[USB-A04] Tracker.qml: line 561: `versionProc.kill()` - `Process` has no method `kill`. Fix: real `Process` methods: QObject, destroy, exec, postReload, signal, startDetached, toString, write')",
+    "('usuba-USB-A04', '[USB-A04] Tracker.qml: line 578: `statusProc.kill()` - `Process` has no method `kill`. Fix: real `Process` methods: QObject, destroy, exec, postReload, signal, startDetached, toString, write')",
+    "('usuba-USB-A04', '[USB-A04] Tracker.qml: line 599: `doctorProc.kill()` - `Process` has no method `kill`. Fix: real `Process` methods: QObject, destroy, exec, postReload, signal, startDetached, toString, write')",
+    "('usuba-USB-A04', '[USB-A04] Tracker.qml: line 616: `actionProc.kill()` - `Process` has no method `kill`. Fix: real `Process` methods: QObject, destroy, exec, postReload, signal, startDetached, toString, write')"
+   ],
+   "rt": [
+    "exec: `cloud-sql-tracker` does not exist on the Dell (Omarchy 4.0.0.alpha bin + system) and is not shipped by the plugin; argv=['cloud-sql-tracker', '--version']"
+   ]
+  },
+  "fixed": {
+   "pass_": false,
+   "cats": [
+    "rt-missing-binary",
+    "usuba-USB-A04"
+   ],
+   "sf": [
+    "('usuba-USB-A04', '[USB-A04] Tracker.qml: line 561: `versionProc.kill()` - `Process` has no method `kill`. Fix: real `Process` methods: QObject, destroy, exec, postReload, signal, startDetached, toString, write')",
+    "('usuba-USB-A04', '[USB-A04] Tracker.qml: line 578: `statusProc.kill()` - `Process` has no method `kill`. Fix: real `Process` methods: QObject, destroy, exec, postReload, signal, startDetached, toString, write')",
+    "('usuba-USB-A04', '[USB-A04] Tracker.qml: line 599: `doctorProc.kill()` - `Process` has no method `kill`. Fix: real `Process` methods: QObject, destroy, exec, postReload, signal, startDetached, toString, write')",
+    "('usuba-USB-A04', '[USB-A04] Tracker.qml: line 616: `actionProc.kill()` - `Process` has no method `kill`. Fix: real `Process` methods: QObject, destroy, exec, postReload, signal, startDetached, toString, write')"
+   ],
+   "rt": [
+    "exec: `cloud-sql-tracker` does not exist on the Dell (Omarchy 4.0.0.alpha bin + system) and is not shipped by the plugin; argv=['cloud-sql-tracker', '--version']"
+   ]
+  },
+  "sep": false,
+  "flag": true,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/Prathamesh913/gamedock/pull/3",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/josh2c/omarchy-protonpass/pull/7",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/haripako/omamusic/pull/1",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/ussego/otoru/pull/3",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ },
+ {
+  "url": "https://github.com/treramey/omarchy-raindrop-bookmarks/pull/1",
+  "buggy": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "fixed": {
+   "pass_": true,
+   "cats": [],
+   "sf": [],
+   "rt": []
+  },
+  "sep": false,
+  "flag": false,
+  "old_sep": false
+ }
+]

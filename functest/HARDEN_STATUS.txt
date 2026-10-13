@@ -11,3 +11,4 @@
 08:46 Harris change: dangerous writes/sudo/pkexec/curl|sh downgraded to warnings (USB-S01/S02 warn high/medium); only rm -rf of ~/$HOME// stays a fail (new USB-S03); runtime protected-file edits -> soft WARN[high]; tree-task runtime: known surface.tablet NativeWidget race filtered + upstream-only retry. Recalibrating.
 08:54 after dangerous->warn change: eval_dell 90/90, fixer 31/31, harvest 23/27 (unchanged residuals)
 08:58 ref49 human ref 27/49: identical to the pre-Usuba 26 except row 28 (ref writes ~/.config/hypr/looknfeel.lua, now a USB-S01 warning per Harris) -> no false rejects. Launching rescore404.
+09:00 published-bug eval (data/reviews, 50 buggy/fixed pairs): Usuba separates 1/50 (same as old grader); flags 14 buggy but 15 fixed also fail (mostly B01 third-party deps not on stock Omarchy, A04); bugs are mostly semantic/lifecycle - not merge-blocking
