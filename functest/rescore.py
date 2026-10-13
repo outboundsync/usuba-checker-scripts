@@ -52,7 +52,8 @@ def task_findings(h, files, output=None):
                 out.append(["usuba-" + f["rule"], usuba_checks.fmt(f) + " (judged on the files this answer wrote)"])
     if output is not None:
         pre = output.split("### ", 1)[0]
-        if len(pre) > 400 or re.search(r"(?m)^(Wait|Actually|Let's|Let me|I will|I'll|Hmm)\b", pre):
+        # a short summary before the files is fine; self-correcting drafts or a long essay are not a deliverable
+        if len(pre) > 4000 or re.search(r"(?m)^(Wait|Actually|Hmm|Hold on|Let me (?:re|think|check|start)|Let's (?:re|think|start))\b", pre):
             out.append(["usuba-USB-T03", f"[USB-T03] the answer starts with {len(pre)} chars of leaked reasoning/prose before the first file. Fix: return only the files, as `### path` + fenced code"])
     if False: pass
     elif not code:

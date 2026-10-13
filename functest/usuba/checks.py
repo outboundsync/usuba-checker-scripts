@@ -335,9 +335,13 @@ def guarded_words(script):
 def shell_words(script):
     """first words of each simple command in a shell string; also returns (word, rest) pairs."""
     funcs0 = set(re.findall(r"(?m)^\s*(?:function\s+)?([A-Za-z_][\w-]*)\s*\(\s*\)", script)) | set(re.findall(r"\bfunction\s+([\w-]+)", script))
-    s = re.sub(r"\$\{[^}]*\}", "X", script)
+    for src in re.findall(r"(?m)^\s*(?:source|\.)\s+([\w./$-]+)", script):     # functions from sourced Omarchy helpers (e.g. omarchy-shell-config: commit)
+        sp = os.path.join(T.get("source", {}).get("omarchy", "/opt/ft/omarchy-4.0.4/shell").rsplit("/shell", 1)[0], "bin", os.path.basename(src))
+        try: funcs0 |= set(re.findall(r"(?m)^\s*(?:function\s+)?([A-Za-z_][\w-]*)\s*\(\s*\)", open(sp).read()))
+        except OSError: pass
+    s = re.sub(r"\$\{[^}]*\}", "X", script.replace("\\\n", " "))   # join `\` line continuations
     s = re.sub(r"'[^']*'", "''", s)
-    s = re.sub(r'"[^"$`]*"', '""', s)
+    s = re.sub(r'"(?:[^"\\`$]|\\.|\$(?!\())*"', '""', s)   # quoted text (keeps strings that run $(...) or `...`)
     s = re.sub(r"\(\((.|\n)*?\)\)", " ", s)
     s = re.sub(r"\[\[[^\n]*?\]\]", " ", s)
     s = re.sub(r"(?m)^\s*[^()\s;]+\)\s", " ; ", s)            # case labels  `ctrl) ...`
