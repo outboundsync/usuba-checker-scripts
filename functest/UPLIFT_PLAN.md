@@ -1,4 +1,4 @@
-# Checker uplift experiment (plan, 2026-10-13)
+# Checker uplift experiment (ran 2026-10-13; results in runs/uplift/)
 
 Question: how much does Usuba Checker feedback raise *hand-checked* passes on the 49 clean holdout prompts, for frontier and low-end models?
 
