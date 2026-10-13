@@ -1,10 +1,10 @@
 {
  "summary": {
   "old": "44/49",
-  "new": "26/49",
+  "new": "27/49",
   "per_task_new": {
    "add_panel": "1/6",
-   "build_from_spec": "8/26",
+   "build_from_spec": "9/26",
    "chunk_add_kind": "3/3",
    "chunk_component": "6/6",
    "chunk_manifest_entry": "3/3",
@@ -20,11 +20,14 @@
    "categories": [
     "rt-not-instantiated",
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
     "singleton-unknown: Background.qml: Util.isVideoPath does not exist in the real qs.Commons Util singleton",
-    "singleton-unknown: Background.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: Background.qml: Style.duration does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Background.qml: line 270: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file",
+    "usuba-USB-Q01: [USB-Q01] Background.qml: line 407: unknown QML type `BackgroundMedia` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
     "WARN qml: service plugin load failed for acme.background: Background.qml:407:7: BackgroundMedia is not a type",
@@ -40,15 +43,18 @@
    "categories": [
     "rt-not-instantiated",
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
     "singleton-unknown: Background.qml: Util.isVideoPath does not exist in the real qs.Commons Util singleton",
-    "singleton-unknown: Background.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: Background.qml: Style.duration does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Background.qml: line 270: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file",
+    "usuba-USB-Q01: [USB-Q01] Background.qml: line 407: unknown QML type `BackgroundMedia` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
-    "WARN qml: service plugin load failed for acme.background: Background.qml:407:7: BackgroundMedia is not a type",
-    "WARN qml: service plugin load failed for acme.background: Background.qml:407:7: BackgroundMedia is not a type",
+    "WARN qml: service plugin load failed for acme.background: Background.qml:270:3: ShellIpc is not a type",
+    "WARN qml: service plugin load failed for acme.background: Background.qml:270:3: ShellIpc is not a type",
     "service instance not created"
    ]
   },
@@ -60,9 +66,12 @@
    "categories": [
     "rt-not-instantiated",
     "rt-shell-broken",
-    "rt-unresolved-type/import"
+    "rt-unresolved-type/import",
+    "usuba-USB-Q01"
    ],
-   "static_fails": [],
+   "static_fails": [
+    "usuba-USB-Q01: [USB-Q01] Clipboard.qml: line 315: unknown QML type `OverlayWindow` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
+   ],
    "runtime_errors": [
     "WARN scene: Clipboard.qml[315:3]: OverlayWindow is not a type",
     "shell broke with plugin installed: WARN scene: @shell.qml[1357:-1]: ReferenceError: errorString is not defined",
@@ -77,9 +86,12 @@
    "categories": [
     "rt-not-instantiated",
     "rt-shell-broken",
-    "rt-unresolved-type/import"
+    "rt-unresolved-type/import",
+    "usuba-USB-Q01"
    ],
-   "static_fails": [],
+   "static_fails": [
+    "usuba-USB-Q01: [USB-Q01] Clipboard.qml: line 315: unknown QML type `OverlayWindow` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
+   ],
    "runtime_errors": [
     "WARN scene: Clipboard.qml[315:3]: OverlayWindow is not a type",
     "shell broke with plugin installed: WARN scene: @shell.qml[1357:-1]: ReferenceError: errorString is not defined",
@@ -94,10 +106,12 @@
    "categories": [
     "rt-not-instantiated",
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
-    "singleton-unknown: components/NotificationCard.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: components/NotificationCard.qml: Style.duration does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Service.qml: line 904: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
     "WARN qml: service plugin load failed for acme.notifications: Service.qml:904:3: ShellIpc is not a type",
@@ -113,10 +127,12 @@
    "categories": [
     "rt-not-instantiated",
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
-    "singleton-unknown: components/NotificationCard.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: components/NotificationCard.qml: Style.duration does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Service.qml: line 904: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
     "WARN qml: service plugin load failed for acme.notifications: Service.qml:904:3: ShellIpc is not a type",
@@ -132,10 +148,12 @@
    "categories": [
     "rt-load-failed",
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
-    "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Panel.qml: line 159: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
     "WARN qml: Plugin widget acme.dropbox failed: Panel.qml:159:3: ShellIpc is not a type",
@@ -150,10 +168,12 @@
    "categories": [
     "rt-load-failed",
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
-    "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Panel.qml: line 159: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
     "WARN qml: Plugin widget acme.dropbox failed: Panel.qml:159:3: ShellIpc is not a type",
@@ -168,10 +188,12 @@
    "categories": [
     "rt-load-failed",
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
-    "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Panel.qml: line 159: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
     "WARN qml: Plugin widget acme.dropbox failed: Panel.qml:159:3: ShellIpc is not a type",
@@ -185,9 +207,12 @@
    "new": false,
    "categories": [
     "rt-load-failed",
-    "rt-unresolved-type/import"
+    "rt-unresolved-type/import",
+    "usuba-USB-Q01"
    ],
-   "static_fails": [],
+   "static_fails": [
+    "usuba-USB-Q01: [USB-Q01] Panel.qml: line 221: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
+   ],
    "runtime_errors": [
     "WARN qml: Plugin widget acme.monitor failed: Panel.qml:221:3: ShellIpc is not a type",
     "bar-widget component never registered (load failed)"
@@ -200,9 +225,12 @@
    "new": false,
    "categories": [
     "rt-load-failed",
-    "rt-unresolved-type/import"
+    "rt-unresolved-type/import",
+    "usuba-USB-Q01"
    ],
-   "static_fails": [],
+   "static_fails": [
+    "usuba-USB-Q01: [USB-Q01] Panel.qml: line 221: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
+   ],
    "runtime_errors": [
     "WARN qml: Plugin widget acme.monitor failed: Panel.qml:221:3: ShellIpc is not a type",
     "bar-widget component never registered (load failed)"
@@ -215,9 +243,12 @@
    "new": false,
    "categories": [
     "rt-load-failed",
-    "rt-unresolved-type/import"
+    "rt-unresolved-type/import",
+    "usuba-USB-Q01"
    ],
-   "static_fails": [],
+   "static_fails": [
+    "usuba-USB-Q01: [USB-Q01] Panel.qml: line 221: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
+   ],
    "runtime_errors": [
     "WARN qml: Plugin widget acme.monitor failed: Panel.qml:221:3: ShellIpc is not a type",
     "bar-widget component never registered (load failed)"
@@ -231,11 +262,13 @@
    "categories": [
     "rt-load-failed",
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
     "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton",
-    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Panel.qml: line 178: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
     "WARN qml: Plugin widget acme.power failed: Panel.qml:178:3: ShellIpc is not a type",
@@ -250,11 +283,13 @@
    "categories": [
     "rt-load-failed",
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
     "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton",
-    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Panel.qml: line 178: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
     "WARN qml: Plugin widget acme.power failed: Panel.qml:178:3: ShellIpc is not a type",
@@ -269,11 +304,13 @@
    "categories": [
     "rt-load-failed",
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
     "singleton-unknown: Panel.qml: Style.duration does not exist in the real qs.Commons Style singleton",
-    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Panel.qml: line 178: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
     "WARN qml: Plugin widget acme.power failed: Panel.qml:178:3: ShellIpc is not a type",
@@ -305,10 +342,12 @@
    "new": false,
    "categories": [
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
-    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Panel.qml: line 479: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
     "WARN scene: Panel.qml[479:3]: ShellIpc is not a type"
@@ -321,10 +360,12 @@
    "new": false,
    "categories": [
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
-    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Panel.qml: line 479: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
     "WARN scene: Panel.qml[479:3]: ShellIpc is not a type"
@@ -337,10 +378,12 @@
    "new": false,
    "categories": [
     "rt-unresolved-type/import",
-    "singleton-unknown"
+    "singleton-unknown",
+    "usuba-USB-Q01"
    ],
    "static_fails": [
-    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton"
+    "singleton-unknown: Panel.qml: Style.reduceMotion does not exist in the real qs.Commons Style singleton",
+    "usuba-USB-Q01: [USB-Q01] Panel.qml: line 479: unknown QML type `ShellIpc` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
     "WARN scene: Panel.qml[479:3]: ShellIpc is not a type"
@@ -434,7 +477,7 @@
    ],
    "static_fails": [],
    "runtime_errors": [
-    "WARN qml: key-promoter keybinds: /usr/bin/bash: /opt/ft/runs/rr658c9e_/home/user/omarchy/plugins/fkcodes.key-promoter/bin/keybinds: No such file or directory"
+    "WARN qml: key-promoter keybinds: /usr/bin/bash: /opt/ft/runs/rrvanmooz/home/user/omarchy/plugins/fkcodes.key-promoter/bin/keybinds: No such file or directory"
    ]
   },
   {
@@ -450,13 +493,9 @@
    "holdout_i": 28,
    "task": "build_from_spec",
    "old": false,
-   "new": false,
-   "categories": [
-    "dangerous-write"
-   ],
-   "static_fails": [
-    "dangerous-write: Panel.qml: writes/shell-outs alongside protected path /.config/hypr/looknfeel.lua"
-   ],
+   "new": true,
+   "categories": [],
+   "static_fails": [],
    "runtime_errors": []
   },
   {
@@ -471,7 +510,7 @@
    "runtime_errors": [
     "WARN scene: Calendar.qml[166:-1]: TypeError: Cannot read property '2026-09-28' of undefined",
     "WARN scene: Calendar.qml[394:-1]: TypeError: Cannot read property 'length' of undefined",
-    "WARN scene: Calendar.qml[49:-1]: TypeError: Cannot read property '2026-10-12' of undefined",
+    "WARN scene: Calendar.qml[49:-1]: TypeError: Cannot read property '2026-10-13' of undefined",
     "WARN scene: Calendar.qml[26:-1]: TypeError: Cannot read property '' of undefined",
     "WARN scene: Calendar.qml[185:-1]: TypeError: Property 'requestWindow' of object CalendarStore is not a function"
    ]
