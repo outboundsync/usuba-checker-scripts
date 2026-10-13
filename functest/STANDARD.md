@@ -286,7 +286,7 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 - Checked by: usuba/hancore_rules.py
 
 ### USB-W02: No hardcoded secrets or tokens
-- Level: warn (medium; EXPERIMENTAL, off by default)
+- Level: warn (medium; on by default, maintainer override)
 - Rationale: Known token formats (ghp_, github_pat_, sk-, AKIA, xox*, AIza, private keys) or long literals assigned to key/token/secret/password names leak credentials to every user. Measured against HANCORE findings on 4011 non-holdout plugins: precision 0.43, recall 0.01 (base rate 0.27).
 - Failing example: `const apiKey = "sk-proj-..."`
 - Fix: read secrets from the keyring (secret-tool) or a 0600 config outside the plugin
@@ -437,4 +437,4 @@ status = "Up to date"
 ## Changelog
 
 - v0.1 (2026-10-13): first public version. Adds USB-T01/T02, Q01, A01-A04, B01-B04, F01, J01, H01-H04 on top of the 4.0.4 functest (which scored 90/90 against the Dell answer key) after a fixer-loop experiment showed the old grader was gameable (13 passes, 4 real).
-- v0.2 (2026-10-13): adds USB-W01-W10, warnings derived from 12,989 HANCORE marketplace review findings. A rule is on by default only if its plugin-level precision against HANCORE is >= 0.5 and at least 0.10 above the category base rate (hancore/rule_metrics.json; holdout plugins excluded). Only W05 met that bar (W02 hardcoded secrets measured 0.43: HANCORE often does not comment on a committed key); the rest are experimental (run with experimental=True / --experimental). None of them fail a plugin; USB-S03 is still the only hard-fail safety rule.
+- v0.2 (2026-10-13): adds USB-W01-W10, warnings derived from 12,989 HANCORE marketplace review findings. A rule is on by default only if its plugin-level precision against HANCORE is >= 0.5 and at least 0.10 above the category base rate (hancore/rule_metrics.json; holdout plugins excluded). Only W05 met that bar. W02 (hardcoded secrets) measured 0.43 but is on by default by maintainer decision: a committed key is worth flagging even when HANCORE does not comment on it, and as a warning it can never fail a plugin. The rest are experimental (run with experimental=True / --experimental). None of them fail a plugin; USB-S03 is still the only hard-fail safety rule.

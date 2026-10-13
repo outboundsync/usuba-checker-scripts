@@ -26,6 +26,7 @@ for r, cat in MAP.items():
     fn = sum(1 for _, f, c in rows if r not in f and cat in c); base = (tp + fn) / len(rows)
     prec = tp / (tp + fp) if tp + fp else 0; rec = tp / (tp + fn) if tp + fn else 0
     on = prec >= 0.5 and prec >= base + 0.10
+    if r in ("USB-W02",): on = True   # maintainer override: committed keys always warn
     res[r] = dict(category=cat, tp=tp, fp=fp, fn=fn, precision=round(prec, 3), recall=round(rec, 3), base_rate=round(base, 3), lift=round(prec / base, 2) if base else None, default="on" if on else "experimental")
 print("plugins", len(rows))
 for r, x in res.items(): print(r, x)

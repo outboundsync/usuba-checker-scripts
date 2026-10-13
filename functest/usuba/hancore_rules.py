@@ -12,7 +12,7 @@ CODE_EXT = (".qml", ".js", ".mjs", ".sh", ".bash", ".zsh", ".py", ".lua")
 SHELLY = (".sh", ".bash", ".zsh")
 DOC_RE = re.compile(r"(?i)(^|/)(readme[^/]*|install[^/]*\.md|docs?/.*|manifest\.json|pkgbuild|deps?[^/]*|requirements[^/]*\.txt)$")
 SKIP_PATH = re.compile(r"(^|/)(tests?|spec|examples?|\.github|node_modules|vendor)/|_test\.|\.test\.|\.spec\.")
-EXPERIMENTAL = {"USB-W01", "USB-W02", "USB-W03", "USB-W04", "USB-W06", "USB-W07", "USB-W08", "USB-W09", "USB-W10"}   # set from hancore/measure_rules.py results (see STANDARD.md)
+EXPERIMENTAL = {"USB-W01", "USB-W03", "USB-W04", "USB-W06", "USB-W07", "USB-W08", "USB-W09", "USB-W10"}   # set from hancore/measure_rules.py results; W02 on by maintainer override (see STANDARD.md)
 
 def _lines(c, p):
     """(lineno, line) with full-line comments dropped and trailing // or # comments trimmed (best effort)."""

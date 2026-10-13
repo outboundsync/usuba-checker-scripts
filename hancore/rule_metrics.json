@@ -22,7 +22,7 @@
    "recall": 0.011,
    "base_rate": 0.273,
    "lift": 1.57,
-   "default": "experimental"
+   "default": "on (maintainer override; below criterion)"
   },
   "USB-W03": {
    "category": "remote-code-pinning",
