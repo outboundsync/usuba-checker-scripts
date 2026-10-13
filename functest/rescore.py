@@ -140,7 +140,7 @@ def score_row(i, h, g):
     return dict(task=h["task"], pass_=bool(r["pass"]), categories=r["categories"], finish=g["finish"],
                 static_fails=[f"{a}: {b}"[:400] for a, b in r["static_fails"]][:8],
                 runtime_errors=[e[:240] for e in rt.get("errors", [])][:8], runtime_checks=rt.get("checks"),
-                soft=[e[:160] for e in rt.get("soft", [])][:4], files=sorted(files)[:12],
+                soft=[e[:200] for e in rt.get("soft", [])][:12], files=sorted(files)[:12],
                 reasons=usuba_rules.explain(r["static_fails"], rt.get("errors", []))[:10])
 
 def summarize(rows, old):
