@@ -772,6 +772,12 @@ def check(files, man=None):
                    and not re.search(r"(?m)^\s*(command|running|path|model|source|text|visible|enabled)\s*:[^\n]*\b" + x + r"\b", rest):
                     add("USB-J06", "error", tgt, f"uses `{x}` only in Component.onCompleted, but {p} sets `item.{x}` after the Loader finished loading, so onCompleted always sees the default value",
                         f"pass it at creation (`Loader {{ onLoaded: ... }}` is too late) - bind it instead (`property string {x}: loader.{x}` / `Binding`), or react in `on{x[0].upper() + x[1:]}Changed`"); break
+    try:   # HANCORE-derived review warnings (USB-W*): default-on rules only, never blocking
+        from usuba import hancore_rules as _hr
+    except ImportError:
+        import hancore_rules as _hr
+    for w in _hr.check(files):
+        add(w["rule"], "medium" if w["severity"] == "medium" else "low", w["file"], w["reason"], w["hint"])
     out, seen2 = [], set()
     for f in finds:
         k = (f["rule"], f["file"], f["reason"])
