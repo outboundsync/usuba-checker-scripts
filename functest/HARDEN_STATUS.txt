@@ -14,3 +14,4 @@
 09:00 published-bug eval (data/reviews, 50 buggy/fixed pairs): Usuba separates 1/50 (same as old grader); flags 14 buggy but 15 fixed also fail (mostly B01 third-party deps not on stock Omarchy, A04); bugs are mostly semantic/lifecycle - not merge-blocking
 09:21 rescore hand-check found 2 false rejects (gpt-5.6 #25: heredoc python + nested "$(cmd "$x")" quotes mis-parsed as commands; opus #23: `wl-copy --` end-of-options) -> fixed in B01/B06; static calib still clean (Dell WORKS 0 FR, fixer 31/31, harvest 23/27). Final pipeline: eval_dell -> ref49 -> rescore404 (bg, final.sh)
 09:34 final code: eval_dell 90/90; ref49 27/49 (only row 28 changed: S01 now a warning)
+09:50 rescore404 done; SCOREBOARD_USUBA.md written; merging to main
