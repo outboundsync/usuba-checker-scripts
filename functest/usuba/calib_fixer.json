@@ -49,15 +49,7 @@
    "usuba-USB-A01: [USB-A01] Menu.qml: line 26: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
    "usuba-USB-A01: [USB-A01] Menu.qml: line 31: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
    "usuba-USB-A01: [USB-A01] Menu.qml: line 36: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
-   "usuba-USB-A01: [USB-A01] Menu.qml: line 41: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function"
+   "usuba-USB-A01: [USB-A01] Menu.qml: line 41: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that"
   ]
  },
  {
@@ -253,15 +245,7 @@
   "reasons": [
    "usuba-USB-B02: [USB-B02] tablet.py: runs `xinput` (sh -c), an X11-only tool; Omarchy is a Wayland/Hyprland session, so it does nothing (or is not installed on the Dell). Fix: use `hyprctl keyword device[...]:enabled` / `hyprctl devices`",
    "usuba-USB-B02: [USB-B02] tablet.py: runs `onboard` (sh -c), an X11-only tool; Omarchy is a Wayland/Hyprland session, so it does nothing (or is not installed on the Dell). Fix: use a Wayland on-screen keyboard (e.g. wvkbd / squeekboard), shipped or documented as a dependency",
-   "usuba-USB-B02: [USB-B02] tablet.py: runs `setxkbmap` (argv), an X11-only tool; Omarchy is a Wayland/Hyprland session, so it does nothing (or is not installed on the Dell). Fix: use `hyprctl switchxkblayout` or `hyprctl keyword input:kb_layout`",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
-   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function"
+   "usuba-USB-B02: [USB-B02] tablet.py: runs `setxkbmap` (argv), an X11-only tool; Omarchy is a Wayland/Hyprland session, so it does nothing (or is not installed on the Dell). Fix: use `hyprctl switchxkblayout` or `hyprctl keyword input:kb_layout`"
   ]
  },
  {
