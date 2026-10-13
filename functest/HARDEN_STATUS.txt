@@ -16,3 +16,4 @@
 09:34 final code: eval_dell 90/90; ref49 27/49 (only row 28 changed: S01 now a warning)
 09:50 rescore404 done; SCOREBOARD_USUBA.md written; merging to main
 09:51 merged to main (38a7fc2, no force). Uplift experiment planned in functest/UPLIFT_PLAN.md (not run).
+10:03 uplift running: ZDR added (provider zdr+data_collection deny) to runs/uplift/uplift.py and runs/fixer/loop.py, verified with one call per model (all 9 served by ZDR endpoints). Qwen2.5-Coder 7B/14B (stock) are not on OpenRouter -> skipped. Per-model budgets sum 26.5, hard stop $29.
