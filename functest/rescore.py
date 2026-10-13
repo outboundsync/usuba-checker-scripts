@@ -107,9 +107,22 @@ def score_row(i, h, g):
         else:
             r = functest.test(files=t); json.dump(r, open(cp, "w"))
         r = json.loads(json.dumps(r))
+        def _upstream_only(rr):
+            ee = [e for e in ((rr.get("runtime") or {}).get("errors") or []) if norm(e) not in br]
+            fs = [m.group(1) for e in ee for m in [re.search(r"([\w./-]+\.(?:qml|js))\[", e)] if m]
+            return ee and len(fs) == len(ee) and not any(os.path.basename(f) in {os.path.basename(p) for p in files} for f in fs)
+        if _upstream_only(r):
+            # runtime errors only in upstream files this answer did not touch (e.g. surface.tablet NativeWidget createObject race):
+            # load-dependent flake, not the answer's fault - re-run once uncached and keep the re-run
+            r2 = functest.test(files=t)
+            if not _upstream_only(r2): json.dump(r2, open(cp, "w"))
+            r = json.loads(json.dumps(r2))
         r["static_fails"] = [x for x in r["static_fails"] if tuple(x) not in bs]
         if r["runtime"]:
-            r["runtime"]["errors"] = [e for e in r["runtime"]["errors"] if norm(e) not in br]
+            r["runtime"]["errors"] = [e for e in r["runtime"]["errors"] if norm(e) not in br and not (
+                # known upstream race in surface.tablet (NativeWidget creates a widget before its Component is Ready);
+                # reproduces on the reference answer at random, so it is not attributable to an answer that leaves NativeWidget.qml alone
+                "NativeWidget.qml" not in files and re.search(r"NativeWidget\.qml\[\d+:-?\d+\]: TypeError: Property 'createObject'", e))]
             r["runtime"]["pass"] = not r["runtime"]["errors"]
         if task == "fix_manifest":
             # the grader used to accept a bare id ("time-machine") for reserved_id fixes; the contract wants a namespaced,

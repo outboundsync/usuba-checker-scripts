@@ -255,19 +255,26 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 
 ## Safety
 
-### USB-S01: No writes to protected paths
-- Level: error
-- Rationale: Plugins must not modify Hyprland/Omarchy config, /etc, /usr or shell rc files.
+### USB-S01: Writes outside the plugin dir are flagged
+- Level: warn (high: protected config/system paths; medium: other paths outside plugin data dirs)
+- Rationale: Changing Hyprland/Omarchy config, /etc, /usr or shell rc files can surprise the user or break the session, but some plugins legitimately do it (e.g. a theme or keybind tool) - so it is a warning the reviewer must read, not a failure.
 - Failing example: `echo ... >> ~/.config/hypr/hyprland.conf`
-- Fix: use hyprctl keyword at runtime or the plugin's own data dir
-- Checked by: static_checks / runtime
+- Fix: prefer hyprctl keyword / omarchy-shell IPC; if a write is the point of the plugin, say so in the README
+- Checked by: static_checks.py / runtime.py
 
-### USB-S02: No privileged or remote-exec commands
+### USB-S02: Privileged or remote-exec commands are flagged
+- Level: warn (high)
+- Rationale: sudo/pkexec need a password prompt (a bar click just fails) and curl|sh runs unreviewed code; both are legitimate in installers, so they warn rather than fail.
+- Failing example: `["pkexec", "systemctl", ...]`
+- Fix: do not escalate from the shell; document manual steps or use a polkit-free path
+- Checked by: static_checks.py
+
+### USB-S03: No clearly destructive commands
 - Level: error
-- Rationale: sudo/pkexec, curl|sh and rm -rf of home are rejected.
-- Failing example: `["pkexec", ...]`
-- Fix: do not escalate; document manual steps
-- Checked by: static_checks
+- Rationale: rm -rf of $HOME, ~ or / destroys user data; this is the only safety case that stays a hard fail.
+- Failing example: `rm -rf $HOME/`
+- Fix: never delete outside the plugin's own data dir
+- Checked by: static_checks.py / runtime.py
 
 ## Heuristics (graded)
 

@@ -44,7 +44,7 @@ JS_FAKE = [
 DANGER_PATHS = r"(\.config/hypr\b|/etc/|/usr/(lib|share|local|include)/|/boot/|/var/(lib|log)/|\.bashrc|\.zshrc|\.profile\b|\.config/omarchy/(current|themes|hooks)|\.local/share/omarchy|/sys/|/dev/sd)"
 WRITE_VERBS = r"(>>?|\btee\b|\bcp\b|\bmv\b|\brm\b|\bsed\s+-i|\bln\s+-s|\bdd\b|\bchmod\b|\bchown\b|\binstall\b|\btruncate\b|setText|write_text|writeFile|open\([^)]*['\"][wa]\+?['\"])"
 DANGER_CMDS = [(r"curl[^\n|]*\|\s*(ba|z)?sh\b|wget[^\n|]*\|\s*(ba|z)?sh\b", "curl|sh"),
-               (r"\brm\s+-rf?\s+(~|\$HOME|/)(\s|$|['\"])", "rm -rf of home/root"),
+               (r"\brm\s+-rf?\s+(~|\$HOME|/)(\s|$|['\"])", "rm -rf of home/root"),  # matched below as USB-S03 (hard fail)
 ]
 FAKE_DATA = [(r"[\"']Item [1-3][\"']", "'Item 1/2/3' placeholder data"), (r"[Ll]orem ipsum", "lorem ipsum"),
              (r"[\"']John Doe[\"']|[\"']Jane Doe[\"']", "fake person"), (r"\bfoo\b.*\bbar\b.*\bbaz\b", "foo/bar/baz"),
@@ -125,23 +125,25 @@ def check(files):
                re.search(r"\b(tee(\s+-a)?|cp|mv|sed\s+-i\S*|ln\s+-s\S*|rm(\s+-\w+)?|install|dd|truncate|chmod|chown)\b[^|;&\n]*" + DANGER_PATHS, line) or \
                re.search(r"(setText|writeFile|writeFileSync|write_text|open\([^)]*['\"][wa]\+?['\"])[^\n]*" + DANGER_PATHS, line) or \
                re.search(DANGER_PATHS + r"[^\n]*(write_text|open\([^)]*['\"][wa]\+?['\"])", line):
-                F("dangerous-write", f"{p}: {line.strip()[:140]}")
+                W("dangerous-write", f"[USB-S01 warn/high] {p}: writes a protected path: {line.strip()[:140]}")
         lits = re.findall(r"['\"`]([^'\"`\n]*)['\"`]", body)
         dlits = [l for l in lits if re.search(r"(\.config/hypr/|^/etc/|\.bashrc|\.zshrc)", l)]
         if re.search(r"\.config/omarchy/shell\.json", body) and re.search(r"(setText|>\s*\S*shell\.json|writeFile)", body):
             W("writes-shell-json", f"{p}: writes ~/.config/omarchy/shell.json directly (prefer omarchy-shell IPC)")
         if dlits and re.search(r"\b(exec|execSync|spawn|execDetached|Process|command\s*:)\b", body) and \
            re.search(r"(>>?\s*\$?\{?\w|\bcp\b|\bmv\b|\bsed\s+-i|\btee\b|setText|writeFile|write_text|\brm\b)", body):
-            F("dangerous-write", f"{p}: writes/shell-outs alongside protected path {dlits[0][:80]}")
-        if re.search(r"[\"'](sudo|pkexec)[\"']\s*,|\bexec\w*\([\"'`](sudo|pkexec)\b", body): F("dangerous-cmd", f"{p}: runs sudo/pkexec")
+            W("dangerous-write", f"[USB-S01 warn/medium] {p}: writes/shell-outs alongside protected path {dlits[0][:80]}")
+        if re.search(r"[\"'](sudo|pkexec)[\"']\s*,|\bexec\w*\([\"'`](sudo|pkexec)\b", body): W("dangerous-cmd", f"[USB-S02 warn/high] {p}: runs sudo/pkexec (needs a password prompt; fails silently in a bar click)")
         for pat, what in DANGER_CMDS:
-            if re.search(pat, body): F("dangerous-cmd", f"{p}: {what}")
+            if re.search(pat, body):
+                if what.startswith("rm -rf"): F("destructive-cmd", f"[USB-S03] {p}: {what} - deletes the user's files")
+                else: W("dangerous-cmd", f"[USB-S02 warn/high] {p}: {what}")
         # FileView.setText to a path we can see in the same object that isn't a plugin data dir
         for m in re.finditer(r'FileView\s*\{(.{0,600}?)\}', body, re.S):
             blk = m.group(1)
             pm = re.search(r'\bpath\s*:\s*([^\n]+)', blk)
             if pm and re.search(DANGER_PATHS, pm.group(1)) and ("setText" in body or "blockWrites: false" in blk):
-                F("dangerous-write", f"{p}: FileView writes {pm.group(1).strip()[:100]}")
+                W("dangerous-write", f"[USB-S01 warn/high] {p}: FileView writes {pm.group(1).strip()[:100]}")
     for p, c in qml.items():
         m = re.search(r'^\s*(ApplicationWindow|Window)\s*\{', strip_comments(c), re.M)
         if m and isinstance(eps, dict) and p in eps.values():

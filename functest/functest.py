@@ -20,7 +20,7 @@ def read_dir(d):
 def categories(st_fails, rt):
     cats = sorted({c for c, _ in st_fails})
     for e in (rt or {}).get("errors", []):
-        if e.startswith("DANGEROUS") or e.startswith("wrote outside"): cats.append("rt-dangerous-write")
+        if e.startswith("DESTRUCTIVE"): cats.append("rt-destructive")
         elif e.startswith("exec:") and "does not exist on the Dell" in e: cats.append("rt-missing-binary")
         elif e.startswith("exec:"): cats.append("rt-undefined-arg")
         elif e.startswith("renders undefined"): cats.append("rt-undefined-text")

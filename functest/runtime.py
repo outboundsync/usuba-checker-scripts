@@ -454,9 +454,11 @@ def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
         for rel, txt in SENTINELS.items():
             fp = os.path.join(home, rel)
             if not os.path.exists(fp) or open(fp, errors="replace").read() != txt:
-                res["errors"].append(f"DANGEROUS: modified/deleted protected file ~/{rel}")
+                res["soft"].append(f"WARN[high] USB-S01: modified/deleted protected file ~/{rel}")
         bad = [r for r in after if (r not in before or after[r] != before[r]) and not ALLOWED_WRITE.match(r) and r not in SENTINELS]
-        for r in bad[:10]: res["errors"].append(f"wrote outside plugin data dirs: ~/{r}")
+        for r in bad[:10]: res["soft"].append(f"WARN[medium] USB-S01: wrote outside plugin data dirs: ~/{r}")
+        if any(not os.path.exists(os.path.join(home, rel)) for rel in SENTINELS) and sum(not os.path.exists(os.path.join(home, rel)) for rel in SENTINELS) == len(SENTINELS):
+            res["errors"].append("DESTRUCTIVE USB-S03: every protected file in ~ was deleted (rm -rf of home)")
         res["writes"] = sorted(r for r in after if (r not in before or after[r] != before[r]) and not r.startswith(".cache/fontconfig"))[:30]
     except Exception as e:
         res["errors"].append(f"harness: {type(e).__name__}: {e}")

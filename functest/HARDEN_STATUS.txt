@@ -8,3 +8,4 @@
 08:28 resumed after OOM interruption; committed shell-parsing/T03 fixes; next: static calib, eval_dell (J=3), ref49, rescore404 sequentially (<=6 qs procs)
 08:31 folded review rules: USB-Q05 (QtObject children, error), USB-A08 (read-only bar facade assign, warning: 4 Dell WORKS plugins do it); static: Dell WORKS 0 false rejects, fixer 31/31, harvest 23/27 (same residuals)
 08:37 eval_dell 90/90 (final code)
+08:46 Harris change: dangerous writes/sudo/pkexec/curl|sh downgraded to warnings (USB-S01/S02 warn high/medium); only rm -rf of ~/$HOME// stays a fail (new USB-S03); runtime protected-file edits -> soft WARN[high]; tree-task runtime: known surface.tablet NativeWidget race filtered + upstream-only retry. Recalibrating.

@@ -53,8 +53,9 @@ RULES = {
  "USB-J06": ("Loader-passed properties are not read only in onCompleted", "error", "Properties set on Loader.item after load arrive after Component.onCompleted, so code that reads them only there always sees defaults.", "onLoaded: item.vaultPath = p  // child reads vaultPath only in onCompleted", "use setSource(url, {props}) or react in on<Prop>Changed", "usuba/checks.py"),
  "USB-J02": ("Commands never receive undefined", "error", "argv built from bar.<x>/settings.<x> that do not exist passes the string 'undefined'.", "command: [\"x\", settings.mode] with no `mode` default", "declare manifest defaults / use real PluginBarApi members", "dell_checks"),
  # ---- safety
- "USB-S01": ("No writes to protected paths", "error", "Plugins must not modify Hyprland/Omarchy config, /etc, /usr or shell rc files.", "echo ... >> ~/.config/hypr/hyprland.conf", "use hyprctl keyword at runtime or the plugin's own data dir", "static_checks / runtime"),
- "USB-S02": ("No privileged or remote-exec commands", "error", "sudo/pkexec, curl|sh and rm -rf of home are rejected.", "[\"pkexec\", ...]", "do not escalate; document manual steps", "static_checks"),
+ "USB-S01": ("Writes outside the plugin dir are flagged", "warn (high: protected config/system paths; medium: other paths outside plugin data dirs)", "Changing Hyprland/Omarchy config, /etc, /usr or shell rc files can surprise the user or break the session, but some plugins legitimately do it (e.g. a theme or keybind tool) - so it is a warning the reviewer must read, not a failure.", "echo ... >> ~/.config/hypr/hyprland.conf", "prefer hyprctl keyword / omarchy-shell IPC; if a write is the point of the plugin, say so in the README", "static_checks.py / runtime.py"),
+ "USB-S02": ("Privileged or remote-exec commands are flagged", "warn (high)", "sudo/pkexec need a password prompt (a bar click just fails) and curl|sh runs unreviewed code; both are legitimate in installers, so they warn rather than fail.", "[\"pkexec\", \"systemctl\", ...]", "do not escalate from the shell; document manual steps or use a polkit-free path", "static_checks.py"),
+ "USB-S03": ("No clearly destructive commands", "error", "rm -rf of $HOME, ~ or / destroys user data; this is the only safety case that stays a hard fail.", "rm -rf $HOME/", "never delete outside the plugin's own data dir", "static_checks.py / runtime.py"),
  # ---- heuristics (graded)
  "USB-H01": ("Real data, not simulated", "high/medium", "Code that says its data is simulated/mock/fake is a stub. High (blocking) when the wording is explicit or the plugin has no data source at all; medium otherwise.",
              "// Safe simulation: avoids calling external binaries\nstatus = \"Up to date\"", "read the real source (Process, FileView, Quickshell service)", "usuba/checks.py"),
@@ -72,12 +73,12 @@ RULES = {
 }
 STATIC_CAT = {"manifest": "USB-M01", "entry-not-qml": "USB-M02", "no-qml": "USB-M03", "not-shell-surface": "USB-M04", "fix-id-not-namespaced": "USB-M05",
               "bad-import": "USB-Q02", "qt5-api": "USB-Q03", "qml-syntax": "USB-Q04", "fake-api": "USB-A05", "singleton-unknown": "USB-A06",
-              "exec-unknown-binary": "USB-B05", "exec-undefined-arg": "USB-J02", "dangerous-write": "USB-S01", "dangerous-cmd": "USB-S02",
+              "exec-unknown-binary": "USB-B05", "exec-undefined-arg": "USB-J02", "dangerous-write": "USB-S01", "dangerous-cmd": "USB-S02", "destructive-cmd": "USB-S03",
               "placeholder-ui": "USB-H05", "fake-data": "USB-H06"}
 RT_CAT = {"rt-load-failed": "USB-R01", "rt-unresolved-type/import": "USB-R01", "rt-not-instantiated": "USB-R01", "rt-manifest-rejected": "USB-R01",
           "rt-qml-syntax": "USB-R01", "rt-shell-broken": "USB-R01", "rt-js-error": "USB-R02", "rt-bad-property": "USB-R02", "rt-plugin-warn": "USB-R02",
           "rt-other": "USB-R02", "rt-undefined-text": "USB-R02", "rt-invisible": "USB-R03", "rt-offscreen": "USB-R03", "rt-zero-size": "USB-R03",
-          "rt-missing-binary": "USB-R04", "rt-undefined-arg": "USB-R04", "rt-dangerous-write": "USB-S01"}
+          "rt-missing-binary": "USB-R04", "rt-undefined-arg": "USB-R04", "rt-dangerous-write": "USB-S01", "rt-destructive": "USB-S03"}
 def rule_for(cat):
     if cat.startswith("usuba-"): return cat[6:]
     return STATIC_CAT.get(cat) or RT_CAT.get(cat)
