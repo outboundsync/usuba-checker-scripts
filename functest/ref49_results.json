@@ -53,8 +53,8 @@
     "usuba-USB-Q01: [USB-Q01] Background.qml: line 407: unknown QML type `BackgroundMedia` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
    ],
    "runtime_errors": [
-    "WARN qml: service plugin load failed for acme.background: Background.qml:270:3: ShellIpc is not a type",
-    "WARN qml: service plugin load failed for acme.background: Background.qml:270:3: ShellIpc is not a type",
+    "WARN qml: service plugin load failed for acme.background: Background.qml:407:7: BackgroundMedia is not a type",
+    "WARN qml: service plugin load failed for acme.background: Background.qml:407:7: BackgroundMedia is not a type",
     "service instance not created"
    ]
   },
@@ -477,7 +477,7 @@
    ],
    "static_fails": [],
    "runtime_errors": [
-    "WARN qml: key-promoter keybinds: /usr/bin/bash: /opt/ft/runs/rrvanmooz/home/user/omarchy/plugins/fkcodes.key-promoter/bin/keybinds: No such file or directory"
+    "WARN qml: key-promoter keybinds: /usr/bin/bash: /opt/ft/runs/reu_jxe2e/home/user/omarchy/plugins/fkcodes.key-promoter/bin/keybinds: No such file or directory"
    ]
   },
   {
