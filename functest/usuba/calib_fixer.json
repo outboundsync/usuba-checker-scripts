@@ -1,0 +1,331 @@
+[
+ {
+  "variant": "base",
+  "i": 52,
+  "task": "fix_manifest:bad_path_dotdot",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "base",
+  "i": 54,
+  "task": "fix_manifest:bad_path_absolute",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "base",
+  "i": 53,
+  "task": "fix_manifest:reserved_id",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "base",
+  "i": 51,
+  "task": "fix_manifest:reserved_id",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "base",
+  "i": 48,
+  "task": "chunk_add_kind:menu",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-A01: [USB-A01] Menu.qml: line 16: Service.call() is not an Omarchy/Quickshell API. Fix: call another plugin through `omarchy-shell` IPC (`Quickshell.execDetached([\"omarchy-shell\", ...])`) or an `IpcHandler`",
+   "usuba-USB-A01: [USB-A01] Menu.qml: line 16: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
+   "usuba-USB-A01: [USB-A01] Menu.qml: line 21: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
+   "usuba-USB-A01: [USB-A01] Menu.qml: line 26: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
+   "usuba-USB-A01: [USB-A01] Menu.qml: line 31: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
+   "usuba-USB-A01: [USB-A01] Menu.qml: line 36: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
+   "usuba-USB-A01: [USB-A01] Menu.qml: line 41: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that"
+  ]
+ },
+ {
+  "variant": "base",
+  "i": 0,
+  "task": "build_from_spec",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-A01: [USB-A01] service/Background.qml: line 66: QML animations cannot be constructed with `new` in JavaScript. Fix: declare the animation as a QML object with an id and call `anim.start()`"
+  ]
+ },
+ {
+  "variant": "base",
+  "i": 19,
+  "task": "add_panel",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-H02: [USB-H02 heuristic/high] BarWidget.qml: line 20: hardcoded reading `\u2600\ufe0f 22\u00b0C` shown as live data. Fix: bind the text to a property filled from a real data source",
+   "usuba-USB-H02: [USB-H02 heuristic/high] WeatherPanel.qml: line 32: hardcoded reading `Wind: 12 km/h NW` shown as live data. Fix: bind the text to a property filled from a real data source"
+  ]
+ },
+ {
+  "variant": "base",
+  "i": 7,
+  "task": "build_from_spec",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-H01: [USB-H01 heuristic/high] DropboxBar.qml: says its data is `Safe simulation`. Fix: read the real source (Process + StdioCollector, FileView, a Quickshell service) instead of shipping canned values"
+  ]
+ },
+ {
+  "variant": "base",
+  "i": 1,
+  "task": "build_from_spec",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-J01: [USB-J01] service/BackgroundService.qml: line 112: `_newSource` is never declared (no property, id, var or parameter) - ReferenceError at runtime. Fix: declare `property var _newSource` (and fill it), or use a real API object; never hide missing APIs behind try/catch"
+  ]
+ },
+ {
+  "variant": "base",
+  "i": 31,
+  "task": "build_from_spec",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-Q01: [USB-Q01] bar-widget/main.qml: line 22: unknown QML type `Process` - not provided by any module this file imports. Fix: add `import Quickshell.Io`",
+   "usuba-USB-Q01: [USB-Q01] bar-widget/main.qml: line 35: unknown QML type `Process` - not provided by any module this file imports. Fix: add `import Quickshell.Io`"
+  ]
+ },
+ {
+  "variant": "base",
+  "i": 2,
+  "task": "build_from_spec",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-A01: [USB-A01] overlay.qml: line 72: Qt.clipboard does not exist in QML. Fix: read with `Process { command: [\"wl-paste\", \"-n\"] }` and write with `Quickshell.execDetached([\"wl-copy\", text])`",
+   "usuba-USB-A01: [USB-A01] overlay.qml: line 72: `Qt.clipboard` does not exist on the Qt global object. Fix: see https://doc.qt.io/qt-6/qml-qtqml-qt.html for the real members",
+   "usuba-USB-A01: [USB-A01] overlay.qml: line 111: `Qt.clipboard` does not exist on the Qt global object. Fix: see https://doc.qt.io/qt-6/qml-qtqml-qt.html for the real members",
+   "usuba-USB-A01: [USB-A01] overlay.qml: line 112: `Qt.clipboard` does not exist on the Qt global object. Fix: see https://doc.qt.io/qt-6/qml-qtqml-qt.html for the real members"
+  ]
+ },
+ {
+  "variant": "base",
+  "i": 5,
+  "task": "build_from_spec",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-Q01: [USB-Q01] service/NotificationPopup.qml: line 28: unknown QML type `DropShadow` - not provided by any module this file imports. Fix: add `import Qt5Compat.GraphicalEffects` (Qt6 GraphicalEffects need Qt5Compat.GraphicalEffects or QtQuick.Effects MultiEffect)",
+   "usuba-USB-H03: [USB-H03 heuristic/high] *: 3 console.log calls and no real side effect anywhere (no Process, exec, FileView, IPC or service): handlers only log. Fix: make each handler do the real action (Process / Quickshell.execDetached / omarchy-shell IPC / settings write)"
+  ]
+ },
+ {
+  "variant": "base",
+  "i": 45,
+  "task": "chunk_manifest_entry",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-H03: [USB-H03 heuristic/high] *: 10 console.log calls and no real side effect anywhere (no Process, exec, FileView, IPC or service): handlers only log. Fix: make each handler do the real action (Process / Quickshell.execDetached / omarchy-shell IPC / settings write) (judged on the files this answer wrote)"
+  ]
+ },
+ {
+  "variant": "hand",
+  "i": 54,
+  "task": "fix_manifest:bad_path_absolute",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "hand",
+  "i": 52,
+  "task": "fix_manifest:bad_path_dotdot",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "hand",
+  "i": 51,
+  "task": "fix_manifest:reserved_id",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "hand",
+  "i": 27,
+  "task": "build_from_spec",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-J01: [USB-J01] VimarchyOverlay.qml: line 22: `shell` is never declared (no property, id, var or parameter) - ReferenceError at runtime, silently swallowed by try/catch so the feature just shows nothing. Fix: declare `property var shell` (and fill it), or use a real API object; never hide missing APIs behind try/catch"
+  ]
+ },
+ {
+  "variant": "hand",
+  "i": 49,
+  "task": "chunk_component",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-B04: [USB-B04] tablet.py: sets options with `hyprctl keyword` and also runs `hyprctl reload`, which re-reads hyprland.conf and discards those runtime keywords. Fix: drop the `hyprctl reload`; keywords apply immediately (or batch them with `hyprctl --batch`)"
+  ]
+ },
+ {
+  "variant": "hand2",
+  "i": 52,
+  "task": "fix_manifest:bad_path_dotdot",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "hand2",
+  "i": 54,
+  "task": "fix_manifest:bad_path_absolute",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "hand2",
+  "i": 51,
+  "task": "fix_manifest:reserved_id",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "hand2",
+  "i": 50,
+  "task": "chunk_component",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-T02: [USB-T02] task asks for `HomeContent.qml` but the answer does not contain it (files: manifest.json). Fix: return the complete `HomeContent.qml`",
+   "usuba-USB-T01: [USB-T01] chunk_component answer contains no plugin code (only manifest.json); a manifest alone is not a plugin. Fix: return the QML entry point(s) the manifest names, in full"
+  ]
+ },
+ {
+  "variant": "hand2",
+  "i": 49,
+  "task": "chunk_component",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-B02: [USB-B02] tablet.py: runs `xinput` (sh -c), an X11-only tool; Omarchy is a Wayland/Hyprland session, so it does nothing (or is not installed on the Dell). Fix: use `hyprctl keyword device[...]:enabled` / `hyprctl devices`",
+   "usuba-USB-B02: [USB-B02] tablet.py: runs `onboard` (sh -c), an X11-only tool; Omarchy is a Wayland/Hyprland session, so it does nothing (or is not installed on the Dell). Fix: use a Wayland on-screen keyboard (e.g. wvkbd / squeekboard), shipped or documented as a dependency",
+   "usuba-USB-B02: [USB-B02] tablet.py: runs `setxkbmap` (argv), an X11-only tool; Omarchy is a Wayland/Hyprland session, so it does nothing (or is not installed on the Dell). Fix: use `hyprctl switchxkblayout` or `hyprctl keyword input:kb_layout`"
+  ]
+ },
+ {
+  "variant": "hand2",
+  "i": 30,
+  "task": "build_from_spec",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-H04: [USB-H04 heuristic/high] FlushBar.qml: line 55: onClicked only reports that it was clicked (debug/demo handler, no real action). Fix: make the click do what the plugin is for"
+  ]
+ },
+ {
+  "variant": "hand2",
+  "i": 0,
+  "task": "build_from_spec",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-B03: [USB-B03] BackgroundService.qml: `hyprctl background` is not a hyprctl command. Fix: valid commands include dispatch, keyword, getoption, monitors, clients, activewindow, hyprpaper, hyprsunset; wallpapers go through `swaybg`/`hyprpaper` or Omarchy's `omarchy-theme-bg-*` scripts"
+  ]
+ },
+ {
+  "variant": "hand2",
+  "i": 10,
+  "task": "build_from_spec",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-B03: [USB-B03] BarWidget.qml: `hyprsunset enable` is not valid: hyprsunset takes flags only (-t/--temperature, -g/--gamma, -i/--identity). Fix: start it with `hyprsunset -t 4500`, change it live with `hyprctl hyprsunset temperature 4500`, turn it off with `hyprctl hyprsunset identity` or `pkill hyprsunset`"
+  ]
+ },
+ {
+  "variant": "hand2",
+  "i": 2,
+  "task": "build_from_spec",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "hand2",
+  "i": 18,
+  "task": "build_from_spec",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "hand2",
+  "i": 13,
+  "task": "build_from_spec",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "hand2",
+  "i": 31,
+  "task": "build_from_spec",
+  "label": "keep",
+  "now_pass": true,
+  "ok": true,
+  "reasons": []
+ },
+ {
+  "variant": "hand2",
+  "i": 16,
+  "task": "build_from_spec",
+  "label": "reject",
+  "now_pass": false,
+  "ok": true,
+  "reasons": [
+   "usuba-USB-A01: [USB-A01] Panel.qml: line 44: Quickshell.exec() does not exist (there is no promise-returning exec). Fix: use a `Process { command: [...]; stdout: StdioCollector { onStreamFinished: ... } }` and set `running = true`, or `Quickshell.execDetached([...])` for fire-and-forget",
+   "usuba-USB-A01: [USB-A01] Panel.qml: line 44: `Quickshell.exec` is not a member of the Quickshell singleton. Fix: real members include execDetached, env, shellDir, dataDir, stateDir, screens, iconPath, reload"
+  ]
+ }
+]

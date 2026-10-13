@@ -3,6 +3,7 @@
 import json, os, sys, re
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import static_checks, runtime, dell_checks
+from usuba import checks as usuba_checks
 
 SKIP_DIRS = {".git", "node_modules", "tests", "test", "__pycache__", "preview", "stubs", "lint", ".github", "fixtures", "docs", "screenshots", "assets"}
 def read_dir(d):
@@ -43,6 +44,10 @@ def test(files=None, src_dir=None, run_runtime=True):
     sf, sw = static_checks.check(files)
     df, dw = dell_checks.check(files, doc_deps=not os.environ.get("FT_STRICT_DEPS"))
     sf, sw = sf + df, sw + dw
+    # Usuba Checker hardening (functest/STANDARD.md): errors and high-severity heuristics block, the rest are flags
+    uf = usuba_checks.check(files)
+    sf = sf + [("usuba-" + f["rule"], usuba_checks.fmt(f)) for f in uf if usuba_checks.blocking(f)]
+    sw = sw + [("usuba-" + f["rule"], usuba_checks.fmt(f)) for f in uf if not usuba_checks.blocking(f)]
     rt = None
     man_ok = True
     try: m = json.loads(files.get("manifest.json", "")); man_ok = isinstance(m, dict) and "id" in m
@@ -64,8 +69,14 @@ def test(files=None, src_dir=None, run_runtime=True):
                 rt["errors"].remove(e); rt.setdefault("soft", []).append(e + " (conditionally hidden by design)")
         rt["pass"] = not rt["errors"]
     ok = not sf and (rt is None or rt.get("pass"))
-    return {"pass": ok, "static_fails": sf, "static_flags": sw, "runtime": rt, "categories": categories(sf, rt)}
+    return {"pass": ok, "static_fails": sf, "static_flags": sw, "runtime": rt, "categories": categories(sf, rt), "usuba": uf}
 
 if __name__ == "__main__":
     r = test(src_dir=sys.argv[1])
-    print(json.dumps({k: v for k, v in r.items()}, indent=1)[:6000])
+    if "--reasons" in sys.argv:
+        from usuba import rules
+        print("PASS" if r["pass"] else "FAIL")
+        for l in rules.explain(r["static_fails"], (r["runtime"] or {}).get("errors", [])): print("  " + l)
+        for c, d in r["static_flags"]:
+            if c.startswith("usuba-"): print("  warn " + d)
+    else: print(json.dumps({k: v for k, v in r.items()}, indent=1)[:6000])

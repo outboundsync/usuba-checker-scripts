@@ -9,6 +9,8 @@ from concurrent.futures import ThreadPoolExecutor
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE); sys.path.insert(0, os.path.join(ROOT, "validator"))
 import functest
+from usuba import rules as usuba_rules
+from usuba import checks as usuba_checks
 from build_parse import parse
 RUN = os.path.join(ROOT, "runs/smoke-2026-10-11")
 hold = [json.loads(l) for l in open(os.path.join(ROOT, "data/holdout.jsonl"))]
@@ -25,7 +27,33 @@ CACHE = os.path.join(HERE, "cache"); os.makedirs(CACHE, exist_ok=True)
 # cache entries are only valid for the functest version that produced them
 FT_VERSION = hashlib.sha1(b"".join(open(os.path.join(HERE, f), "rb").read() for f in
     ("functest.py", "runtime.py", "static_checks.py", "dell_checks.py", "dell_env/setup.py", "dell_env/hyprctl.py", "dell_env/binaries.py",
-     "dell_env/system_bins.txt", "dell_env/ftprobe.qml.part"))).hexdigest()[:12]
+     "dell_env/system_bins.txt", "dell_env/ftprobe.qml.part", "usuba/checks.py", "usuba/types.json"))).hexdigest()[:12]
+
+CODE_EXT = (".qml", ".js", ".mjs", ".sh", ".py", ".bash")
+def task_findings(h, files):
+    """Usuba task-level rules (STANDARD.md USB-T01/T02): an answer must contain the code the task asked for."""
+    task = h["task"].split(":")[0]
+    if task == "fix_manifest": return []
+    out = []
+    prompt = h["messages"][1]["content"]
+    sub = lambda c: sum(1 for l in c.splitlines() if l.strip() and l.strip() not in "{}[]();")
+    code = {p: c for p, c in files.items() if p.endswith(CODE_EXT) and sub(c) >= 5}
+    tm = re.search(r"Implement `([^`]+)` in full", prompt)
+    if tm and task == "chunk_component":
+        tgt = tm.group(1)
+        if tgt not in files:
+            out.append(["usuba-USB-T02", f"[USB-T02] task asks for `{tgt}` but the answer does not contain it (files: {', '.join(sorted(files)) or 'none'}). Fix: return the complete `{tgt}`"])
+        elif sub(files[tgt]) < 5:
+            out.append(["usuba-USB-T02", f"[USB-T02] `{tgt}` is empty or a stub ({sub(files[tgt])} substantive lines). Fix: implement `{tgt}` in full"])
+    if task != "fix_manifest" and code and task not in FULL:
+        # tree tasks: the graded tree includes upstream siblings, so stub heuristics (USB-H01..H04) are judged on the model's own files
+        for f in usuba_checks.check({**code, "manifest.json": files.get("manifest.json", "{}")}):
+            if f["rule"] in ("USB-H01", "USB-H02", "USB-H03", "USB-H04") and usuba_checks.blocking(f):
+                out.append(["usuba-" + f["rule"], usuba_checks.fmt(f) + " (judged on the files this answer wrote)"])
+    if False: pass
+    elif not code:
+        out.append(["usuba-USB-T01", f"[USB-T01] {task} answer contains no plugin code (only {', '.join(sorted(files)) or 'nothing'}); a manifest alone is not a plugin. Fix: return the QML entry point(s) the manifest names, in full"])
+    return out
 
 def norm(e): return re.sub(r"\d+", "N", re.sub(r"/opt/ft/runs/\w+", "", e))
 
@@ -58,6 +86,7 @@ def score_row(i, h, g):
     task = h["task"].split(":")[0]
     files = parse(g["output"])
     if not files: return dict(task=h["task"], pass_=False, categories=["no-files-parsed"], finish=g["finish"])
+    tf = task_findings(h, files)
     if task in FULL:
         key = FT_VERSION + "-" + hashlib.sha1(json.dumps(files, sort_keys=True).encode()).hexdigest()
         cp = os.path.join(CACHE, key + ".json")
@@ -84,13 +113,17 @@ def score_row(i, h, g):
             except Exception: mid = ""
             if "." not in mid.strip(".") or mid.startswith("omarchy."):
                 r["static_fails"].append(["fix-id-not-namespaced", f"manifest id {mid!r} is not a namespaced, non-reserved id"])
+    if tf or task not in FULL:
+        r = json.loads(json.dumps(r)) if task in FULL else r
+        r["static_fails"] = tf + list(r["static_fails"])
         r["categories"] = functest.categories(r["static_fails"], r["runtime"])
         r["pass"] = not r["static_fails"] and (r["runtime"] is None or r["runtime"]["pass"])
     rt = r.get("runtime") or {}
     return dict(task=h["task"], pass_=bool(r["pass"]), categories=r["categories"], finish=g["finish"],
-                static_fails=[f"{a}: {b}"[:200] for a, b in r["static_fails"]][:8],
+                static_fails=[f"{a}: {b}"[:400] for a, b in r["static_fails"]][:8],
                 runtime_errors=[e[:240] for e in rt.get("errors", [])][:8], runtime_checks=rt.get("checks"),
-                soft=[e[:160] for e in rt.get("soft", [])][:4], files=sorted(files)[:12])
+                soft=[e[:160] for e in rt.get("soft", [])][:4], files=sorted(files)[:12],
+                reasons=usuba_rules.explain(r["static_fails"], rt.get("errors", []))[:10])
 
 def summarize(rows, old):
     full = [r for r in rows if r["task"].split(":")[0] in FULL]
