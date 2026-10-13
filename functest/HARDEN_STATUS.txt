@@ -6,3 +6,4 @@
 07:38 resumed after interruption; eval_dell run under heavy load gave 89/90 (traffic-board rt-invisible runtime timing, not a Usuba rule) - to re-run; rescore404 at 10/21 models
 07:44 J06/H07/A07 fixes; calib_harvest 23/27 (residual: 83,566 fakes pass; 402,422 reals fail with verified evidence); rules+STANDARD regenerated
 08:28 resumed after OOM interruption; committed shell-parsing/T03 fixes; next: static calib, eval_dell (J=3), ref49, rescore404 sequentially (<=6 qs procs)
+08:31 folded review rules: USB-Q05 (QtObject children, error), USB-A08 (read-only bar facade assign, warning: 4 Dell WORKS plugins do it); static: Dell WORKS 0 false rejects, fixer 31/31, harvest 23/27 (same residuals)

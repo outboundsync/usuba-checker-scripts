@@ -677,7 +677,24 @@ def check(files, man=None):
                     f"declare `property var {nm}` (and fill it), or use a real API object; never hide missing APIs behind try/catch")
                 declared.add(nm)
 
-    # ---- heuristics (severity graded): fake/simulated/placeholder data, console.log-only handlers, demo handlers
+    # ---- review-derived rules (data/reviews/RULE_CANDIDATES.md UC-QML-01, UC-QML-04)
+    BAR_RO = ("centerHoverRevealSuppressed", "foreignPopoutMarker")
+    for p, c in qml.items():
+        if not p.endswith(".qml"): continue
+        cc = _cks(c)
+        for mm in re.finditer(r"\bbar\.(" + "|".join(BAR_RO) + r")\s*=(?!=)", cc):
+            add("USB-A08", "medium", p, f"line {lineno(cc, mm.start())}: assigns read-only `bar.{mm.group(1)}` - plugins get the read-only PluginBarApi facade, so this throws and aborts the rest of the function",
+                "call the setter instead, e.g. `bar.setCenterHoverRevealSuppressed(v)`")
+        for mm in re.finditer(r"(?<![\w.])QtObject\s*\{", cc):
+            i, d, k = mm.end(), 1, mm.end()
+            while k < len(cc) and d:
+                if cc[k] == "{": d += 1
+                elif cc[k] == "}": d -= 1
+                elif d == 1 and re.match(r"(?<![\w.:])[A-Z]\w*(\.\w+)*\s*\{", cc[k:k+80]) and re.match(r"[\s;]*$", cc[max(i, cc.rfind("\n", 0, k)):k]):
+                    nm = re.match(r"[A-Z][\w.]*", cc[k:]).group(0)
+                    add("USB-Q05", "error", p, f"line {lineno(cc, k)}: `{nm}` declared as a child of QtObject - QtObject has no default property, so the file fails to load",
+                        "make the root an Item, or hold it in a property: `property Timer t: Timer { ... }`"); break
+                k += 1
     for p, c in qml.items():
         if not p.endswith(".qml"): continue
         cm = " ".join(re.findall(r"//[^\n]*|/\*.*?\*/", c, re.S))

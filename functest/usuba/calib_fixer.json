@@ -49,7 +49,15 @@
    "usuba-USB-A01: [USB-A01] Menu.qml: line 26: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
    "usuba-USB-A01: [USB-A01] Menu.qml: line 31: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
    "usuba-USB-A01: [USB-A01] Menu.qml: line 36: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
-   "usuba-USB-A01: [USB-A01] Menu.qml: line 41: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that"
+   "usuba-USB-A01: [USB-A01] Menu.qml: line 41: `Service.call()` calls a method on the type `Service`, not on an instance (it is not a singleton). Fix: give the `Service` object an id (or receive it as a property) and call the method on that",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function"
   ]
  },
  {
@@ -143,7 +151,8 @@
   "now_pass": false,
   "ok": true,
   "reasons": [
-   "usuba-USB-H03: [USB-H03 heuristic/high] *: 10 console.log calls and no real side effect anywhere (no Process, exec, FileView, IPC or service): handlers only log. Fix: make each handler do the real action (Process / Quickshell.execDetached / omarchy-shell IPC / settings write) (judged on the files this answer wrote)"
+   "usuba-USB-H03: [USB-H03 heuristic/high] *: 10 console.log calls and no real side effect anywhere (no Process, exec, FileView, IPC or service): handlers only log. Fix: make each handler do the real action (Process / Quickshell.execDetached / omarchy-shell IPC / settings write) (judged on the files this answer wrote)",
+   "usuba-USB-T03: [USB-T03] the answer starts with 1376 chars of leaked reasoning/prose before the first file. Fix: return only the files, as `### path` + fenced code"
   ]
  },
  {
@@ -244,7 +253,15 @@
   "reasons": [
    "usuba-USB-B02: [USB-B02] tablet.py: runs `xinput` (sh -c), an X11-only tool; Omarchy is a Wayland/Hyprland session, so it does nothing (or is not installed on the Dell). Fix: use `hyprctl keyword device[...]:enabled` / `hyprctl devices`",
    "usuba-USB-B02: [USB-B02] tablet.py: runs `onboard` (sh -c), an X11-only tool; Omarchy is a Wayland/Hyprland session, so it does nothing (or is not installed on the Dell). Fix: use a Wayland on-screen keyboard (e.g. wvkbd / squeekboard), shipped or documented as a dependency",
-   "usuba-USB-B02: [USB-B02] tablet.py: runs `setxkbmap` (argv), an X11-only tool; Omarchy is a Wayland/Hyprland session, so it does nothing (or is not installed on the Dell). Fix: use `hyprctl switchxkblayout` or `hyprctl keyword input:kb_layout`"
+   "usuba-USB-B02: [USB-B02] tablet.py: runs `setxkbmap` (argv), an X11-only tool; Omarchy is a Wayland/Hyprland session, so it does nothing (or is not installed on the Dell). Fix: use `hyprctl switchxkblayout` or `hyprctl keyword input:kb_layout`",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function",
+   "WARN scene: NativeWidget.qml[24:-1]: TypeError: Property 'createObject' of object TypeError: Type error is not a function"
   ]
  },
  {
@@ -255,7 +272,8 @@
   "now_pass": false,
   "ok": true,
   "reasons": [
-   "usuba-USB-H04: [USB-H04 heuristic/high] FlushBar.qml: line 55: onClicked only reports that it was clicked (debug/demo handler, no real action). Fix: make the click do what the plugin is for"
+   "usuba-USB-H04: [USB-H04 heuristic/high] FlushBar.qml: line 55: onClicked only reports that it was clicked (debug/demo handler, no real action). Fix: make the click do what the plugin is for",
+   "usuba-USB-H04: [USB-H04 heuristic/high] FlushBar.qml: line 56: an action only posts a notification ('Clicked') instead of doing the work. Fix: run the real command for the action (e.g. the app's CLI / D-Bus call)"
   ]
  },
  {
@@ -324,7 +342,9 @@
   "now_pass": false,
   "ok": true,
   "reasons": [
+   "usuba-USB-T03: [USB-T03] the answer starts with 13752 chars of leaked reasoning/prose before the first file. Fix: return only the files, as `### path` + fenced code",
    "usuba-USB-A01: [USB-A01] Panel.qml: line 44: Quickshell.exec() does not exist (there is no promise-returning exec). Fix: use a `Process { command: [...]; stdout: StdioCollector { onStreamFinished: ... } }` and set `running = true`, or `Quickshell.execDetached([...])` for fire-and-forget",
+   "usuba-USB-J04: [USB-J04] Panel.qml: line 44: passes Qt.resolvedUrl(...) (a file:// URL) as a command argument; programs need a filesystem path. Fix: strip the scheme: `Qt.resolvedUrl(\"bin/x.sh\").toString().replace(\"file://\", \"\")`, or use a plugin-dir path",
    "usuba-USB-A01: [USB-A01] Panel.qml: line 44: `Quickshell.exec` is not a member of the Quickshell singleton. Fix: real members include execDetached, env, shellDir, dataDir, stateDir, screens, iconPath, reload"
   ]
  }

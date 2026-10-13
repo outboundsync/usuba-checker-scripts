@@ -98,6 +98,13 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 - Fix: declare objects in QML, start them from JS
 - Checked by: static_checks
 
+### USB-Q05: QtObject does not host child objects
+- Level: error
+- Rationale: QtObject has no default property, so Timer/Process/FileView declared inside it is a load error. From expert review (UC-QML-04).
+- Failing example: `QtObject { Timer { interval: 1000 } }`
+- Fix: use an Item root or `property Timer t: Timer {}`
+- Checked by: usuba/checks.py
+
 ## APIs
 
 ### USB-A01: Only real APIs are called
@@ -112,6 +119,13 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 - Rationale: A handler for a signal the type does not have never fires (or fails to load). Signals come from the type's qmltypes/QML definition plus its prototype chain.
 - Failing example: `Process { onFinished: ... }  (Process has exited/started)`
 - Fix: use the type's real signal, e.g. onExited, or StdioCollector.onStreamFinished
+- Checked by: usuba/checks.py
+
+### USB-A08: Read-only bar facade properties are not assigned
+- Level: medium (warning)
+- Rationale: Warning only: 4 Dell-verified working plugins do this inside guarded code. Third-party plugins receive the read-only PluginBarApi facade; assigning a readonly member throws and aborts the function (e.g. close() leaves a keyboard grab). From expert review (UC-QML-01).
+- Failing example: `bar.centerHoverRevealSuppressed = true`
+- Fix: bar.setCenterHoverRevealSuppressed(true)
 - Checked by: usuba/checks.py
 
 ### USB-A03: QML types are not constructed with `new`
