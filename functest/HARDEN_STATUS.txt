@@ -4,3 +4,4 @@
 07:24 fixes: thread-safe file context (race caused false A02 on pix.bar), command -v fallbacks exempt from B01/B02 (scriptural xclip fallback), stub heuristics judged on the answer's own files for tree tasks; relaunched all four calibrations
 07:32 fixer calibration: 31/31 agree (17/17 rejected now fail, 14/14 kept pass). human reference: 26/49, identical per-row verdicts to the 4.0.4 grader
 07:38 resumed after interruption; eval_dell run under heavy load gave 89/90 (traffic-board rt-invisible runtime timing, not a Usuba rule) - to re-run; rescore404 at 10/21 models
+07:44 J06/H07/A07 fixes; calib_harvest 23/27 (residual: 83,566 fakes pass; 402,422 reals fail with verified evidence); rules+STANDARD regenerated

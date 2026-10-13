@@ -1,0 +1,269 @@
+[
+ {
+  "i": 69,
+  "sample": 1,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-H04 heuristic/high] KeePassXC.qml: line 65: an action only posts a notification ('requested') instead of doing the work. Fix: run the real command for the action (e.g. the app's CLI / D-Bus call)"
+  ]
+ },
+ {
+  "i": 83,
+  "sample": 0,
+  "label": "fake",
+  "fail": false,
+  "match": false,
+  "reasons": []
+ },
+ {
+  "i": 95,
+  "sample": 2,
+  "label": "real",
+  "fail": false,
+  "match": true,
+  "reasons": []
+ },
+ {
+  "i": 99,
+  "sample": 0,
+  "label": "real",
+  "fail": false,
+  "match": true,
+  "reasons": []
+ },
+ {
+  "i": 109,
+  "sample": 2,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-A07] WindowCloseButtons.qml: line 106: `shell.system` is not part of the plugin shell API Omarchy injects (always undefined). Fix: real `shell` members: activeBarId, activeBarManifest, activeBarSourceUrl, appLibrary, applyShellConfig, applyTheme, bar, barConfig, barConfigFor, barEntryConfigured, barManifestFor, barOptionAvailable, barPluginMayControl, barWidgetRegistry, builtinShellConfig, cacheWithoutKey, cacheWithoutPrefix, call, callIfLoaded, cancel, computePanelEntries, configureBar, createScopedPluginShell, currentManifest, debugBarGeometry, defaultBarId, defaultsConfig, defaultsPath, deliverIfLoaded, enablePlugin, ensureService, entryKind, failedBarId, finalize, finishPluginReload, firstPartyPluginsDir, firstPartyServiceFor, ftProbe, ftTexts, hasCurrentBarCapabilities, hide, home, idleConfig, imagePickerItem, invokeIfLoaded, isActiveBarOption, isAuthenticationService, isBarOptionManifest, isBarWidgetPanelPlugin, isPluginOpen, keepLoaded, listPlugins, listShellConfig, loadDefaults, loadPluginWidget, manifest, manifestHasKind, modelData, moveBarWidget, mutatePluginBarConfig, mutateShellConfig, objectName, omarchyPath, onAppsChanged, onChanged, onLocalPluginChanged, onPluginsChanged, onScanFinished, open, openPanelIds, owns, panelEntries, panelLoader, panelLoaders, pendingPayloads, persistShellConfig, ping, pluginApiActive, pluginAppLibraryFor, pluginBarStateFor, pluginBarWidgetRegistryFor, pluginCloneMaySummon, pluginFirstPartyServiceFor, pluginHasBarCapabilities, pluginId, pluginIsIndicatorsClone, pluginOwnsTarget, pluginRegistry, pluginRegistryFor, pluginReloadPending, pluginReloading, pluginServiceFor, pluginShellCapabilityProfile, pluginShellFor, pluginShellForBarEntry, pluginShellForId, pluginWidgetComponents, preload, prunePluginApis, publicBarConfig, publicBarWidgetSnapshot, publicIdleConfigFor, publicPluginManifest, putBarWidget, registerPanelLoader, reloadConfig, reloadPlugins, rescanPlugins, revokePluginShellApi, scopedPluginShellForId, selectedBarAvailable, selectedBarId, service, serviceFor, serviceKeepLoaded, setBarWidget, setPluginEnabled, setPluginWidgetComponent, shellConfig, shellPath, sourceUrl, summon, syncPluginApis, syncPluginWidgets, toString, toggle, toggleBarTransparency, togglePanelAt, unloadPanels, unloadPluginServices, unloadPluginWidgets, unregisterPanelLoader, updateEntryInline, userConfigPath"
+  ]
+ },
+ {
+  "i": 392,
+  "sample": 1,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-Q01] Panel.qml: line 17: unknown QML type `File` - not provided by any module this file imports. Fix: no Qt 6, Quickshell or Omarchy module provides this type; use a real type or ship it as a QML file"
+  ]
+ },
+ {
+  "i": 399,
+  "sample": 1,
+  "label": "real",
+  "fail": false,
+  "match": true,
+  "reasons": []
+ },
+ {
+  "i": 402,
+  "sample": 0,
+  "label": "real",
+  "fail": true,
+  "match": false,
+  "reasons": [
+   "[USB-A01] NamedWorkspaces.qml: line 25: `Hyprland.activeWorkspace` is not a member of the real Hyprland singleton (always undefined). Fix: real Hyprland members: activeToplevel, destroy, dispatch, eventSocketPath, focusedMonitor, focusedWorkspace, monitorFor, monitors, objectName, requestSocketPath, toString, toplevels",
+   "[USB-A01] NamedWorkspaces.qml: line 25: `Hyprland.activeWindow` is not a member of the real Hyprland singleton (always undefined). Fix: real Hyprland members: activeToplevel, destroy, dispatch, eventSocketPath, focusedMonitor, focusedWorkspace, monitorFor, monitors, objectName, requestSocketPath, toString, toplevels",
+   "[USB-A01] NamedWorkspaces.qml: line 26: `Hyprland.activeWindow` is not a member of the real Hyprland singleton (always undefined). Fix: real Hyprland members: activeToplevel, destroy, dispatch, eventSocketPath, focusedMonitor, focusedWorkspace, monitorFor, monitors, objectName, requestSocketPath, toString, toplevels"
+  ]
+ },
+ {
+  "i": 404,
+  "sample": 1,
+  "label": "real",
+  "fail": false,
+  "match": true,
+  "reasons": []
+ },
+ {
+  "i": 414,
+  "sample": 0,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-J03] Service.qml: line 10: Qt.resolvedUrl(\"~/...\") does not expand ~ (it resolves relative to the QML file). Fix: build the path from `Quickshell.env(\"HOME\")` / StandardPaths, or let a shell expand it",
+   "[USB-J03] Menu.qml: line 11: Qt.resolvedUrl(\"~/...\") does not expand ~ (it resolves relative to the QML file). Fix: build the path from `Quickshell.env(\"HOME\")` / StandardPaths, or let a shell expand it",
+   "[USB-J03] BarWidget.qml: line 14: Qt.resolvedUrl(\"~/...\") does not expand ~ (it resolves relative to the QML file). Fix: build the path from `Quickshell.env(\"HOME\")` / StandardPaths, or let a shell expand it"
+  ]
+ },
+ {
+  "i": 417,
+  "sample": 2,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-J06] NotePickerPanel.qml: uses `vaultPath` only in Component.onCompleted, but BarWidget.qml sets `item.vaultPath` after the Loader finished loading, so onCompleted always sees the default value. Fix: pass it at creation (`Loader { onLoaded: ... }` is too late) - bind it instead (`property string vaultPath: loader.vaultPath` / `Binding`), or react in `onVaultPathChanged`"
+  ]
+ },
+ {
+  "i": 422,
+  "sample": 0,
+  "label": "real",
+  "fail": true,
+  "match": false,
+  "reasons": [
+   "[USB-Q01] Panel.qml: line 77: unknown QML type `Process` - not provided by any module this file imports. Fix: add `import Quickshell.Io`",
+   "[USB-Q01] Panel.qml: line 80: unknown QML type `StdioCollector` - not provided by any module this file imports. Fix: add `import Quickshell.Io`",
+   "[USB-Q01] Panel.qml: line 89: unknown QML type `Process` - not provided by any module this file imports. Fix: add `import Quickshell.Io`"
+  ]
+ },
+ {
+  "i": 424,
+  "sample": 3,
+  "label": "real",
+  "fail": false,
+  "match": true,
+  "reasons": []
+ },
+ {
+  "i": 437,
+  "sample": 2,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-A01] WorkspaceOverview.qml: line 63: `Hyprland.activeMonitor` is not a member of the real Hyprland singleton (always undefined). Fix: real Hyprland members: activeToplevel, destroy, dispatch, eventSocketPath, focusedMonitor, focusedWorkspace, monitorFor, monitors, objectName, requestSocketPath, toString, toplevels",
+   "[USB-A01] WorkspaceOverview.qml: line 97: `Hyprland.activeMonitor` is not a member of the real Hyprland singleton (always undefined). Fix: real Hyprland members: activeToplevel, destroy, dispatch, eventSocketPath, focusedMonitor, focusedWorkspace, monitorFor, monitors, objectName, requestSocketPath, toString, toplevels",
+   "[USB-A01] WorkspaceOverview.qml: line 97: `Hyprland.activeWorkspace` is not a member of the real Hyprland singleton (always undefined). Fix: real Hyprland members: activeToplevel, destroy, dispatch, eventSocketPath, focusedMonitor, focusedWorkspace, monitorFor, monitors, objectName, requestSocketPath, toString, toplevels"
+  ]
+ },
+ {
+  "i": 441,
+  "sample": 2,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-A02] Encore.qml: line 19: Connections handler `onClientAdded` - `Hyprland` has no signal `clientAdded` (never fires). Fix: `Hyprland` signals: rawEvent",
+   "[USB-A02] Encore.qml: line 31: Connections handler `onClientRemoved` - `Hyprland` has no signal `clientRemoved` (never fires). Fix: `Hyprland` signals: rawEvent"
+  ]
+ },
+ {
+  "i": 465,
+  "sample": 1,
+  "label": "real",
+  "fail": false,
+  "match": true,
+  "reasons": []
+ },
+ {
+  "i": 497,
+  "sample": 3,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-B03] NightlightService.qml: `hyprsunset --schedule` is not a hyprsunset option (valid: -t/--temperature, -g/--gamma, --gamma_max, -i/--identity, -v, -h). Fix: start it with `hyprsunset -t 4500`; schedules live in ~/.config/hypr/hyprsunset.conf profiles, toggling is start/`pkill hyprsunset`",
+   "[USB-B03] NightlightService.qml: `hyprsunset --start` is not a hyprsunset option (valid: -t/--temperature, -g/--gamma, --gamma_max, -i/--identity, -v, -h). Fix: start it with `hyprsunset -t 4500`; schedules live in ~/.config/hypr/hyprsunset.conf profiles, toggling is start/`pkill hyprsunset`",
+   "[USB-B03] NightlightBar.qml: `hyprsunset --stop` is not a hyprsunset option (valid: -t/--temperature, -g/--gamma, --gamma_max, -i/--identity, -v, -h). Fix: start it with `hyprsunset -t 4500`; schedules live in ~/.config/hypr/hyprsunset.conf profiles, toggling is start/`pkill hyprsunset`"
+  ]
+ },
+ {
+  "i": 498,
+  "sample": 1,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-A04] VoxTypeTray.qml: line 54: `pollTimer.trigger()` - `Timer` has no method `trigger`. Fix: real `Timer` methods: QObject, destroy, restart, start, stop, ticked, toString",
+   "[USB-A04] VoxTypeTray.qml: line 61: `pollTimer.trigger()` - `Timer` has no method `trigger`. Fix: real `Timer` methods: QObject, destroy, restart, start, stop, ticked, toString"
+  ]
+ },
+ {
+  "i": 503,
+  "sample": 0,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-T03] the answer starts with 7188 chars of leaked reasoning/prose before the first file. Fix: return only the files, as `### path` + fenced code"
+  ]
+ },
+ {
+  "i": 507,
+  "sample": 0,
+  "label": "real",
+  "fail": false,
+  "match": true,
+  "reasons": []
+ },
+ {
+  "i": 542,
+  "sample": 0,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-J01] PomodoroBarWidget.qml: line 11: `shell` is never declared (no property, id, var or parameter) - ReferenceError at runtime. Fix: declare `property var shell` (and fill it), or use a real API object; never hide missing APIs behind try/catch"
+  ]
+ },
+ {
+  "i": 549,
+  "sample": 2,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-H07 heuristic/high] Service.qml: line 10: placeholder endpoint/credential `https://vaultwarden.example.com` used as real data. Fix: read the endpoint/key from settings (declared in manifest defaults) or a real config file; never ship example.com / dummy keys",
+   "[USB-H07 heuristic/high] Panel.qml: line 12: placeholder endpoint/credential `https://vaultwarden.example.com` used as real data. Fix: read the endpoint/key from settings (declared in manifest defaults) or a real config file; never ship example.com / dummy keys"
+  ]
+ },
+ {
+  "i": 566,
+  "sample": 3,
+  "label": "fake",
+  "fail": false,
+  "match": false,
+  "reasons": []
+ },
+ {
+  "i": 593,
+  "sample": 3,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-A01] BarWidget.qml: line 25: `Hyprland.windows` is not a member of the real Hyprland singleton (always undefined). Fix: real Hyprland members: activeToplevel, destroy, dispatch, eventSocketPath, focusedMonitor, focusedWorkspace, monitorFor, monitors, objectName, requestSocketPath, toString, toplevels",
+   "[USB-A01] BarWidget.qml: line 50: `Hyprland.activeWindow` is not a member of the real Hyprland singleton (always undefined). Fix: real Hyprland members: activeToplevel, destroy, dispatch, eventSocketPath, focusedMonitor, focusedWorkspace, monitorFor, monitors, objectName, requestSocketPath, toString, toplevels",
+   "[USB-A01] BarWidget.qml: line 52: `Hyprland.activeWindow` is not a member of the real Hyprland singleton (always undefined). Fix: real Hyprland members: activeToplevel, destroy, dispatch, eventSocketPath, focusedMonitor, focusedWorkspace, monitorFor, monitors, objectName, requestSocketPath, toString, toplevels"
+  ]
+ },
+ {
+  "i": 598,
+  "sample": 1,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-A01] BarWidget.qml: line 45: execDetached() takes no callback - it is fire-and-forget and never reports output. Fix: use `Process { command: [...]; stdout: StdioCollector { onStreamFinished: ... } }` to read output",
+   "[USB-J01] BarWidget.qml: line 22: `qs` is never declared (no property, id, var or parameter) - ReferenceError at runtime. Fix: declare `property var qs` (and fill it), or use a real API object; never hide missing APIs behind try/catch",
+   "[USB-J01] Panel.qml: line 11: `qs` is never declared (no property, id, var or parameter) - ReferenceError at runtime. Fix: declare `property var qs` (and fill it), or use a real API object; never hide missing APIs behind try/catch"
+  ]
+ },
+ {
+  "i": 605,
+  "sample": 3,
+  "label": "fake",
+  "fail": true,
+  "match": true,
+  "reasons": [
+   "[USB-B06] BarWidget.qml: `fcitx5-remote -l` is not a valid fcitx5-remote option. Fix: valid options: -n -c -h -o -r -t -T -e -a -m -s -g -q -x --check --help"
+  ]
+ },
+ {
+  "i": 618,
+  "sample": 1,
+  "label": "real",
+  "fail": false,
+  "match": true,
+  "reasons": []
+ }
+]

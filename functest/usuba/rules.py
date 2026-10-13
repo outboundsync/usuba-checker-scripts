@@ -11,6 +11,7 @@ RULES = {
  "USB-T02": ("Requested file is delivered", "error", "When a task asks for a specific file, the answer must contain that file with a real implementation.",
              "\"Implement `HomeContent.qml` in full\" -> answer contains only manifest.json", "return the complete requested file", "rescore.task_findings"),
  # ---- manifest
+ "USB-T03": ("Answer is files, not leaked reasoning", "error", "Long prose or self-correction ('Wait', 'Actually') before the first file means the output is a draft, not a deliverable; extraction is unreliable.", "Wait, actually the Loader... ### Panel.qml", "return only `### path` headings with fenced code", "rescore.py"),
  "USB-M01": ("manifest.json is valid JSON with an id", "error", "Omarchy refuses to register a plugin it cannot parse.", "trailing comma in manifest.json", "fix the JSON", "static_checks"),
  "USB-M02": ("Entry points are QML files", "error", "Quickshell loads QML only; a .js/.py entry point never loads.", "\"entryPoints\": {\"barWidget\": \"main.js\"}", "point entryPoints at .qml files", "static_checks"),
  "USB-M03": ("Plugin ships QML", "error", "A plugin with no QML has nothing for the shell to instantiate.", "manifest + tablet.py only", "add the QML entry points", "static_checks"),
@@ -32,6 +33,7 @@ RULES = {
  "USB-A05": ("No Node/browser/C++ idioms in QML JS", "error", "require(), fetch(), document.*, QProcess etc. do not exist in Quickshell.", "const cp = require('child_process')", "use Process / XMLHttpRequest", "static_checks"),
  "USB-A06": ("qs.Commons singleton members exist", "error", "Color/Style/Util/Border members that the real singleton lacks are undefined.", "Color.accent2", "use a member that exists in shell/Commons", "dell_checks"),
  # ---- binaries and commands
+ "USB-A07": ("Only real `shell` members are used", "error", "Omarchy injects a fixed shell object (PluginShellApi / shell.qml root); any other member is always undefined.", "shell.system.exec(...)", "use members listed in the Omarchy 4.0.4 PluginShellApi", "usuba/checks.py"),
  "USB-B01": ("Binaries in shell strings exist on the Dell", "error", "`sh -c`/`bash -c` strings, os.system strings and shipped shell scripts are parsed; every command word must be on the Dell's PATH (dell_env/system_bins.txt + omarchy_bins.txt), shipped, or documented as a dependency.",
              "[\"sh\", \"-c\", \"playerctl status | head -1\"]", "use an installed tool, ship a script, or document the dependency in README.md", "usuba/checks.py"),
  "USB-B02": ("No X11-only tools", "error", "Omarchy is a Wayland/Hyprland session; xinput, setxkbmap, xdotool, onboard, xclip, xrandr ... do nothing or are missing.", "subprocess.run([\"setxkbmap\", \"de\"])", "use hyprctl / wtype / wl-copy / a Wayland OSK", "usuba/checks.py"),
@@ -39,10 +41,14 @@ RULES = {
  "USB-B04": ("No hyprctl reload after hyprctl keyword", "error", "`hyprctl reload` re-reads hyprland.conf and discards the runtime keywords just applied.", "hyprctl keyword general:gaps_in 4; hyprctl reload", "drop the reload", "usuba/checks.py"),
  "USB-B05": ("argv[0] exists on the Dell", "error", "A Process whose program is not installed never starts.", "command: [\"walker\"]", "use an installed program or ship/document it", "dell_checks"),
  # ---- files
+ "USB-B06": ("CLI flags are real", "error", "Invented flags make the tool print usage and exit, so the feature silently does nothing.", "fcitx5-remote -l", "use flags from the tool's real getopt/--help on the Dell", "usuba/checks.py"),
  "USB-F01": ("Referenced helper scripts are shipped", "error", "A command that runs bin/foo.sh or scripts/x.py the plugin does not contain fails at click time.", "command: [\"bash\", Qt.resolvedUrl(\"bin/speed.sh\")] with no bin/speed.sh", "ship the script or inline the command", "usuba/checks.py"),
  # ---- JS correctness
  "USB-J01": ("No undeclared identifiers", "error", "Assigning or dereferencing a name that is never declared is a ReferenceError; wrapping it in try/catch only hides that the feature shows nothing.",
              "try { const w = shell.wm.windows } catch (e) {}", "declare the property and fill it from a real API", "usuba/checks.py"),
+ "USB-J03": ("No Qt.resolvedUrl(\"~\")", "error", "resolvedUrl resolves relative to the QML file and never expands ~.", "Qt.resolvedUrl(\"~/.config/x\")", "use Quickshell.env(\"HOME\") or StandardPaths", "usuba/checks.py"),
+ "USB-J04": ("argv paths are local paths, not URLs", "error", "Qt.resolvedUrl returns file:///...; passed to a program as a path it does not exist.", "command: [\"bash\", Qt.resolvedUrl(\"x.sh\")]", "strip the file:// scheme (e.g. .toString().replace(/^file:\\/\\//, \"\"))", "usuba/checks.py"),
+ "USB-J06": ("Loader-passed properties are not read only in onCompleted", "error", "Properties set on Loader.item after load arrive after Component.onCompleted, so code that reads them only there always sees defaults.", "onLoaded: item.vaultPath = p  // child reads vaultPath only in onCompleted", "use setSource(url, {props}) or react in on<Prop>Changed", "usuba/checks.py"),
  "USB-J02": ("Commands never receive undefined", "error", "argv built from bar.<x>/settings.<x> that do not exist passes the string 'undefined'.", "command: [\"x\", settings.mode] with no `mode` default", "declare manifest defaults / use real PluginBarApi members", "dell_checks"),
  # ---- safety
  "USB-S01": ("No writes to protected paths", "error", "Plugins must not modify Hyprland/Omarchy config, /etc, /usr or shell rc files.", "echo ... >> ~/.config/hypr/hyprland.conf", "use hyprctl keyword at runtime or the plugin's own data dir", "static_checks / runtime"),
@@ -56,6 +62,7 @@ RULES = {
  "USB-H05": ("Not a placeholder UI", "error", "All UI handlers empty/no-op, handlers calling empty functions, or a trivial plugin with no IO/data/interaction.", "onClicked: {}", "implement the behaviour", "static_checks"),
  "USB-H06": ("No placeholder data patterns", "error", "Lorem ipsum, Item 1/2/3, John Doe, random numbers presented as metrics.", "model: [\"Item 1\", \"Item 2\"]", "use real data", "static_checks"),
  # ---- runtime (real Quickshell on a headless compositor with the Dell's Omarchy tree)
+ "USB-H07": ("No placeholder endpoints or credentials", "high", "example.com URLs or YOUR_API_KEY ship a plugin that can never reach real data.", "url: \"https://api.example.com/v1\"", "read endpoints/keys from settings or real config", "usuba/checks.py"),
  "USB-R01": ("Loads and registers in the real shell", "error", "The plugin must load, register and instantiate every entry point without QML errors.", "\"Foo is not a type\", \"failed to load\"", "fix the reported QML error", "runtime"),
  "USB-R02": ("No runtime JS/QML errors", "error", "TypeError/ReferenceError/binding errors during startup and the interaction probe.", "TypeError: Cannot read property 'x' of undefined", "guard the value or use the real API", "runtime"),
  "USB-R03": ("Visible, legible, on-screen", "error", "Bar widgets/panels must draw something visible, inside the screen, with legible contrast and non-zero size.", "zero-size bar widget", "give the widget implicit size and theme colours", "runtime"),

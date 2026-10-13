@@ -24,6 +24,13 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 - Fix: return the complete requested file
 - Checked by: rescore.task_findings
 
+### USB-T03: Answer is files, not leaked reasoning
+- Level: error
+- Rationale: Long prose or self-correction ('Wait', 'Actually') before the first file means the output is a draft, not a deliverable; extraction is unreliable.
+- Failing example: `Wait, actually the Loader... ### Panel.qml`
+- Fix: return only `### path` headings with fenced code
+- Checked by: rescore.py
+
 ## Manifest
 
 ### USB-M01: manifest.json is valid JSON with an id
@@ -135,6 +142,13 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 - Fix: use a member that exists in shell/Commons
 - Checked by: dell_checks
 
+### USB-A07: Only real `shell` members are used
+- Level: error
+- Rationale: Omarchy injects a fixed shell object (PluginShellApi / shell.qml root); any other member is always undefined.
+- Failing example: `shell.system.exec(...)`
+- Fix: use members listed in the Omarchy 4.0.4 PluginShellApi
+- Checked by: usuba/checks.py
+
 ## Binaries and commands
 
 ### USB-B01: Binaries in shell strings exist on the Dell
@@ -172,6 +186,13 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 - Fix: use an installed program or ship/document it
 - Checked by: dell_checks
 
+### USB-B06: CLI flags are real
+- Level: error
+- Rationale: Invented flags make the tool print usage and exit, so the feature silently does nothing.
+- Failing example: `fcitx5-remote -l`
+- Fix: use flags from the tool's real getopt/--help on the Dell
+- Checked by: usuba/checks.py
+
 ## Shipped files
 
 ### USB-F01: Referenced helper scripts are shipped
@@ -188,6 +209,27 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 - Rationale: Assigning or dereferencing a name that is never declared is a ReferenceError; wrapping it in try/catch only hides that the feature shows nothing.
 - Failing example: `try { const w = shell.wm.windows } catch (e) {}`
 - Fix: declare the property and fill it from a real API
+- Checked by: usuba/checks.py
+
+### USB-J03: No Qt.resolvedUrl("~")
+- Level: error
+- Rationale: resolvedUrl resolves relative to the QML file and never expands ~.
+- Failing example: `Qt.resolvedUrl("~/.config/x")`
+- Fix: use Quickshell.env("HOME") or StandardPaths
+- Checked by: usuba/checks.py
+
+### USB-J04: argv paths are local paths, not URLs
+- Level: error
+- Rationale: Qt.resolvedUrl returns file:///...; passed to a program as a path it does not exist.
+- Failing example: `command: ["bash", Qt.resolvedUrl("x.sh")]`
+- Fix: strip the file:// scheme (e.g. .toString().replace(/^file:\/\//, ""))
+- Checked by: usuba/checks.py
+
+### USB-J06: Loader-passed properties are not read only in onCompleted
+- Level: error
+- Rationale: Properties set on Loader.item after load arrive after Component.onCompleted, so code that reads them only there always sees defaults.
+- Failing example: `onLoaded: item.vaultPath = p  // child reads vaultPath only in onCompleted`
+- Fix: use setSource(url, {props}) or react in on<Prop>Changed
 - Checked by: usuba/checks.py
 
 ### USB-J02: Commands never receive undefined
@@ -261,6 +303,13 @@ status = "Up to date"
 - Failing example: `model: ["Item 1", "Item 2"]`
 - Fix: use real data
 - Checked by: static_checks
+
+### USB-H07: No placeholder endpoints or credentials
+- Level: high
+- Rationale: example.com URLs or YOUR_API_KEY ship a plugin that can never reach real data.
+- Failing example: `url: "https://api.example.com/v1"`
+- Fix: read endpoints/keys from settings or real config
+- Checked by: usuba/checks.py
 
 ## Runtime
 

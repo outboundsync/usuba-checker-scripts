@@ -9,6 +9,7 @@ from binaries import resolves, KNOWN
 STANDARD = "Usuba Standard v0.1 (Omarchy 4.0.4)"
 T = json.load(open(os.path.join(HERE, "types.json")))
 COMPS, MODS = T["comps"], T["modules"]
+SHELL_API = set(T.get("shell_api", [])) | {"pluginId", "objectName", "toString"}
 
 # ---------------------------------------------------------------- text helpers
 def sanitize(s):
@@ -276,6 +277,19 @@ X11_TOOLS = {"xinput": "use `hyprctl keyword device[...]:enabled` / `hyprctl dev
 HYPRCTL_SUB = set("""activewindow activeworkspace animations binds clients configerrors cursorpos decorations devices dismissnotify dispatch
 getoption globalshortcuts hyprpaper hyprsunset instances keyword kill layers layouts monitors notify plugin reload rollinglog setcursor
 seterror setprop splash repl switchxkblayout systeminfo version workspacerules workspaces submap output eval reloadshaders getprop""".split())
+HYPR_DISPATCHERS = set("""exec execr pass sendshortcut sendkeystate killactive forcekillactive closewindow killwindow signal signalwindow
+workspace movetoworkspace movetoworkspacesilent togglefloating setfloating settiled fullscreen fullscreenstate dpms pin movefocus movewindow
+swapwindow centerwindow resizeactive moveactive resizewindowpixel movewindowpixel cyclenext swapnext tagwindow focuswindow focusmonitor
+splitratio movecursortocorner movecursor renameworkspace exit forcerendererreload movecurrentworkspacetomonitor focusworkspaceoncurrentmonitor
+moveworkspacetomonitor swapactiveworkspaces bringactivetotop alterzorder togglespecialworkspace focusurgentorlast togglegroup changegroupactive
+focuscurrentorlast lockgroups lockactivegroup moveintogroup moveoutofgroup movewindoworgroup movegroupwindow denywindowfromgroup
+setignoregrouplock global submap event setprop toggleswallow layoutmsg pseudo togglesplit swapsplit""".split())
+# documented CLI options for tools models commonly misuse (from upstream getopt strings / --help)
+CLI_OPTS = {"fcitx5-remote": ("nchortTeamsgqx", {"--check", "--help"}),   # fcitx5 src/tools/remote.cpp: "nchortTeam:s:g:qx"
+            "brightnessctl": ("lqmpnhVcdrPe", {"--list", "--quiet", "--machine-readable", "--pretend", "--min-value", "--exponent", "--help", "--version", "--class", "--device", "--save", "--restore", "--percentage"}),
+            "wl-copy": ("ofcpnt", {"--trim-newline", "--foreground", "--paste-once", "--clear", "--primary", "--type", "--regular", "--seat", "--help", "--version", "--sensitive"}),
+            "wl-paste": ("nlpwt", {"--no-newline", "--list-types", "--primary", "--watch", "--type", "--seat", "--help", "--version"})}
+HYPRSUNSET_FLAGS = {"-t", "--temperature", "-g", "--gamma", "--gamma_max", "-i", "--identity", "-h", "--help", "-v", "--verbose", "--version"}
 HYPRSUNSET_IPC = {"temperature", "identity", "gamma", "reset"}
 SH_WORDS = set("""if then else elif fi for while until do done case esac in function select time exec eval set export unset local
 readonly declare typeset source . cd test [ [[ ] ]] echo printf read return exit break continue shift trap wait true false command builtin
@@ -320,6 +334,7 @@ def guarded_words(script):
 
 def shell_words(script):
     """first words of each simple command in a shell string; also returns (word, rest) pairs."""
+    funcs0 = set(re.findall(r"(?m)^\s*(?:function\s+)?([A-Za-z_][\w-]*)\s*\(\s*\)", script)) | set(re.findall(r"\bfunction\s+([\w-]+)", script))
     s = re.sub(r"\$\{[^}]*\}", "X", script)
     s = re.sub(r"'[^']*'", "''", s)
     s = re.sub(r'"[^"$`]*"', '""', s)
@@ -338,7 +353,7 @@ def shell_words(script):
         w = toks[0].strip("\"'")
         if len(toks) > 1 and toks[1].startswith(("=", "+=", "(")): continue
         if "/" not in w and not re.match(r"^[a-z0-9][a-z0-9_+-]*$", w): continue
-        if not w or w in SH_WORDS or w in funcs or w.isupper() or w.startswith(("$", "~", "<", ">", "#", "[", "-")) or re.match(r"^\d", w) or not re.match(r"^[\w./+-]+$", w): continue
+        if not w or w in SH_WORDS or w in funcs or w in funcs0 or w.isupper() or w.startswith(("$", "~", "<", ">", "#", "[", "-")) or re.match(r"^\d", w) or not re.match(r"^[\w./+-]+$", w): continue
         out.append((w, toks[1:]))
     return out
 
@@ -354,6 +369,14 @@ class _FilesProxy:
     def __getitem__(self, k): return _tl.files[k]
 _FILES = _FilesProxy()
 def check(files, man=None):
+    # QML hidden inside Qt.createQmlObject(`...`) strings is checked as if it were a file
+    extra = {}
+    for p_, c_ in files.items():
+        if p_.endswith((".qml", ".js")):
+            for k, m_ in enumerate(re.finditer(r"Qt\.createQmlObject\(\s*`((?:[^`\\]|\\.)*)`", c_)):
+                if "${" not in m_.group(1): extra[f"{p_}#inline{k}.qml"] = m_.group(1)
+                else: extra[f"{p_}#inline{k}.qml"] = re.sub(r"\$\{[^}]*\}", "0", m_.group(1))
+    if extra: files = {**files, **extra}
     _tl.files = files
     finds = []
     def add(rule, sev, f, reason, hint):
@@ -437,10 +460,22 @@ def check(files, man=None):
                 sub = r[i].strip("\"'")
                 if re.match(r"^[a-z]+$", sub) and sub not in HYPRCTL_SUB:
                     add("USB-B03", "error", p, f"`hyprctl {sub}` is not a hyprctl command", "valid commands include dispatch, keyword, getoption, monitors, clients, activewindow, hyprpaper, hyprsunset; wallpapers go through `swaybg`/`hyprpaper` or Omarchy's `omarchy-theme-bg-*` scripts")
+                elif sub == "dispatch" and i + 1 < len(r) and re.match(r"^[a-z]+$", r[i + 1]) and r[i + 1] not in HYPR_DISPATCHERS:
+                    add("USB-B03", "error", p, f"`hyprctl dispatch {r[i+1]}` is not a Hyprland dispatcher", "see the Hyprland dispatcher list (e.g. killactive, closewindow, togglefloating, movetoworkspacesilent, focuswindow); there is no minimize dispatcher - use a special workspace")
                 elif sub == "hyprsunset" and i + 1 < len(r) and re.match(r"^[a-z]+$", r[i + 1]) and r[i + 1] not in HYPRSUNSET_IPC:
                     add("USB-B03", "error", p, f"`hyprctl hyprsunset {r[i+1]}` is not a hyprsunset IPC command", "use `hyprctl hyprsunset temperature <K>` / `identity` / `gamma <n>`")
+        if base in CLI_OPTS:
+            short, longs = CLI_OPTS[base]
+            for x in rest:
+                if x == "<expr>" or not x.startswith("-") or x == "-": continue
+                ok = x.split("=")[0] in longs if x.startswith("--") else all(ch in short for ch in x[1:])
+                if not ok:
+                    add("USB-B06", "error", p, f"`{base} {x}` is not a valid {base} option", f"valid options: {' '.join('-' + ch for ch in short)} {' '.join(sorted(longs))}"); break
         if base == "hyprsunset":
             r = [x for x in rest if x != "<expr>"]
+            badf = [x for x in r if x.startswith("-") and x.split("=")[0] not in HYPRSUNSET_FLAGS]
+            if badf:
+                add("USB-B03", "error", p, f"`hyprsunset {badf[0]}` is not a hyprsunset option (valid: -t/--temperature, -g/--gamma, --gamma_max, -i/--identity, -v, -h)", "start it with `hyprsunset -t 4500`; schedules live in ~/.config/hypr/hyprsunset.conf profiles, toggling is start/`pkill hyprsunset`")
             if r and re.match(r"^[a-z]+$", r[0]):
                 add("USB-B03", "error", p, f"`hyprsunset {r[0]}` is not valid: hyprsunset takes flags only (-t/--temperature, -g/--gamma, -i/--identity)", "start it with `hyprsunset -t 4500`, change it live with `hyprctl hyprsunset temperature 4500`, turn it off with `hyprctl hyprsunset identity` or `pkill hyprsunset`")
     # hyprctl keyword ... then hyprctl reload in the same file: the reload discards the runtime keywords
@@ -474,6 +509,38 @@ def check(files, man=None):
         for pat, what, hint in INVENTED:
             for m in re.finditer(pat, san):
                 add("USB-A01", "error", p, f"line {lineno(c, m.start())}: {what}", hint); break
+        for m in re.finditer(r"\bexecDetached\s*\(", san):
+            lb = m.end() - 1; d = 0; j = lb
+            while j < len(san):
+                if san[j] in "([{": d += 1
+                elif san[j] in ")]}":
+                    d -= 1
+                    if d == 0: break
+                j += 1
+            inner = san[lb + 1:j]; depth = 0; commas = 0
+            for ch in inner:
+                if ch in "([{": depth += 1
+                elif ch in ")]}": depth -= 1
+                elif ch == "," and depth == 0: commas += 1
+            pre = san[max(0, m.start() - 40):m.start()].split("\n")[-1]
+            if commas >= 1 and re.search(r"function|=>", inner.split(",", 1)[1] if "," in inner else ""):
+                add("USB-A01", "error", p, f"line {lineno(c, m.start())}: execDetached() takes no callback - it is fire-and-forget and never reports output", "use `Process { command: [...]; stdout: StdioCollector { onStreamFinished: ... } }` to read output")
+            elif re.search(r"(=|return|\bvar\s+\w+\s*=|\blet\s+\w+\s*=|\bconst\s+\w+\s*=)\s*(Quickshell\.)?$", pre.rstrip()) or re.search(r"[=(]\s*(Quickshell\.)?$", pre.rstrip()) and not re.search(r"(onClicked|on\w+)\s*:\s*(Quickshell\.)?$", pre.rstrip()):
+                if re.search(r"(?:=|return)\s*(?:Quickshell\.)?$", pre.rstrip()):
+                    add("USB-A01", "error", p, f"line {lineno(c, m.start())}: uses the return value of execDetached(), which returns nothing", "use a Process with a StdioCollector to read output")
+        cf = _cks(c)
+        for m in re.finditer(r"\bQt\.resolvedUrl\(\s*(['\"])(~|\$HOME)", cf):
+            add("USB-J03", "error", p, f"line {lineno(c, m.start())}: Qt.resolvedUrl(\"~/...\") does not expand ~ (it resolves relative to the QML file)", "build the path from `Quickshell.env(\"HOME\")` / StandardPaths, or let a shell expand it")
+        for m in re.finditer(r"Qt\.resolvedUrl\([^()]*\)(\s*\.toString\(\))?", cf):
+            after = cf[m.end():m.end() + 60]; before = cf[max(0, m.start() - 200):m.start()]
+            if re.search(r"\.(replace|slice|substring|substr)\s*\(|toLocalFile", after[:45]): continue
+            if re.search(r"(command\s*[:=]\s*\[|exec\w*\(\s*\[)[^\]]*$", before):
+                add("USB-J04", "error", p, f"line {lineno(c, m.start())}: passes Qt.resolvedUrl(...) (a file:// URL) as a command argument; programs need a filesystem path", "strip the scheme: `Qt.resolvedUrl(\"bin/x.sh\").toString().replace(\"file://\", \"\")`, or use a plugin-dir path")
+                break
+        for m in re.finditer(r"\.(readAllStandardOutput|readAllStandardError|readAll|waitForFinished|waitForStarted)\s*\(", san):
+            add("USB-A01", "error", p, f"line {lineno(c, m.start())}: `.{m.group(1)}()` is a C++ QProcess/QFile method, not available in QML", "read output via `stdout: StdioCollector { onStreamFinished: ... this.text }`, files via FileView.text()"); break
+        for m in re.finditer(r"XMLHttpRequest[\s\S]{0,300}?['\"]file://", san if False else cf):
+            add("USB-A01", "error", p, f"line {lineno(c, m.start())}: XMLHttpRequest on file:// URLs is disabled in Quickshell", "read local files with FileView"); break
         # `new X(` of a QML type
         for m in re.finditer(r"\bnew\s+([A-Z]\w*)\s*\(", san):
             t = m.group(1)
@@ -522,6 +589,12 @@ def check(files, man=None):
                         real = sorted(s for s in sig if not s.endswith("Changed"))[:8]
                         add("USB-A02", "error", p, f"line {lineno(c, off)}: `{h}` is not a signal of `{o['type']}` (handler never fires)",
                             f"`{o['type']}` signals: {', '.join(real) or 'none besides <prop>Changed'}" + ("; for Process use `onExited: (code) => ...` and `stdout: StdioCollector { onStreamFinished: ... }`" if o["type"] == "Process" else ""))
+        # `shell.<x>`: Omarchy injects a PluginShellApi into a declared `property var shell`; only its members exist
+        if re.search(r"\bproperty\s+(?:var|QtObject)\s+shell\b", san):
+            for m in re.finditer(r"(?<![\w.])(?:root\.)?shell\.([A-Za-z_]\w*)", san):
+                if m.group(1) not in SHELL_API:
+                    add("USB-A07", "error", p, f"line {lineno(c, m.start())}: `shell.{m.group(1)}` is not part of the plugin shell API Omarchy injects (always undefined)",
+                        f"real `shell` members: {', '.join(sorted(x for x in SHELL_API if not x.startswith('_')))}"); break
         # method calls on ids of fully-known types
         QOBJ = {"destroy", "toString", "hasOwnProperty", "forceActiveFocus", "objectName", "connect", "disconnect"}
         for m in re.finditer(r"(?<![\w.])(\w+)\.([a-z]\w*)\s*\(", san):
@@ -538,9 +611,17 @@ def check(files, man=None):
                 if mem not in QT_GLOBAL: add("USB-A01", "error", p, f"line {lineno(c, m.start())}: `Qt.{mem}` does not exist on the Qt global object", "see https://doc.qt.io/qt-6/qml-qtqml-qt.html for the real members")
                 continue
             if root == "Quickshell" and "Quickshell" in env:
-                if mem not in qs_members(): add("USB-A01", "error", p, f"line {lineno(c, m.start())}: `Quickshell.{mem}` is not a member of the Quickshell singleton", "real members include execDetached, env, shellDir, dataDir, stateDir, screens, iconPath, reload")
+                if mem not in qs_members() and not (call and mem in ("env", "execDetached")): add("USB-A01", "error", p, f"line {lineno(c, m.start())}: `Quickshell.{mem}` is not a member of the Quickshell singleton", "real members include execDetached, env, shellDir, dataDir, stateDir, screens, iconPath, reload")
                 continue
-            if root in JS_GLOBALS or root in ids or root in aliases or not call: continue
+            if root in JS_GLOBALS or root in ids or root in aliases: continue
+            tdef0 = resolve(root, env, aliases)
+            if isinstance(tdef0, str) and COMPS.get(tdef0, {}).get("singleton") and root not in ("Quickshell",):
+                s_, p_, m_, comp_ = members_of(tdef0, env)
+                if comp_ and mem not in s_ | p_ | m_ and mem not in ("toString", "objectName"):
+                    real = sorted(x for x in p_ | m_ if not x.startswith(("_", "QObject", "refresh")))[:12]
+                    add("USB-A01", "error", p, f"line {lineno(c, m.start())}: `{root}.{mem}` is not a member of the real {root} singleton (always undefined)", f"real {root} members: {', '.join(real)}")
+                continue
+            if not call: continue
             tdef = resolve(root, env, aliases)
             if tdef is None:
                 if open_world or re.search(r"\b(property\s+[\w.<>]+|id\s*:|var|let|const|function)\s+" + root + r"\b|\bid\s*:\s*" + root + r"\b", san): continue
@@ -559,18 +640,32 @@ def check(files, man=None):
         declared |= set(re.findall(r"\b(?:var|let|const)\s*[\[{]([^\]}=]*)[\]}]", san) and sum((re.findall(r"\w+", x) for x in re.findall(r"\b(?:var|let|const)\s*[\[{]([^\]}=]*)[\]}]", san)), []))
         for st in re.findall(r"\b(?:var|let|const)\s+([^;\n]*)", san):
             declared |= set(re.findall(r"(?:^|,)\s*([A-Za-z_$][\w$]*)", re.sub(r"\[[^\]]*\]|\{[^}]*\}|\([^)]*\)", "", st)))
-        ctx = {"parent", "model", "modelData", "index", "mouse", "event", "wheel", "drag", "root", "this", "arguments", "window", "screen", "data", "text", "value", "checked", "point", "eventPoint", "status", "exitCode", "exitStatus", "line", "delta", "args", "pluginApi", "panel", "bar", "settings", "service", "shellRoot", "modelIndex", "action", "reason", "error"}
-        allprops = set()
+        ctx = {"parent", "model", "modelData", "index", "mouse", "event", "wheel", "drag", "root", "this", "arguments", "window", "screen", "data", "text", "value", "checked", "point", "eventPoint", "status", "exitCode", "exitStatus", "line", "delta", "args", "modelIndex", "action", "reason", "error", "styleData", "control", "contentItem", "background", "delegate", "visualParent"}
+        # QML scope: unqualified names resolve against the enclosing objects (innermost to root); if any enclosing type is not fully
+        # known (unresolved/partial chain) the scope is open and we do not judge names inside it
+        omem = []
         for o in objs:
-            td = o.get("tdef")
-            if td is not None:
-                s_, p_, m_, _ = members_of(td, env); allprops |= s_ | p_ | m_
+            td = o.get("tdef"); own = set(re.findall(r"\b(?:property\s+[\w.<>]+|signal|alias|function)\s+(\w+)", san[o["lb"]:o["rb"]]))
+            if td is None: omem.append((o["lb"], o["rb"], own, False)); continue
+            s_, p_, m_, comp_ = members_of(td, env)
+            omem.append((o["lb"], o["rb"], s_ | p_ | m_ | own, comp_))
+        def scope(pos):
+            mem, ok = set(), True
+            for lb, rb, ms, comp_ in omem:
+                if lb < pos < rb: mem |= ms; ok = ok and comp_
+            return mem, ok
         js_blocks = [(m.end(), match_brace(san, m.end() - 1)) for m in re.finditer(r"(?:\bfunction\b[^{]*|\bon[A-Z]\w*\s*:\s*(?:\([^)]*\)\s*=>\s*)?)\{", san)]
+        # single-line property bindings `name: expr` (object level) are scanned too
+        for m in re.finditer(r"(?m)^\s*(?:readonly\s+)?(?:property\s+[\w.<>]+\s+)?[a-z]\w*(?:\.\w+)?\s*:(?!\s*[A-Z]\w*\s*\{)(?!\s*\{)([^\n]*)$", san):
+            js_blocks.append((m.start(1), m.end(1)))
         for a, b in js_blocks:
             blk = san[a:b]
             for m in re.finditer(r"(?:^|[;{(!&|?:,=\s])\s*([a-z_]\w*)\s*(?:\.\w|(?<![=!<>])=(?!=))", blk, re.M):
                 nm = m.group(1)
-                if nm in declared or nm in ctx or nm in allprops or nm in JS_GLOBALS or nm in ("return", "typeof", "new", "delete", "void", "in", "of", "if", "else", "case", "throw", "await", "yield", "instanceof", "do", "true", "false", "null", "undefined") or open_world: continue
+                if nm in declared or nm in ctx or nm in JS_GLOBALS or nm in ids or nm in env or nm in aliases: continue
+                smem, sok = scope(a + m.start(1))
+                if nm in smem or not sok: continue
+                if nm in declared or nm in ctx or nm in JS_GLOBALS or nm in ("return", "typeof", "new", "delete", "void", "in", "of", "if", "else", "case", "throw", "await", "yield", "instanceof", "do", "true", "false", "null", "undefined") or open_world: continue
                 if re.search(r"\b" + nm + r"\b", " ".join(json.dumps(x) for x in [list(env)[:0]])): continue
                 pos = a + m.start(1)
                 in_try = re.search(r"\btry\s*\{", san[max(0, pos - 2000):pos]) is not None
@@ -582,9 +677,9 @@ def check(files, man=None):
     for p, c in qml.items():
         if not p.endswith(".qml"): continue
         cm = " ".join(re.findall(r"//[^\n]*|/\*.*?\*/", c, re.S))
-        m = re.search(r"(?i)\b(simulat\w* (?:data|values?|readings?|results?|output|response|api)|safe simulation|simulation only|mock(?:ed)? data|fake data|dummy data|sample data|placeholder (?:data|value)s?|hard-?coded (?:data|value)s?|in production,? replace|for (?:the )?demo)\b", cm + " " + " ".join(l for _, l in str_lits(c)))
+        m = re.search(r"(?i)\b(simulat\w* (?:data|values?|readings?|results?|output|response|api)|safe simulation|simulation only|mock(?:ed)? data|fake data|dummy data|sample data|placeholder (?:data|value)s?|hard-?coded (?:data|value)s?|in production,? replace|for (?:the )?demo|as a proxy for|in a real (?:plugin|implementation|app)|isn't a standard binary|not a real (?:api|endpoint|binary))\b", cm + " " + " ".join(l for _, l in str_lits(c)))
         if m:
-            explicit = re.search(r"(?i)simulat|mock|fake|dummy|in production", m.group(1))
+            explicit = re.search(r"(?i)simulat|mock|fake|dummy|in production|proxy|in a real|standard binary|not a real", m.group(1))
             sev = "high" if (explicit or not plugin_io) else "medium"
             add("USB-H01", sev, p, f"says its data is `{m.group(1)}`" + ("" if plugin_io else " and the plugin reads no real data source (no Process/FileView/service/IO)"), "read the real source (Process + StdioCollector, FileView, a Quickshell service) instead of shipping canned values")
         for mm in re.finditer(r"\btext\s*:\s*([\"'])([^\"'\n]*\d+(?:\.\d+)?\s*(?:°\s?[CF]?|%|GB|MB|KB|Mbps|MB/s|km/h|mph|hPa|W)\b[^\"'\n]*)\1\s*$", c, re.M):
@@ -603,6 +698,56 @@ def check(files, man=None):
             acts = [l.strip() for l in blk.splitlines() if l.strip()]
             if acts and all(re.search(r"console\.\w+\(|notify-send|var\s+cmd\s*=|execDetached\(cmd\)", l) for l in acts) and re.search(r"(?i)click|press|tap", blk):
                 add("USB-H04", "high", p, f"line {lineno(c, mm.start())}: on{mm.group(1)} only reports that it was clicked (debug/demo handler, no real action)", "make the click do what the plugin is for")
+    for p, c in code.items():
+        if re.search(r"(^|/)(tools|tests?|scripts/dev)/", p): continue
+        cf = _cks(c) if p.endswith((".qml", ".js")) else c
+        lines = cf.splitlines()
+        for ln_no, ln in enumerate(lines, 1):
+            if re.search(r"placeholderText|placeholder\s*:|^\s*#", "\n".join(lines[max(0, ln_no-3):ln_no])): continue
+            mm = re.search(r"https?://[\w.-]*\bexample\.(?:com|org|net)\b|\bapi[_-]?key=(?:[A-Z]{2,}|YOUR\w*|xxx+)\b|\bYOUR_[A-Z_]*(?:KEY|TOKEN|SECRET)\b|<your[-_ ][\w -]+>", ln)
+            if mm:
+                add("USB-H07", "high", p, f"line {ln_no}: placeholder endpoint/credential `{mm.group(0)}` used as real data", "read the endpoint/key from settings (declared in manifest defaults) or a real config file; never ship example.com / dummy keys"); break
+        if p.endswith((".qml", ".js")):
+            for mm in re.finditer(r"\[\s*(['\"])(?:ba)?sh\1\s*,\s*(['\"])-l?c\2\s*,\s*(['\"])\s*notify-send\s+[^\n]*?(requested|triggered|clicked|would|not implemented|todo)", c, re.I):
+                add("USB-H04", "high", p, f"line {lineno(c, mm.start())}: an action only posts a notification ('{mm.group(4)}') instead of doing the work", "run the real command for the action (e.g. the app's CLI / D-Bus call)"); break
+            if p.endswith(".qml"):
+                san = sanitize(c); env, aliases, ow = file_env(p, c, files)
+                for o in qml_objects(san):
+                    if o["type"] != "Connections": continue
+                    body = san[o["lb"]:o["rb"]]
+                    tm = re.search(r"\btarget\s*:\s*([A-Z]\w*)\s*$", body, re.M)
+                    if not tm: continue
+                    td = resolve(tm.group(1), env, aliases)
+                    if not (isinstance(td, str) and COMPS.get(td, {}).get("singleton")): continue
+                    sg, pr, me, comp_ = members_of(td, env)
+                    if not comp_: continue
+                    for fm in re.finditer(r"\bfunction\s+on([A-Z]\w*)\s*\(", body):
+                        nm = fm.group(1); b0 = nm[0].lower() + nm[1:]
+                        if b0 not in sg and not (b0.endswith("Changed") and b0[:-7] in pr):
+                            add("USB-A02", "error", p, f"line {lineno(c, o['lb'] + fm.start())}: Connections handler `on{nm}` - `{tm.group(1)}` has no signal `{b0}` (never fires)",
+                                f"`{tm.group(1)}` signals: {', '.join(sorted(x for x in sg if not x.endswith('Changed'))[:10]) or 'only <prop>Changed'}")
+    # Loader lifecycle: properties pushed in onLoaded/onStatusChanged arrive after the item's Component.onCompleted has already run
+    for p, c in qml.items():
+        if not p.endswith(".qml"): continue
+        san = sanitize(c)
+        for o in qml_objects(san):
+            if o["type"] != "Loader": continue
+            body_raw = c[o["lb"]:o["rb"]]
+            sm = re.search(r"\bsource\s*:\s*['\"]([\w./-]+\.qml)['\"]", body_raw)
+            if not sm: continue
+            tgt = posixpath.normpath(posixpath.join(posixpath.dirname(p), sm.group(1)))
+            if tgt not in files: continue
+            pushed = set(re.findall(r"\bitem\.(\w+)\s*=(?!=)", san[o["lb"]:o["rb"]]))
+            if not pushed: continue
+            ts = sanitize(files[tgt])
+            cm = re.search(r"\bComponent\.onCompleted\s*:\s*\{", ts)
+            if not cm: continue
+            ce = match_brace(ts, cm.end() - 1); comp_body = ts[cm.end():ce]; rest = ts[:cm.start()] + ts[ce:]
+            for x in sorted(pushed):
+                if re.search(r"\b" + x + r"\b", comp_body) and not re.search(r"\bon" + x[0].upper() + x[1:] + r"Changed\b", ts) \
+                   and not re.search(r"(?m)^\s*(command|running|path|model|source|text|visible|enabled)\s*:[^\n]*\b" + x + r"\b", rest):
+                    add("USB-J06", "error", tgt, f"uses `{x}` only in Component.onCompleted, but {p} sets `item.{x}` after the Loader finished loading, so onCompleted always sees the default value",
+                        f"pass it at creation (`Loader {{ onLoaded: ... }}` is too late) - bind it instead (`property string {x}: loader.{x}` / `Binding`), or react in `on{x[0].upper() + x[1:]}Changed`"); break
     out, seen2 = [], set()
     for f in finds:
         k = (f["rule"], f["file"], f["reason"])

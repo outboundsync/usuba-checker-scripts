@@ -30,7 +30,7 @@ FT_VERSION = hashlib.sha1(b"".join(open(os.path.join(HERE, f), "rb").read() for 
      "dell_env/system_bins.txt", "dell_env/ftprobe.qml.part", "usuba/checks.py", "usuba/types.json"))).hexdigest()[:12]
 
 CODE_EXT = (".qml", ".js", ".mjs", ".sh", ".py", ".bash")
-def task_findings(h, files):
+def task_findings(h, files, output=None):
     """Usuba task-level rules (STANDARD.md USB-T01/T02): an answer must contain the code the task asked for."""
     task = h["task"].split(":")[0]
     if task == "fix_manifest": return []
@@ -50,6 +50,10 @@ def task_findings(h, files):
         for f in usuba_checks.check({**code, "manifest.json": files.get("manifest.json", "{}")}):
             if f["rule"] in ("USB-H01", "USB-H02", "USB-H03", "USB-H04") and usuba_checks.blocking(f):
                 out.append(["usuba-" + f["rule"], usuba_checks.fmt(f) + " (judged on the files this answer wrote)"])
+    if output is not None:
+        pre = output.split("### ", 1)[0]
+        if len(pre) > 400 or re.search(r"(?m)^(Wait|Actually|Let's|Let me|I will|I'll|Hmm)\b", pre):
+            out.append(["usuba-USB-T03", f"[USB-T03] the answer starts with {len(pre)} chars of leaked reasoning/prose before the first file. Fix: return only the files, as `### path` + fenced code"])
     if False: pass
     elif not code:
         out.append(["usuba-USB-T01", f"[USB-T01] {task} answer contains no plugin code (only {', '.join(sorted(files)) or 'nothing'}); a manifest alone is not a plugin. Fix: return the QML entry point(s) the manifest names, in full"])
@@ -86,7 +90,7 @@ def score_row(i, h, g):
     task = h["task"].split(":")[0]
     files = parse(g["output"])
     if not files: return dict(task=h["task"], pass_=False, categories=["no-files-parsed"], finish=g["finish"])
-    tf = task_findings(h, files)
+    tf = task_findings(h, files, g.get("output"))
     if task in FULL:
         key = FT_VERSION + "-" + hashlib.sha1(json.dumps(files, sort_keys=True).encode()).hexdigest()
         cp = os.path.join(CACHE, key + ".json")

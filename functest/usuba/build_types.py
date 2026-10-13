@@ -70,6 +70,11 @@ for sub, mod in (("Commons", "qs.Commons"), ("Ui", "qs.Ui")):
         n = os.path.basename(f)[:-4]
         if n not in modules.setdefault(mod, {"types": {}, "imports": []})["types"]:
             mem, rt = qml_members(f); modules[mod]["types"][n] = {"qml": mem, "root": rt}
-json.dump({"comps": comps, "modules": modules, "source": {"qt": QT, "quickshell": QS, "omarchy": OM}},
+# the `shell` object Omarchy injects into third-party plugins that declare `property var shell` (shell.qml pluginShellFor -> PluginShellApi)
+shell_api, _ = qml_members(os.path.join(OM, "services", "PluginShellApi.qml"))
+# service plugins also receive the shell root itself (shell.qml), e.g. shell.shellConfig used by built-in idle service
+_root, _ = qml_members(os.path.join(OM, "shell.qml"))
+shell_api = sorted(set(shell_api) | set(_root)) if isinstance(shell_api, list) else {**_root, **shell_api}
+json.dump({"comps": comps, "modules": modules, "shell_api": shell_api, "source": {"qt": QT, "quickshell": QS, "omarchy": OM}},
           open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "types.json"), "w"), sort_keys=True)
 print(len(comps), "components", len(modules), "modules", {m: len(modules[m]["types"]) for m in ("QtQuick", "Quickshell", "Quickshell.Io", "qs.Commons", "qs.Ui") if m in modules})
