@@ -340,6 +340,8 @@ def shell_words(script):
         try: funcs0 |= set(re.findall(r"(?m)^\s*(?:function\s+)?([A-Za-z_][\w-]*)\s*\(\s*\)", open(sp).read()))
         except OSError: pass
     s = re.sub(r"\$\{[^}]*\}", "X", script.replace("\\\n", " "))   # join `\` line continuations
+    s = re.sub(r"(?ms)<<-?\s*['\"]?(\w+)['\"]?([^\n]*)\n.*?^\s*\1\s*$", r"\2", s)   # heredoc bodies are data (python/json), not shell
+    for _ in range(3): s = re.sub(r'"\$\(([^()"]*(?:"[^"`()]*"[^()"]*)*)\)"', r" $( \1 ) ", s)   # unwrap "$(cmd "$x")" so inner quotes stay balanced
     s = re.sub(r"'[^']*'", "''", s)
     s = re.sub(r'"(?:[^"\\`$]|\\.|\$(?!\())*"', '""', s)   # quoted text (keeps strings that run $(...) or `...`)
     s = re.sub(r"\(\((.|\n)*?\)\)", " ", s)
@@ -471,6 +473,7 @@ def check(files, man=None):
         if base in CLI_OPTS:
             short, longs = CLI_OPTS[base]
             for x in rest:
+                if x == "--": break                                   # end of options (getopt)
                 if x == "<expr>" or not x.startswith("-") or x == "-": continue
                 ok = x.split("=")[0] in longs if x.startswith("--") else all(ch in short for ch in x[1:])
                 if not ok:
