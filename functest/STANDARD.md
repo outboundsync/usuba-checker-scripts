@@ -280,70 +280,70 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 
 ### USB-W01: Programs the plugin runs are documented dependencies
 - Level: warn (low; EXPERIMENTAL, off by default)
-- Rationale: Runs a program that a stock Omarchy install lacks and the README/manifest/PKGBUILD never mention; HANCORE's most common finding family (install-deps-packaging). Measured against HANCORE findings on 1375 non-holdout plugins: precision 0.45, recall 0.34 (base rate 0.33).
+- Rationale: Runs a program that a stock Omarchy install lacks and the README/manifest/PKGBUILD never mention; HANCORE's most common finding family (install-deps-packaging). Measured against HANCORE findings on 4011 non-holdout plugins: precision 0.47, recall 0.32 (base rate 0.35).
 - Failing example: `command: ["playerctl", "status"] with no README mention`
 - Fix: list every external program (with its pacman/AUR package) and probe `command -v` before use
 - Checked by: usuba/hancore_rules.py
 
 ### USB-W02: No hardcoded secrets or tokens
-- Level: warn (medium; on by default)
-- Rationale: Known token formats (ghp_, github_pat_, sk-, AKIA, xox*, AIza, private keys) or long literals assigned to key/token/secret/password names leak credentials to every user. Measured against HANCORE findings on 1375 non-holdout plugins: precision 0.50, recall 0.01 (base rate 0.27).
+- Level: warn (medium; EXPERIMENTAL, off by default)
+- Rationale: Known token formats (ghp_, github_pat_, sk-, AKIA, xox*, AIza, private keys) or long literals assigned to key/token/secret/password names leak credentials to every user. Measured against HANCORE findings on 4011 non-holdout plugins: precision 0.43, recall 0.01 (base rate 0.27).
 - Failing example: `const apiKey = "sk-proj-..."`
 - Fix: read secrets from the keyring (secret-tool) or a 0600 config outside the plugin
 - Checked by: usuba/hancore_rules.py
 
 ### USB-W03: Remote code is pinned
 - Level: warn (medium; EXPERIMENTAL, off by default)
-- Rationale: curl|sh, git clone without a pinned SHA/tag, pip install git+URL without @ref, raw.githubusercontent main/master, releases/latest and unversioned npx run code that can change after review. Measured against HANCORE findings on 1375 non-holdout plugins: precision 0.45, recall 0.05 (base rate 0.19).
+- Rationale: curl|sh, git clone without a pinned SHA/tag, pip install git+URL without @ref, raw.githubusercontent main/master, releases/latest and unversioned npx run code that can change after review. Measured against HANCORE findings on 4011 non-holdout plugins: precision 0.42, recall 0.05 (base rate 0.20).
 - Failing example: `curl -fsSL https://x/install.sh | bash`
 - Fix: pin to a full commit SHA or versioned release and verify a checksum
 - Checked by: usuba/hancore_rules.py
 
 ### USB-W04: File operations are safe
 - Level: warn (medium; EXPERIMENTAL, off by default)
-- Rationale: World-writable chmod, forced symlinks, predictable /tmp paths and rm -rf on an unchecked variable allow symlink/TOCTOU attacks or data loss. (rm -rf of $HOME/~// itself is USB-S03, a fail.) Measured against HANCORE findings on 1375 non-holdout plugins: precision 0.40, recall 0.15 (base rate 0.33).
+- Rationale: World-writable chmod, forced symlinks, predictable /tmp paths and rm -rf on an unchecked variable allow symlink/TOCTOU attacks or data loss. (rm -rf of $HOME/~// itself is USB-S03, a fail.) Measured against HANCORE findings on 4011 non-holdout plugins: precision 0.37, recall 0.14 (base rate 0.32).
 - Failing example: `echo $x > /tmp/state.json`
 - Fix: use mktemp or $XDG_RUNTIME_DIR, 0600/0700 modes, refuse symlinks, validate variables before rm -rf
 - Checked by: usuba/hancore_rules.py
 
 ### USB-W05: Privileged actions are flagged
 - Level: warn (medium; on by default)
-- Rationale: sudo/pkexec/doas/run0, system-level systemctl, writes to /etc, /usr, /boot or /opt, and setuid modes; HANCORE asks for these to be removed or documented as manual steps. Measured against HANCORE findings on 1375 non-holdout plugins: precision 0.59, recall 0.35 (base rate 0.23).
+- Rationale: sudo/pkexec/doas/run0, system-level systemctl, writes to /etc, /usr, /boot or /opt, and setuid modes; HANCORE asks for these to be removed or documented as manual steps. Measured against HANCORE findings on 4011 non-holdout plugins: precision 0.60, recall 0.32 (base rate 0.24).
 - Failing example: `["pkexec", "tee", "/etc/foo.conf"]`
 - Fix: stay unprivileged; document manual root steps in the README
 - Checked by: usuba/hancore_rules.py
 
 ### USB-W06: Rich text is not bound to untrusted data
 - Level: warn (medium; EXPERIMENTAL, off by default)
-- Rationale: Text.RichText/StyledText/MarkdownText render links and images, so text from commands, files, the network or other apps can inject markup. Measured against HANCORE findings on 1375 non-holdout plugins: precision 0.27, recall 0.07 (base rate 0.18).
+- Rationale: Text.RichText/StyledText/MarkdownText render links and images, so text from commands, files, the network or other apps can inject markup. Measured against HANCORE findings on 4011 non-holdout plugins: precision 0.21, recall 0.05 (base rate 0.18).
 - Failing example: `textFormat: Text.RichText; text: notif.body`
 - Fix: use textFormat: Text.PlainText for non-literal text, or escape it
 - Checked by: usuba/hancore_rules.py
 
 ### USB-W07: No interpolation into shell or Lua command strings
 - Level: warn (medium; EXPERIMENTAL, off by default)
-- Rationale: Concatenating or templating values into sh -c, eval, os.system/shell=True or hyprctl dispatch strings is command injection when the value comes from data. Measured against HANCORE findings on 1375 non-holdout plugins: precision 0.20, recall 0.14 (base rate 0.12).
+- Rationale: Concatenating or templating values into sh -c, eval, os.system/shell=True or hyprctl dispatch strings is command injection when the value comes from data. Measured against HANCORE findings on 4011 non-holdout plugins: precision 0.17, recall 0.13 (base rate 0.10).
 - Failing example: `["sh", "-c", "notify-send " + title]`
 - Fix: pass values as separate argv elements, or quote them
 - Checked by: usuba/hancore_rules.py
 
 ### USB-W08: Network calls and processes have timeouts
 - Level: warn (low; EXPERIMENTAL, off by default)
-- Rationale: curl/wget without --max-time, requests/urlopen without timeout, and XMLHttpRequest without xhr.timeout can hang the widget forever. Measured against HANCORE findings on 1375 non-holdout plugins: precision 0.28, recall 0.11 (base rate 0.21).
+- Rationale: curl/wget without --max-time, requests/urlopen without timeout, and XMLHttpRequest without xhr.timeout can hang the widget forever. Measured against HANCORE findings on 4011 non-holdout plugins: precision 0.26, recall 0.11 (base rate 0.22).
 - Failing example: `curl -s https://api/x`
 - Fix: add --max-time / timeout= / xhr.timeout, or wrap in `timeout 10`
 - Checked by: usuba/hancore_rules.py
 
 ### USB-W09: Remote URLs use https
 - Level: warn (medium; EXPERIMENTAL, off by default)
-- Rationale: Plain http:// to a public host sends data without TLS (loopback and LAN addresses are exempt). Measured against HANCORE findings on 1375 non-holdout plugins: precision 0.25, recall 0.03 (base rate 0.19).
+- Rationale: Plain http:// to a public host sends data without TLS (loopback and LAN addresses are exempt). Measured against HANCORE findings on 4011 non-holdout plugins: precision 0.27, recall 0.03 (base rate 0.18).
 - Failing example: `http://api.example.org/v1`
 - Fix: use https://
 - Checked by: usuba/hancore_rules.py
 
 ### USB-W10: Input is bounded
 - Level: warn (low; EXPERIMENTAL, off by default)
-- Rationale: StdioCollector/FileView/SplitParser output read with no size cap anywhere in the file can exhaust memory on huge output. Measured against HANCORE findings on 1375 non-holdout plugins: precision 0.38, recall 0.30 (base rate 0.40).
+- Rationale: StdioCollector/FileView/SplitParser output read with no size cap anywhere in the file can exhaust memory on huge output. Measured against HANCORE findings on 4011 non-holdout plugins: precision 0.37, recall 0.30 (base rate 0.39).
 - Failing example: `FileView { path: log } with no cap`
 - Fix: cap the bytes read (head -c N, slice) before parsing
 - Checked by: usuba/hancore_rules.py
@@ -437,4 +437,4 @@ status = "Up to date"
 ## Changelog
 
 - v0.1 (2026-10-13): first public version. Adds USB-T01/T02, Q01, A01-A04, B01-B04, F01, J01, H01-H04 on top of the 4.0.4 functest (which scored 90/90 against the Dell answer key) after a fixer-loop experiment showed the old grader was gameable (13 passes, 4 real).
-- v0.2 (2026-10-13): adds USB-W01-W10, warnings derived from 12,989 HANCORE marketplace review findings. A rule is on by default only if its plugin-level precision against HANCORE is >= 0.5 and at least 0.10 above the category base rate (hancore/rule_metrics.json; holdout plugins excluded). Only W02 and W05 met that bar; the rest are experimental (run with experimental=True / --experimental). None of them fail a plugin; USB-S03 is still the only hard-fail safety rule.
+- v0.2 (2026-10-13): adds USB-W01-W10, warnings derived from 12,989 HANCORE marketplace review findings. A rule is on by default only if its plugin-level precision against HANCORE is >= 0.5 and at least 0.10 above the category base rate (hancore/rule_metrics.json; holdout plugins excluded). Only W05 met that bar (W02 hardcoded secrets measured 0.43: HANCORE often does not comment on a committed key); the rest are experimental (run with experimental=True / --experimental). None of them fail a plugin; USB-S03 is still the only hard-fail safety rule.
