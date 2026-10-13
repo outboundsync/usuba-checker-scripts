@@ -1,0 +1,116 @@
+{
+ "plugins": 1375,
+ "rule_criterion": "on if precision>=0.5 and precision>=base_rate+0.10",
+ "rules": {
+  "USB-W01": {
+   "category": "install-deps-packaging",
+   "tp": 154,
+   "fp": 189,
+   "fn": 301,
+   "precision": 0.449,
+   "recall": 0.338,
+   "base_rate": 0.331,
+   "lift": 1.36,
+   "default": "experimental"
+  },
+  "USB-W02": {
+   "category": "secrets-credentials",
+   "tp": 4,
+   "fp": 4,
+   "fn": 369,
+   "precision": 0.5,
+   "recall": 0.011,
+   "base_rate": 0.271,
+   "lift": 1.84,
+   "default": "on"
+  },
+  "USB-W03": {
+   "category": "remote-code-pinning",
+   "tp": 13,
+   "fp": 16,
+   "fn": 245,
+   "precision": 0.448,
+   "recall": 0.05,
+   "base_rate": 0.188,
+   "lift": 2.39,
+   "default": "experimental"
+  },
+  "USB-W04": {
+   "category": "file-safety-symlink-perms",
+   "tp": 66,
+   "fp": 100,
+   "fn": 383,
+   "precision": 0.398,
+   "recall": 0.147,
+   "base_rate": 0.327,
+   "lift": 1.22,
+   "default": "experimental"
+  },
+  "USB-W05": {
+   "category": "privileged-system",
+   "tp": 111,
+   "fp": 76,
+   "fn": 204,
+   "precision": 0.594,
+   "recall": 0.352,
+   "base_rate": 0.229,
+   "lift": 2.59,
+   "default": "on"
+  },
+  "USB-W06": {
+   "category": "rich-text-markup-injection",
+   "tp": 18,
+   "fp": 49,
+   "fn": 230,
+   "precision": 0.269,
+   "recall": 0.073,
+   "base_rate": 0.18,
+   "lift": 1.49,
+   "default": "experimental"
+  },
+  "USB-W07": {
+   "category": "shell-lua-injection",
+   "tp": 22,
+   "fp": 91,
+   "fn": 141,
+   "precision": 0.195,
+   "recall": 0.135,
+   "base_rate": 0.119,
+   "lift": 1.64,
+   "default": "experimental"
+  },
+  "USB-W08": {
+   "category": "process-lifecycle-timeouts",
+   "tp": 33,
+   "fp": 83,
+   "fn": 263,
+   "precision": 0.284,
+   "recall": 0.111,
+   "base_rate": 0.215,
+   "lift": 1.32,
+   "default": "experimental"
+  },
+  "USB-W09": {
+   "category": "url-scheme-network",
+   "tp": 8,
+   "fp": 24,
+   "fn": 255,
+   "precision": 0.25,
+   "recall": 0.03,
+   "base_rate": 0.191,
+   "lift": 1.31,
+   "default": "experimental"
+  },
+  "USB-W10": {
+   "category": "unbounded-input-resource",
+   "tp": 165,
+   "fp": 271,
+   "fn": 384,
+   "precision": 0.378,
+   "recall": 0.301,
+   "base_rate": 0.399,
+   "lift": 0.95,
+   "default": "experimental"
+  }
+ }
+}
