@@ -337,6 +337,9 @@ def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
             s = re.sub(r"file://\S*?/plugins/[^/]+/", "", ln.strip())[:300]
             if usage_from is not None and i >= usage_from: s = "usage: " + s
             if SOFT_PAT.search(ln) or DOWNGRADE.search(ln) or _color_ref(ln, pdir): res["soft"].append(s)
+            # the plugin's own console.log/console.info output (DEBUG/INFO level) is never a hard error: the longer
+            # USB-D04 usage window started catching graceful "optional file missing" logs (io.github.jondkinney.omapop)
+            elif re.match(r"^\s*(DEBUG|INFO)\b", ln): res["soft"].append(s)
             elif PROC_FAIL.search(ln): continue   # judged by the exec checks below (Dell binary list), not by keyword
             elif HARD_ERR.search(ln): res["errors"].append(s)
             elif re.search(r"\b(WARN|ERROR|FATAL|CRIT)", ln) or ERR_PAT.search(ln): res["soft"].append(s)
