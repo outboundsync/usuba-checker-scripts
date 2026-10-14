@@ -58,6 +58,7 @@ for i in $(seq 1 40); do sleep 0.25; ipc ping >/dev/null && break; kill -0 $QPID
 sleep 2.5
 if [ -n "$LIVE" ]; then emit ENABLE ipc enablePlugin "$ID" '{}'; sleep 3; fi
 emit P0 ipc ftProbe "$ID"
+emit M0 ps -o rss= -p $QPID
 shot S0
 if [ -n "$SUMMON" ]; then emit SUMMON ipc summon "$ID" '{}'; fi
 sleep 2.5
@@ -65,12 +66,19 @@ emit P1 ipc ftProbe "$ID"
 sleep 2
 emit P2 ipc ftProbe "$ID"
 shot S1
+# usage cycle (USB-D04, learned on the Dell): close + reopen through the shell's IPC, then re-probe; runaway RSS (USB-D05)
+echo "U usage-begin"
+if [ -n "$SUMMON" ]; then emit SUMMON2 ipc summon "$ID" '{}'; sleep 1; emit SUMMON3 ipc summon "$ID" '{}'; fi
+sleep 2
+emit P3 ipc ftProbe "$ID"
+emit M3 ps -o rss= -p $QPID
 kill -0 $QPID 2>/dev/null && echo "ALIVE 1"
 kill $QPID 2>/dev/null; sleep 0.3; kill -9 $QPID 2>/dev/null; wait $QPID 2>/dev/null
 kill $SWPID $HYPID 2>/dev/null
 sleep 0.2
 '''
 
+MEM_FAIL_MB, MEM_WARN_MB = 300, 150   # USB-D05 thresholds (Dell: median shell RSS 284 MB; growth >150 MB in 20 s seen in 11/4596 jobs)
 ERR_PAT = re.compile(r"(Error|error|failed|is not a type|not installed|Cannot|Unable to|Invalid|Expected token|Unexpected|undefined|is not a function|Non-existent|Type .* unavailable|is not defined|No such|Unknown|not found|cannot)")
 SOFT_PAT = re.compile(r"(Read of .* failed: File does not exist|summon: no live bar widget|IpcHandler at|another handler is registered for target|Host \S+ not found|Network access is disabled|Connection refused|Temporary failure in name resolution|Name or service not known|QNetworkReply|Binding loop detected|QFont::|Detected anchors on an item that is managed by a layout|Cannot open: file://\S*/current/background$|Could not connect to DBus|pipewire|polkit)")
 PROC_FAIL = re.compile(r"Process failed to start, likely because the binary could not be found\. Command: QList\((.*)\)")
@@ -305,16 +313,29 @@ def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
                 if p.get(k): best[k] = p[k]
         res["probe"] = best or None
         res["alive"] = bool(stream.get("ALIVE"))
+        try:   # USB-D05 runaway memory: RSS growth of the shell between first probe and end of the usage cycle (~9 s)
+            m0, m3 = int(stream["M0"][-1].strip()), int(stream["M3"][-1].strip())
+            res["rss_kb"] = [m0, m3]; g = (m3 - m0) // 1024
+            if g > MEM_FAIL_MB: res["errors"].append(f"runaway memory USB-D05: shell RSS grew {g} MB in ~9 s after the plugin loaded")
+            elif g > MEM_WARN_MB: res["soft"].append(f"memory growth USB-D05: shell RSS grew {g} MB in ~9 s")
+        except Exception: pass
+        if res["alive"] is False and stream.get("U") and stream.get("P2") and not stream.get("P3"):
+            res["errors"].append("shell died during the usage cycle USB-D04 (close/reopen via IPC)")
         res["summon"] = (stream.get("SUMMON") or [None])[-1]
         # attribute log lines
         marker = "/plugins/" + os.path.basename(pdir) + "/"
         log = re.sub(r"\x1b\[[0-9;]*m", "", log)
         lines = log.splitlines()
+        try:   # index of the first log line written after the usage marker (stdout is one ordered stream)
+            raw = out.decode("utf-8", "replace").split("\n"); ui = raw.index("U usage-begin")
+            usage_from = sum(1 for x in raw[:ui] if x.startswith("L "))
+        except Exception: usage_from = None
         for i, ln in enumerate(lines):
             attributed = marker in ln or re.search(r"(plugin|widget|bar option|summon)\b[^\n]*\b" + re.escape(pid) + r"\b", ln, re.I)
             if not attributed and i > 0 and marker in lines[i - 1] and not re.match(r"^\s*(INFO|WARN|ERROR|DEBUG)", ln): attributed = True
             if not attributed: continue
             s = re.sub(r"file://\S*?/plugins/[^/]+/", "", ln.strip())[:300]
+            if usage_from is not None and i >= usage_from: s = "usage: " + s
             if SOFT_PAT.search(ln) or DOWNGRADE.search(ln) or _color_ref(ln, pdir): res["soft"].append(s)
             elif PROC_FAIL.search(ln): continue   # judged by the exec checks below (Dell binary list), not by keyword
             elif HARD_ERR.search(ln): res["errors"].append(s)

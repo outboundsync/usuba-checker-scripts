@@ -1,4 +1,4 @@
-# Usuba Standard v0.1: what a working Omarchy plugin is
+# Usuba Standard v0.2: what a working Omarchy plugin is
 
 Target: Omarchy 4.0.4-1 (shell tree byte-identical to basecamp/omarchy@c668141), Quickshell + Qt 6.11 as installed on the reference Dell.
 
@@ -362,6 +362,47 @@ status = "Up to date"
 - Fix: use installed programs and defined args
 - Checked by: runtime
 
+## Dell-learned (v0.2)
+
+Added after the 30-batch Dell hardware sweep (5,526 isolated loads; dell/sweep/DELL_LEARNINGS.md). Levels follow the precision each check
+reached against Dell labels; none reached blocking precision except the two runtime failure conditions.
+
+### USB-D00: Severity of shell messages (fatal vs warning)
+- Level: rule for runtime and Dell labels
+- Rationale: on the Dell, plugins logging `Unable to assign [undefined] to int`, read-only-property TypeErrors, ReferenceErrors inside bindings or anchor warnings rendered and toggled fine (7/7 answer-key WORKS). Only messages that stop a component from being created broke plugins.
+- Failing example: `Panel.qml:12:5: Fancy is not a type` (fatal) vs `Panel.qml[317:21]: Unable to assign [undefined] to int` (warning)
+- Fix: fix fatal load errors first; warnings still deserve a fix but do not fail the plugin
+- Checked by: runtime.DOWNGRADE, dell/sweep/build_results.FATAL (answer key 52/52)
+
+### USB-D01: Do not rewire the user's global audio graph
+- Level: medium (warning; precision 0.16 vs Dell broken, the harm lands on the desktop shell)
+- Rationale: pennyfx.audio-control's EQ daemon retargeted the default sink and rebuilt PipeWire filter nodes every 5 s; the desktop shell went into a socket-notifier storm and was OOM-killed at 13 GB, ending the Hyprland session.
+- Failing example: `pw-metadata -n default <node> target.object <id>`, `pactl load-module module-null-sink`, `wpctl set-default`
+- Fix: change only nodes the plugin owns, restore the previous default on exit, never loop on rebuilding nodes, document the side effect
+- Checked by: dell_learned.check
+
+### USB-D02: Panels and overlays answer the shell's toggle
+- Level: medium (warning; precision 0.33, recall 0.12 vs Dell "toggle opened no surface")
+- Rationale: `shell toggle <id>` calls the entry's toggle/open; without one the Dell showed nothing after a successful IPC toggle.
+- Failing example: `PanelWindow { visible: false }` as the panel entry with no function toggle()
+- Fix: add `function toggle()` (and open/close) or an IpcHandler to the panel/overlay root
+- Checked by: dell_learned.check
+
+### USB-D04: Usage cycle
+- Level: error if the shell dies during the cycle; errors logged during it are reported with a `usage:` prefix
+- Rationale: 82 Dell bugs appeared only through interaction (68 toggles that opened nothing, 14 errors only in panel/overlay code).
+- Failing example: `shell died during the usage cycle USB-D04 (close/reopen via IPC)`
+- Fix: make open/close idempotent; guard state used by the panel
+- Checked by: runtime (summon, close, reopen, probe P3)
+
+### USB-D05: No runaway memory
+- Level: warning above 150 MB RSS growth in the ~9 s probe window, error above 300 MB
+- Rationale: Dell median shell RSS is 284 MB; 11 of 4,596 instances grew >150 MB in 20 s. Box warning tier: precision 0.75, recall 0.27, 0/60 control false alarms.
+- Failing example: `runaway memory USB-D05: shell RSS grew 412 MB in ~9 s after the plugin loaded`
+- Fix: reuse objects, cap models/caches, destroy() dynamically created items
+- Checked by: runtime
+
 ## Changelog
 
+- v0.2 (2026-10-13): Dell-learned rules USB-D00/D01/D02/D04/D05 (warnings except crash-in-usage and >300 MB growth); Dell severity rule raises answer-key agreement from 45/52 to 52/52.
 - v0.1 (2026-10-13): first public version. Adds USB-T01/T02, Q01, A01-A04, B01-B04, F01, J01, H01-H04 on top of the 4.0.4 functest (which scored 90/90 against the Dell answer key) after a fixer-loop experiment showed the old grader was gameable (13 passes, 4 real).
