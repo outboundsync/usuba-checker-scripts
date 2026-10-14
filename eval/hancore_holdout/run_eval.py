@@ -6,6 +6,7 @@ Backends (same Usuba skill prompt, train/prompt.py, for every model):
   --backend openai --base-url URL --model M  any OpenAI-compatible endpoint:
         local 9B:  llama-server -m usuba-9b-Q4_K_M.gguf -c 16384 --port 8080  ->  --base-url http://127.0.0.1:8080/v1 --model usuba-9b
         frontier:  --base-url https://openrouter.ai/api/v1 --model <frontier id>   (key read from $OPENROUTER_API_KEY, never printed)
+  Thinking is OFF by default for every backend (training used enable_thinking=False); pass --think to allow it.
   --backend dry                             build prompts and score an always-'changes_requested' baseline (pipeline smoke test)
 Metrics: verdict accuracy, positive recall (changes_requested on a positive), false-alarm rate on negatives, per-category recall of HANCORE
 finding categories (strong/likely findings at the reviewed commit), category precision, JSON-valid rate, $ cost (from usage tokens and
@@ -53,7 +54,10 @@ def parse(txt):
     except Exception: return None
 def call_openai(a, msgs):
     body = dict(model=a.model, messages=msgs, temperature=0, max_tokens=a.max_tokens)
-    if a.no_think: body["chat_template_kwargs"] = {"enable_thinking": False}
+    if not a.think:   # parity with training (enable_thinking=False -> empty <think></think> block)
+        if "openrouter.ai" in a.base_url: body["reasoning"] = {"enabled": False, "exclude": True}
+        else: body["chat_template_kwargs"] = {"enable_thinking": False}   # llama-server needs --jinja for this
+    if a.provider: body["provider"] = {"order": [a.provider], "allow_fallbacks": False}
     hdr = {"Content-Type": "application/json"}
     key = os.environ.get(a.key_env) if a.key_env else None
     if key: hdr["Authorization"] = "Bearer " + key
@@ -72,7 +76,8 @@ def main():
     ap.add_argument("--base-url"); ap.add_argument("--model"); ap.add_argument("--key-env", default=None)
     ap.add_argument("--price-in", type=float, default=0.0); ap.add_argument("--price-out", type=float, default=0.0)
     ap.add_argument("--max-tokens", type=int, default=2048); ap.add_argument("--workers", type=int, default=4)
-    ap.add_argument("--no-think", action="store_true"); ap.add_argument("--limit", type=int, default=0); a = ap.parse_args()
+    ap.add_argument("--think", action="store_true", help="allow thinking (default off, matching training)")
+    ap.add_argument("--provider", default=None, help="OpenRouter provider pin"); ap.add_argument("--limit", type=int, default=0); a = ap.parse_args()
     M = [json.loads(l) for l in open(os.path.join(H, "manifest.jsonl"))]
     if a.limit: M = M[:a.limit]
     def one(m):
