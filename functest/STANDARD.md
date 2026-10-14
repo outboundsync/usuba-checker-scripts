@@ -388,6 +388,13 @@ reached against Dell labels; none reached blocking precision except the two runt
 - Fix: add `function toggle()` (and open/close) or an IpcHandler to the panel/overlay root
 - Checked by: dell_learned.check
 
+### USB-D06: Do not write the shell's read-only hover-reveal flag
+- Level: medium (warning). On the sweep corpus it fires on 338 plugins, covers all 140 whose Dell run logged the read-only TypeError, and 15 of the 19 GitHub "panel cannot close" issues.
+- Rationale: `centerHoverRevealSuppressed` became read-only in Omarchy 4.0.3. Assigning it throws inside close(), so the panel cannot be dismissed and can trap focus. A 24 s load test does not see this, and USB-D00 rightly keeps the message a load warning.
+- Failing example: `function close() { bar.centerHoverRevealSuppressed = false; visible = false }`
+- Fix: remove the assignment, or wrap it in try/catch so the rest of close() runs
+- Checked by: dell_learned.check
+
 ### USB-D04: Usage cycle
 - Level: error if the shell dies during the cycle; errors logged during it are reported with a `usage:` prefix
 - Rationale: 82 Dell bugs appeared only through interaction (68 toggles that opened nothing, 14 errors only in panel/overlay code).
@@ -404,5 +411,6 @@ reached against Dell labels; none reached blocking precision except the two runt
 
 ## Changelog
 
+- v0.2.1 (2026-10-13): USB-D06 (read-only close path, warning). Runtime: plugin DEBUG/INFO console output is never a hard error (the longer USB-D04 window had started failing io.github.jondkinney.omapop on a graceful log line). dell_learned no longer crashes on manifests whose `kinds` holds objects. Full answer key re-run on the new runtime: 90/90 decided.
 - v0.2 (2026-10-13): Dell-learned rules USB-D00/D01/D02/D04/D05 (warnings except crash-in-usage and >300 MB growth); Dell severity rule raises answer-key agreement from 45/52 to 52/52.
 - v0.1 (2026-10-13): first public version. Adds USB-T01/T02, Q01, A01-A04, B01-B04, F01, J01, H01-H04 on top of the 4.0.4 functest (which scored 90/90 against the Dell answer key) after a fixer-loop experiment showed the old grader was gameable (13 passes, 4 real).
