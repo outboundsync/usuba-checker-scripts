@@ -21,6 +21,23 @@ class D01(unittest.TestCase):
     def test_is_warning(self):
         f = {"manifest.json": man(), "a.sh": "wpctl set-default 51"}
         self.assertEqual([x["severity"] for x in dell_learned.check(f) if x["rule"] == "USB-D01"], ["medium"])
+class Robustness(unittest.TestCase):
+    def test_non_string_kinds_do_not_crash(self):
+        # regression: a manifest with dict entries in "kinds" raised TypeError (unhashable dict) and aborted eval_dell.py
+        f = {"manifest.json": man(kinds=[{"type": "panel"}, "panel"]), "Panel.qml": "PanelWindow { visible: false }"}
+        self.assertIn("USB-D02", {x["rule"] for x in dell_learned.check(f)})
+        f = {"manifest.json": man(kinds="panel"), "Panel.qml": "PanelWindow { }"}
+        dell_learned.check(f)
+class D06(unittest.TestCase):
+    def test_assignment_fires(self):
+        f = {"manifest.json": man(), "Panel.qml": "PanelWindow { function toggle(){} function close(){ bar.centerHoverRevealSuppressed = false; visible = false } }"}
+        self.assertEqual([x["severity"] for x in dell_learned.check(f) if x["rule"] == "USB-D06"], ["medium"])
+    def test_setter_fires(self):
+        f = {"manifest.json": man(), "Panel.qml": "PanelWindow { function toggle(){ shell.setCenterHoverRevealSuppressed(true) } }"}
+        self.assertIn("USB-D06", {x["rule"] for x in dell_learned.check(f)})
+    def test_read_and_comparison_do_not_fire(self):
+        f = {"manifest.json": man(), "Panel.qml": "PanelWindow { function toggle(){} property bool x: bar.centerHoverRevealSuppressed == true // centerHoverRevealSuppressed = 1\n}"}
+        self.assertNotIn("USB-D06", {x["rule"] for x in dell_learned.check(f)})
 class D02(unittest.TestCase):
     def test_panel_without_toggle(self):
         f = {"manifest.json": man(), "Panel.qml": "PanelWindow { visible: false }"}

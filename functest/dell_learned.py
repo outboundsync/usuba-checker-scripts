@@ -7,12 +7,17 @@ check reached against Dell labels (see DELL_LEARNINGS.md, "New checks").
           13 GB OOM kill on the Dell (17:32:34-17:50:27, 2026-10-13).
   USB-D02 toggle-entry-without-handler : a panel/overlay entry point exposes no toggle()/open()/show() function, so the
           shell's IPC toggle has nothing to call; on the Dell such plugins opened no surface after `shell toggle`.
+  USB-D06 read-only-close-path : assigns the shell's read-only centerHoverRevealSuppressed (directly or via its setter).
+          On Omarchy 4.0.3+ this throws a TypeError when the panel closes, so Esc/outside click cannot dismiss it and it can
+          trap keyboard focus. The Dell severity rule (USB-D00) treats the message as a warning, which is right for loading,
+          but 15 of 19 GitHub "panel cannot close" issues in the sweep corpus hit this rule. Warning only (see DELL_LEARNINGS.md 2b).
   (A static respawn-loop heuristic was evaluated and dropped: 0/88 hits matched Dell memory/CPU growth. Runaway memory is
    measured at runtime instead: USB-D05 in runtime.py; the usage cycle is USB-D04.)
 """
 import json, re
 AUDIO = re.compile(r"pw-metadata[^\n]*target\.object|pactl\s+(load-module|set-default-(sink|source)|move-sink-input|move-source-output)|wpctl\s+set-default|pw-loopback|\bfilter-chain\b|module-null-sink|module-loopback")
 TOGGLE_FN = re.compile(r"\bfunction\s+(toggle|open|show|summon)\s*\(")
+CLOSE_RO = re.compile(r"centerHoverRevealSuppressed\s*=(?!=)|setCenterHoverRevealSuppressed\s*\(")
 TIMER = re.compile(r"Timer\s*\{", re.S)
 def _blocks(s, start_re):
     for m in start_re.finditer(s):
@@ -34,7 +39,8 @@ def check(files):
                             hint="scope audio changes to nodes the plugin creates, restore the previous default on exit, never loop on rebuilding nodes, and document the side effect"))
             break
     ep = man.get("entryPoints") if isinstance(man.get("entryPoints"), dict) else {}
-    kinds = set(man.get("kinds") or []) if isinstance(man.get("kinds"), list) else set()
+    # kinds may hold non-strings in malformed/generated manifests (e.g. [{"type": "panel"}]); keep only string entries
+    kinds = {k for k in man.get("kinds") if isinstance(k, str)} if isinstance(man.get("kinds"), list) else set()
     if not (kinds & {"bar", "bar-widget"}):
         for k in ("panel", "overlay"):
             f = ep.get(k)
@@ -43,4 +49,9 @@ def check(files):
                 if not re.search(r"IpcHandler|onToggle|function\s+\w*[Tt]oggle\w*\s*\(", files[f]):
                     out.append(dict(rule="USB-D02", severity="medium", file=f, reason=f"{k} entry point has no toggle()/open()/show() function, so `shell toggle <id>` has nothing to call",
                                     hint=f"add `function toggle() {{ ... }}` (and open/close) to the {k} root so the shell can summon it"))
+    for p, body in files.items():
+        if p.endswith((".qml", ".js")) and CLOSE_RO.search(_strip(body)):
+            out.append(dict(rule="USB-D06", severity="medium", file=p, reason="writes the shell's read-only centerHoverRevealSuppressed; on Omarchy 4.0.3+ this throws on close, so the panel cannot be dismissed (Esc/outside click) and may trap keyboard focus",
+                            hint="drop the assignment (the shell manages hover reveal itself) or wrap it in try/catch so close() still runs"))
+            break
     return out
