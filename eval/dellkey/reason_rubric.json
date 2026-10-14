@@ -1,0 +1,319 @@
+{
+ "version": 1,
+ "line_tolerance": 15,
+ "rules": {
+  "io.github.adamcbrewer.voxtype-aura": {
+   "files": [],
+   "cause": [
+    "voxtype-audio-bridge"
+   ],
+   "summary": "needs binary voxtype-audio-bridge, not installed",
+   "line": null
+  },
+  "pennyfx.spectrum": {
+   "files": [],
+   "cause": [
+    "\\bcava\\b"
+   ],
+   "summary": "needs binary cava, not installed",
+   "line": null
+  },
+  "b3.q7b.scriptural": {
+   "files": [
+    "BarWidget.qml"
+   ],
+   "cause": [
+    "(set|assign|defin|declar)\\w*\\s+(multiple|more than once|twice)|duplicate (property|assignment|binding)|multiple times|already (set|assigned|defined)"
+   ],
+   "summary": "property set multiple times in BarWidget.qml",
+   "line": null
+  },
+  "b3.q7b.time-machine": {
+   "files": [
+    "Panel.qml"
+   ],
+   "cause": [
+    "syntax|expected token|unbalanced|unclosed|missing (closing )?(brace|\\})|brace|parse error|truncat"
+   ],
+   "line": 305,
+   "summary": "syntax error Panel.qml:305 expected }"
+  },
+  "b3.q7b.acme-notifications": {
+   "files": [
+    "Service.qml"
+   ],
+   "cause": [
+    "(missing|does not exist|not (exist|found|present|included|shipped)|no such file|absent|not in the (plugin|package|repo)|isn't (shipped|included|present))"
+   ],
+   "summary": "entry file Service.qml missing",
+   "line": null
+  },
+  "b3.q7b.vimarchy": {
+   "files": [
+    "Overlay.qml"
+   ],
+   "cause": [
+    "(missing|does not exist|not (exist|found|present|included|shipped)|no such file|absent|not in the (plugin|package|repo)|isn't (shipped|included|present))"
+   ],
+   "summary": "entry file Overlay.qml missing",
+   "line": null
+  },
+  "b3.q14b.acme-notifications": {
+   "files": [],
+   "cause": [
+    "service entry|Service\\.qml.*(missing|does not exist|not (exist|found|present|included|shipped)|no such file|absent|not in the (plugin|package|repo)|isn't (shipped|included|present))|(missing|does not exist|not (exist|found|present|included|shipped)|no such file|absent|not in the (plugin|package|repo)|isn't (shipped|included|present)).*Service\\.qml|(service|component).{0,40}(fail|not (be )?(created|load))"
+   ],
+   "summary": "service entry file missing / service fails to load",
+   "line": null
+  },
+  "b3.q14b.acme-dropbox": {
+   "files": [
+    "Panel.qml"
+   ],
+   "cause": [
+    "(missing|does not exist|not (exist|found|present|included|shipped)|no such file|absent|not in the (plugin|package|repo)|isn't (shipped|included|present))"
+   ],
+   "summary": "Panel.qml missing",
+   "line": null
+  },
+  "b3.q14b.acme-dropbox2": {
+   "files": [
+    "PanelContent.qml"
+   ],
+   "cause": [
+    "(missing|does not exist|not (exist|found|present|included|shipped)|no such file|absent|not in the (plugin|package|repo)|isn't (shipped|included|present))|not a type|unavailable|undefined"
+   ],
+   "summary": "PanelContent.qml missing",
+   "line": null
+  },
+  "b3.q14b.acme-monitor": {
+   "files": [
+    "PanelContent.qml",
+    "brightnessModel"
+   ],
+   "cause": [
+    "(missing|does not exist|not (exist|found|present|included|shipped)|no such file|absent|not in the (plugin|package|repo)|isn't (shipped|included|present))|ReferenceError|not defined|undefined|not a type"
+   ],
+   "summary": "ReferenceError brightnessModel + PanelContent.qml missing",
+   "line": null
+  },
+  "b3.q14b.portwatch": {
+   "files": [],
+   "cause": [
+    "ScrollBar"
+   ],
+   "summary": "ScrollBar not a type (missing QtQuick.Controls import)",
+   "line": null
+  },
+  "b3.q14b.acme-monitor2": {
+   "files": [
+    "Panel.qml"
+   ],
+   "cause": [
+    "(missing|does not exist|not (exist|found|present|included|shipped)|no such file|absent|not in the (plugin|package|repo)|isn't (shipped|included|present))|not a type|unavailable"
+   ],
+   "summary": "Panel.qml missing",
+   "line": null
+  },
+  "b3.gpt56.flush-bar": {
+   "files": [],
+   "cause": [
+    "gaps_out|gap data|css gap|custom type|int:"
+   ],
+   "summary": "gaps_out parser misses 'css gap data:' output -> silent exit",
+   "line": null
+  },
+  "b3.gpt56.acme-power2": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "barWidget|bar-widget.{0,60}(key|entry)|entry.?point|entryPoints"
+   ],
+   "summary": "manifest uses bar-widget key, no barWidget entry point",
+   "line": null
+  },
+  "b3.gpt56.scriptural": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "barWidget|bar-widget.{0,60}(key|entry)|entry.?point|entryPoints"
+   ],
+   "summary": "no barWidget entry point",
+   "line": null
+  },
+  "b3.opus55.acme-dropbox": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "barWidget|bar-widget.{0,60}(key|entry)|entry.?point|entryPoints"
+   ],
+   "summary": "no barWidget entry point",
+   "line": null
+  },
+  "b3.opus55.acme-power": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "barWidget|bar-widget.{0,60}(key|entry)|entry.?point|entryPoints"
+   ],
+   "summary": "no barWidget entry point",
+   "line": null
+  },
+  "intemporel": {
+   "files": [],
+   "cause": [
+    "(not installed|missing|unavailable).{0,80}(binary|helper|command|executable)|(binary|helper|command|executable).{0,80}(not installed|missing|not found|unavailable)|undefined.{0,40}(bar|propert)|bar API"
+   ],
+   "summary": "calls helper binary not installed + undefined bar API props",
+   "line": null
+  },
+  "sanjyay.peekbar": {
+   "files": [],
+   "cause": [
+    "(theme|Theme|colou?r).{0,80}(null|undefined|missing|not (set|provided|available))|(null|undefined).{0,80}(theme|Theme)"
+   ],
+   "summary": "null theme props when used as the bar",
+   "line": null
+  },
+  "scottjones.flush-bar": {
+   "files": [],
+   "cause": [
+    "gaps_out|gap data|css gap|custom type|int:"
+   ],
+   "summary": "gaps_out parse fails on 'css gap data' output",
+   "line": null
+  },
+  "io.github.i12bp8.oshelf": {
+   "files": [],
+   "cause": [
+    "ShelfWindow"
+   ],
+   "summary": "Type ShelfWindow unavailable -> service load failed",
+   "line": null
+  },
+  "bl.q7s.acme-background": {
+   "files": [
+    "Background.qml"
+   ],
+   "cause": [
+    "syntax|expected token|unbalanced|unclosed|brace|parse error|truncat|degenerate|incomplete"
+   ],
+   "line": 1535,
+   "summary": "Background.qml:1535 expected token (truncated QML)"
+  },
+  "bl.q7s.acme-dropbox": {
+   "files": [
+    "BarWidget.qml"
+   ],
+   "cause": [
+    "syntax|expected token|unbalanced|unclosed|brace|parse error|truncat|incomplete"
+   ],
+   "line": 1244,
+   "summary": "BarWidget.qml:1244 unbalanced braces"
+  },
+  "bl.q7s.acme-speedtest": {
+   "files": [
+    "Panel.qml"
+   ],
+   "cause": [
+    "syntax|expected token|unbalanced|unclosed|brace|parse error|truncat|incomplete"
+   ],
+   "line": 177,
+   "summary": "Panel.qml:177 expected }"
+  },
+  "bl.q14s.acme-clipboard": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "entry.?point|entryPoints|kinds\\[|kinds.{0,40}(object|array|format|schema)|(schema|format).{0,60}manifest|manifest.{0,80}(invalid|schema|format|required)"
+   ],
+   "summary": "manifest missing required entryPoints field (uses kinds[].entryPoint objects)",
+   "line": null
+  },
+  "bl.q14s.acme-dropbox": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "entry.?point|entryPoints|kinds\\[|kinds.{0,40}(object|array|format|schema)|(schema|format).{0,60}manifest|manifest.{0,80}(invalid|schema|format|required)"
+   ],
+   "summary": "manifest missing required entryPoints field (uses kinds[].entryPoint objects)",
+   "line": null
+  },
+  "bl.q14s.acme-monitor": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "entry.?point|entryPoints|kinds\\[|kinds.{0,40}(object|array|format|schema)|(schema|format).{0,60}manifest|manifest.{0,80}(invalid|schema|format|required)"
+   ],
+   "summary": "manifest missing required entryPoints field (uses kinds[].entryPoint objects)",
+   "line": null
+  },
+  "bl.q14s.acme-power": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "entry.?point|entryPoints|kinds\\[|kinds.{0,40}(object|array|format|schema)|(schema|format).{0,60}manifest|manifest.{0,80}(invalid|schema|format|required)"
+   ],
+   "summary": "manifest missing required entryPoints field (uses kinds[].entryPoint objects)",
+   "line": null
+  },
+  "bl.q14s.acme-speedtest": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "entry.?point|entryPoints|kinds\\[|kinds.{0,40}(object|array|format|schema)|(schema|format).{0,60}manifest|manifest.{0,80}(invalid|schema|format|required)"
+   ],
+   "summary": "manifest missing required entryPoints field (uses kinds[].entryPoint objects)",
+   "line": null
+  },
+  "bl.q14s.acme-weather": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "entry.?point|entryPoints|kinds\\[|kinds.{0,40}(object|array|format|schema)|(schema|format).{0,60}manifest|manifest.{0,80}(invalid|schema|format|required)"
+   ],
+   "summary": "manifest missing required entryPoints field (uses kinds[].entryPoint objects)",
+   "line": null
+  },
+  "bl.q14s.time-machine": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "entry.?point|entryPoints|kinds\\[|kinds.{0,40}(object|array|format|schema)|(schema|format).{0,60}manifest|manifest.{0,80}(invalid|schema|format|required)"
+   ],
+   "summary": "manifest missing required entryPoints field (uses kinds[].entryPoint objects)",
+   "line": null
+  },
+  "bl.q14s.portwatch": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "entry.?point|entryPoints|kinds\\[|kinds.{0,40}(object|array|format|schema)|(schema|format).{0,60}manifest|manifest.{0,80}(invalid|schema|format|required)"
+   ],
+   "summary": "manifest missing required entryPoints field (uses kinds[].entryPoint objects)",
+   "line": null
+  },
+  "bl.q14s.omaland": {
+   "files": [
+    "manifest"
+   ],
+   "cause": [
+    "entry.?point|entryPoints|kinds\\[|kinds.{0,40}(object|array|format|schema)|(schema|format).{0,60}manifest|manifest.{0,80}(invalid|schema|format|required)"
+   ],
+   "summary": "manifest missing required entryPoints field (uses kinds[].entryPoint objects)",
+   "line": null
+  }
+ }
+}
