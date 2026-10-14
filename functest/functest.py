@@ -2,7 +2,7 @@
 """Combined functional test = static checks + real-shell runtime. `python3 functest.py <plugin_dir>`"""
 import json, os, sys, re
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import static_checks, runtime, dell_checks
+import static_checks, runtime, dell_checks, dell_learned
 from usuba import checks as usuba_checks
 
 SKIP_DIRS = {".git", "node_modules", "tests", "test", "__pycache__", "preview", "stubs", "lint", ".github", "fixtures", "docs", "screenshots", "assets"}
@@ -45,7 +45,7 @@ def test(files=None, src_dir=None, run_runtime=True):
     df, dw = dell_checks.check(files, doc_deps=not os.environ.get("FT_STRICT_DEPS"))
     sf, sw = sf + df, sw + dw
     # Usuba Checker hardening (functest/STANDARD.md): errors and high-severity heuristics block, the rest are flags
-    uf = usuba_checks.check(files)
+    uf = usuba_checks.check(files) + dell_learned.check(files)
     sf = sf + [("usuba-" + f["rule"], usuba_checks.fmt(f)) for f in uf if usuba_checks.blocking(f)]
     sw = sw + [("usuba-" + f["rule"], usuba_checks.fmt(f)) for f in uf if not usuba_checks.blocking(f)]
     rt = None
