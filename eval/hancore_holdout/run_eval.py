@@ -47,6 +47,19 @@ def checker(files):
     rep2 = [f"[{f['rule']} warn{' experimental' if f['rule'] in HR.EXPERIMENTAL else ''}] {f['file']}: {f['reason']}" for f in w if f["rule"] in HR.EXPERIMENTAL]
     return ((rep or []) + rep2 if rep is not None else None), {W_MAP[f["rule"]] for f in w if f["rule"] in W_MAP}
 
+# The skill prompt names categories in prose; models that were not fine-tuned answer with those prose names.
+# Map them to the HANCORE slugs so category recall is comparable across backends (slugs pass through unchanged).
+NORM = [("unbounded", "unbounded-input-resource"), ("install", "install-deps-packaging"), ("depend", "install-deps-packaging"), ("packag", "install-deps-packaging"),
+        ("symlink", "file-safety-symlink-perms"), ("file safety", "file-safety-symlink-perms"), ("file-safety", "file-safety-symlink-perms"), ("permission", "file-safety-symlink-perms"),
+        ("secret", "secrets-credentials"), ("credential", "secrets-credentials"), ("privilege", "privileged-system"), ("system change", "privileged-system"),
+        ("lifecycle", "process-lifecycle-timeouts"), ("timeout", "process-lifecycle-timeouts"), ("remote code", "remote-code-pinning"), ("pinning", "remote-code-pinning"),
+        ("url", "url-scheme-network"), ("network", "url-scheme-network"), ("rich-text", "rich-text-markup-injection"), ("markup", "rich-text-markup-injection"),
+        ("shell/lua", "shell-lua-injection"), ("shell-lua", "shell-lua-injection"), ("injection", "shell-lua-injection"), ("user-config", "user-config-modification"),
+        ("user config", "user-config-modification"), ("scope", "scope-policy-duplicate"), ("policy", "scope-policy-duplicate"), ("listing", "listing-metadata-docs"), ("metadata", "listing-metadata-docs")]
+def norm_cat(c):
+    c = (c or "").strip().lower()
+    if c in SCORED or c.startswith(("in-use:", "load:", "checker:")): return c
+    return next((slug for k, slug in NORM if k in c), c)
 def parse(txt):
     txt = re.sub(r"<think>.*?</think>", "", txt or "", flags=re.S).strip()
     m = re.search(r"\{.*\}", txt, re.S)
@@ -72,16 +85,29 @@ def call_openai(a, msgs):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--set", choices=["hancore", "dellkey"], default="hancore", help="hancore = 329-plugin review holdout; dellkey = Dell answer key (in-use, decided rows only)")
+    ap.add_argument("--max-cost", type=float, default=0, help="stop sending requests once estimated $ spend reaches this")
     ap.add_argument("--backend", choices=["checker", "openai", "dry"], required=True); ap.add_argument("--name", required=True)
     ap.add_argument("--base-url"); ap.add_argument("--model"); ap.add_argument("--key-env", default=None)
     ap.add_argument("--price-in", type=float, default=0.0); ap.add_argument("--price-out", type=float, default=0.0)
     ap.add_argument("--max-tokens", type=int, default=2048); ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--think", action="store_true", help="allow thinking (default off, matching training)")
     ap.add_argument("--provider", default=None, help="OpenRouter provider pin"); ap.add_argument("--limit", type=int, default=0); a = ap.parse_args()
-    M = [json.loads(l) for l in open(os.path.join(H, "manifest.jsonl"))]
+    if a.set == "dellkey":   # in-use eval: the Dell answer key (real hardware verdicts), excluded from training
+        M = []
+        for l in open(os.path.join(ROOT, "functest", "dell_ground_truth.jsonl")):
+            g = json.loads(l)
+            if g["real_verdict"] not in ("WORKS", "BROKEN"): continue
+            d = next((x for x in (os.path.join(ROOT, g["path"]), os.path.join("/workspace/omarchy-specialist", g["path"])) if os.path.isdir(x)), None)
+            if d: M.append(dict(plugin=g["id"], label="positive" if g["real_verdict"] == "BROKEN" else "negative", dir=d, findings=[], source=g["source"]))
+    else: M = [json.loads(l) for l in open(os.path.join(H, "manifest.jsonl"))]
     if a.limit: M = M[:a.limit]
+    import threading; spent = [0.0]; lock = threading.Lock()
     def one(m):
-        files = files_of(m["code_archive"]); rep, wcats = checker(files)
+        if "dir" in m:
+            import functest; files = functest.read_dir(m["dir"])
+        else: files = files_of(m["code_archive"])
+        rep, wcats = checker(files)
         gt = {c for f in m["findings"] if f.get("strength") in ("strong", "likely") for c in f["categories"]} & SCORED
         t0 = time.time(); usage = {}; raw = None
         if a.backend == "checker":
@@ -91,10 +117,13 @@ def main():
             out = dict(verdict="changes_requested", findings=[], _prompt_chars=sum(len(x["content"]) for x in msgs))
         else:
             msgs = prompt.messages(scrub(code_blob(files)), [scrub(r) for r in rep] if rep is not None else None)
-            raw, usage = call_openai(a, msgs); out = parse(raw)
+            if a.max_cost and spent[0] >= a.max_cost: raw, usage, out = "SKIPPED max-cost", {}, None
+            else:
+                raw, usage = call_openai(a, msgs); out = parse(raw)
+                with lock: spent[0] += usage.get("prompt_tokens", 0) / 1e6 * a.price_in + usage.get("completion_tokens", 0) / 1e6 * a.price_out
         secs = time.time() - t0
-        pred = {(f.get("category") or "") for f in (out or {}).get("findings", []) if isinstance(f, dict)}
-        pred |= {c for f in (out or {}).get("findings", []) if isinstance(f, dict) for c in (f.get("also") or [])}
+        pred = {norm_cat(f.get("category")) for f in (out or {}).get("findings", []) if isinstance(f, dict)}
+        pred |= {norm_cat(c) for f in (out or {}).get("findings", []) if isinstance(f, dict) for c in (f.get("also") or []) if isinstance(c, str)}
         return dict(plugin=m["plugin"], label=m["label"], gt=sorted(gt), pred=sorted(pred), verdict=(out or {}).get("verdict"), valid=out is not None,
                     secs=round(secs, 2), usage=usage, raw=raw if raw is None else raw[:4000])
     with ThreadPoolExecutor(a.workers) as ex: R = list(ex.map(one, M))
