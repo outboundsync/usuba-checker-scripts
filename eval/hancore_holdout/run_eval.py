@@ -71,7 +71,7 @@ HARNESS_FILES = {"SOURCE.txt", "checklist.md"}   # same set as the models repo's
 def strip_harness(files): return {p: c for p, c in files.items() if p not in HARNESS_FILES}
 def checker(files):
     import checker_report   # shared with train/build_train_set.py so train and eval reports are identical
-    rep, w = checker_report.report_and_warn_rules(files, timeout=0)
+    rep, w = checker_report.report_and_warn_rules(files, timeout=checker_report.CHECKER_TIMEOUT)
     return rep, {W_MAP[f["rule"]] for f in w if f["rule"] in W_MAP}
 
 # Category normalisation, JSON parsing and schema validation live in scoring.py (exact slug list + explicit alias table; unknown -> "unknown").
@@ -150,7 +150,7 @@ def provenance(a, P, whole):
     from usuba import provenance as cp
     sha, dirty = git_sha(ROOT)
     return dict(schema_version=scoring.SCHEMA_VERSION, prompt=a.prompt, prompt_sha256=file_sha256(P.__file__), checker_git_sha=sha, checker_git_dirty=dirty,
-                rules_hash=cp.rules_hash(), weights_sha256=a.weights_sha256, system=a.system or a.name, base_url_host=urllib.request.urlparse(a.base_url).netloc if a.base_url else None,
+                rules_hash=cp.rules_hash(), code_blob_policy=getattr(sys.modules.get('code_blob'), 'POLICY_ID', 'legacy-8000/24000-unnumbered'), weights_sha256=a.weights_sha256, system=a.system or a.name, base_url_host=urllib.request.urlparse(a.base_url).netloc if a.base_url else None,
                 decoding=dict(temperature=0, max_tokens=a.max_tokens, thinking=bool(a.think), provider=a.provider, zdr=bool(a.zdr)), whole_files=whole,
                 generated_at=time.strftime("%Y-%m-%dT%H:%M:%S%z"))
 
@@ -167,7 +167,7 @@ def main():
     ap.add_argument("--min-ctx-per-slot", type=int, default=MIN_CTX_PER_SLOT, help="abort if llama-server /props reports less context per slot")
     ap.add_argument("--ctx-check-n", type=int, default=20, help="fail-fast window: abort if too many of the first N responses overflow context")
     ap.add_argument("--ctx-max-rate", type=float, default=0.10, help="abort once context-overflow rate exceeds this (after --ctx-check-n responses)")
-    ap.add_argument("--prompt", choices=["v1", "v2", "v3"], required=True, help="v1 = train/prompt.py (as v1 was trained); v2 = train/prompt_v2.py (approve rule + few-shot); v3 = train/prompt_v3.py (rules match the v3 data; use for ALL systems in the exam)")
+    ap.add_argument("--prompt", choices=["v1", "v2", "v3", "v4"], required=True, help="v4 = train/prompt_v4.py + the shared train/code_blob.py renderer (numbered lines, explicit truncation markers; exactly what r5 trains on); v1 = train/prompt.py (as v1 was trained); v2 = train/prompt_v2.py (approve rule + few-shot); v3 = train/prompt_v3.py (rules match the v3 data; use for ALL systems in the exam)")
     ap.add_argument("--whole-files", choices=["auto", "on", "off"], default="auto", help="auto = on for --set dellkey: no 8000/24000-char truncation")
     ap.add_argument("--zdr", action="store_true", help="OpenRouter: only zero-data-retention endpoints")
     ap.add_argument("--weights-sha256", default=None, help="sha256 of the weights file served (recorded in the result; audit B5)")
@@ -186,8 +186,11 @@ def main():
     key = resolve_key(a) if a.backend == "openai" else None
     if a.backend == "openai" and "openrouter.ai" in a.base_url and not key: sys.exit("ABORT: no API key: set $OPENROUTER_API_KEY or pass --key-env NAME")
     whole = a.whole_files == "on" or (a.whole_files == "auto" and a.set == "dellkey")
-    P = __import__("prompt_v3") if a.prompt == "v3" else __import__("prompt_v2") if a.prompt == "v2" else prompt
+    P = __import__("prompt_v4") if a.prompt == "v4" else __import__("prompt_v3") if a.prompt == "v3" else __import__("prompt_v2") if a.prompt == "v2" else prompt
     blob = code_blob_whole if whole else code_blob
+    if a.prompt == "v4":   # audit A1: eval renders code with the SAME shared renderer as the r5 builders (never whole-file mode: that would change what the model saw in training)
+        import code_blob as _cb
+        blob = _cb.code_blob; whole = False
     srv_ctx = check_server_ctx(a) if a.backend == "openai" else None
     ctx_limit = srv_ctx or a.model_ctx
     missing_dirs = []
