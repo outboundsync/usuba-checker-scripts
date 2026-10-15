@@ -15,8 +15,18 @@ SHELL_API = set(T.get("shell_api", [])) | {"pluginId", "objectName", "toString"}
 def _not_a_command(w, files):
     """False-positive filter for binary-name checks: `w` is a function defined in the plugin, a case/glob pattern or literal word, snake_case/trailing-dash token, or a MIME type"""
     if w.endswith("-") or re.match(r"(image|text|audio|video|application|font)/", w) or ("_" in w and not w.startswith(("/", "."))) or not re.fullmatch(r"[\w.+@-]+", w): return True
-    rx_pos = re.compile(r"(^|[;&|(`]|\bthen\b|\bdo\b|\belse\b|\bsudo\b|\bexec\b|\bxargs\b|\$\(|-c\s+[\'\"])\s*" + re.escape(w) + r"(\s|$|['\"`;)|&])", re.M)
-    if not any(rx_pos.search(re.sub(r"(?m)^\s*(#|//).*$", "", c)) for p, c in files.items() if p.endswith((".sh", ".bash", ".qml", ".js", ".py"))): return True   # never in command position anywhere: prose/identifier, not an executable
+    rx_pos = re.compile(r"(?:^|[;&|(`]|\bthen\b|\bdo\b|\belse\b|\bsudo\b|\bexec\b|\bxargs\b|\$\(|-c\s+[\'\"])\s*" + re.escape(w) + r"(?=\s|$|[\'\"`;)|&])")
+    def _cmd_pos(c):
+        for line in re.sub(r"(?m)^\s*(#|//).*$", "", c).split("\n"):
+            for m in rx_pos.finditer(line):
+                pre = line[:m.end() - len(w)]; pre = re.sub(r"-c\s+[\'\"]\s*$", "", pre)
+                if pre.count("'") % 2 == 0 and pre.count('"') % 2 == 0: return True   # outside quotes (jq/awk filters, echo text and `x=skipped` are not commands)
+            if re.match(r"\s*-c\s+[\'\"]", line[:0]): pass
+            m2 = re.search(r"(?:\bsh|\bbash)\s+-\w*c\s+([\'\"])\s*" + re.escape(w) + r"(?=\s|$|[\'\"`;)|&])", line)
+            if m2: return True
+            if re.search(r"[\'\"]-\w*c[\'\"]\s*,\s*[\'\"`]\s*(?:\w+=\S+\s+)*" + re.escape(w) + r"(?=\s|$|[\'\"`;)|&])", line): return True   # ["sh","-c","cmd ..."]
+        return False
+    if not any(_cmd_pos(c) for p, c in files.items() if p.endswith((".sh", ".bash", ".qml", ".js", ".py"))): return True   # never in command position anywhere: prose/identifier, not an executable
     rx_fn = re.compile(r"(^|\n)\s*(function\s+" + re.escape(w) + r"\b|" + re.escape(w) + r"\s*\(\s*\)\s*\{?)")
     rx_case = re.compile(r"(^|\n)\s*(\(\s*)?(\S+\s*\|\s*)*" + re.escape(w) + r"\s*(\|[^\n)]*)?\)\s*($|\n|[^\n]*;;)")
     return any(p.endswith((".sh", ".bash")) and (rx_fn.search(c) or rx_case.search(c)) for p, c in files.items())
