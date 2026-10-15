@@ -5,7 +5,7 @@ A flagged broken plugin counts as a right-reason catch only if one of the review
 functest/dell_ground_truth.jsonl (file + cause; line within tolerance when the key has one).
 Two graders:
   det   deterministic regex rubric (reason_rubric.json): file mention AND cause pattern AND (line within tolerance if both sides cite one)
-  judge cheap LLM judge (judge_rubric.md) via OpenRouter, zero data retention (provider.zdr), key from $OPENROUTER_API_KEY (never printed)
+  judge open-weights LLM judge (default openai/gpt-oss-120b, or qwen/qwen3.5-397b-a17b, a slower thinking model; judge_rubric.md) via OpenRouter, zero data retention (provider.zdr), key from $OPENROUTER_API_KEY (never printed)
 The reported right-reason metric is the judge's when it ran, else det; both and their agreement are stored.
 Also counts hallucinations: invented commit SHAs (hex runs of 7-40 chars not present in the prompt input) and plugin names
 (reverse-domain plugin ids, or quoted plugin names, that are not this plugin's manifest id/name and not in the input).
@@ -13,6 +13,7 @@ Also counts hallucinations: invented commit SHAs (hex runs of 7-40 chars not pre
 usage: python3 eval/dellkey/reason_grade.py RESULT_NAME [...] [--judge] [--judge-model M]
 Reads eval/hancore_holdout/results/<name>.raw.jsonl, writes <name>.reason.json and adds keys to <name>.json."""
 import argparse, json, os, re, sys, time, urllib.request, collections
+OPEN_JUDGES = ["openai/gpt-oss-120b", "qwen/qwen3.5-397b-a17b"]   # open-weights (Apache-2.0) judges, grading only
 H = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(os.path.dirname(H)); RES = os.path.join(ROOT, "eval", "hancore_holdout", "results")
 sys.path[:0] = [os.path.join(ROOT, "functest")]
 RUB = json.load(open(os.path.join(H, "reason_rubric.json"))); TOL = RUB["line_tolerance"]
@@ -79,8 +80,8 @@ def judge(a, pid, F):
     g = KEY[pid]
     user = json.dumps(dict(plugin=pid, ground_truth=g["reason"], summary=RUB["rules"][pid]["summary"],
                            reviewer_findings=[dict(index=i, category=f.get("category"), severity=f.get("severity"), file=f.get("file"), finding=str(f.get("finding"))[:1500]) for i, f in enumerate(F)]), ensure_ascii=False)
-    body = dict(model=a.judge_model, temperature=0, max_tokens=600, messages=[{"role": "system", "content": JUDGE_SYS}, {"role": "user", "content": user}],
-                provider={"zdr": True, "data_collection": "deny"}, usage={"include": True})
+    body = dict(model=a.judge_model, temperature=0, max_tokens=4000, messages=[{"role": "system", "content": JUDGE_SYS}, {"role": "user", "content": user}],
+                reasoning={"effort": "low"}, provider={"zdr": True, "data_collection": "deny"}, usage={"include": True})
     req = urllib.request.Request("https://openrouter.ai/api/v1/chat/completions", data=json.dumps(body).encode(),
                                  headers={"Content-Type": "application/json", "Authorization": "Bearer " + os.environ["OPENROUTER_API_KEY"]})
     for i in range(4):
@@ -94,6 +95,7 @@ def judge(a, pid, F):
             time.sleep(4 * (i + 1))
 
 def grade(a, name):
+    sfx = getattr(a, "suffix", "")
     R = [json.loads(l) for l in open(os.path.join(RES, name + ".raw.jsonl"))]
     rows, cost = [], 0.0; jc = {}
     for r in R:
@@ -123,13 +125,19 @@ def grade(a, name):
                    right_reason_judge_of_flagged=round(rr("judge") / max(1, len(caught)), 3),
                    det_judge_agreement=round(sum(bool(x["det"]) == bool(x["judge"]) for x in both) / max(1, len(both)), 3), judge_cost_usd=round(cost, 4), judge_model=a.judge_model)
     res["right_reason_of_flagged"] = res.get("right_reason_judge_of_flagged", res["right_reason_det_of_flagged"])
-    json.dump(dict(summary=res, rows=rows), open(os.path.join(RES, name + ".reason.json"), "w"), indent=1)
+    json.dump(dict(summary=res, rows=rows), open(os.path.join(RES, name + sfx + ".reason.json"), "w"), indent=1)
     p = os.path.join(RES, name + ".json")
-    if os.path.exists(p):
+    if os.path.exists(p) and not sfx:
         base = json.load(open(p)); base["reason"] = res; json.dump(base, open(p, "w"), indent=1)
     return res
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("names", nargs="+"); ap.add_argument("--judge", action="store_true")
-    ap.add_argument("--judge-model", default="anthropic/claude-haiku-5.5"); a = ap.parse_args()
+    ap.add_argument("--judge-model", default=OPEN_JUDGES[0], help="open-weights judge via OpenRouter; known good: " + ", ".join(OPEN_JUDGES))
+    ap.add_argument("--allow-closed-judge", action="store_true", help="permit a non-open judge (never an Anthropic model: provider terms forbid using Claude outputs as eval labels)")
+    ap.add_argument("--suffix", default="", help="tag appended to output file names so a second judge does not overwrite the first, e.g. --suffix .gptoss")
+    a = ap.parse_args()
+    if a.judge:
+        if a.judge_model.lower().startswith("anthropic/") or "claude" in a.judge_model.lower(): sys.exit("refusing: Anthropic/Claude models may not be used as judges here; use an open-weights judge")
+        if a.judge_model not in OPEN_JUDGES and not a.allow_closed_judge: sys.exit(f"judge {a.judge_model} is not on the open-weights list {OPEN_JUDGES}; pass --allow-closed-judge to override")
     for n in a.names: print(json.dumps(grade(a, n)))
