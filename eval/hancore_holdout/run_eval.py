@@ -137,13 +137,13 @@ def main():
     ap.add_argument("--min-ctx-per-slot", type=int, default=MIN_CTX_PER_SLOT, help="abort if llama-server /props reports less context per slot")
     ap.add_argument("--ctx-check-n", type=int, default=20, help="fail-fast window: abort if too many of the first N responses overflow context")
     ap.add_argument("--ctx-max-rate", type=float, default=0.10, help="abort once context-overflow rate exceeds this (after --ctx-check-n responses)")
-    ap.add_argument("--prompt", choices=["v1", "v2"], default="v1", help="v1 = train/prompt.py (as v1 was trained); v2 = train/prompt_v2.py (approve rule + few-shot)")
+    ap.add_argument("--prompt", choices=["v1", "v2", "v3"], default="v1", help="v1 = train/prompt.py (as v1 was trained); v2 = train/prompt_v2.py (approve rule + few-shot); v3 = train/prompt_v3.py (rules match the v3 data; use for ALL systems in the exam)")
     ap.add_argument("--whole-files", choices=["auto", "on", "off"], default="auto", help="auto = on for --set dellkey: no 8000/24000-char truncation")
     ap.add_argument("--zdr", action="store_true", help="OpenRouter: only zero-data-retention endpoints")
     ap.add_argument("--model-ctx", type=int, default=0, help="non-llama endpoints: model context; prompts that would not fit are recorded as context overflow (invalid) instead of being sent")
     a = ap.parse_args()
     whole = a.whole_files == "on" or (a.whole_files == "auto" and a.set == "dellkey")
-    P = __import__("prompt_v2") if a.prompt == "v2" else prompt
+    P = __import__("prompt_v3") if a.prompt == "v3" else __import__("prompt_v2") if a.prompt == "v2" else prompt
     blob = code_blob_whole if whole else code_blob
     srv_ctx = check_server_ctx(a) if a.backend == "openai" else None
     ctx_limit = srv_ctx or a.model_ctx
