@@ -126,7 +126,9 @@ def main():
     done = {}
     if os.path.exists(rawp):
         for l in open(rawp):
-            r = json.loads(l); done[r["comment_url"]] = r
+            r = json.loads(l)
+            if r.get("err") or not r.get("content"): continue   # audit A5: a failed call is retried, never cached as a result
+            done[r["comment_url"]] = r
     D = common.load(); tasks = []; excl = collections.Counter(); st = collections.Counter(); hold = set(lc.hold_urls)
     for p, v in sorted(D.items()):
         if not v["sha"]: continue
@@ -150,7 +152,7 @@ def main():
     print("candidate findings:", len(tasks), "excluded:", dict(excl), "no source:", st["no_source_at_commit"], flush=True)
     if a.limit: tasks = tasks[::max(1, len(tasks) // a.limit)][:a.limit]
     lock = threading.Lock(); spent = [sum((r.get("cost") or 0) for r in done.values())]; stop = threading.Event()
-    rf = open(rawp, "a")
+    rf = open(rawp, "a"); failed = []
     def work(t):
         p, repo, sha, x, files, origin = t
         if x["url"] in done or stop.is_set(): return
@@ -160,8 +162,11 @@ def main():
         content = ((resp.get("choices") or [{}])[0].get("message") or {}).get("content")
         rec = dict(comment_url=x["url"], plugin=repo, content=content, cost=c, ptok=u.get("prompt_tokens"), ctok=u.get("completion_tokens"), err=resp.get("error"))
         with lock:
-            spent[0] += c; rf.write(json.dumps(rec) + "\n"); rf.flush(); done[x["url"]] = rec
+            spent[0] += c
+            if rec["err"] or not rec["content"]: failed.append(x["url"]); return   # audit A5: failures are counted below, not cached
+            rf.write(json.dumps(rec) + "\n"); rf.flush(); done[x["url"]] = rec
     with cf.ThreadPoolExecutor(a.workers) as ex: list(ex.map(work, tasks))
+    print("LLM call failures (not cached; re-run retries them):", len(failed), flush=True)
     # ---- verify + write ----
     rows = []; why = collections.Counter()
     for p, repo, sha, x, files, origin in tasks:

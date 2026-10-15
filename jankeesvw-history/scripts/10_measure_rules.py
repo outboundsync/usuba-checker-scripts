@@ -2,6 +2,8 @@
 """Measure USB-JV rules: recall on the pre-fix defect (same file, +-5 lines, rule family matches the bug), whether the same rule is silent on the post-fix tree, false-fire rate on every
 repo HEAD (his hardened code) and on a sample of other authors' plugins (/workspace/sweep_repos, fire counts only). Output data/jv_rules_metrics.json."""
 import json, os, sys, collections, random, subprocess
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from archive_util import git_archive
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import jv_rules as J
 SN = '/tmp/jh_snap/v3fixes-head'; sys.path[:0] = [SN + '/functest']; import functest
 ROOT = '/workspace/ref/jankeesvw'; T = '/tmp/jh_trees'
@@ -22,7 +24,7 @@ for repo in sorted(os.listdir(ROOT)):
     if repo in ('omarchy-clippy', 'omarchy-time-machine'): continue
     d = f'{T}/{repo}_HEAD'
     if not os.path.exists(d + '/.ok'):
-        os.makedirs(d, exist_ok=True); subprocess.run(f"git -C {ROOT}/{repo} archive HEAD | tar -x -C {d}", shell=True); open(d + '/.ok', 'w').write('1')
+        git_archive(f'{ROOT}/{repo}', 'HEAD', d)
     for f in J.check(read(d)): res[f['rule']]['head_fires'] += 1; res[f['rule']]['head_files'].append(f"{repo}:{f['file']}:{f['line']}")
 S = '/workspace/sweep_repos'; names = sorted(n for n in os.listdir(S) if not n.startswith('jankeesvw__')); random.Random(7).shuffle(names); names = names[:250]; n_ext = 0
 for n in names:

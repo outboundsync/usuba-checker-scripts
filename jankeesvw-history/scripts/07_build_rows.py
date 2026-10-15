@@ -14,11 +14,13 @@ ntok = lambda s: len(TOK.encode(s).ids)
 ROOT = '/workspace/ref/jankeesvw'; T = '/tmp/jh_trees'; MAX_TOK = 32000; V3_CITED_CAP = 16000
 BADEXT = re.compile(r'\.(png|jpe?g|gif|webp|svg|ico|wav|mp3|ogg|flac|ttf|otf|woff2?|gz|zip|pdf|mp4|webm|lock)$', re.I)
 sys.path.insert(0, SN + '/train'); from build_reviewer_scrub import scrub
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from archive_util import git_archive
 HYG = re.compile(r"(?i)https?://|\b[0-9a-f]{7,40}\b|\bcommit\b|\bfix(ed|es)?\b|\breview\b|\bshould\b|\bconsider\b|\bearlier\b|\bPR\b|claude|anthropic|\bcomment\b|\bREADME\b")
 def tree(repo, sha, tag):
     d = f'{T}/{repo}_{sha[:10]}_{tag}'
     if not os.path.exists(d + '/.ok'):
-        os.makedirs(d, exist_ok=True); subprocess.run(f"git -C {ROOT}/{repo} archive {sha} | tar -x -C {d}", shell=True); open(d + '/.ok', 'w').write('1')
+        git_archive(f'{ROOT}/{repo}', sha, d)
     return d
 def read_files(d):
     fs = functest.read_dir(d)

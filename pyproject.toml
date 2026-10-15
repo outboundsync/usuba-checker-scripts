@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "usuba-checker"
+version = "0.1.0"          # not a release: no tags exist (docs/RELEASE_TAGS.md). Pin by commit SHA.
+description = "Usuba Checker (static + runtime plugin checks), holdout ids and the pure eval scorer"
+requires-python = ">=3.10"
+dependencies = []          # stdlib only; the runtime check needs bwrap + Quickshell on the host, the static Checker needs neither
+
+[tool.setuptools]
+# The repo keeps its historical layout (bare-name imports inside functest/). The wheel exposes it under one importable name;
+# `usuba_checker/__init__.py` puts functest/ on sys.path the way the in-repo scripts do. No __init__.py is added to functest/
+# (that would change what `import functest` means for the scripts and tests).
+packages = ["usuba_checker", "usuba_checker.functest", "usuba_checker.functest.usuba", "usuba_checker.functest.dell_env", "usuba_checker.holdout"]
+include-package-data = false
+
+[tool.setuptools.package-dir]
+usuba_checker = "usuba_checker"
+"usuba_checker.functest" = "functest"
+"usuba_checker.holdout" = "eval/hancore_holdout"
+
+[tool.setuptools.package-data]
+"usuba_checker.functest.usuba" = ["*.json"]
+"usuba_checker.functest.dell_env" = ["*.txt", "*.part", "*.gz"]
+"usuba_checker.holdout" = ["plugin_ids.txt", "MANIFEST.sha256"]
+# The Omarchy reference tree (dell-ref/, 605 files + absolute symlinks) is NOT shipped in the wheel. Editable installs and checkouts use
+# the in-repo copy; anything else must set FT_OMARCHY (functest/refpaths.py raises, it never silently runs with empty API tables).

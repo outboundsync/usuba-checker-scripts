@@ -39,3 +39,6 @@ sources/repos/
 .pytest_cache/
 functest/cache/
 train/.vast_instance
+build/
+*.egg-info/
+dist/

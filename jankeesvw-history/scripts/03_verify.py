@@ -59,7 +59,7 @@ for c in commits:
     prev = collections.Counter()
     for n in sorted(rem)[:12]:
         bl = g(c['repo'], 'blame', '--porcelain', '-L', f'{n},{n}', par, '--', path).split('\n', 1)[0].split(' ')[0]
-        if bl and not bl.startswith('^') or bl: prev[bl] += 1
+        if bl: prev[bl] += 1
     rec['blame_commits'] = [(h[:10], n) for h, n in prev.most_common(3)]
     rec['reverts'] = bool(re.match(r'(?i)^revert\b', c['subject']))
     rows.append(rec)

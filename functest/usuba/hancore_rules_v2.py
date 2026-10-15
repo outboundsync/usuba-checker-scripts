@@ -280,7 +280,7 @@ def check(files, enabled=None, per_file=3):
                  or re.search(r"\bgo\s+install\s+\S+@(?:latest|master|main)\b|\bcargo\s+install\b(?![^\n]*--(?:version|locked|rev|tag))[^\n]*(?:--git|\s[\w-]+\s*$)", ln)
                  or re.search(r"https://raw\.githubusercontent\.com/[^/\s]+/[^/\s]+/(?:main|master|HEAD)/", ln)
                  or re.search(r"github\.com/[^/\s]+/[^/\s]+/releases/latest(?:/download)?", ln) or re.search(r"api\.github\.com/repos/[^/\s]+/[^/\s]+/releases/latest", ln)
-                 or re.search(r"\byay\s+-S|\bparu\s+-S|\bgit\s+pull\b|\bflatpak\s+install\b|\bpacman\s+-S\b", ln) and re.search(r"\bsudo\b|\|\|", ln) and False)
+                )
             if m and not re.search(r"(?i)^\s*(?:echo|printf|notify|log|warn|die|msg)\b|\bUsage|\bhelp\b|Please install|Install with|\bnot found|\bmissing|\bcommand\s+-v|\bhint\b", ln):
                 add("USB-HC17", p, n, f"fetches or installs code without an immutable pin (`{m.group(0).strip()[:60]}`)", "pin to a full commit SHA / exact version and verify a checksum or signature before executing")
             # ---------- H13 handled below (block level)

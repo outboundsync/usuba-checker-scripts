@@ -21,10 +21,6 @@ def lint(files):
             except subprocess.TimeoutExpired: return len(qs),-1
             if '[syntax]' in r.stdout+r.stderr: bad+=1
         return len(qs),bad
-        try: j=json.loads(r.stdout)
-        except Exception: return len(qs),-1
-        bad=sum(1 for f in j['files'] if any(w.get('id')=='syntax' or w.get('type')=='critical' and 'syntax' in w.get('message','').lower() for w in f.get('warnings',[])))
-        return len(qs),bad
 if __name__=='__main__':
     from build_parse import parse
     tot=collections.Counter()

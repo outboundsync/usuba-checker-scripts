@@ -24,7 +24,6 @@ def _not_a_command(w, files):
             for m in rx_pos.finditer(line):
                 pre = line[:m.end() - len(w)]; pre = re.sub(r"-c\s+[\'\"]\s*$", "", pre)
                 if pre.count("'") % 2 == 0 and pre.count('"') % 2 == 0: return True   # outside quotes (jq/awk filters, echo text and `x=skipped` are not commands)
-            if re.match(r"\s*-c\s+[\'\"]", line[:0]): pass
             m2 = re.search(r"(?:\bsh|\bbash)\s+-\w*c\s+([\'\"])\s*" + re.escape(w) + r"(?=\s|$|[\'\"`;)|&])", line)
             if m2: return True
             if re.search(r"[\'\"]-\w*c[\'\"]\s*,\s*[\'\"`]\s*(?:\w+=\S+\s+)*" + re.escape(w) + r"(?=\s|$|[\'\"`;)|&])", line): return True   # ["sh","-c","cmd ..."]
@@ -78,8 +77,7 @@ def _regex_start(s, i):
     return s[max(0, k - 5):k + 1].endswith("return")
 
 def strip_comments_keep_strings(s):
-    san = sanitize(s)
-    return "".join(c if (san[k] != " " or c in " \t\n") or k > 0 and _in_string(san, k) else " " for k, c in enumerate(s)) if False else _cks(s)
+    return _cks(s)
 
 def _cks(s):
     out, i, n = list(s), 0, len(s)
@@ -251,18 +249,6 @@ def direct_children(san, lb, rb):
     out, pos = [], lb + 1
     for ln in "".join(seg).split("\n"):
         out.append((pos, ln)); pos += len(ln) + 1
-    return out
-
-def _old_direct_children(san, lb, rb):
-    """yield (offset, text) of lines at depth 1 inside an object body"""
-    d, i, out, line_start = 0, lb, [], None
-    seg = san[lb:rb + 1]
-    depth = 0; pos = 0
-    for ln in seg.split("\n"):
-        if depth == 1: out.append((lb + pos, ln))
-        depth += ln.count("{") - ln.count("}")
-        pos += len(ln) + 1
-    # first line (after the opening brace) may hold inline children: "Foo { onX: y }"
     return out
 
 JS_GLOBALS = set("""Math JSON Date Object Array String Number Boolean Promise RegExp Error TypeError RangeError Map Set WeakMap
@@ -581,7 +567,7 @@ def check(files, man=None):
                 break
         for m in re.finditer(r"\.(readAllStandardOutput|readAllStandardError|readAll|waitForFinished|waitForStarted)\s*\(", san):
             add("USB-A01", "error", p, f"line {lineno(c, m.start())}: `.{m.group(1)}()` is a C++ QProcess/QFile method, not available in QML", "read output via `stdout: StdioCollector { onStreamFinished: ... this.text }`, files via FileView.text()"); break
-        for m in re.finditer(r"XMLHttpRequest[\s\S]{0,300}?['\"]file://", san if False else cf):
+        for m in re.finditer(r"XMLHttpRequest[\s\S]{0,300}?['\"]file://", cf):
             add("USB-A01", "error", p, f"line {lineno(c, m.start())}: XMLHttpRequest on file:// URLs is disabled in Quickshell", "read local files with FileView"); break
         # `new X(` of a QML type
         for m in re.finditer(r"\bnew\s+([A-Z]\w*)\s*\(", san):
@@ -605,7 +591,7 @@ def check(files, man=None):
             o["id"] = im
             tdef = resolve(o["type"], env, aliases)
             if tdef is None and not open_world:
-                homes = [h for h in ALL_TYPE_HOMES.get(o["type"].split(".")[-1], []) if not h.startswith(("QtQuick.Controls.", "QtQuick.Templates")) or True]
+                homes = [h for h in ALL_TYPE_HOMES.get(o["type"].split(".")[-1], []) ]
                 local = [f for f in files if posixpath.basename(f) == o["type"] + ".qml"]
                 if local: hint = f"{local[0]} exists but is not in this file's directory; add `import \"{posixpath.relpath(posixpath.dirname(local[0]) or '.', posixpath.dirname(p) or '.')}\"`"
                 elif homes: hint = f"add `import {sorted(homes, key=len)[0]}`" + (" (Qt6 GraphicalEffects need Qt5Compat.GraphicalEffects or QtQuick.Effects MultiEffect)" if o["type"] == "DropShadow" else "")
@@ -709,7 +695,6 @@ def check(files, man=None):
                 smem, sok = scope(a + m.start(1))
                 if nm in smem or not sok: continue
                 if nm in declared or nm in ctx or nm in JS_GLOBALS or nm in ("return", "typeof", "new", "delete", "void", "in", "of", "if", "else", "case", "throw", "await", "yield", "instanceof", "do", "true", "false", "null", "undefined") or open_world: continue
-                if re.search(r"\b" + nm + r"\b", " ".join(json.dumps(x) for x in [list(env)[:0]])): continue
                 pos = a + m.start(1)
                 in_try = re.search(r"\btry\s*\{", san[max(0, pos - 2000):pos]) is not None
                 add("USB-J01", "error", p, f"line {lineno(c, pos)}: `{nm}` is never declared (no property, id, var or parameter) - ReferenceError at runtime" + (", silently swallowed by try/catch so the feature just shows nothing" if in_try else ""),
@@ -746,7 +731,7 @@ def check(files, man=None):
             sev = "medium" if plugin_io else "high"
             add("USB-H02", sev, p, f"line {lineno(c, mm.start())}: hardcoded reading `{mm.group(2)}` shown as live data", "bind the text to a property filled from a real data source")
             break
-    allq = "\n".join(sanitize(c) if False else c for p, c in qml.items() if p.endswith(".qml"))
+    allq = "\n".join(c for p, c in qml.items() if p.endswith(".qml"))
     logs = len(re.findall(r"\bconsole\.(log|debug|info)\(", allq))
     if qml and not plugin_io and logs >= 3:
         add("USB-H03", "high", "*", f"{logs} console.log calls and no real side effect anywhere (no Process, exec, FileView, IPC or service): handlers only log", "make each handler do the real action (Process / Quickshell.execDetached / omarchy-shell IPC / settings write)")

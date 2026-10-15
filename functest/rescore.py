@@ -54,8 +54,7 @@ def task_findings(h, files, output=None):
         # a short summary before the files is fine; self-correcting drafts or a long essay are not a deliverable
         if len(pre) > 4000 or re.search(r"(?m)^(Wait|Actually|Hmm|Hold on|Let me (?:re|think|check|start)|Let's (?:re|think|start))\b", pre):
             out.append(["usuba-USB-T03", f"[USB-T03] the answer starts with {len(pre)} chars of leaked reasoning/prose before the first file. Fix: return only the files, as `### path` + fenced code"])
-    if False: pass
-    elif not code:
+    if not code:
         out.append(["usuba-USB-T01", f"[USB-T01] {task} answer contains no plugin code (only {', '.join(sorted(files)) or 'nothing'}); a manifest alone is not a plugin. Fix: return the QML entry point(s) the manifest names, in full"])
     return out
 
