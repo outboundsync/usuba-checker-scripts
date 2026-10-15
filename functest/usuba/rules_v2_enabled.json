@@ -1,0 +1,27 @@
+{
+ "criterion": "decided on the design split only: plugin precision >=0.30 and lift >=1.38, or file-level precision >=0.17; false-hit rate on works-without-finding <=0.10",
+ "enabled": [
+  "USB-H01",
+  "USB-H02",
+  "USB-H04",
+  "USB-H05",
+  "USB-H08",
+  "USB-H09",
+  "USB-H10",
+  "USB-H15",
+  "USB-H16",
+  "USB-H17"
+ ],
+ "experimental": [
+  "USB-H06",
+  "USB-H11",
+  "USB-H13",
+  "USB-H14"
+ ],
+ "dropped": [
+  "USB-H03",
+  "USB-H07",
+  "USB-H12",
+  "USB-H18"
+ ]
+}
