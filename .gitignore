@@ -1,0 +1,37 @@
+# secrets and local config
+.env
+.env.*
+*.pem
+id_rsa*
+*.key
+# private device / evaluation material that must never be committed
+dell/
+dell_rounds/
+dell_loop/
+dell-batch*/
+dell-smoke*/
+**/dell_ground_truth*
+**/labels_*
+teacher-*
+*.raw.jsonl
+*.reason.json
+eval/hancore_holdout/manifest.jsonl
+eval/hancore_holdout/code/
+eval/hancore_holdout/results/*raw*
+data/reviews/
+data/hancore_reviewer/
+runs/**/gen_*
+# weights and big artefacts (host on Hugging Face)
+*.safetensors
+*.gguf
+*.bin
+*.pt
+merged*/
+out/
+# fetched third-party sources and caches
+sources/repos/
+**/__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+functest/cache/

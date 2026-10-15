@@ -2,7 +2,7 @@
 """hyprctl emulator replaying Hyprland 0.56.2 reply shapes (fixtures/hyprland-0.56.2). Used inside the functest sandbox."""
 import json, os, sys, re
 FX = os.environ.get("FT_HYPR_FX") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "../fixtures/hyprland-0.56.2")
-# values marked set=true on the Dell (fixtures/hyprland-0.56.2/dell-capture/getoption.txt)
+# default option overrides for the emulator (reference values: gaps, border, rounding, layout)
 OVR = {"general:gaps_out": "16 16 16 16", "general:gaps_in": "8 8 8 8", "general:border_size": "4", "decoration:rounding": "24",
        "general:layout": "dwindle", "input:kb_layout": "us", "input:kb_options": "compose:caps"}
 KEY = {"Int": "int", "Color": "int", "Bool": "bool", "Float": "float", "String": "str", "CssGap": "css", "Gradient": "gradient",

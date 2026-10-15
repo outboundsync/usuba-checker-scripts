@@ -51,6 +51,7 @@ class D02(unittest.TestCase):
     def test_bar_widget_not_checked(self):
         f = {"manifest.json": man(kinds=["bar-widget", "panel"], entryPoints={"panel": "Panel.qml", "barWidget": "W.qml"}), "Panel.qml": "Item {}", "W.qml": "Item {}"}
         self.assertNotIn("USB-D02", {x["rule"] for x in dell_learned.check(f)})
+@unittest.skipUnless(os.path.exists(os.path.join(os.path.dirname(FT), "dell", "sweep", "build_results.py")), "needs the private device-sweep tooling (not published)")
 class SeverityRule(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

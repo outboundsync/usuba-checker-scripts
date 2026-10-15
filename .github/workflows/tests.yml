@@ -1,0 +1,19 @@
+name: tests
+on:
+  push:
+    branches: [main]
+    tags: ['*']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pytest
+      - name: Unit tests (CPU only, no network, no model)
+        run: python3 -m pytest -q

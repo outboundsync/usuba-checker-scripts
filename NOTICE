@@ -1,0 +1,13 @@
+usuba-checker-scripts
+
+Copyright (c) 2026 Harris Kenny. Licensed under the MIT License (LICENSE).
+
+Third-party material included in this repository:
+
+1. basecamp/omarchy 4.0.4 (https://github.com/basecamp/omarchy), MIT, Copyright (c) David Heinemeier Hansson.
+   Files: dell-ref/omarchy-4.0.4/**, functest/dell_env/omarchy-shell-ref.tar.gz, validator/omarchy-plugin-validate (the licence text is in validator/OMARCHY-LICENSE).
+   The MIT permission and copyright notice must stay with copies of these files.
+2. Hyprland 0.56.2 reply shapes (https://github.com/hyprwm/Hyprland), BSD-3-Clause, Copyright (c) 2022-2026 vaxerski. Only output formats are reproduced in
+   functest/fixtures/hyprland-0.56.2/ (all device, monitor and window values are placeholders).
+
+Review threads, plugin sources and model outputs are not distributed here; see docs/REPLICATION.md.
