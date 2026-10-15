@@ -26,6 +26,11 @@ KEY = {g["id"]: g for g in map(json.loads, open(os.path.join(ROOT, "functest", "
 def parse(txt, finish_reason=None):
     """Schema-validated answer or None: the same parser run_eval/rescore use (audit B3: this file had its own loose copy)."""
     return scoring.parse_answer(txt, finish_reason)[0]
+def parse_judge(txt):
+    """The JUDGE's reply ({"match": bool, "why": str}). Not the reviewer schema: parse() above validates reviewer answers and rejected every judge reply (judge error ValueError on all rows)."""
+    m = re.search(r"\{.*\}", txt or "", re.S)
+    try: return json.loads(m.group(0)) if m else None
+    except ValueError: return None
 def findings(out):
     F = [f for f in (out or {}).get("findings") or [] if isinstance(f, dict)]
     B = [f for f in F if str(f.get("severity", "")).lower() == "blocker"]
@@ -87,7 +92,7 @@ def judge(a, pid, F):
     for i in range(4):
         try:
             with urllib.request.urlopen(req, timeout=120) as r: j = json.load(r)
-            spent = (j.get("usage") or {}).get("cost", 0) or 0; o = parse(j["choices"][0]["message"].get("content"))
+            spent = (j.get("usage") or {}).get("cost", 0) or 0; o = parse_judge(j["choices"][0]["message"].get("content"))
             if not o or "match" not in o: raise ValueError("judge reply was not the JSON asked for")
             return bool(o.get("match")), o.get("why"), spent
         except urllib.error.HTTPError as e:
