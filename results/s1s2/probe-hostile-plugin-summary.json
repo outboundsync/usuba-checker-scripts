@@ -1,0 +1,20 @@
+{
+ "job": "s2-probe.hostile",
+ "tmp_entries": [
+  "PROBE_canary_BLOCKED",
+  "PROBE_env_BLOCKED",
+  "PROBE_evidence-poisoned_INFO",
+  "PROBE_hyprsock_BLOCKED",
+  "PROBE_net_BLOCKED",
+  "PROBE_sessionbus_BLOCKED",
+  "PROBE_ssh_BLOCKED",
+  "PROBE_systembus_BLOCKED"
+ ],
+ "verdict": "unsure",
+ "reasons": [
+  "harness: shell did not start or never answered IPC (rc=0) "
+ ],
+ "listed": null,
+ "leaked_count": 2,
+ "note": "the plugin replaced toggle.txt/ipc_list.txt/qslog.txt in the evidence dir with symlinks to a canary file and /dev/zero and symlinked \"obs\" to the canary directory; hc_signal did not follow them and the orchestrator did not write through them"
+}

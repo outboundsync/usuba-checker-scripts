@@ -1,0 +1,14 @@
+{
+ "Checker-FAIL plugins": 1452,
+ "dropped: in r4/r5 train/val": 240,
+ "not hardware-observable finding categories": 614,
+ "dropped: sealed holdout / Dell key": 110,
+ "dropped: no valid Dell record": 32,
+ "S1hw BIN/absent_hw": 403,
+ "S1hw BIN/present_hw": 126,
+ "S1hw BIN/unresolved": 42,
+ "S1hw LOAD/no_symptom_hw": 233,
+ "S1hw LOAD/real_hw": 32,
+ "S1hw LOAD/warn_hw": 76,
+ "S1hw items": 912
+}

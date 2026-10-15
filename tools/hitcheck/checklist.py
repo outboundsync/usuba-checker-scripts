@@ -47,7 +47,9 @@ def evaluate(r, cand):
     shim = [c for c in (r.get("shim_calls") or []) if c and c[0] not in ("hyprctl", "pacman", "flatpak", "systemctl", "gsettings", "dconf", "loginctl", "busctl")]
     if shim:
         strange.append("refused-calls:" + ",".join(sorted({c[0] for c in shim})))
-    if r.get("leaked"):
+    # the runner's own inotifywait evidence watcher is always alive at the end; it is not the plugin's
+    leaked = [x for x in (r.get("leaked") or []) if "inotifywait" not in str(x)]
+    if leaked:
         strange.append("leaked-procs")
     fw = [e["path"] for e in (r.get("files_written") or []) if not e["path"].startswith(BENIGN_FILES) and e["type"] != "d"]
     if fw:

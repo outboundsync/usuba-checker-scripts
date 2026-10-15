@@ -1,0 +1,18 @@
+{
+ "sweep rows": 5679,
+ "works + old Checker pass": 3938,
+ "clean Dell record (no qml errors, deps, leaks)": 3709,
+ "excluded: sealed holdout / Dell key (repo or id)": 244,
+ "excluded: in r4/r5 train/val": 724,
+ "pool before content guard": 2741,
+ "oversampled": 441,
+ "dropped: fails the CURRENT Checker": 14,
+ "excluded: content matches holdout/Dell key": 31,
+ "candidates kept": 267,
+ "kept panel": 70,
+ "kept overlay": 60,
+ "kept menu": 25,
+ "kept bar": 7,
+ "kept service": 45,
+ "kept bar-widget": 60
+}

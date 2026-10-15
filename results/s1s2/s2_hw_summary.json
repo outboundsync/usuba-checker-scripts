@@ -1,0 +1,18 @@
+{
+ "provisional": true,
+ "n": 221,
+ "auto": {
+  "PASS_AUTO": 169,
+  "REVIEW": 51,
+  "FAIL": 1
+ },
+ "hw_verdict": {
+  "works": 220,
+  "broken": 0,
+  "unsure": 1
+ },
+ "spot_check": 81,
+ "with_screenshots": 0,
+ "surface_kinds_opened": 100,
+ "surface_kinds_not_opened": 26
+}
