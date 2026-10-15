@@ -18,12 +18,12 @@ Plugin source trees are **not** stored here. Repos used as test subjects or data
 `sources/fetch_plugin_sources.py`. Trees without a permissive LICENSE file are not redistributed and not listed.
 
 ## 3. Mining pipelines
-- `hancore/fetch.py` re-downloads the public marketplace review threads (needs a GitHub token in `GH_TOKEN`; the downloaded text is **not** redistributed, thread URLs are the source of truth). `hancore/measure_*.py` then recompute `hancore/rule_metrics.json`.
-- `train/version_history/01..05_*.py` and `jankeesvw-history/scripts/01..10_*.py`: bug-fix history mining, run in numeric order. They clone public repos and call the Checker; LLM judging steps use an OpenAI-compatible endpoint configured by env vars (`OPENROUTER_API_KEY`), cached verdicts are not published.
+- `hancore/fetch.py` downloads **plugin code** (a read-only GitHub tarball of a repo at a commit, through `gh api`, needs a logged-in `gh`/`GH_TOKEN`, cached under `HANCORE_CACHE`). It does **not** fetch review threads: the marketplace review threads (`dell/sweep/hancore_reviews.jsonl`) are a private input that has to be re-collected from the thread URLs yourself; their text is not redistributed. `hancore/measure_*.py` then recompute `hancore/rule_metrics.json` from those two inputs.
+- `train/version_history/01..05_*.py` and `jankeesvw-history/scripts/01..10_*.py`: bug-fix history mining, run in numeric order. They clone public repos and call the Checker; LLM steps (`hancore/label_recover.py`, `retraction_check.py`, `llm_rules_v3.py`, `jankeesvw-history/scripts/02,09`, `train/version_history/04`) call OpenRouter directly (endpoint and `OPENROUTER_API_KEY` are hardcoded per script; there is no shared client or provider switch yet), open-weights models only. Failed calls are not cached, so a re-run retries them; cached verdicts are not published.
 - `winners/run_all.sh`: Checker profile of the marketplace winners.
 
 ## 4. Evaluation harness
-`eval/hancore_holdout/run_eval.py` (+ `serve_llama.sh` for a local GGUF with 32k context per slot) scores a model on the sealed holdout. The holdout manifest is private;
+`eval/hancore_holdout/run_eval.py` (+ `serve_llama.sh` for a local GGUF with 32k context per slot) scores a model on the sealed holdout. **It does not run standalone**: it imports the prompt and `checker_report` modules from `train/` in the sibling `usuba-checker-models` repo (check both repos out side by side), and `select.py` and `run_eval.py` both need the private `manifest.jsonl` plus the `eval/hancore_holdout/code/` trees it points to. The pure scorer, `scoring.py`, has no such dependency (it is what `usuba_checker.scoring` exports). The holdout manifest is private;
 ids and the SHA-256 of the manifest are in `eval/hancore_holdout/`. To use your own holdout, produce a `manifest.jsonl` with the same fields and run `select.py`/`run_eval.py` against it.
 
 ## 5. What is not reproducible from public material, and why

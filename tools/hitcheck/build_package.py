@@ -16,6 +16,7 @@ SKIPDIR = {".git", "node_modules", "target", "__pycache__", ".venv", "venv", "di
 H2HC = lambda r: r.replace("USB-H", "USB-HC") if re.match(r"USB-H\d\d$", r) else r
 ENABLED_HC = ["USB-HC01", "USB-HC02", "USB-HC04", "USB-HC05", "USB-HC08", "USB-HC09", "USB-HC10", "USB-HC15", "USB-HC16", "USB-HC17", "USB-HC19", "USB-HC20", "USB-HC25"]
 ENABLED_LIFE = ["USB-L02", "USB-L03", "USB-N01", "USB-N02"]
+CHECKER_V2_REF = os.environ.get("CHECKER_V2_REF", "8754bc4d8900814697f7fc951b3b8521a77b17eb")   # branch checker-rules-v2 no longer exists in this repo (audit J)
 SKIP_RULES_OLD = ["USB-H01", "USB-H02", "USB-H06", "USB-H24", "USB-H18"]   # rules the v3-fixes skip conditions touch (H06/H18/H24 are experimental/dropped)
 
 def slug(s): return re.sub(r"[^A-Za-z0-9._-]+", "-", s).strip("-")[:60]
@@ -102,10 +103,10 @@ for d in sys.argv[2:]:
 print(json.dumps(res))
 '''
 def old_hits(dirs):
-    """hits of the pre-skip rule code (branch checker-rules-v2) on given trees"""
+    """hits of the pre-skip rule code (CHECKER_V2_REF = the former branch checker-rules-v2; this repo's commit 8754bc4) on given trees"""
     tmp = tempfile.mkdtemp(prefix="oldcr2.")
-    p = subprocess.run(["git", "-C", REPO, "archive", "checker-rules-v2", "functest"], capture_output=True)   # no shell (audit C3)
-    if p.returncode: raise SystemExit("git archive checker-rules-v2 failed: " + p.stderr.decode())
+    p = subprocess.run(["git", "-C", REPO, "archive", CHECKER_V2_REF, "functest"], capture_output=True)   # no shell (audit C3)
+    if p.returncode: raise SystemExit("git archive %s failed: " % CHECKER_V2_REF + p.stderr.decode())
     with tarfile.open(fileobj=io.BytesIO(p.stdout)) as t: t.extractall(tmp, filter="data")
     q = subprocess.run([sys.executable, "-c", OLD_RUNNER, tmp] + dirs, capture_output=True, text=True)
     shutil.rmtree(tmp, ignore_errors=True)

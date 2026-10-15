@@ -11,9 +11,9 @@ No GPU, no Dell commands, no deletions, no pushes. Excluded entirely (never read
   ```
   cd /workspace/wt-v3-fixes
   mkdir -p /tmp/jh_snap/v2 /tmp/jh_snap/v3fixes /tmp/jh_snap/v3fixes-head
-  git archive checker-rules-v2 functest train | tar -x -C /tmp/jh_snap/v2            # 57018c8
-  git archive 763fe65          functest train | tar -x -C /tmp/jh_snap/v3fixes       # v3 prep; identical findings to v2 on this data
-  git archive d00fcc0          functest train | tar -x -C /tmp/jh_snap/v3fixes-head  # v3-fixes HEAD at run time (prompt_v3, checker_report, lifecycle rules, HC rename)
+  git archive 8754bc4 functest | tar -x -C /tmp/jh_snap/v2   # former branch checker-rules-v2 (monorepo 57018c8 = this repo 8754bc4); `train` comes from the models repo
+  git archive 8754bc4          functest | tar -x -C /tmp/jh_snap/v3fixes       # monorepo 763fe65 ("v3 prep") had a functest tree identical to v2; same findings on this data
+  git archive 8d9c312          functest | tar -x -C /tmp/jh_snap/v3fixes-head  # v3-fixes HEAD at run time (monorepo d00fcc0 = this repo 8d9c312) (prompt_v3, checker_report, lifecycle rules, HC rename)
   ```
   (the archives contain `functest/dell_ground_truth.jsonl`; nothing here reads it).
 - Prompt/schema: `train/prompt_v3.py` @d00fcc0 (7-shot prefix, `P.messages`), `train/checker_report.report` @d00fcc0, row fields identical to `/workspace/usuba-runs/v3-fixes/synthetic_rows.jsonl`; tokenizer `~/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/.../tokenizer.json`, ceiling 32000 tokens (train max_len 32768).

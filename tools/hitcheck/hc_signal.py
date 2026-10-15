@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Turn one finished run directory (raw/<job>/) into ONE JSON line (stdout). Load verdict rule = DELL_LEARNINGS.md section 2 (class based, same FATAL regex as
+"""Turn one finished run directory (raw/<job>/) into ONE JSON line (stdout). Load verdict rule = tools/hitcheck/README.md "Load verdict" (class based, same FATAL regex as
 dell/sweep/build_results.py): a QML message fails a plugin only when it stops a component from being created; shell death, not listed/registered, a failing
 toggle on a panel/overlay/menu, or runaway memory also fail it. Everything else is a warning. Evidence fields (shim_calls, child_cmds, tmp_entries,
 files_written, ipc_out, log_lines) feed analyze_results.py.   usage: hc_signal.py RAWDIR jobs.json JOB PLUGIN_ID"""

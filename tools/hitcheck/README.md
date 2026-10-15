@@ -56,7 +56,7 @@ Per rule: n, works, broken, unsure, and defect observable at three strengths: `d
 Skip cases are a separate table; `direct` there would mean a skip condition hid a real defect.
 Per pair: pre-fix broken?, pre-fix differs? (new warning/IPC/process/toggle signature compared with post-fix), post-fix works?, confirmed = (pre broken or differs) and post works; totals and by bug kind.
 
-## Load verdict (same class-based rule as `DELL_LEARNINGS.md` section 2)
+## Load verdict (same class-based rule as the private Dell-learnings notes; this section is the public statement of it)
 broken = the shell died before s20, the plugin is not listed, a fatal QML message (not a type/module missing, syntax, failed to load, cannot create delegate, `Required property ... was not initialized`), a failing toggle on a panel/overlay/menu, or memory growth > 300 MB in 20 s.
 unsure = harness failure (shell never answered IPC), a missing dependency binary, or a job timeout. works = everything else (other QML messages are warnings).
 
