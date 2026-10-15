@@ -7,10 +7,10 @@
 #         run_hitcheck.sh [A|B|all]            env: P=3 (parallel) TIMEOUT=70 (s per plugin) NET=0|1  SESSION_ACCESS=0|1  ALLOW_NO_SANDBOX=0|1  SHELL_SRC=/usr/share/omarchy/shell  ONLY=job1,job2  LIMIT=n
 # results: ~/usuba-hitcheck/results/hitcheck-results.jsonl  (one line per plugin; resumable: finished jobs are skipped; `touch ~/usuba-hitcheck/STOP` ends the run after the running jobs)
 set -euo pipefail
-BASE="$HOME/usuba-hitcheck"; PKG="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+BASE="${BASE:-$HOME/usuba-hitcheck}"; PKG="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 SHELL_SRC=${SHELL_SRC:-/usr/share/omarchy/shell}; P=${P:-3}; TIMEOUT=${TIMEOUT:-70}; RUNSEC=${RUNSEC:-24}; NET=${NET:-0}; SESSION_ACCESS=${SESSION_ACCESS:-0}; ALLOW_NO_SANDBOX=${ALLOW_NO_SANDBOX:-0}
-QS=${QS:-$(command -v quickshell)}; RES="$BASE/results"; JSONL="$RES/hitcheck-results.jsonl"
-export BASE PKG SHELL_SRC P TIMEOUT RUNSEC NET SESSION_ACCESS ALLOW_NO_SANDBOX QS RES JSONL
+OBSERVE=${OBSERVE:-0}; QS=${QS:-$(command -v quickshell)}; RES="$BASE/results"; JSONL="$RES/hitcheck-results.jsonl"
+export BASE PKG OBSERVE SHELL_SRC P TIMEOUT RUNSEC NET SESSION_ACCESS ALLOW_NO_SANDBOX QS RES JSONL
 
 # Job names / plugin ids end up in `rm -rf` paths: letters, digits, . _ - only, and never "." / ".." / leading "-".
 valid_name() { [[ "${1:-}" =~ ^[A-Za-z0-9._-]+$ ]] && [[ "$1" != "." && "$1" != ".." && "$1" != -* ]]; }
@@ -73,6 +73,54 @@ preflight() {
   return $bad
 }
 
+# ------------------------------------------------------------------ host-side surface observer (OBSERVE=1; runs OUTSIDE the sandbox, writes only to $BASE/obs/<job>, never into the plugin-writable dir)
+# Takes hyprctl layer/window snapshots of the surfaces owned by this job's quickshell pid (compositor-reported pid) at: loaded (after listPlugins), open (2 s after the 1st toggle),
+# closed (2 s after the 2nd toggle), and a grim crop of each surface rectangle (the plugin's own surfaces only, never the whole screen). Skipped when the display is asleep.
+observe_job() {
+  local J=$1 D=$2 OBS=$3 BWPID=${4:-} QPID="" i n
+  set +e   # an observer failure must never affect the job
+  mkdir -p "$OBS"
+  for i in $(seq 1 60); do QPID=$(pgrep -f "quickshell -n -p $J/shell" | head -1 || true); [ -n "$QPID" ] && break; sleep 0.5; done
+  [ -n "$QPID" ] || { echo "no quickshell pid" > "$OBS/error.txt"; return 0; }
+  echo "$QPID" > "$OBS/qpid.txt"
+  nexit() { local f="$D/$1"; if [ -f "$f" ] && [ ! -L "$f" ]; then timeout 2 grep -c '^exit=' "$f" 2>/dev/null || true; else echo 0; fi; }
+  snap() {
+    local tag=$1 f="$OBS/surfaces_$1.txt" k=0 ns g dp
+    { timeout 5 hyprctl layers -j 2>/dev/null | python3 -c '
+import json,sys
+try: d=json.load(sys.stdin)
+except Exception: sys.exit(0)
+p=int(sys.argv[1])
+for mon,v in d.items():
+  for lv,L in v.get("levels",{}).items():
+    for x in L:
+      if x.get("pid")==p: print("layer\t"+x["namespace"].replace("/","_").replace(" ","_")+"\t%d,%d %dx%d\t%s"%(x["x"],x["y"],x["w"],x["h"],mon))
+' "$QPID"
+      timeout 5 hyprctl clients -j 2>/dev/null | python3 -c '
+import json,sys
+try: d=json.load(sys.stdin)
+except Exception: sys.exit(0)
+p=int(sys.argv[1])
+for x in d:
+  if x.get("pid")==p: print("window\t"+str(x.get("class","")).replace(" ","_")+"\t%d,%d %dx%d\t%s"%(x["at"][0],x["at"][1],x["size"][0],x["size"][1],x.get("monitor")))
+' "$QPID"; } > "$f" 2>/dev/null || true
+    dp=$(timeout 5 hyprctl monitors -j 2>/dev/null | python3 -c 'import json,sys
+try: print(all(m.get("dpmsStatus",True) for m in json.load(sys.stdin)))
+except Exception: print(False)')
+    [ "$dp" = True ] || return 0
+    while IFS=$'\t' read -r _ ns g _; do
+      [ -z "$g" ] && continue; k=$((k+1)); [ $k -gt 3 ] && break
+      case "$g" in *" 0x"*|*" 1x"*|*" 2x"*|*" 3x"*|*" 4x"*) continue;; esac
+      timeout 5 grim -g "$g" "$OBS/shot_${tag}_${k}_${ns}.png" 2>/dev/null || true
+    done < "$f"
+  }
+  alive() { [ -z "$BWPID" ] || kill -0 "$BWPID" 2>/dev/null; }
+  for i in $(seq 1 80); do [ "$(nexit ipc_list.txt)" -ge 1 ] && break; alive || return 0; sleep 0.5; done; sleep 0.5; alive || return 0; snap loaded
+  for i in $(seq 1 60); do [ "$(nexit toggle.txt)" -ge 1 ] && break; alive || return 0; sleep 0.5; done; sleep 2; alive || return 0; snap open
+  for i in $(seq 1 80); do [ "$(nexit toggle.txt)" -ge 2 ] && break; alive || return 0; sleep 0.5; done; sleep 2; alive || return 0; snap closed
+  return 0
+}
+
 # ------------------------------------------------------------------ one job, orchestrator side (prepares the fake HOME, runs the driver in the sandbox, extracts signals)
 job_main() {
   local JOB=${1:-} DIR="" ID="" KINDS=""
@@ -131,7 +179,12 @@ SHIM
     [ "$SESSION_ACCESS" = 1 ] || ENVV+=(HC_PIDNS=1)
     build_bwrap_args "$J" "$RH" "$XRD"
     # stdin from /dev/null; env is rebuilt inside bwrap (--clearenv), so nothing from the user's shell leaks in
-    timeout -k 5 "$TIMEOUT" env -i PATH="$PATH" bwrap "${BW[@]}" /bin/bash "$J/driver.sh" --driver >"$D/driver_stdout.txt" 2>&1 </dev/null || RC=$?
+    local BWPID OBPID=""
+    timeout -k 5 "$TIMEOUT" env -i PATH="$PATH" bwrap "${BW[@]}" /bin/bash "$J/driver.sh" --driver >"$D/driver_stdout.txt" 2>&1 </dev/null &
+    BWPID=$!
+    if [ "${OBSERVE:-0}" = 1 ]; then observe_job "$J" "$D" "$BASE/obs/$JOB" "$BWPID" & OBPID=$!; fi
+    wait "$BWPID" || RC=$?
+    [ -n "$OBPID" ] && { wait "$OBPID" || true; }
     echo sandbox > "$D/mode.txt"
   elif [ "$ALLOW_NO_SANDBOX" = 1 ]; then
     echo "WARNING: running $JOB WITHOUT a sandbox (ALLOW_NO_SANDBOX=1): the plugin has your user's full access" >&2
@@ -141,6 +194,7 @@ SHIM
   else echo "no bwrap sandbox; set ALLOW_NO_SANDBOX=1 to run without" >&2; rm -rf -- "$J"; return 3; fi
   echo "$RC $(( $(date +%s) - T0 ))" > "$D/rc.txt"
   rm -rf "$RES/raw/$JOB"; mkdir -p "$RES/raw"; mv "$D" "$RES/raw/$JOB"
+  if [ -d "$BASE/obs/$JOB" ]; then rm -rf -- "$RES/raw/$JOB/obs"; mv "$BASE/obs/$JOB" "$RES/raw/$JOB/obs"; fi   # rm first: the plugin could have left "obs" as a symlink, and mv would then write through it
   python3 "$PKG/hc_signal.py" "$RES/raw/$JOB" "$PKG/jobs.json" "$JOB" "$ID" | flock "$RES/.lock" tee -a "$JSONL" >/dev/null || echo "hc_signal failed for $JOB" >&2
   rm -rf -- "$J"; echo "done $JOB"
 }

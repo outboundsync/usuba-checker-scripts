@@ -82,6 +82,24 @@ def ent(n):
 rec["tmp_entries"] = ent("tmp_entries.tsv")[:100]; rec["files_written"] = [e for e in ent("files_written.tsv") if not e["path"].startswith((".cache/", ".local/state/quickshell"))][:100]
 rec["ipc_out"] = {l.split("\t")[0]: l.split("\t", 1)[1][:300] for l in lines("ipc_out.txt") if "\t" in l}
 rec["leaked"] = [l[:160] for l in lines("leaked_procs.txt")][:6]
+# host-side surface observation (run_hitcheck.sh OBSERVE=1): files written by the orchestrator outside the sandbox, never by the plugin
+obsd = os.path.join(raw, "obs")
+if os.path.isdir(obsd) and not os.path.islink(obsd):
+    def surf(tag):
+        out = []
+        try:
+            for l in open(os.path.join(obsd, f"surfaces_{tag}.txt"), errors="replace").read().splitlines():
+                f = l.split("\t")
+                if len(f) >= 3: out.append(dict(kind=f[0], ns=f[1], rect=f[2], mon=f[3] if len(f) > 3 else ""))
+        except OSError: return None
+        return out
+    S3 = {t: surf(t) for t in ("loaded", "open", "closed")}
+    if any(v is not None for v in S3.values()):
+        key = lambda x: (x["kind"], x["ns"])
+        L0, L1, L2 = ({key(x) for x in (S3[t] or [])} for t in ("loaded", "open", "closed"))
+        rec["obs"] = dict(loaded=sorted(" ".join(k) for k in L0), opened=sorted(" ".join(k) for k in L1 - L0), closed=sorted(" ".join(k) for k in (L1 - L0) - L2),
+                          still_open=sorted(" ".join(k) for k in (L1 - L0) & L2), surfaces={t: S3[t] for t in S3},
+                          shots=sorted(f for f in os.listdir(obsd) if f.endswith(".png")))
 kinds = set(meta.get("kinds") or [])
 reasons = []; verdict = "works"
 if not S or rec["wayland_fail"] or (rec["ipc_ok"] is False and (rec["died_at_s"] is None or rec["died_at_s"] <= 3)):
