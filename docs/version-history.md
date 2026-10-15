@@ -4,7 +4,7 @@ Goal: (buggy version, fixed version, fix diff) pairs from plugin git history, wi
 
 ## Replicate (exact commands, from repo root `train/version_history/`, outputs go to `data/` under cwd)
 ```
-python3 01_build_universe.py      # reads corpus.jsonl, registry_repos/*/.git remotes, holdout plugin_ids.txt, and ONLY the 'id' field of dell_ground_truth.jsonl
+mkdir -p data && python3 01_build_universe.py      # reads corpus.jsonl, registry_repos/*/.git remotes, holdout plugin_ids.txt, and ONLY the 'id' field of dell_ground_truth.jsonl
 python3 02_clone_history.py       # git clone --bare --filter=blob:none --single-branch, 24 threads, 120 s timeout -> /workspace/vh_repos (~5,146 ok)
 python3 03_mine_candidates.py     # 8 threads; MAXCAND=120 fix-message commits/repo; skips jankeesvw
 MAXC=1400 python3 03b_prefilter.py   # deterministic, random.seed(0)
