@@ -1,7 +1,6 @@
 """Sandbox hardening tests (audit C1, C2, C3). Argument checks always run; real bwrap checks run only where bwrap works."""
 import os
 import shutil
-import stat
 import subprocess
 import sys
 
@@ -47,11 +46,11 @@ def test_runtime_sandbox_args_do_not_bind_root(runtime, tmp_path):
 
 
 @needs_bwrap
-def test_runtime_sandbox_hides_home_run_and_stdin(runtime, tmp_path):
+def test_runtime_sandbox_hides_home_run_and_stdin(runtime, tmp_path, monkeypatch):
+    monkeypatch.setenv("SECRET", "x")   # inherited by the harness process; --clearenv must hide it
     secret = os.path.expanduser("~")
     probe = ("ls -A /home /root /run | tr '\\n' ' '; echo; test -e %s/.config && echo HOMEVISIBLE; "
              "readlink /proc/self/fd/0; env | grep -c ^SECRET= ; true") % secret
-    env = dict(os.environ, SECRET="x")
     cmd = runtime.sandbox_cmd(str(tmp_path), {"HOME": str(tmp_path)}, ["/bin/bash", "-c", probe], runs=str(tmp_path), omarchy=runtime.OMARCHY)
     out, timed_out = runtime.run_capped(cmd, 30)
     txt = out.decode()

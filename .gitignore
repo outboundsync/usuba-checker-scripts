@@ -20,7 +20,10 @@ eval/hancore_holdout/code/
 eval/hancore_holdout/results/*raw*
 data/reviews/
 data/hancore_reviewer/
-runs/**/gen_*
+runs/**/gen_*.json
+runs/**/gen_*.jsonl
+runs/**/gen_*.txt
+runs/**/gen_*.log
 # weights and big artefacts (host on Hugging Face)
 *.safetensors
 *.gguf
@@ -35,3 +38,4 @@ sources/repos/
 .venv/
 .pytest_cache/
 functest/cache/
+train/.vast_instance

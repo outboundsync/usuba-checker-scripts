@@ -189,7 +189,8 @@ def point_metrics(rows):
     """Metrics (unrounded, ``None`` when undefined) for rows with keys label, verdict, gt, pred."""
     pos = [r for r in rows if r["label"] == "positive"]
     neg = [r for r in rows if r["label"] == "negative"]
-    flag = lambda r: r["verdict"] == "changes_requested"
+    def flag(r):
+        return r["verdict"] == "changes_requested"
     tp = gtn = prn = 0
     for r in rows:
         g, p = set(r["gt"]) & SCORED_SET, set(r["pred"]) & SCORED_SET
@@ -273,8 +274,8 @@ def mcnemar_exact(correct_a, correct_b):
     """Two-sided exact McNemar p-value on paired per-row correctness vectors (same row order). Returns (b, c, p)."""
     if len(correct_a) != len(correct_b):
         raise ValueError("paired vectors differ in length")
-    b = sum(1 for x, y in zip(correct_a, correct_b) if x and not y)
-    c = sum(1 for x, y in zip(correct_a, correct_b) if y and not x)
+    b = sum(1 for x, y in zip(correct_a, correct_b, strict=True) if x and not y)
+    c = sum(1 for x, y in zip(correct_a, correct_b, strict=True) if y and not x)
     n = b + c
     if n == 0:
         return b, c, 1.0

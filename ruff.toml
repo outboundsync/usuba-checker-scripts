@@ -1,0 +1,20 @@
+# Lint gate (audit I/J). The legacy code base is dense (semicolon chains, one-line try/except); it is brought under ruff file by file:
+# `include` lists the files that are clean today. Add a file here when you touch it; never add a file with suppressions to get it in.
+line-length = 160
+target-version = "py310"
+include = [
+  "eval/hancore_holdout/scoring.py",
+  "eval/hancore_holdout/rescore.py",
+  "functest/refpaths.py",
+  "functest/usuba/provenance.py",
+  "functest/usuba/registry.py",
+  "tools/hitcheck/hc_safe.py",
+  "tests/*.py",
+]
+
+[lint]
+select = ["E4", "E7", "E9", "F", "B", "S", "E722", "BLE"]
+ignore = ["S101", "S603", "S607", "S311"]   # assert in tests; subprocess with list args is how the harness works; random is for bootstrap, not crypto
+
+[lint.per-file-ignores]
+"tests/*.py" = ["S", "B011", "E702", "E401", "E741"]
