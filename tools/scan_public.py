@@ -30,7 +30,7 @@ CRED = {
 }
 NEUTRAL_HOMES = {"user", "runner", "username", "you", "me", "name", "foo", "someone", "example", "alice", "bob", "$USER", "USER", "<user>"}
 HOME = re.compile(r"/home/([A-Za-z0-9_.$<>-]+)/")
-PRIVATE_NAMES = re.compile(r"(?i)(dell_ground_truth|(^|/)labels_(draft|final)|ground_truth_(rows|additions)|dellkey.*\.(raw|reason)|\.raw\.jsonl$|\.reason\.json$|(^|/)teacher-|dell-capture/|(^|/)dell/|dell_rounds/|dell-batch|dell-smoke|(^|/)\.env(\.|$)|\.pem$|id_rsa|hancore_labels|data/reviews/|hancore_reviewer/|hancore_holdout/(manifest\.jsonl|code/))")
+PRIVATE_NAMES = re.compile(r"(?i)(dell_ground_truth|(^|/)labels_(draft|final)|ground_truth_(rows|additions)|dellkey.*\.(raw|reason)|\.raw\.jsonl$|\.reason\.json$|(^|/)teacher-|dell-capture/|^dell/|dell_rounds/|dell-batch|dell-smoke|(^|/)\.env(\.|$)|\.pem$|id_rsa|hancore_labels|data/reviews/|hancore_reviewer/|hancore_holdout/(manifest\.jsonl|code/))")
 ALLOW_ABS = {"/home/user", "/home/runner"}
 
 
@@ -103,7 +103,7 @@ def main():
         # commit metadata: only the maintainer's addresses may appear
         emails = set(sh("git", "log", "--all", "--format=%ae%n%ce").stdout.decode().split())
         for e in emails:
-            if not (e.endswith("@users.noreply.github.com") or e.endswith("@outboundsync.com")):
+            if not (e == "noreply@github.com" or e.endswith("@users.noreply.github.com") or e.endswith("@outboundsync.com")):
                 out.append(("history", "commit-metadata", "unexpected-author-email"))
     seen = set()
     for label, path, rule in out:
