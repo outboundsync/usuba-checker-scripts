@@ -53,7 +53,8 @@ def test_supply_chain():
     r = L.check(f, ALL); assert sorted((x["rule"], x["file"], x["line"]) for x in r) == [("USB-W11", "install.sh", 1), ("USB-W12", ".github/workflows/ci.yml", 2), ("USB-W13", "setup.sh", 1)]
 def test_prompt_shots_agree_with_rules():
     sys.path[:0] = [os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../train")]
-    import prompt_v3 as P
+    import pytest
+    P = pytest.importorskip("prompt_v3", reason="prompt_v3 lives in the usuba-checker-models repo")
     for i, (inp, out) in enumerate(P.SHOTS, 1):
         hit = [x["rule"] for x in L.check(inp["files"], ALL)]
         assert (hit == ["USB-L01"]) == (i == 7), (i, hit)   # only the broken lifecycle shot fires; shot 6 (clean overlay with open/close) must not
