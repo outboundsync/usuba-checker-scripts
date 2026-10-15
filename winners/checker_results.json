@@ -1,0 +1,272 @@
+{
+ "akshar.radio-atlas": {
+  "usuba_checks": [],
+  "static_checks": {
+   "fails": [],
+   "flags": [
+    [
+     "footgun",
+     "RadioAtlas.qml: Style.font.heading is VPS-unsafe"
+    ]
+   ]
+  },
+  "h_v3_enabled": [
+   {
+    "rule": "USB-H01",
+    "category": "unbounded-input-resource",
+    "file": "radio-player",
+    "line": 575,
+    "reason": "curl/wget response is not size-limited (--max-time is a time limit, not a byte cap); a hostile or compromised endpoint can stream unbounded data into memory/disk",
+    "hint": "add --max-filesize N (and head -c N / a producer-side cap) and reject overflow",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H02",
+    "category": "unbounded-input-resource",
+    "file": "radio-mpris",
+    "line": 35,
+    "reason": "socket readline() without a length limit (unbounded request line)",
+    "hint": "use readline(N) and reject lines that reach N",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H02",
+    "category": "unbounded-input-resource",
+    "file": "radio-mpris",
+    "line": 67,
+    "reason": "socket recv loop accumulates data with no total-size ceiling",
+    "hint": "enforce a maximum frame/request size and close the connection when exceeded",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H24",
+    "category": "shell-lua-injection",
+    "file": "radio-window",
+    "line": 38,
+    "reason": "shell eval of a variable-expanded string (model-proposed rule)",
+    "hint": "see rule summary; validate/escape the value or pin/verify before use",
+    "severity": "medium"
+   }
+  ],
+  "h_all_incl_experimental": [
+   {
+    "rule": "USB-H01",
+    "category": "unbounded-input-resource",
+    "file": "radio-player",
+    "line": 575,
+    "reason": "curl/wget response is not size-limited (--max-time is a time limit, not a byte cap); a hostile or compromised endpoint can stream unbounded data into memory/disk",
+    "hint": "add --max-filesize N (and head -c N / a producer-side cap) and reject overflow",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H18",
+    "category": "process-lifecycle-timeouts",
+    "file": "radio-favicon",
+    "line": 94,
+    "reason": "curl/wget call has no timeout; a stalled endpoint leaves the process running indefinitely",
+    "hint": "add --max-time/--connect-timeout (or wrap in `timeout N`)",
+    "severity": "low"
+   },
+   {
+    "rule": "USB-H18",
+    "category": "process-lifecycle-timeouts",
+    "file": "radio-favicon",
+    "line": 100,
+    "reason": "curl/wget call has no timeout; a stalled endpoint leaves the process running indefinitely",
+    "hint": "add --max-time/--connect-timeout (or wrap in `timeout N`)",
+    "severity": "low"
+   },
+   {
+    "rule": "USB-H06",
+    "category": "file-safety-symlink-perms",
+    "file": "radio-fetch",
+    "line": 362,
+    "reason": "`rm -rf \"$search_dir\"`: forced symlink or recursive delete of an unvalidated variable",
+    "hint": "refuse symlinks (test -L / O_NOFOLLOW), validate the variable and resolve with realpath before rm -rf",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H06",
+    "category": "file-safety-symlink-perms",
+    "file": "radio-fetch",
+    "line": 369,
+    "reason": "`rm -rf \"$search_dir\"`: forced symlink or recursive delete of an unvalidated variable",
+    "hint": "refuse symlinks (test -L / O_NOFOLLOW), validate the variable and resolve with realpath before rm -rf",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H02",
+    "category": "unbounded-input-resource",
+    "file": "radio-mpris",
+    "line": 35,
+    "reason": "socket readline() without a length limit (unbounded request line)",
+    "hint": "use readline(N) and reject lines that reach N",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H02",
+    "category": "unbounded-input-resource",
+    "file": "radio-mpris",
+    "line": 67,
+    "reason": "socket recv loop accumulates data with no total-size ceiling",
+    "hint": "enforce a maximum frame/request size and close the connection when exceeded",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H24",
+    "category": "shell-lua-injection",
+    "file": "radio-window",
+    "line": 38,
+    "reason": "shell eval of a variable-expanded string (model-proposed rule)",
+    "hint": "see rule summary; validate/escape the value or pin/verify before use",
+    "severity": "medium"
+   }
+  ]
+ },
+ "slcode777.omagotchi": {
+  "usuba_checks": [],
+  "static_checks": {
+   "fails": [],
+   "flags": []
+  },
+  "h_v3_enabled": [],
+  "h_all_incl_experimental": []
+ },
+ "io.github.thisisgm.omapods": {
+  "usuba_checks": [],
+  "static_checks": {
+   "fails": [
+    [
+     "bad-import",
+     "daemon/BatteryIndicator.qml: unknown module linux"
+    ],
+    [
+     "bad-import",
+     "daemon/KeysQRDialog.qml: unknown module linux"
+    ],
+    [
+     "bad-import",
+     "daemon/Main.qml: unknown module linux"
+    ],
+    [
+     "bad-import",
+     "daemon/PodColumn.qml: unknown module linux"
+    ],
+    [
+     "bad-import",
+     "daemon/SegmentedControl.qml: unknown module linux"
+    ]
+   ],
+   "flags": []
+  },
+  "h_v3_enabled": [
+   {
+    "rule": "USB-H16",
+    "category": "privileged-system",
+    "file": "AGENTS.md",
+    "line": 1,
+    "reason": "`AGENTS.md` ships coding-agent instructions inside the installable plugin tree",
+    "hint": "remove agent-control files from the published plugin (or exclude them from the package)",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H16",
+    "category": "privileged-system",
+    "file": ".claude/advloop-rules.md",
+    "line": 1,
+    "reason": "`.claude/advloop-rules.md` ships coding-agent instructions inside the installable plugin tree",
+    "hint": "remove agent-control files from the published plugin (or exclude them from the package)",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H02",
+    "category": "unbounded-input-resource",
+    "file": "daemon/hearing-aid-adjustments.py",
+    "line": 127,
+    "reason": "socket recv loop accumulates data with no total-size ceiling",
+    "hint": "enforce a maximum frame/request size and close the connection when exceeded",
+    "severity": "medium"
+   }
+  ],
+  "h_all_incl_experimental": [
+   {
+    "rule": "USB-H16",
+    "category": "privileged-system",
+    "file": "AGENTS.md",
+    "line": 1,
+    "reason": "`AGENTS.md` ships coding-agent instructions inside the installable plugin tree",
+    "hint": "remove agent-control files from the published plugin (or exclude them from the package)",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H16",
+    "category": "privileged-system",
+    "file": ".claude/advloop-rules.md",
+    "line": 1,
+    "reason": "`.claude/advloop-rules.md` ships coding-agent instructions inside the installable plugin tree",
+    "hint": "remove agent-control files from the published plugin (or exclude them from the package)",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H02",
+    "category": "unbounded-input-resource",
+    "file": "daemon/hearing-aid-adjustments.py",
+    "line": 127,
+    "reason": "socket recv loop accumulates data with no total-size ceiling",
+    "hint": "enforce a maximum frame/request size and close the connection when exceeded",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H13",
+    "category": "rich-text-markup-injection",
+    "file": "daemon/Main.qml",
+    "line": 199,
+    "reason": "Text binds `rs.label` with the default AutoText format; externally supplied text starting with markup is interpreted as rich text (link/image loads)",
+    "hint": "set textFormat: Text.PlainText on every Text that shows external/untrusted data",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H13",
+    "category": "rich-text-markup-injection",
+    "file": "daemon/Main.qml",
+    "line": 250,
+    "reason": "Text binds `btn.label` with the default AutoText format; externally supplied text starting with markup is interpreted as rich text (link/image loads)",
+    "hint": "set textFormat: Text.PlainText on every Text that shows external/untrusted data",
+    "severity": "medium"
+   },
+   {
+    "rule": "USB-H13",
+    "category": "rich-text-markup-injection",
+    "file": "daemon/Main.qml",
+    "line": 314,
+    "reason": "Text binds `airPodsTrayApp.airpodsConnected && airPo` with the default AutoText format; externally supplied text starting with markup is interpreted as rich text (link/image loads)",
+    "hint": "set textFormat: Text.PlainText on every Text that shows external/untrusted data",
+    "severity": "medium"
+   }
+  ]
+ },
+ "robzolkos.github": {
+  "usuba_checks": [],
+  "static_checks": {
+   "fails": [],
+   "flags": [
+    [
+     "footgun",
+     "Panel.qml: Style.font.display is VPS-unsafe"
+    ]
+   ]
+  },
+  "h_v3_enabled": [],
+  "h_all_incl_experimental": [
+   {
+    "rule": "USB-H06",
+    "category": "file-safety-symlink-perms",
+    "file": "omarchy-github-fetch",
+    "line": 370,
+    "reason": "`rm -rf \"$tmp\"`: forced symlink or recursive delete of an unvalidated variable",
+    "hint": "refuse symlinks (test -L / O_NOFOLLOW), validate the variable and resolve with realpath before rm -rf",
+    "severity": "medium"
+   }
+  ]
+ }
+}
