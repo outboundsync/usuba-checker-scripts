@@ -13,7 +13,10 @@ from usuba import rules as usuba_rules
 from usuba import checks as usuba_checks
 from build_parse import parse
 RUN = os.path.join(ROOT, "runs/smoke-2026-10-11")
-hold = [json.loads(l) for l in open(os.path.join(ROOT, "data/holdout.jsonl"))]
+def load_holdout():
+    """Private input: only needed by the rescore driver, never at import (the rule tests import task_findings without it; audit D10/I)."""
+    with open(os.path.join(ROOT, "data/holdout.jsonl")) as f:
+        return [json.loads(l) for l in f]
 FULL = ("build_from_spec", "add_panel")
 REPO_FOR = {"https://github.com/salted-sorbet/salted.bar": "salted.bar", "https://github.com/RohitKaushal7/omarchy-beam": "dev.reuk.beam",
             "https://github.com/pxllbt/better-bar": "pix.bar", "https://github.com/TECHNOCRAFT27/floating-waybar": "floating-waybar",
@@ -164,6 +167,7 @@ if __name__ == "__main__":
         if not os.path.exists(p): return {}
         s = json.load(open(p)); f = [r for r in s if r["task"].split(":")[0] in FULL]
         return {"validate_pass": f"{sum(r['pass_'] for r in s)}/{len(s)}", "full_plugin_pass": f"{sum(r['pass_'] for r in f)}/{len(f)}"}
+    hold = load_holdout()
     # baselines first (sequential per tree; cheap)
     with ThreadPoolExecutor(8) as ex:
         list(ex.map(lambda i: baseline(i, hold[i]), [i for i, h in enumerate(hold) if h["task"].split(":")[0] not in FULL]))
