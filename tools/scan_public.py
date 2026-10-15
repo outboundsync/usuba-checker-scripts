@@ -56,6 +56,15 @@ ACCEPTED = {(p, r) for p, r in [
     ("runs/q27/pipe.sh", "home-path"), ("runs/q27/train.log", "home-path"), ("runs/q27/train_q27.py", "home-path"),
     ("runs/smoke-2026-10-11/PROGRESS.md", "vast-instance-id-bare"), ("runs/v3/run_404.log", "home-path"), ("train/launch_vast.sh", "home-path"),
     ("runs/smoke-2026-10-11/hf4bit_adapter_v2_check.json", "raw-model-output"),   # open-model generations, removed from the tree (audit F2), still in history
+    # same files after the audit-F7 move to legacy/ (the old paths above stay: history blobs are checked under their old names)
+    ("legacy/runs/q27/README.md", "vast-instance-id-bare"),
+    ("legacy/runs/q27/dbg.py", "home-path"),
+    ("legacy/runs/q27/pipe.sh", "home-path"),
+    ("legacy/runs/q27/train.log", "home-path"),
+    ("legacy/runs/q27/train_q27.py", "home-path"),
+    ("legacy/runs/smoke-2026-10-11/PROGRESS.md", "vast-instance-id-bare"),
+    ("legacy/runs/v3/run_404.log", "home-path"),
+    ("legacy/runs/smoke-2026-10-11/hf4bit_adapter_v2_check.json", "raw-model-output"),
 ]}
 
 
