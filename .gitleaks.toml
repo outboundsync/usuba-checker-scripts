@@ -2,15 +2,6 @@
 useDefault = true
 
 [allowlist]
-description = "Known false positives: keybind 'key' fields, port numbers in test data, quoted code in audit reports, offline-replay dummy, deliberately fake test tokens"
-paths = [
-  '''functest/fixtures/hyprland-0\.56\.2/.*\.json''',
-  '''train/v2/distill/report/audit.*\.json''',
-  '''runs/rescore404/.*\.json''',
-  '''dell-ref/.*''',
-  '''\.gitleaks\.toml''',
-]
-regexes = [
-  '''unused-offline-replay''',
-  '''REDACTED_[A-Z_]+''',
-]
+description = "Hyprland keybind captures use a 'key' field (e.g. XF86AudioMute), not credentials; redaction markers"
+paths = ['''functest/fixtures/hyprland-0\.56\.2/.*\.json''']
+regexes = ['''REDACTED_[A-Z_]+''']
