@@ -9,6 +9,9 @@ What you can reproduce from this repository alone, and what needs inputs that ar
 4. Unit tests: `python3 -m pytest -q`. `functest/tests/test_dell_learned.py` skips two tests that need private sweep tooling.
 5. `functest/STANDARD.md` is generated: `cd functest && python3 -m usuba.rules > STANDARD.md` (a test checks it is in sync).
 
+Reference binary lists: `functest/dell_env/omarchy_bins.txt` is exactly the `bin/` listing of `dell-ref/omarchy-4.0.4/` (a test enforces it) and `system_bins.txt` is a generic list of stock Arch/Omarchy executables; the USB-B01/B05 rules need them, so they are kept.
+Calibration (`functest/calibrate.py`): set `FT_CALIB_REPOS` to a directory of fetched good plugins (see section 2) and optionally `FT_CALIB_BAD` to your own known-bad plugin dirs; missing ones are skipped.
+
 ## 2. Third-party plugin sources
 Plugin source trees are **not** stored here. Repos used as test subjects or data sources are pinned by URL + commit SHA in the sibling repository
 (`usuba-checker-models`, file `sources/plugin_sources.json`, only repos whose pinned commit has an MIT/Apache/ISC/BSD LICENSE file) and fetched with
