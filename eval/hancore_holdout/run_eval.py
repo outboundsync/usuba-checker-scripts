@@ -150,7 +150,7 @@ def provenance(a, P, whole):
     from usuba import provenance as cp
     sha, dirty = git_sha(ROOT)
     return dict(schema_version=scoring.SCHEMA_VERSION, prompt=a.prompt, prompt_sha256=file_sha256(P.__file__), checker_git_sha=sha, checker_git_dirty=dirty,
-                rules_hash=cp.rules_hash(), code_blob_policy=getattr(sys.modules.get('code_blob'), 'POLICY_ID', 'legacy-8000/24000-unnumbered'), weights_sha256=a.weights_sha256, system=a.system or a.name, base_url_host=urllib.request.urlparse(a.base_url).netloc if a.base_url else None,
+                rules_hash=cp.rules_hash(), code_blob_policy=getattr(sys.modules.get('usuba_checker.code_blob'), 'POLICY_ID', 'legacy-8000/24000-unnumbered'), weights_sha256=a.weights_sha256, system=a.system or a.name, base_url_host=urllib.request.urlparse(a.base_url).netloc if a.base_url else None,
                 decoding=dict(temperature=0, max_tokens=a.max_tokens, thinking=bool(a.think), provider=a.provider, zdr=bool(a.zdr)), whole_files=whole,
                 generated_at=time.strftime("%Y-%m-%dT%H:%M:%S%z"))
 
@@ -189,7 +189,8 @@ def main():
     P = __import__("prompt_v4") if a.prompt == "v4" else __import__("prompt_v3") if a.prompt == "v3" else __import__("prompt_v2") if a.prompt == "v2" else prompt
     blob = code_blob_whole if whole else code_blob
     if a.prompt == "v4":   # audit A1: eval renders code with the SAME shared renderer as the r5 builders (never whole-file mode: that would change what the model saw in training)
-        import code_blob as _cb
+        if ROOT not in sys.path: sys.path.insert(0, ROOT)   # plain checkout: usuba_checker/ lives at the repo root
+        from usuba_checker import code_blob as _cb   # canonical copy lives in THIS repo; models imports it from here (one-way dependency)
         blob = _cb.code_blob; whole = False
     srv_ctx = check_server_ctx(a) if a.backend == "openai" else None
     ctx_limit = srv_ctx or a.model_ctx
