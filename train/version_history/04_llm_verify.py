@@ -4,7 +4,7 @@ import json,os,re,sys,urllib.request,subprocess
 from concurrent.futures import ThreadPoolExecutor
 KEY=os.environ['OPENROUTER_API_KEY']; MODEL='qwen/qwen3.5-397b-a17b'; BUDGET=float(os.environ.get('BUDGET','6.0'))
 KINDS=['null-or-missing-guard','wrong-path-or-command','missing-dependency-or-install','shell-quoting-or-expansion','race-or-timing','process-or-resource-lifecycle','wrong-condition-or-logic','error-handling','env-or-config-assumption','syntax-or-parse-error','api-compat-change','ui-layout-or-state','security','other']
-out='data/llm_verdicts.jsonl'; done=set()
+out=os.environ.get('OUT','data/llm_verdicts.jsonl'); CANDS=os.environ.get('CANDS','data/candidates_dedup.jsonl'); done=set()
 if os.path.exists(out): done={(j['repo'],j['commit'],j['file'],j['pre_line']) for j in map(json.loads,open(out))}
 spent=[0.0]
 def ctx(c):
@@ -32,7 +32,7 @@ Say false if the change is style, renaming, a new feature, a version/dependency 
             return {**{x:c[x] for x in('repo','commit','file','pre_line')},'verdict':v,'cost':j.get('usage',{}).get('cost')}
         except Exception as e: err=str(e)[:100]
     return {**{x:c[x] for x in('repo','commit','file','pre_line')},'error':err}
-cands=[json.loads(l) for l in open('data/candidates_dedup.jsonl')]
+cands=[json.loads(l) for l in open(CANDS)]
 if len(sys.argv)>1: cands=cands[:int(sys.argv[1])]
 with ThreadPoolExecutor(32) as ex, open(out,'a') as f:
     for r in ex.map(ask,cands):

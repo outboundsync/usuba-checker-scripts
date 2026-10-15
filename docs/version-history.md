@@ -53,3 +53,21 @@ Detected from LICENSE at HEAD of each verified repo: MIT 632, GPL 22, Apache-2.0
 - Subject keyword "fix" is a weak signal: ~52% of strongly-keyworded small commits were cosmetic/feature/unclear.
 - QML binding/attached-property bugs and wrong-condition logic dominate; shell-quoting and null guards are rare.
 - Judge-labelled defect line differs from hunk start in some cases; the +-1 gate removed many (236).
+
+
+## Round 2 (2026-10-15, budget raised to $12 total, approved by Harris)
+Same judge prompt, model (`qwen/qwen3.5-397b-a17b`, temperature 0, reasoning off, max_tokens 350, 32 threads) and gates (mechanical match, defect line within +-1 of the hunk, confidence >= 0.7). Round-1 files are untouched.
+
+Replicate (from `train/version_history/`, after steps 01-05 above):
+```
+python3 03c_select_more.py          # seed 1, N=4000, CAP=5 new commits/repo -> data/candidates_round2.jsonl
+OUT=data/llm_verdicts_2.jsonl CANDS=data/candidates_round2.jsonl BUDGET=8.85 python3 04_llm_verify.py   # OPENROUTER_API_KEY in env, never logged
+python3 05b_report_round2.py        # data/verified_pairs_2.jsonl + data/summary.json (round1, round2, combined)
+```
+Selection (03c): pool = unjudged commits passing the exact 03b filters (strong subject keyword, <=16-line non-comment hunk, not test/lock/min/svg files; smallest hunk per commit; jankeesvw dropped; universe exclusions re-checked) = 7,451 commits in 1,830 repos. Score = number of heuristic kind-keyword hits (api-compat, null-guard, shell-quoting, missing-dependency, error-handling, missing-file/manifest, security; matched on subject+diff, a pre-judge guess only) + 1.5 for MIT/Apache/BSD/ISC at HEAD + random jitter. Repos taken round-robin by rank (best candidate of each repo per pass, max 5 per repo) until 4,000: 4,000 commits in 1,830 repos, 95.6% permissive license. There is no judge label for "missing-file/manifest"; such bugs land in wrong-path-or-command or env-or-config-assumption.
+
+Results: 4,000 selected, 3,999 judged (1 judge error), rejected 1,317 (unclear 456, cosmetic 412, feature 224, refactor 99, config-tweak 77, docs 44, other 5), line/confidence gate failures 564, **2,118 verified pairs in 1,300 repos = 53.0% yield** (round 1: 48%). Combined: 5,399 judged, **2,787 verified pairs in 1,499 repos**, 5,574 potential training rows (2x).
+Exclusion check (asserted in 05b): 0 verified pairs from the 374 excluded repo urls (116 Dell ids' repos, hancore_holdout repos, ...) or jankeesvw.
+Cost: round 1 $2.9116 (+ $0.02 smoke test), round 2 $8.4149; total $11.35 (cap $12; BUDGET guard 8.85 for round 2, not reached). Round 2 averaged $0.0021/judgment.
+Round-2 per kind: wrong-condition-or-logic 550, ui-layout-or-state 393, security 168, api-compat-change 152, process-or-resource-lifecycle 146, race-or-timing 141, env-or-config-assumption 131, wrong-path-or-command 125, error-handling 108, syntax-or-parse-error 60, null-or-missing-guard 58, missing-dependency-or-install 47, shell-quoting-or-expansion 35, other 4.
+Round-2 licenses (rows, HEAD license): MIT 1,987, GPL 72, Apache-2.0 25, none-found 13, BSD 8, other-license-file 7, ISC 6. The same GPL / unlicensed hold-out advice applies. Run 03c's license lookups in parallel: blobless clones fetch LICENSE over the network (sequential took >13 min).

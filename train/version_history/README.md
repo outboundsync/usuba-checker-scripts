@@ -7,3 +7,5 @@ Files (data/): `universe.json` (5,149 repos + exclusions), `clone_status.jsonl`,
 
 Headline: 5,128 repos cloned with full history (4,930 with >1 commit); 12,109 candidate fix commits (50,676 hunks); 1,400 judged; 669 verified pairs in 556 repos; 1,338 potential training rows (669 broken + 669 approve).
 Excluded: the 116 Dell ground-truth plugin ids (ids only; labels never read), the 329 hancore_holdout repos, and jankeesvw repos.
+
+Round 2: `candidates_round2.jsonl` (4,000), `llm_verdicts_2.jsonl`, **`verified_pairs_2.jsonl` (2,118 pairs)**; `summary.json` now has round1/round2/combined (2,787 pairs, 1,499 repos). Total cost $11.35. See docs/version-history.md.
