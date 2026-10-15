@@ -59,6 +59,28 @@ def strip_comments(s):
     s = re.sub(r'/\*.*?\*/', '', s, flags=re.S)
     return re.sub(r'(^|[^:"\'])//[^\n]*', r'\1', s)
 
+def reachable_qml(files, entries, qml):
+    """QML files reachable from the manifest entry points: entry files, local component types (Type {} -> Type.qml in the same dir or an imported dir),
+    quoted .qml paths (Loader source / Qt.resolvedUrl). None when there are no usable entry points (then every QML file is checked, as before)."""
+    start = [e for e in entries if e in qml]
+    if not start: return None
+    seen = set(start); todo = list(start); names = {}
+    for q in qml: names.setdefault(posixpath.basename(q)[:-4], []).append(q)
+    while todo:
+        p = todo.pop(); c = strip_comments(qml[p]); d = posixpath.dirname(p)
+        dirs = {d}
+        for m in re.finditer(r'^\s*import\s+"([^"]+)"', c, re.M):
+            if not m.group(1).endswith((".js", ".mjs")): dirs.add(posixpath.normpath(posixpath.join(d, m.group(1))))
+        nxt = set()
+        for t in set(re.findall(r"\b([A-Z]\w*)\s*\{", c)) | set(re.findall(r"\b([A-Z]\w*)\.\w+", c)):
+            for q in names.get(t, []):
+                if posixpath.dirname(q) in dirs: nxt.add(q)
+        for m in re.finditer(r'["\']([\w./-]+\.qml)["\']', c):
+            q = posixpath.normpath(posixpath.join(d, m.group(1)))
+            if q in qml: nxt.add(q)
+        for q in nxt - seen: seen.add(q); todo.append(q)
+    return seen
+
 def check(files):
     fails, flags = [], []
     F = lambda c, d: fails.append((c, d))
@@ -84,10 +106,11 @@ def check(files):
     for p, c in js.items():
         for m in re.finditer(r'^\s*\.import\s+"([^"]+\.m?js)"', c, re.M):
             qml_js.add(posixpath.normpath(posixpath.join(posixpath.dirname(p), m.group(1))))
+    reach = reachable_qml(files, ep_set, qml)
     for p, c in {**qml, **js}.items():
         body = strip_comments(c)
         if p.endswith(".qml"):
-            for m in IMPORT_RE.finditer(body):
+            for m in (IMPORT_RE.finditer(body) if reach is None or p in reach else ()):   # v3-fixes: import checks only on manifest-reachable QML (a vendored daemon's `import linux 1.0` is not a shell import)
                 mod, ver = m.group(1), m.group(2)
                 if mod.startswith('"'):
                     rel = mod.strip('"')
@@ -107,8 +130,7 @@ def check(files):
                 F("qml-syntax", f"{p}: QML object declared inside JS block")
             if re.search(r'\bQtObject\s*\{[^{}]*\b(Timer|FileView|Process)\s*\{', body):
                 W("footgun", f"{p}: QtObject hosting Timer/FileView/Process")
-            for m in re.finditer(r'Style\.font\.(title|subtitle|display|heading)\b', body):
-                W("footgun", f"{p}: Style.font.{m.group(1)} is VPS-unsafe"); break
+            # v3-fixes: the "Style.font.<x> is VPS-unsafe" footgun warning is retired (title/subtitle/display/heading are real members in types.json; see docs/V3_FIXES.md)
         if p in js and p not in ep_set and p not in qml_js:
             continue  # JS not loaded by the shell (node tests, tool hooks): out of scope
         guarded = p in js and re.search(r"typeof\s+(module|require|process)\s*[!=]==?", body)

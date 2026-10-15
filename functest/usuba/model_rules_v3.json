@@ -1,16 +1,16 @@
 {
  "enabled": [
-  "USB-H19",
-  "USB-H20",
-  "USB-H21",
-  "USB-H22",
-  "USB-H23",
-  "USB-H24",
-  "USB-H25"
+  "USB-HC19",
+  "USB-HC20",
+  "USB-HC21",
+  "USB-HC22",
+  "USB-HC23",
+  "USB-HC24",
+  "USB-HC25"
  ],
  "note": "Model-proposed (qwen/qwen3.5-397b-a17b via OpenRouter) data-only specs; kept on DESIGN split only: lift>=1.5, false-hit<=0.05, >=20 fired reviewed plugins, manual semantic/redundancy review. See cands_decisions.json.",
  "rules": {
-  "USB-H19": {
+  "USB-HC19": {
    "name": "pip-install-without-hash",
    "category": "remote-code-pinning",
    "summary": "pip/pipx install without --hash",
@@ -31,7 +31,7 @@
    "proposed_from": "remote-code-pinning.1.json",
    "candidate_id": "C047"
   },
-  "USB-H20": {
+  "USB-HC20": {
    "name": "python-urllib-auth-redirect",
    "category": "secrets-credentials",
    "summary": "Python urllib request with Authorization header follows redirects",
@@ -49,7 +49,7 @@
    "proposed_from": "secrets-credentials.1.json",
    "candidate_id": "C079"
   },
-  "USB-H21": {
+  "USB-HC21": {
    "name": "Omarchy bar.run String Concatenation",
    "category": "shell-lua-injection",
    "summary": "bar.run('...' + value) string concatenation into a shell",
@@ -70,7 +70,7 @@
    "proposed_from": "shell-lua-injection.0.json",
    "candidate_id": "C087"
   },
-  "USB-H22": {
+  "USB-HC22": {
    "name": "QML Process Command Shell Flag",
    "category": "shell-lua-injection",
    "summary": "QML Process command [.., '-c', '..' + value]",
@@ -90,7 +90,7 @@
    "proposed_from": "shell-lua-injection.0.json",
    "candidate_id": "C089"
   },
-  "USB-H23": {
+  "USB-HC23": {
    "name": "Bash -c Array Invocation",
    "category": "shell-lua-injection",
    "summary": "'bash','-c', '..' + value argv concatenation",
@@ -114,7 +114,7 @@
    "proposed_from": "shell-lua-injection.0.json",
    "candidate_id": "C092"
   },
-  "USB-H24": {
+  "USB-HC24": {
    "name": "Shell Script Eval Usage",
    "category": "shell-lua-injection",
    "summary": "shell eval of a variable-expanded string",
@@ -122,9 +122,9 @@
     ".sh"
    ],
    "line_regex": "\\beval\\b.*\\$",
-   "line_exclude_regex": "^\\s*#",
+   "line_exclude_regex": "^\\s*#|\\bhyprctl\\s+(?:-\\S+\\s+)*eval\\b",
    "file_must_contain_regex": null,
-   "file_must_not_contain_regex": null,
+   "file_must_not_contain_regex": "\\[\\[\\s*\\\"?\\$\\{?\\w+\\}?\\\"?\\s*=~\\s*\\^",
    "window_must_not_contain_regex": null,
    "ignore_case": false,
    "why": "eval executes the argument as shell code; using variables allows arbitrary command execution.",
@@ -132,9 +132,10 @@
    "example_ok": "echo \"$var\"",
    "model": "qwen/qwen3.5-397b-a17b",
    "proposed_from": "shell-lua-injection.0.json",
-   "candidate_id": "C094"
+   "candidate_id": "C094",
+   "v3_fixes_note": "skips hyprctl eval (Lua, not shell eval) and files that regex-guard their variables with [[ $v =~ ^...$ ]] (winners follow-up, docs/V3_FIXES.md)"
   },
-  "USB-H25": {
+  "USB-HC25": {
    "name": "HTTP Redirect With Credentials",
    "category": "url-scheme-network",
    "summary": "HTTP request with Authorization/API-key header and default redirects",

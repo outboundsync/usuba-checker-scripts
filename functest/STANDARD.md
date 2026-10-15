@@ -62,8 +62,8 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 - Checked by: static_checks
 
 ### USB-M05: Namespaced, non-reserved id
-- Level: error
-- Rationale: Third-party plugins must use a namespaced id outside omarchy.*.
+- Level: warn (error only for the reserved omarchy.* namespace)
+- Rationale: Third-party ids should be namespaced and must stay outside omarchy.*. The shell registry (services/PluginRegistry.qml) rejects neither an un-namespaced id nor loads it differently; only omarchy.* is reserved, so an un-namespaced id is a warning (v3-fixes demotion from error).
 - Failing example: `"id": "time-machine"`
 - Fix: use e.g. "jankeesvw.time-machine"
 - Checked by: rescore (fix_manifest)
@@ -348,6 +348,73 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 - Fix: cap the bytes read (head -c N, slice) before parsing
 - Checked by: usuba/hancore_rules.py
 
+### USB-W11: cargo install --git is pinned with a 40-hex --rev
+- Level: warn experimental
+- Rationale: Unpinned git build of remote code.
+- Failing example: `cargo install --git https://x/y`
+- Fix: add --rev <sha> --locked
+- Checked by: usuba/lifecycle_rules.py
+
+### USB-W12: GitHub Actions pinned to a commit SHA
+- Level: warn experimental
+- Rationale: Mutable action tags in the plugin repo's workflows.
+- Failing example: `uses: actions/checkout@v4`
+- Fix: pin to a 40-hex commit
+- Checked by: usuba/lifecycle_rules.py
+
+### USB-W13: No broad passwordless sudoers
+- Level: warn experimental
+- Rationale: NOPASSWD for ALL or an interpreter hands root to any process of the user.
+- Failing example: `u ALL=(ALL) NOPASSWD: ALL`
+- Fix: fixed root-owned helper + one polkit action
+- Checked by: usuba/lifecycle_rules.py
+
+### USB-W14: No bundled native binaries
+- Level: warn experimental (needs raw bytes; text corpus cannot fire it)
+- Rationale: ELF/PE/Mach-O in the tree.
+- Failing example: `bin/helper (ELF)`
+- Fix: build on install or declare the dependency
+- Checked by: usuba/lifecycle_rules.py
+
+## Manifest (v3-fixes)
+
+### USB-N01: Every declared kind has its entryPoints key
+- Level: error (high)
+- Rationale: The shell reads entryPoints.<key> per kind: bar-widget -> barWidget, panel/overlay/menu/service/bar -> same name. A declared kind without its key never instantiates (shell.qml entryPointUrl; 'has no barWidget entry point').
+- Failing example: `kinds ["bar-widget"] with entryPoints {"panel": "Panel.qml"}`
+- Fix: add the key for each kind
+- Checked by: usuba/lifecycle_rules.py
+
+### USB-N02: Manifest passes the registry validation
+- Level: error (high)
+- Rationale: services/PluginRegistry.qml rejects a manifest whose schemaVersion is not the number 1 or that lacks id/name/version/kinds/entryPoints.
+- Failing example: `no schemaVersion`
+- Fix: add schemaVersion 1 and the required fields
+- Checked by: usuba/lifecycle_rules.py
+
+## Lifecycle (v3-fixes)
+
+### USB-L01: panel/overlay/menu define open(payloadJson) and close()
+- Level: warn experimental (measured: Dell load labels cannot see summon failures)
+- Rationale: The shell summons with item.open(payload) and hides with item.close(), both silently skipped when absent (shell.qml deliverIfLoaded/invokeIfLoaded). Persistent HUDs driven by a service legitimately omit them, so the rule skips service plugins and unresolved root types.
+- Failing example: `Item { function toggle() {} } as overlay`
+- Fix: define function open(payloadJson) and function close()
+- Checked by: usuba/lifecycle_rules.py
+
+### USB-L02: No ShellRoot entry root / second quickshell
+- Level: warn (medium)
+- Rationale: Entry points are hosted Items. Measured on the corpus (design 3 of 4, test 2 of 3 labelled broken); a direct Quickshell 0.3.2 test showed a nested ShellRoot can still instantiate, so it is a lead, not proof.
+- Failing example: `ShellRoot { PanelWindow {} } as entry`
+- Fix: use Item / Panel / BarWidget roots
+- Checked by: usuba/lifecycle_rules.py
+
+### USB-L03: No `required property` for host-injected names
+- Level: error (high)
+- Rationale: The host assigns shell/manifest/omarchyPath/pluginRegistry/barWidgetRegistry/barConfig/service after the Loader finishes; a required property fails creation ('Required property shell was not initialized', verified with Quickshell 0.3.2).
+- Failing example: `required property var shell`
+- Fix: property var shell: null
+- Checked by: usuba/lifecycle_rules.py
+
 ## Heuristics (graded)
 
 ### USB-H01: Real data, not simulated
@@ -434,56 +501,7 @@ status = "Up to date"
 - Fix: use installed programs and defined args
 - Checked by: runtime
 
-## Dell-learned (v0.2)
-
-Added after the 30-batch Dell hardware sweep (5,526 isolated loads; dell/sweep/DELL_LEARNINGS.md). Levels follow the precision each check
-reached against Dell labels; none reached blocking precision except the two runtime failure conditions.
-
-### USB-D00: Severity of shell messages (fatal vs warning)
-- Level: rule for runtime and Dell labels
-- Rationale: on the Dell, plugins logging `Unable to assign [undefined] to int`, read-only-property TypeErrors, ReferenceErrors inside bindings or anchor warnings rendered and toggled fine (7/7 answer-key WORKS). Only messages that stop a component from being created broke plugins.
-- Failing example: `Panel.qml:12:5: Fancy is not a type` (fatal) vs `Panel.qml[317:21]: Unable to assign [undefined] to int` (warning)
-- Fix: fix fatal load errors first; warnings still deserve a fix but do not fail the plugin
-- Checked by: runtime.DOWNGRADE, dell/sweep/build_results.FATAL (answer key 52/52)
-
-### USB-D01: Do not rewire the user's global audio graph
-- Level: medium (warning; precision 0.16 vs Dell broken, the harm lands on the desktop shell)
-- Rationale: pennyfx.audio-control's EQ daemon retargeted the default sink and rebuilt PipeWire filter nodes every 5 s; the desktop shell went into a socket-notifier storm and was OOM-killed at 13 GB, ending the Hyprland session.
-- Failing example: `pw-metadata -n default <node> target.object <id>`, `pactl load-module module-null-sink`, `wpctl set-default`
-- Fix: change only nodes the plugin owns, restore the previous default on exit, never loop on rebuilding nodes, document the side effect
-- Checked by: dell_learned.check
-
-### USB-D02: Panels and overlays answer the shell's toggle
-- Level: medium (warning; precision 0.33, recall 0.12 vs Dell "toggle opened no surface")
-- Rationale: `shell toggle <id>` calls the entry's toggle/open; without one the Dell showed nothing after a successful IPC toggle.
-- Failing example: `PanelWindow { visible: false }` as the panel entry with no function toggle()
-- Fix: add `function toggle()` (and open/close) or an IpcHandler to the panel/overlay root
-- Checked by: dell_learned.check
-
-### USB-D06: Do not write the shell's read-only hover-reveal flag
-- Level: medium (warning). On the sweep corpus it fires on 338 plugins, covers all 140 whose Dell run logged the read-only TypeError, and 15 of the 19 GitHub "panel cannot close" issues.
-- Rationale: `centerHoverRevealSuppressed` became read-only in Omarchy 4.0.3. Assigning it throws inside close(), so the panel cannot be dismissed and can trap focus. A 24 s load test does not see this, and USB-D00 rightly keeps the message a load warning.
-- Failing example: `function close() { bar.centerHoverRevealSuppressed = false; visible = false }`
-- Fix: remove the assignment, or wrap it in try/catch so the rest of close() runs
-- Checked by: dell_learned.check
-
-### USB-D04: Usage cycle
-- Level: error if the shell dies during the cycle; errors logged during it are reported with a `usage:` prefix
-- Rationale: 82 Dell bugs appeared only through interaction (68 toggles that opened nothing, 14 errors only in panel/overlay code).
-- Failing example: `shell died during the usage cycle USB-D04 (close/reopen via IPC)`
-- Fix: make open/close idempotent; guard state used by the panel
-- Checked by: runtime (summon, close, reopen, probe P3)
-
-### USB-D05: No runaway memory
-- Level: warning above 150 MB RSS growth in the ~9 s probe window, error above 300 MB
-- Rationale: Dell median shell RSS is 284 MB; 11 of 4,596 instances grew >150 MB in 20 s. Box warning tier: precision 0.75, recall 0.27, 0/60 control false alarms.
-- Failing example: `runaway memory USB-D05: shell RSS grew 412 MB in ~9 s after the plugin loaded`
-- Fix: reuse objects, cap models/caches, destroy() dynamically created items
-- Checked by: runtime
-
 ## Changelog
 
-- v0.2.1 (2026-10-13): USB-D06 (read-only close path, warning). Runtime: plugin DEBUG/INFO console output is never a hard error (the longer USB-D04 window had started failing io.github.jondkinney.omapop on a graceful log line). dell_learned no longer crashes on manifests whose `kinds` holds objects. Full answer key re-run on the new runtime: 90/90 decided.
-- v0.2 (2026-10-13): Dell-learned rules USB-D00/D01/D02/D04/D05 (warnings except crash-in-usage and >300 MB growth); Dell severity rule raises answer-key agreement from 45/52 to 52/52.
 - v0.1 (2026-10-13): first public version. Adds USB-T01/T02, Q01, A01-A04, B01-B04, F01, J01, H01-H04 on top of the 4.0.4 functest (which scored 90/90 against the Dell answer key) after a fixer-loop experiment showed the old grader was gameable (13 passes, 4 real).
 - v0.2 (2026-10-13): adds USB-W01-W10, warnings derived from 12,989 HANCORE marketplace review findings. A rule is on by default only if its plugin-level precision against HANCORE is >= 0.5 and at least 0.10 above the category base rate (hancore/rule_metrics.json; holdout plugins excluded). Only W05 met that bar. W02 (hardcoded secrets) measured 0.43 but is on by default by maintainer decision: a committed key is worth flagging even when HANCORE does not comment on it, and as a warning it can never fail a plugin. The rest are experimental (run with experimental=True / --experimental). None of them fail a plugin; USB-S03 is still the only hard-fail safety rule.

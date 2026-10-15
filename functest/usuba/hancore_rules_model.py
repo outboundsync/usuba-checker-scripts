@@ -1,4 +1,4 @@
-"""Engine for model-proposed USB-H19+ rules (data-driven specs; see model_rules_v3.json). check_model(files, rules) -> hits
+"""Engine for model-proposed USB-HC19+ rules (data-driven specs; see model_rules_v3.json). check_model(files, rules) -> hits
 (rule, file, line, reason). A spec is data only: line_regex + optional exclude/file-level/window conditions; no code from the model is executed."""
 import re, os, sys, time
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
