@@ -152,6 +152,7 @@ def main():
         for l in open(os.path.join(ROOT, "functest", "dell_ground_truth.jsonl")):
             g = json.loads(l)
             if g["real_verdict"] not in ("WORKS", "BROKEN"): continue
+            if g["id"].startswith(("b3.opus55.",)): continue   # plugins written by Claude are excluded from the key (docs/ANTHROPIC_TERMS_COMPLIANCE.md in the models repo)
             d = next((x for x in (os.path.join(ROOT, g["path"]), os.path.join("/workspace/omarchy-specialist", g["path"])) if os.path.isdir(x)), None)
             if d: M.append(dict(plugin=g["id"], label="positive" if g["real_verdict"] == "BROKEN" else "negative", dir=d, findings=[], source=g["source"]))
     else: M = [json.loads(l) for l in open(os.path.join(H, "manifest.jsonl"))]

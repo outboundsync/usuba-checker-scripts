@@ -11,10 +11,10 @@ rows.sort(key=lambda r: (-r[1].get("right_reason_judge", r[1]["right_reason_det"
 print("| # | system | verdict acc | false alarms | broken caught | right-reason catches (judge) | of flagged | right-reason (regex) | invented SHA / name rows | parse | median s | $ |")
 print("|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|")
 for i, (lab, s, c) in enumerate(rows, 1):
-    caught = round(s["broken_caught"] * 33)
-    print(f"| {i} | {lab} | {s['verdict_accuracy']:.3f} | {s['false_alarm']:.3f} | {s['broken_caught']:.3f} ({caught}/33) | {s.get('right_reason_judge','-')}/33 | {s.get('right_reason_judge_of_flagged', 0):.2f} | {s['right_reason_det']}/33 | {s['invented_sha_rows']} / {s['invented_name_rows']} | {s['parse_rate']:.3f} | {s['secs_median']} | {c if c is not None else '-'} |")
+    nb = s.get("n_broken", 33); caught = round(s["broken_caught"] * nb)
+    print(f"| {i} | {lab} | {s['verdict_accuracy']:.3f} | {s['false_alarm']:.3f} | {s['broken_caught']:.3f} ({caught}/{nb}) | {s.get('right_reason_judge','-')}/{nb} | {s.get('right_reason_judge_of_flagged', 0):.2f} | {s['right_reason_det']}/{nb} | {s['invented_sha_rows']} / {s['invented_name_rows']} | {s['parse_rate']:.3f} | {s['secs_median']} | {c if c is not None else '-'} |")
 
-# Dell CPU baseline rows (open models only), appended to the final table. Different, tiny subset (8 plugins): not comparable to the 33-broken rows above.
+# Dell CPU baseline rows (open models only), appended to the final table. Different, tiny subset (8 plugins): not comparable to the full-key broken rows above.
 if "--no-dell" not in os.environ.get("TABLE_OPTS", ""):
     bp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dell_baseline.json"); d = json.load(open(bp))
     print(f"\nDell baseline (local CPU, {d['n']} broken plugins only, a small sample; one plugin = 12.5 points). Open models only.")

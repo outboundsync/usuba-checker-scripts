@@ -143,26 +143,6 @@
    "summary": "no barWidget entry point",
    "line": null
   },
-  "b3.opus55.acme-dropbox": {
-   "files": [
-    "manifest"
-   ],
-   "cause": [
-    "barWidget|bar-widget.{0,60}(key|entry)|entry.?point|entryPoints"
-   ],
-   "summary": "no barWidget entry point",
-   "line": null
-  },
-  "b3.opus55.acme-power": {
-   "files": [
-    "manifest"
-   ],
-   "cause": [
-    "barWidget|bar-widget.{0,60}(key|entry)|entry.?point|entryPoints"
-   ],
-   "summary": "no barWidget entry point",
-   "line": null
-  },
   "intemporel": {
    "files": [],
    "cause": [

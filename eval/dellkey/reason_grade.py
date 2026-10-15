@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reason-graded scoring for the Dell answer key (90 decided rows: 33 BROKEN, 57 WORKS).
+"""Reason-graded scoring for the Dell answer key (86 decided rows after excluding the decided rows of 6 Claude-written plugins; was 90).
 
 A flagged broken plugin counts as a right-reason catch only if one of the reviewer's findings names the real failure from
 functest/dell_ground_truth.jsonl (file + cause; line within tolerance when the key has one).
@@ -14,11 +14,13 @@ usage: python3 eval/dellkey/reason_grade.py RESULT_NAME [...] [--judge] [--judge
 Reads eval/hancore_holdout/results/<name>.raw.jsonl, writes <name>.reason.json and adds keys to <name>.json."""
 import argparse, json, os, re, sys, time, urllib.request, collections
 OPEN_JUDGES = ["openai/gpt-oss-120b", "qwen/qwen3.5-397b-a17b"]   # open-weights (Apache-2.0) judges, grading only
+EXCLUDED_ID_PREFIXES = ("b3.opus55.",)   # Claude-written plugins are not used as eval items (86 decided rows remain of 90; the 6 plugins include 2 undecided rows)
 H = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(os.path.dirname(H)); RES = os.path.join(ROOT, "eval", "hancore_holdout", "results")
 sys.path[:0] = [os.path.join(ROOT, "functest")]
 RUB = json.load(open(os.path.join(H, "reason_rubric.json"))); TOL = RUB["line_tolerance"]
 JUDGE_SYS = open(os.path.join(H, "judge_rubric.md")).read()
-KEY = {g["id"]: g for g in map(json.loads, open(os.path.join(ROOT, "functest", "dell_ground_truth.jsonl"))) if g["real_verdict"] in ("WORKS", "BROKEN")}
+KEY = {g["id"]: g for g in map(json.loads, open(os.path.join(ROOT, "functest", "dell_ground_truth.jsonl"))) if g["real_verdict"] in ("WORKS", "BROKEN") and not g["id"].startswith(EXCLUDED_ID_PREFIXES)}
+
 
 def parse(txt):
     if (txt or "").startswith(("ERROR ", "SKIPPED")): return None   # transport/context errors are invalid output, even though they contain JSON
@@ -98,6 +100,7 @@ def grade(a, name):
     sfx = getattr(a, "suffix", "")
     R = [json.loads(l) for l in open(os.path.join(RES, name + ".raw.jsonl"))]
     rows, cost = [], 0.0; jc = {}
+    R = [r for r in R if not r["plugin"].startswith(EXCLUDED_ID_PREFIXES)]
     for r in R:
         pid = r["plugin"]; out = parse(r.get("raw")) if r.get("raw") is not None else None
         flagged = r.get("verdict") == "changes_requested"
@@ -113,7 +116,7 @@ def grade(a, name):
     caught = [x for x in pos if x["flagged"]]
     rr = lambda k: sum(bool(x.get(k)) for x in pos)
     s = sorted(x["secs"] for x in rows if x["secs"] is not None)
-    res = dict(name=name, n=len(rows), verdict_accuracy=round((len(caught) + sum(not x["flagged"] for x in neg)) / len(rows), 3),
+    res = dict(name=name, n=len(rows), n_broken=len(pos), verdict_accuracy=round((len(caught) + sum(not x["flagged"] for x in neg)) / len(rows), 3),
                broken_caught=round(len(caught) / len(pos), 3), false_alarm=round(sum(x["flagged"] for x in neg) / len(neg), 3),
                parse_rate=round(sum(x["valid"] for x in rows) / len(rows), 3), secs_median=s[len(s) // 2] if s else None,
                right_reason_det=rr("det"), right_reason_det_of_broken=round(rr("det") / len(pos), 3), right_reason_det_of_flagged=round(rr("det") / max(1, len(caught)), 3),
