@@ -28,5 +28,20 @@ class TypesTable(unittest.TestCase):
             self.assertTrue(json.load(f))
 
 
+class ReferenceBinaryLists(unittest.TestCase):
+    def test_omarchy_bins_match_reference_tree(self):
+        """functest/dell_env/omarchy_bins.txt is exactly the bin/ listing of the public Omarchy 4.0.4 reference tree (regenerate: ls dell-ref/omarchy-4.0.4/bin)."""
+        want = sorted(os.listdir(os.path.join(ROOT, "dell-ref", "omarchy-4.0.4", "bin")))
+        with open(os.path.join(FT, "dell_env", "omarchy_bins.txt")) as f:
+            have = sorted(l.strip() for l in f if l.strip())
+        self.assertEqual(have, want)
+
+    def test_system_bins_are_generic(self):
+        with open(os.path.join(FT, "dell_env", "system_bins.txt")) as f:
+            words = {w for l in f if not l.startswith("#") for w in l.split()}
+        self.assertIn("bash", words)
+        self.assertNotIn("kenhara", " ".join(words))
+
+
 if __name__ == "__main__":
     unittest.main()
