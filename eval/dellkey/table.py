@@ -13,3 +13,12 @@ print("|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|")
 for i, (lab, s, c) in enumerate(rows, 1):
     caught = round(s["broken_caught"] * 33)
     print(f"| {i} | {lab} | {s['verdict_accuracy']:.3f} | {s['false_alarm']:.3f} | {s['broken_caught']:.3f} ({caught}/33) | {s.get('right_reason_judge','-')}/33 | {s.get('right_reason_judge_of_flagged', 0):.2f} | {s['right_reason_det']}/33 | {s['invented_sha_rows']} / {s['invented_name_rows']} | {s['parse_rate']:.3f} | {s['secs_median']} | {c if c is not None else '-'} |")
+
+# Dell CPU baseline rows (open models only), appended to the final table. Different, tiny subset (8 plugins): not comparable to the 33-broken rows above.
+if "--no-dell" not in os.environ.get("TABLE_OPTS", ""):
+    bp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dell_baseline.json"); d = json.load(open(bp))
+    print(f"\nDell baseline (local CPU, {d['n']} broken plugins only, a small sample; one plugin = 12.5 points). Open models only.")
+    print("| system | right reason | loose | wrong | no flag | invented SHA |")
+    print("|---|---:|---:|---:|---:|---:|")
+    for r in d["rows"]:
+        print(f"| {r['system']} | {r['right_reason']}/{d['n']} | {r['loose']} | {r['wrong']} | {r['no_flag']} | {r['invented_sha']}/{d['n']} |")
