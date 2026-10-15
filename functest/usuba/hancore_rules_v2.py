@@ -45,6 +45,12 @@ def load_enabled():
     if not os.path.exists(f): return set(RULES)
     d = json.load(open(f)); return set(d.get("enabled_v3_fixes", d.get("enabled_v3", d["enabled"])))
 ENABLED = load_enabled()
+def hardware_status():
+    """Hit-check evidence per rule (results/hitcheck): which rules were observed breaking a plugin on real hardware, which are static advisories only."""
+    import json
+    f = os.path.join(HERE, "rule_hardware_status.json")
+    return json.load(open(f))["rules"] if os.path.exists(f) else {}
+HARDWARE_STATUS = hardware_status()
 EXPERIMENTAL = set(RULES) - ENABLED   # measured below the keep bar; pass enabled=set(RULES) to run them
 
 VENDOR_DIR = re.compile(r"(^|/)(vendor|vendored|third[_-]?party|upstream|external|extern|deps)(/|$)", re.I)
@@ -258,9 +264,9 @@ def check(files, enabled=None, per_file=3):
             # ---------- H17 pinning
             m = (re.search(r"\b(?:curl|wget)\b[^|\n]*\|\s*(?:sudo\s+)?(?:ba|z|da)?sh\b", ln) or re.search(r"\b(?:ba)?sh\s+(?:-c\s+)?[\"']?\$\((?:curl|wget)\b|<\(\s*curl\b", ln)
                  or (re.search(r"\bgit\s+clone\b[^\n]*(?:https?://|git@)", ln) if not pinned and not re.search(r"--branch\s+v?\d|-b\s+v?\d|--depth[^\n]*--branch\s+\S+\.\d", ln) else None)
-                 or re.search(r"\b(?:pip3?|pipx|uv(?:\s+pip)?)\s+install\b(?![^\n]*(?:==|-r\s|--require-hashes|\.whl|\s-e\s))[^\n]*\s[a-zA-Z][\w.\[\]-]+\s*(?:[\"'`)]|$)", ln) and not re.search(r"\s-[-\w]*\s*(?:\$|\")?\s*$|--help|\bcommand\b|echo|notify", ln)
-                 or re.search(r"\b(?:npm|pnpm|yarn|bun)\s+(?:install|i|add)\s+(?:-g\s+|--global\s+)?(?!-)[\w@/.-]+(?<!@\d)(?:\s|$)", ln) and not re.search(r"@\d", ln) and (sh or py)
-                 or re.search(r"\b(?:npx|bunx|pipx\s+run|uvx)\s+(?!-)[\w@/.-]+(?<!@\d)(?:\s|$)", ln) and not re.search(r"@\d|==", ln)
+                 or (re.search(r"\b(?:pip3?|pipx|uv(?:\s+pip)?)\s+install\b(?![^\n]*(?:==|-r\s|--require-hashes|\.whl|\s-e\s))[^\n]*\s[a-zA-Z][\w.\[\]-]+\s*(?:[\"'`)]|$)", ln) if not re.search(r"\s-[-\w]*\s*(?:\$|\")?\s*$|--help|\bcommand\b|echo|notify", ln) else None)
+                 or (re.search(r"\b(?:npm|pnpm|yarn|bun)\s+(?:install|i|add)\s+(?:-g\s+|--global\s+)?(?!-)[\w@/.-]+(?<!@\d)(?:\s|$)", ln) if (sh or py) and not re.search(r"@\d", ln) else None)
+                 or (re.search(r"\b(?:npx|bunx|pipx\s+run|uvx)\s+(?!-)[\w@/.-]+(?<!@\d)(?:\s|$)", ln) if not re.search(r"@\d|==", ln) else None)
                  or re.search(r"\bgo\s+install\s+\S+@(?:latest|master|main)\b|\bcargo\s+install\b(?![^\n]*--(?:version|locked|rev|tag))[^\n]*(?:--git|\s[\w-]+\s*$)", ln)
                  or re.search(r"https://raw\.githubusercontent\.com/[^/\s]+/[^/\s]+/(?:main|master|HEAD)/", ln)
                  or re.search(r"github\.com/[^/\s]+/[^/\s]+/releases/latest(?:/download)?", ln) or re.search(r"api\.github\.com/repos/[^/\s]+/[^/\s]+/releases/latest", ln)

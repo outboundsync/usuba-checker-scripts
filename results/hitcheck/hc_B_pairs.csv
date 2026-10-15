@@ -1,0 +1,31 @@
+pair,bug_kind,file,pre_broken,pre_differs,pre_verdict,post_verdict,post_works,confirmed,evidence
+b01-meviusisback__keybinds-plugin,syntax-or-parse-error,KeybindsPanel.qml,yes,yes,broken,works,yes,YES,qml-fatal: WARN scene: file:~/.config/omarchy/plugins/meviusisback.keybinds/KeybindsPanel.qml[874:21]: Unexpec
+b02-vex-7k9__vex-system-monitor,syntax-or-parse-error,StatsService.qml,no,yes,works,works,yes,YES,process set differs
+b03-mtolhuys__omarchy-news-radar,syntax-or-parse-error,src/Panel.qml,no,yes,works,works,yes,YES,process set differs
+b04-mahziyarng98__jalali-calendar,api-compat-change,Panel.qml,no,yes,works,works,yes,YES,WARN scene: file:~/.config/omarchy/plugins/io.github.mahziyarng98.jalali-calendar/Panel.qml[174:-1]:
+b05-koyphish__omarchy-audio-visualizer,api-compat-change,BarWidget.qml,no,yes,works,works,yes,YES,ipc io.github.koyphish.audio-visualizer.show
+b06-davedes83__fossfetch,api-compat-change,Panel.qml,no,yes,works,works,yes,YES,WARN scene: file:~/.config/omarchy/plugins/davedes.fossfetch/Panel.qml: Unable to assign [undefined]
+b07-silvaio__emoji-access,api-compat-change,EmojiAccess.qml,no,yes,works,works,yes,YES,WARN scene: file:~/.config/omarchy/plugins/silvaio.emoji-access/EmojiAccess.qml[357:-1]: TypeError: 
+b08-sh1d0w__omatrack,api-compat-change,views/EntriesView.qml,no,yes,works,works,yes,YES,process set differs
+b09-omacheese__omastorm-nord,null-or-missing-guard,ui/RadarMap.qml,no,yes,works,works,yes,YES,process set differs
+b10-itsvoid-tv__omarchy-chroma,null-or-missing-guard,ui/ControlView.qml,no,yes,works,works,yes,YES,ipc io.github.itsvoid-tv.command-chroma.show
+b11-devgtv__omarchy-docker,null-or-missing-guard,Panel.qml,no,yes,works,works,yes,YES,ipc devgtv.docker.show
+b12-knivfjell__omarchy-super-button,wrong-path-or-command,RemoteSeatPad.qml,no,yes,works,works,yes,YES,process set differs
+b13-sudoapwh__omarchy-protonvpn,wrong-path-or-command,Service.qml,no,yes,works,works,yes,YES,ipc omarchy-protonvpn.show
+b14-szaidi-code__quran-plugin,wrong-path-or-command,BarWidget.qml,no,yes,works,works,yes,YES,process set differs
+b15-ekollof__omaconnect,error-handling,Kcd.qml,no,yes,works,works,yes,YES,WARN scene: file:~/.config/omarchy/plugins/ekollof.omaconnect/Kcd.qml[523:-1]: Error: Cannot assign 
+b16-guiestrela__weather,error-handling,Panel.qml,no,yes,works,works,yes,YES,ipc io.github.guiestrela.weather.show
+b17-ferc10110__omarchy-runbook,error-handling,Panel.qml,no,yes,works,works,yes,YES,ipc io.github.ferc10110.runbook.show
+b18-dawestheperson__hyperwyrm,process-or-resource-lifecycle,src/EvolveScene.qml,no,yes,works,works,yes,YES,ipc dawestheperson.hyperwyrm.show
+b19-davedes83__omarchy-netspeed-plugin,process-or-resource-lifecycle,BarWidget.qml,no,yes,works,works,yes,YES,process set differs
+b20-znow01__veilleuse,process-or-resource-lifecycle,Panel.qml,no,yes,works,works,yes,YES,process set differs
+b21-murankar__omarchy-eso-server-status,env-or-config-assumption,BarWidget.qml,no,yes,works,works,yes,YES,process set differs
+b22-kristijan-k__omarchy-youtube-suggester,env-or-config-assumption,BarWidget.qml,no,yes,works,works,yes,YES,process set differs
+b23-tiagovello__paper-cast,race-or-timing,Panel.qml,no,yes,works,works,yes,YES,process set differs
+b24-alanfortlink__clipboard-history,race-or-timing,PreviewPane.qml,no,yes,works,works,yes,YES,process set differs
+b25-nixfred__pastey,missing-dependency-or-install,Panel.qml,no,yes,works,works,yes,YES,ipc nixfred.pastey.show
+b26-gdeyoung__omarchy-sysmon,ui-layout-or-state,DetailPopup.qml,no,yes,works,works,yes,YES,ipc gdeyoung.sysmon.status
+b27-harbefas__omarchy-almanac,ui-layout-or-state,ManagerPanel.qml,no,yes,works,works,yes,YES,ipc harbefas.almanac.show
+b28-mlambert-uk__omarchy-govee,wrong-condition-or-logic,Panel.qml,no,yes,works,works,yes,YES,ipc mlambert-uk.govee.show
+b29-herman6888__newswire-omarchy,wrong-condition-or-logic,NewsPopup.qml,yes,yes,broken,broken,no,no,qml-fatal: Plugin widget herman.newswire-zh failed: file:~/.config/omarchy/plugins/herman.newswire-zh/Widget.q
+b30-petealeon__dailybiblereadings,security,BarWidget.qml,no,yes,works,works,yes,YES,ipc petealeon.dailybiblereadings.show

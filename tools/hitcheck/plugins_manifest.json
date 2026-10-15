@@ -1,0 +1,6056 @@
+{
+ "note": "Plugin trees of the hit-check are NOT redistributed (most have no permissive LICENSE file). Batch B entries carry exact commits (pre = parent, post = fix commit). Batch A trees were taken from the HEAD of shallow clones at sweep time and no commit was recorded: fetch_plugins.py fetches the current HEAD, so line numbers may have moved. license_file_in_package is the licence family of a LICENSE file found in the original tree (null = none found).",
+ "count": 344,
+ "jobs": [
+  {
+   "job": "a-07dcolem__omarchy-meeting-clipboard",
+   "batch": "A",
+   "repo": "07dcolem/omarchy-meeting-clipboard",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "test_parse.py",
+     "line": 161,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-0xquan93__omarchy-pixel-spirit",
+   "batch": "A",
+   "repo": "0xquan93/omarchy-pixel-spirit",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "plugin/brain.py",
+     "line": 105,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-L02",
+     "file": "plugin/Desktop.qml",
+     "line": 83,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-28allday__quattro-4x4",
+   "batch": "A",
+   "repo": "28allday/quattro-4x4",
+   "plugin_root": ".",
+   "kinds": [
+    "panel",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC06",
+     "file": "upscale.sh",
+     "line": 179,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-abdulazizalwabel__omarchy-omavm",
+   "batch": "A",
+   "repo": "abdulazizalwabel/omarchy-omavm",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "collector.py",
+     "line": 243,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-adrianoverdijk__omarchy-screensaver",
+   "batch": "A",
+   "repo": "adrianoverdijk/omarchy-screensaver",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "bin/set-idle",
+     "line": 44,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-akafrmn__omarchy-galaxy-buds-pro",
+   "batch": "A",
+   "repo": "akafrmn/omarchy-galaxy-buds-pro",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-akshad135__wordle",
+   "batch": "A",
+   "repo": "akshad135/wordle",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "Wordle.qml",
+     "line": 355,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-aksharp5__omarchy-radio-atlas",
+   "batch": "A",
+   "repo": "aksharp5/omarchy-radio-atlas",
+   "plugin_root": ".",
+   "kinds": [
+    "panel",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "radio-player",
+     "line": 575,
+     "group": "skip_case"
+    },
+    {
+     "rule": "USB-HC18",
+     "file": "radio-favicon",
+     "line": 94,
+     "group": "skip_case"
+    },
+    {
+     "rule": "USB-HC06",
+     "file": "radio-fetch",
+     "line": 362,
+     "group": "skip_case"
+    },
+    {
+     "rule": "USB-HC24",
+     "file": "radio-window",
+     "line": 38,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-alanfortlink__attention-required",
+   "batch": "A",
+   "repo": "alanfortlink/attention-required",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-alanroman117__omarchy-amd-npu",
+   "batch": "A",
+   "repo": "alanroman117/omarchy-amd-npu",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "Widget.qml",
+     "line": 101,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-alexinslc__omarchy-calendar-agenda",
+   "batch": "A",
+   "repo": "alexinslc/omarchy-calendar-agenda",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "sync/google.py",
+     "line": 36,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-alfonsobries__fluent-omarchy",
+   "batch": "A",
+   "repo": "alfonsobries/fluent-omarchy",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "bin/fluent.py",
+     "line": 978,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-alivault__iweather",
+   "batch": "A",
+   "repo": "alivault/iweather",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC18",
+     "file": "nws-weather.sh",
+     "line": 30,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-alkevintan__bw-vault",
+   "batch": "A",
+   "repo": "alkevintan/bw-vault",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "VaultModel.js",
+     "line": 23,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-amessolutions__omarchy-crunchyroll",
+   "batch": "A",
+   "repo": "amessolutions/omarchy-crunchyroll",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "media-bridge.mjs",
+     "line": 209,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-anavarre__omarchy-miniflux",
+   "batch": "A",
+   "repo": "anavarre/omarchy-miniflux",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "Model.js",
+     "line": 141,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-ancelik__omarchy-temporal",
+   "batch": "A",
+   "repo": "ancelik/omarchy-temporal",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "testbed/parity-test.mjs",
+     "line": 536,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC25",
+     "file": "testbed/parity-test.mjs",
+     "line": 418,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-andreivinca__omarchy-note-note",
+   "batch": "A",
+   "repo": "andreivinca/omarchy-note-note",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "providers/onenote/onenote.py",
+     "line": 65,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-andrewx82__omarchy-googletv",
+   "batch": "A",
+   "repo": "andrewx82/omarchy-googletv",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "setup.sh",
+     "line": 18,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-anest58__omarchy-fan-control",
+   "batch": "A",
+   "repo": "anest58/omarchy-fan-control",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "scripts/fanctl-privileged.py",
+     "line": 188,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-anothadev__omarchy-eglo-light",
+   "batch": "A",
+   "repo": "anothadev/omarchy-eglo-light",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "bin/lightctl",
+     "line": 73,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-antongisli__omarchy-nebius",
+   "batch": "A",
+   "repo": "antongisli/omarchy-nebius",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "libexec/nebius_uninstall.py",
+     "line": 24,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-ardfard__omarchy-opencode-usage",
+   "batch": "A",
+   "repo": "ardfard/omarchy-opencode-usage",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "collector.sh",
+     "line": 76,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-areu01or00__piphone-plugin-for-omarchy",
+   "batch": "A",
+   "repo": "areu01or00/piphone-plugin-for-omarchy",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "panel",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "omarchy-plugin/Service.qml",
+     "line": 399,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-argusguardian__omat3code",
+   "batch": "A",
+   "repo": "argusguardian/omat3code",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "omat3_t3.py",
+     "line": 183,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-arikisonfire__omarsync",
+   "batch": "A",
+   "repo": "arikisonfire/omarsync",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "test-options.js",
+     "line": 183,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-avillagran__omarchy-supernotch",
+   "batch": "A",
+   "repo": "avillagran/omarchy-supernotch",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-baranskyi__omafold",
+   "batch": "A",
+   "repo": "baranskyi/omafold",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-batusaribay__omarchy-ctfstatus",
+   "batch": "A",
+   "repo": "batusaribay/omarchy-ctfstatus",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "ctf-fetch.sh",
+     "line": 222,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-blackkingbarorg__displaywright-shell-plugin",
+   "batch": "A",
+   "repo": "blackkingbarorg/displaywright-shell-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "overlay"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "pick-wallpaper.sh",
+     "line": 101,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-blazejkapala__omarchy-bananilio",
+   "batch": "A",
+   "repo": "blazejkapala/omarchy-bananilio",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "test_vault.py",
+     "line": 16,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-bogdart__omarchy-minimizable-dock",
+   "batch": "A",
+   "repo": "bogdart/omarchy-minimizable-dock",
+   "plugin_root": ".",
+   "kinds": [
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "icon-mono.sh",
+     "line": 156,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-bottelet__omarchy-podcasts",
+   "batch": "A",
+   "repo": "bottelet/omarchy-podcasts",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "scripts/podcasts.py",
+     "line": 1977,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC18",
+     "file": "scripts/podcasts.py",
+     "line": 591,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-brandc87__omamox",
+   "batch": "A",
+   "repo": "brandc87/omamox",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "Service.qml",
+     "line": 167,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-brm-src__omawatch",
+   "batch": "A",
+   "repo": "brm-src/omawatch",
+   "plugin_root": ".",
+   "kinds": [
+    "panel",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "omawatch.py",
+     "line": 38,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-burninc0de__burninc0de.dock",
+   "batch": "A",
+   "repo": "burninc0de/burninc0de.dock",
+   "plugin_root": ".",
+   "kinds": [
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-bvisagie__omarchy-you-got-mail",
+   "batch": "A",
+   "repo": "bvisagie/omarchy-you-got-mail",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "lib/outlook_auth.py",
+     "line": 33,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-cabral__oma-solorpg",
+   "batch": "A",
+   "repo": "cabral/oma-solorpg",
+   "plugin_root": ".",
+   "kinds": [
+    "panel",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "solo/extract.py",
+     "line": 127,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-cbayschm74__omarchy-laptop-power-center",
+   "batch": "A",
+   "repo": "cbayschm74/omarchy-laptop-power-center",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC06",
+     "file": "test.sh",
+     "line": 22,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-cempack__omapods",
+   "batch": "A",
+   "repo": "cempack/omapods",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "daemon/hearing-aid-adjustments.py",
+     "line": 127,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-cjohnson46__omarchy-omaglass",
+   "batch": "A",
+   "repo": "cjohnson46/omarchy-omaglass",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "Panel.qml",
+     "line": 414,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-clartek__omanewsnc",
+   "batch": "A",
+   "repo": "clartek/omanewsnc",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "news_backend.py",
+     "line": 654,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC20",
+     "file": "news_backend.py",
+     "line": 177,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC25",
+     "file": "news_backend.py",
+     "line": 248,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-cobmuddybug__nickelbar",
+   "batch": "A",
+   "repo": "cobmuddybug/nickelbar",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "overlay"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "dev/tools/words.py",
+     "line": 5,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-corywinterberg__omarchy-solitaire",
+   "batch": "A",
+   "repo": "corywinterberg/omarchy-solitaire",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "CLAUDE.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-coxdylan7__pot-head",
+   "batch": "A",
+   "repo": "coxdylan7/pot-head",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "Service.qml",
+     "line": 96,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC10",
+     "file": "Service.qml",
+     "line": 267,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-crmne__omarchy-moza",
+   "batch": "A",
+   "repo": "crmne/omarchy-moza",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "backend/setup.py",
+     "line": 45,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-crowdersoup__omarchy-micropub",
+   "batch": "A",
+   "repo": "crowdersoup/omarchy-micropub",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "scripts/indieauth_login.py",
+     "line": 29,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-daileng__omi",
+   "batch": "A",
+   "repo": "daileng/omi",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay",
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "scripts/menu-cas.py",
+     "line": 100,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-daspoxy__shell-swapper",
+   "batch": "A",
+   "repo": "daspoxy/shell-swapper",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "overlay"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "shell_swapper.py",
+     "line": 813,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-davydotcom__omarchy-control4-plugin",
+   "batch": "A",
+   "repo": "davydotcom/omarchy-control4-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "DirectorClient.js",
+     "line": 184,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-dawestheperson__omarchy-predator-widget",
+   "batch": "A",
+   "repo": "dawestheperson/omarchy-predator-widget",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "install-perms.sh",
+     "line": 16,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-daz92__omarchy-toggl-track",
+   "batch": "A",
+   "repo": "daz92/omarchy-toggl-track",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "toggl_secret.py",
+     "line": 36,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-deca__omarchy-from-time-to-time",
+   "batch": "A",
+   "repo": "deca/omarchy-from-time-to-time",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "play-transition.sh",
+     "line": 26,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-defkode__omarchy-moodlight",
+   "batch": "A",
+   "repo": "defkode/omarchy-moodlight",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "lib/omamood/cloud.py",
+     "line": 52,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-devinblack001__omarchy-wazuh-server-view",
+   "batch": "A",
+   "repo": "devinblack001/omarchy-wazuh-server-view",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "bin/omarchy-wazuh-server-state",
+     "line": 271,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-dexterhere__omallama",
+   "batch": "A",
+   "repo": "dexterhere/omallama",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "Model.js",
+     "line": 196,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-dicemans__omarchy-plugin-iphone",
+   "batch": "A",
+   "repo": "dicemans/omarchy-plugin-iphone",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "Model.js",
+     "line": 318,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-djmenig__omadash",
+   "batch": "A",
+   "repo": "djmenig/omadash",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "engine/WeatherEngine.qml",
+     "line": 151,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-dlpwaters__omarchy-dictionary-thesaurus",
+   "batch": "A",
+   "repo": "dlpwaters/omarchy-dictionary-thesaurus",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "fetch-thesaurus",
+     "line": 8,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-dlpwaters__omarchy-open-notebook",
+   "batch": "A",
+   "repo": "dlpwaters/omarchy-open-notebook",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "service"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "opennotebook-tool",
+     "line": 214,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-domemcfly__omarchy-dictation",
+   "batch": "A",
+   "repo": "domemcfly/omarchy-dictation",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "omarchy-plugin/keybindings.py",
+     "line": 163,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-dreed47__omarchy-makerworld",
+   "batch": "A",
+   "repo": "dreed47/omarchy-makerworld",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "Panel.qml",
+     "line": 122,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC02",
+     "file": "bin/_mwlib.py",
+     "line": 343,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-dreed47__tempest-weather",
+   "batch": "A",
+   "repo": "dreed47/tempest-weather",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "AlertService.qml",
+     "line": 121,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-duketopceo__omaseal",
+   "batch": "A",
+   "repo": "duketopceo/omaseal",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "install.sh",
+     "line": 75,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-earlife__omarchy-steam-charts",
+   "batch": "A",
+   "repo": "earlife/omarchy-steam-charts",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "fetch-games.sh",
+     "line": 27,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-erikwb__themestyles",
+   "batch": "A",
+   "repo": "erikwb/themestyles",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "src/Panel.qml",
+     "line": 121,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-eshayat102__orbit-omarchy-plugin",
+   "batch": "A",
+   "repo": "eshayat102/orbit-omarchy-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "overlay",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "run-opencode.sh",
+     "line": 28,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-eudionelima__omahack",
+   "batch": "A",
+   "repo": "eudionelima/omahack",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "Payloads.js",
+     "line": 80,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-fearlex-creator__omarchy-v2rayn",
+   "batch": "A",
+   "repo": "fearlex-creator/omarchy-v2rayn",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "scripts/control.py",
+     "line": 122,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-ferc10110__omarchy-fresh-tube",
+   "batch": "A",
+   "repo": "ferc10110/omarchy-fresh-tube",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "lib/fresh_tube/feed.py",
+     "line": 14,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-ferc10110__omarchy-readily",
+   "batch": "A",
+   "repo": "ferc10110/omarchy-readily",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "lib/readily/store.py",
+     "line": 264,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-ferc10110__omarchy-syllabus",
+   "batch": "A",
+   "repo": "ferc10110/omarchy-syllabus",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "lib/syllabus/cli.py",
+     "line": 455,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-flathack__omabridge",
+   "batch": "A",
+   "repo": "flathack/omabridge",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "scripts/install.sh",
+     "line": 18,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-frank-iii__omarchy-aqua-voice",
+   "batch": "A",
+   "repo": "frank-iii/omarchy-aqua-voice",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget",
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "bin/aqua-bridge.js",
+     "line": 520,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-frantgn90__omarchy-garmin-connect",
+   "batch": "A",
+   "repo": "frantgn90/omarchy-garmin-connect",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "_ensure_venv.sh",
+     "line": 8,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-friddle__omarchy-dynamic-weather-wallpaper",
+   "batch": "A",
+   "repo": "friddle/omarchy-dynamic-weather-wallpaper",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "weatherwall/net.py",
+     "line": 53,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC19",
+     "file": "weatherwall/gui.py",
+     "line": 74,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-funcoder__omarchy-devops-board",
+   "batch": "A",
+   "repo": "funcoder/omarchy-devops-board",
+   "plugin_root": ".",
+   "kinds": [
+    "panel",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "devops.py",
+     "line": 249,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC25",
+     "file": "devops.py",
+     "line": 204,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-funcoder__omarchy-spotify",
+   "batch": "A",
+   "repo": "funcoder/omarchy-spotify",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "panel",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "spotify.py",
+     "line": 205,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-gaius-codius__omarchy-unifi",
+   "batch": "A",
+   "repo": "gaius-codius/omarchy-unifi",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "helper/unifi/tlsctx.py",
+     "line": 83,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-gameticharles__aurorapulse-omarchy",
+   "batch": "A",
+   "repo": "gameticharles/aurorapulse-omarchy",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "src/apctl/core/cast.py",
+     "line": 439,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-gardnmi__omarchy-irc",
+   "batch": "A",
+   "repo": "gardnmi/omarchy-irc",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "irc_helper.py",
+     "line": 29,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-glasschan__appimage-for-omarchy",
+   "batch": "A",
+   "repo": "glasschan/appimage-for-omarchy",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "panel",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "install.sh",
+     "line": 86,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-glitzypanic__omarchy-runpod-monitor",
+   "batch": "A",
+   "repo": "glitzypanic/omarchy-runpod-monitor",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "bin/runpod-monitor.py",
+     "line": 247,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-gmacadoches__astro-arc",
+   "batch": "A",
+   "repo": "gmacadoches/astro-arc",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "backend/bin/openai_image_gen.py",
+     "line": 188,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-grechman__dynamic-bar",
+   "batch": "A",
+   "repo": "grechman/dynamic-bar",
+   "plugin_root": ".",
+   "kinds": [
+    "bar"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "island.py",
+     "line": 824,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-grootaiinfinity__omarchy-privacy",
+   "batch": "A",
+   "repo": "grootaiinfinity/omarchy-privacy",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "setup_udev.sh",
+     "line": 128,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-grupertal__omarchy-nanit",
+   "batch": "A",
+   "repo": "grupertal/omarchy-nanit",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "bin/nanit",
+     "line": 12,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-gskrt__lapbar",
+   "batch": "A",
+   "repo": "gskrt/lapbar",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "scripts/popup_guide.py",
+     "line": 6,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-gskrt__omarchy-melcloud",
+   "batch": "A",
+   "repo": "gskrt/omarchy-melcloud",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "bin/_melcloud_common.py",
+     "line": 30,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-gustavohariel__omarchy-sing-box",
+   "batch": "A",
+   "repo": "gustavohariel/omarchy-sing-box",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "Service.qml",
+     "line": 33,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-hegjon__omarchy-coingecko",
+   "batch": "A",
+   "repo": "hegjon/omarchy-coingecko",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC18",
+     "file": "coingecko-fetch",
+     "line": 75,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-hegjon__omarchy-prusa-connect",
+   "batch": "A",
+   "repo": "hegjon/omarchy-prusa-connect",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "tools/fetch-printer-assets",
+     "line": 35,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-helderrscorreia__omarchy-openproject-tasks",
+   "batch": "A",
+   "repo": "helderrscorreia/omarchy-openproject-tasks",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "OpenProjectService.qml",
+     "line": 27,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-hillbyte__omarchy-salah",
+   "batch": "A",
+   "repo": "hillbyte/omarchy-salah",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "BarWidget.qml",
+     "line": 47,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-howdyitskyle__weathering-omarchy-plugin",
+   "batch": "A",
+   "repo": "howdyitskyle/weathering-omarchy-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-hyphae-research-foundation__hyphae-omarchy",
+   "batch": "A",
+   "repo": "hyphae-research-foundation/hyphae-omarchy",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "scripts/vm.py",
+     "line": 144,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-hyuricane__omarchy-cmdpp",
+   "batch": "A",
+   "repo": "hyuricane/omarchy-cmdpp",
+   "plugin_root": ".",
+   "kinds": [
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "install.sh",
+     "line": 27,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-iaeluk__omastatus",
+   "batch": "A",
+   "repo": "iaeluk/omastatus",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "helpers/collect.sh",
+     "line": 289,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-imcmurray__omarchy-capture-overlay",
+   "batch": "A",
+   "repo": "imcmurray/omarchy-capture-overlay",
+   "plugin_root": ".",
+   "kinds": [
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "Service.qml",
+     "line": 1072,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-infern0451__omaviation-wx",
+   "batch": "A",
+   "repo": "infern0451/omaviation-wx",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "weather.py",
+     "line": 21,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-jacob-vincent-mink__omadigest",
+   "batch": "A",
+   "repo": "jacob-vincent-mink/omadigest",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "demo/notification-burst.sh",
+     "line": 39,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC05",
+     "file": "demo/prepare.sh",
+     "line": 53,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-jacob-vincent-mink__omarchy-npu-waveform",
+   "batch": "A",
+   "repo": "jacob-vincent-mink/omarchy-npu-waveform",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "power-reader/install.sh",
+     "line": 4,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-jandragsbaek__omarchy-words",
+   "batch": "A",
+   "repo": "jandragsbaek/omarchy-words",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC06",
+     "file": "scripts/install-local.sh",
+     "line": 58,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-jarlmaxi__omarchy-quick-piano",
+   "batch": "A",
+   "repo": "jarlmaxi/omarchy-quick-piano",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "shortcut.py",
+     "line": 41,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-jellespijker__omarchy-sift",
+   "batch": "A",
+   "repo": "jellespijker/omarchy-sift",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "src/sift/adapters/http.py",
+     "line": 17,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-jeremylongshore__omarchy-bazaar-entry",
+   "batch": "A",
+   "repo": "jeremylongshore/omarchy-bazaar-entry",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "scripts/gates/c38-omarchy-ssrf-host-allowlist.sh",
+     "line": 77,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-jeremylongshore__omarchy-desk-transition-entry",
+   "batch": "A",
+   "repo": "jeremylongshore/omarchy-desk-transition-entry",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "scripts/gates/c38-omarchy-ssrf-host-allowlist.sh",
+     "line": 84,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-jexmarc__omarchy-spacexai-usage",
+   "batch": "A",
+   "repo": "jexmarc/omarchy-spacexai-usage",
+   "plugin_root": ".",
+   "kinds": [
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "update.py",
+     "line": 164,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC20",
+     "file": "update.py",
+     "line": 161,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-jmaeder__omarchy-frenchdict-cnrtl",
+   "batch": "A",
+   "repo": "jmaeder/omarchy-frenchdict-cnrtl",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "tools/test.js",
+     "line": 112,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-jmaeder__omarchy-sweeztv",
+   "batch": "A",
+   "repo": "jmaeder/omarchy-sweeztv",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "tools/check-glyphs.sh",
+     "line": 9,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC08",
+     "file": "tools/test.js",
+     "line": 233,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-jmthomas00__omarchy-waveform",
+   "batch": "A",
+   "repo": "jmthomas00/omarchy-waveform",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "FilterChainGen.js",
+     "line": 153,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-joega__a-weather-app",
+   "batch": "A",
+   "repo": "joega/a-weather-app",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "scripts/install_release_runtime.sh",
+     "line": 19,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-joejoeflyn__jot",
+   "batch": "A",
+   "repo": "joejoeflyn/jot",
+   "plugin_root": ".",
+   "kinds": [
+    "panel",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-L02",
+     "file": "JotWidget.qml",
+     "line": 17,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-joemc1470__omapill",
+   "batch": "A",
+   "repo": "joemc1470/omapill",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "panel",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC18",
+     "file": "omapill/codex.py",
+     "line": 61,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-jondkinney__omarchy-bazecor-lens",
+   "batch": "A",
+   "repo": "jondkinney/omarchy-bazecor-lens",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "LensPanel.qml",
+     "line": 90,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-jonspinks__omarchy-calendar",
+   "batch": "A",
+   "repo": "jonspinks/omarchy-calendar",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "scripts/omcal/auth.py",
+     "line": 151,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-joshuaswarren__omarchy-plexmini",
+   "batch": "A",
+   "repo": "joshuaswarren/omarchy-plexmini",
+   "plugin_root": ".",
+   "kinds": [
+    "panel",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "PlexPanel.qml",
+     "line": 595,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-jtcarrasco__audiobookshelf-player",
+   "batch": "A",
+   "repo": "jtcarrasco/audiobookshelf-player",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "scripts/abs_backend.py",
+     "line": 271,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-kairos-tech-oh__omarchy-theme-forge",
+   "batch": "A",
+   "repo": "kairos-tech-oh/omarchy-theme-forge",
+   "plugin_root": ".",
+   "kinds": [
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "tools/check-palette.js",
+     "line": 239,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC16",
+     "file": "CLAUDE.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-kaktycgmd__wallpaper-drop",
+   "batch": "A",
+   "repo": "kaktycgmd/wallpaper-drop",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "overlay"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "list.sh",
+     "line": 29,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-kalinewb__omarchy-face",
+   "batch": "A",
+   "repo": "kalinewb/omarchy-face",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "dev/f1-round-trip.sh",
+     "line": 311,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-keegan-sucks__omarchy-flowstate",
+   "batch": "A",
+   "repo": "keegan-sucks/omarchy-flowstate",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "scripts/sync-liked-playlist.py",
+     "line": 214,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-kelpme__lanchat",
+   "batch": "A",
+   "repo": "kelpme/lanchat",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "lanchat-ensure-systemd.py",
+     "line": 147,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-kenhara__omarchy-encyclopedic",
+   "batch": "A",
+   "repo": "kenhara/omarchy-encyclopedic",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "scripts/search.py",
+     "line": 125,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-kenhara__omarchy-scriptural",
+   "batch": "A",
+   "repo": "kenhara/omarchy-scriptural",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "scripts/votd.py",
+     "line": 93,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-kiryuuki__oma-kasm",
+   "batch": "A",
+   "repo": "kiryuuki/oma-kasm",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "kasm_engine.py",
+     "line": 31,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-kris-1__omarchy-monitor-layout",
+   "batch": "A",
+   "repo": "kris-1/omarchy-monitor-layout",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "CLAUDE.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-kyrunner__omarchy-seerr-requests",
+   "batch": "A",
+   "repo": "kyrunner/omarchy-seerr-requests",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "poll.py",
+     "line": 155,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-lalomorales22__oma-bs",
+   "batch": "A",
+   "repo": "lalomorales22/oma-bs",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "scripts/capture_session.py",
+     "line": 216,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-lama7__omacal",
+   "batch": "A",
+   "repo": "lama7/omacal",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "install.sh",
+     "line": 158,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-lawliet1994__omarchy-github-hot",
+   "batch": "A",
+   "repo": "lawliet1994/omarchy-github-hot",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "Panel.qml",
+     "line": 70,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-lightqv__omarchy-gamepads",
+   "batch": "A",
+   "repo": "lightqv/omarchy-gamepads",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "panel",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-linuxgameruk__omadeck",
+   "batch": "A",
+   "repo": "linuxgameruk/omadeck",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "Service.qml",
+     "line": 555,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-linuxgameruk__omarchy-ollama-status",
+   "batch": "A",
+   "repo": "linuxgameruk/omarchy-ollama-status",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "Service.qml",
+     "line": 389,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-longbridge__omarchy-longbridge",
+   "batch": "A",
+   "repo": "longbridge/omarchy-longbridge",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "Apache-2.0",
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "Model.js",
+     "line": 139,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-losokosg__omarchy-window-gallery",
+   "batch": "A",
+   "repo": "losokosg/omarchy-window-gallery",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "browser/setup.sh",
+     "line": 21,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-louistarwars__omarchy-portal",
+   "batch": "A",
+   "repo": "louistarwars/omarchy-portal",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "portal.py",
+     "line": 689,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-lucasvidela94__omarchy-charge-mode",
+   "batch": "A",
+   "repo": "lucasvidela94/omarchy-charge-mode",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "Panel.qml",
+     "line": 121,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-lukejmorrison__omamusic",
+   "batch": "A",
+   "repo": "lukejmorrison/omamusic",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget",
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "scripts/setup.sh",
+     "line": 172,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC25",
+     "file": "backend/auth.py",
+     "line": 128,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-lukewalker2010__omarchy-airgradient",
+   "batch": "A",
+   "repo": "lukewalker2010/omarchy-airgradient",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "Panel.qml",
+     "line": 125,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-luxore__omarchy-unifi-protect",
+   "batch": "A",
+   "repo": "luxore/omarchy-unifi-protect",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "omarchy_protect/client.py",
+     "line": 24,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-lxp-git__omarchy-vitals",
+   "batch": "A",
+   "repo": "lxp-git/omarchy-vitals",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "Panel.qml",
+     "line": 1958,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-maftuuh1922__omarchy-boxtop",
+   "batch": "A",
+   "repo": "maftuuh1922/omarchy-boxtop",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "update_check.py",
+     "line": 16,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-maiosx__x-composer",
+   "batch": "A",
+   "repo": "maiosx/x-composer",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay",
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "backend.py",
+     "line": 455,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-manateelazycat__omarchy-deskop-top",
+   "batch": "A",
+   "repo": "manateelazycat/omarchy-deskop-top",
+   "plugin_root": ".",
+   "kinds": [
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-L02",
+     "file": "Service.qml",
+     "line": 104,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-manateelazycat__omarchy-desktop-clock",
+   "batch": "A",
+   "repo": "manateelazycat/omarchy-desktop-clock",
+   "plugin_root": ".",
+   "kinds": [
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-L02",
+     "file": "Service.qml",
+     "line": 90,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-manateelazycat__omarchy-language-switcher",
+   "batch": "A",
+   "repo": "manateelazycat/omarchy-language-switcher",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "Service.qml",
+     "line": 70,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-mar1__omarchy-deezer",
+   "batch": "A",
+   "repo": "mar1/omarchy-deezer",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget",
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "OAuth.js",
+     "line": 42,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-marcelinux303__epoche",
+   "batch": "A",
+   "repo": "marcelinux303/epoche",
+   "plugin_root": ".",
+   "kinds": [
+    "panel"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-L02",
+     "file": "Pulse.qml",
+     "line": 8,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-mauriciomcunha__omarchy-doorman",
+   "batch": "A",
+   "repo": "mauriciomcunha/omarchy-doorman",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "broker/broker.py",
+     "line": 599,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-mb-jambon__omarchy-pods",
+   "batch": "A",
+   "repo": "mb-jambon/omarchy-pods",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "daemon/hearing-aid-adjustments.py",
+     "line": 127,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-megabyte0x__omarchy-blr",
+   "batch": "A",
+   "repo": "megabyte0x/omarchy-blr",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "cli/omarchy_blr.py",
+     "line": 76,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-meviusisback__botty",
+   "batch": "A",
+   "repo": "meviusisback/botty",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "botty_backend.py",
+     "line": 123,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-meviusisback__omarchy-ai-subs",
+   "batch": "A",
+   "repo": "meviusisback/omarchy-ai-subs",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "fetch_usage.py",
+     "line": 543,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-michaelcodetolimit__omarchy-mirror-screen",
+   "batch": "A",
+   "repo": "michaelcodetolimit/omarchy-mirror-screen",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "server/public/app.js",
+     "line": 300,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-mimiqdev__omarchy-vibe-usage",
+   "batch": "A",
+   "repo": "mimiqdev/omarchy-vibe-usage",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "Locale.js",
+     "line": 115,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-minholi__omakindle",
+   "batch": "A",
+   "repo": "minholi/omakindle",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget",
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "scripts/authorize.py",
+     "line": 156,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-mokkapps__omarchy-kimai",
+   "batch": "A",
+   "repo": "mokkapps/omarchy-kimai",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "Service.qml",
+     "line": 274,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-mphaxise__omarchy-keepalive",
+   "batch": "A",
+   "repo": "mphaxise/omarchy-keepalive",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "bin/omarchy-agent-session-core",
+     "line": 683,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-mrpbennett__omarchy-sesh",
+   "batch": "A",
+   "repo": "mrpbennett/omarchy-sesh",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-muscaiu__ai-usagebar",
+   "batch": "A",
+   "repo": "muscaiu/ai-usagebar",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "macos/install-agent.sh",
+     "line": 31,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-mythopoios__omarchy-stream-view",
+   "batch": "A",
+   "repo": "mythopoios/omarchy-stream-view",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "service"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC24",
+     "file": "bin/stream-view",
+     "line": 195,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-mythz__omarchy-themes-explorer",
+   "batch": "A",
+   "repo": "mythz/omarchy-themes-explorer",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "app/server.py",
+     "line": 48,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-namelesstherebel__omarchy-spotify-bar",
+   "batch": "A",
+   "repo": "namelesstherebel/omarchy-spotify-bar",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "core/spotifyctl.py",
+     "line": 304,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-nathankramm__omarchy-monarch-money",
+   "batch": "A",
+   "repo": "nathankramm/omarchy-monarch-money",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "install.sh",
+     "line": 23,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-nathanrgagnon__omawhoop",
+   "batch": "A",
+   "repo": "nathanrgagnon/omawhoop",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "lib/common.sh",
+     "line": 115,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-navjottomer__omarchy-proton-authenticator",
+   "batch": "A",
+   "repo": "navjottomer/omarchy-proton-authenticator",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "bin/protonauth_list.py",
+     "line": 44,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-nebuc117__omahole",
+   "batch": "A",
+   "repo": "nebuc117/omahole",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "pihole-status.py",
+     "line": 16,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-neno260__omarchy-power-watts",
+   "batch": "A",
+   "repo": "neno260/omarchy-power-watts",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "install.sh",
+     "line": 11,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-nikodem01__chip402",
+   "batch": "A",
+   "repo": "nikodem01/chip402",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "daemon/lib/facilitator.mjs",
+     "line": 44,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-ninepointlabs__omostrich",
+   "batch": "A",
+   "repo": "ninepointlabs/omostrich",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "overlay"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "daemon/blossom.mjs",
+     "line": 111,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-niraj-envision__touch-bar",
+   "batch": "A",
+   "repo": "niraj-envision/touch-bar",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "install.sh",
+     "line": 95,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-nixfred__shepr",
+   "batch": "A",
+   "repo": "nixfred/shepr",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "server.py",
+     "line": 204,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-nousd__chime",
+   "batch": "A",
+   "repo": "nousd/chime",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC06",
+     "file": "scripts/lint.sh",
+     "line": 25,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-nousd__voxbox",
+   "batch": "A",
+   "repo": "nousd/voxbox",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "install.sh",
+     "line": 44,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-oliverlukschander__omarchy-mac-option",
+   "batch": "A",
+   "repo": "oliverlukschander/omarchy-mac-option",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "install.sh",
+     "line": 41,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-omacheese__omastorm-nord",
+   "batch": "A",
+   "repo": "omacheese/omastorm-nord",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "scripts/refresh-fixtures.sh",
+     "line": 24,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-omarchy-qol__omarchy-btop-activity",
+   "batch": "A",
+   "repo": "omarchy-qol/omarchy-btop-activity",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "Service.qml",
+     "line": 58,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-orkitec__omarchy-face-unlock",
+   "batch": "A",
+   "repo": "orkitec/omarchy-face-unlock",
+   "plugin_root": ".",
+   "kinds": [
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "setup/install.sh",
+     "line": 62,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-othavi0__omanotes",
+   "batch": "A",
+   "repo": "othavi0/omanotes",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "tools/toolchain.sh",
+     "line": 36,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-ozz1ee-dev__omarchy-rakabot",
+   "batch": "A",
+   "repo": "ozz1ee-dev/omarchy-rakabot",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "Apache-2.0",
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "bin/rakabot-setup",
+     "line": 42,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-pandaind__omarchy-panda-dl",
+   "batch": "A",
+   "repo": "pandaind/omarchy-panda-dl",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "Service.qml",
+     "line": 66,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-paulogeyer__omarchy-vivobook-s14-copilot",
+   "batch": "A",
+   "repo": "paulogeyer/omarchy-vivobook-s14-copilot",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "Service.qml",
+     "line": 471,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-paulohenrique000__omarchy-follow-your-team",
+   "batch": "A",
+   "repo": "paulohenrique000/omarchy-follow-your-team",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "Panel.qml",
+     "line": 98,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-paulpitchford__omarchy-garmin-insights",
+   "batch": "A",
+   "repo": "paulpitchford/omarchy-garmin-insights",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "src/omarchy_garmin/errors.py",
+     "line": 33,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-peterholko__omarchy-math-time",
+   "batch": "A",
+   "repo": "peterholko/omarchy-math-time",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay",
+    "service"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "service/runtime.py",
+     "line": 181,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-peterholko__omarchy-school-mode",
+   "batch": "A",
+   "repo": "peterholko/omarchy-school-mode",
+   "plugin_root": ".",
+   "kinds": [
+    "menu",
+    "bar-widget",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "service/omarchy_kids/core/proto.py",
+     "line": 45,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC05",
+     "file": "service/omarchy_kids/core/daemon.py",
+     "line": 112,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-pietrovos__omarchy-subspace",
+   "batch": "A",
+   "repo": "pietrovos/omarchy-subspace",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "scripts/setup-shortcuts.py",
+     "line": 76,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-pinta365__omarchy-nothing-control",
+   "batch": "A",
+   "repo": "pinta365/omarchy-nothing-control",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-pixygon__micromachee",
+   "batch": "A",
+   "repo": "pixygon/micromachee",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "CLAUDE.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-pjgeutjens__omarchy-omaplex",
+   "batch": "A",
+   "repo": "pjgeutjens/omarchy-omaplex",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "omaplex/config.py",
+     "line": 224,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-pjgeutjens__omarchy-sticky-focus",
+   "batch": "A",
+   "repo": "pjgeutjens/omarchy-sticky-focus",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "bin/sticky-focus",
+     "line": 317,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-popidge__omasoccer",
+   "batch": "A",
+   "repo": "popidge/omasoccer",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "Model.js",
+     "line": 2,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-primo-marino__omarchy-hearth",
+   "batch": "A",
+   "repo": "primo-marino/omarchy-hearth",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "helpers/ha_bridge.py",
+     "line": 425,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-purodelphi__omarchy-automations",
+   "batch": "A",
+   "repo": "purodelphi/omarchy-automations",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "scripts/test-installed-acceptance.py",
+     "line": 25,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-pxllbt__better-bar",
+   "batch": "A",
+   "repo": "pxllbt/better-bar",
+   "plugin_root": ".",
+   "kinds": [
+    "bar"
+   ],
+   "claims": [
+    {
+     "rule": "USB-L02",
+     "file": "shell.qml",
+     "line": 28,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-qempexe__omarchy-omatravel",
+   "batch": "A",
+   "repo": "qempexe/omarchy-omatravel",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "tools/build-texture.py",
+     "line": 16,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-rafale83__omarchy-adwaita-screensaver",
+   "batch": "A",
+   "repo": "rafale83/omarchy-adwaita-screensaver",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "Model.js",
+     "line": 71,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-ralphk-86__omarchy-proton",
+   "batch": "A",
+   "repo": "ralphk-86/omarchy-proton",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "VpnWidget.qml",
+     "line": 285,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-randazraik__omarchy-hijri-date",
+   "batch": "A",
+   "repo": "randazraik/omarchy-hijri-date",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "state/CalendarUpdater.qml",
+     "line": 17,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-rclinux__omapasswords",
+   "batch": "A",
+   "repo": "rclinux/omapasswords",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-readeem__omihomo",
+   "batch": "A",
+   "repo": "readeem/omihomo",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "lib/common.sh",
+     "line": 298,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-rektyrowdyy__oma-focus",
+   "batch": "A",
+   "repo": "rektyrowdyy/oma-focus",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "scripts/setup.sh",
+     "line": 25,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-remigius-labs__omarchy-wifi-portal",
+   "batch": "A",
+   "repo": "remigius-labs/omarchy-wifi-portal",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "Model.js",
+     "line": 324,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-renardoberou__omarchy-plugin-whats-this",
+   "batch": "A",
+   "repo": "renardoberou/omarchy-plugin-whats-this",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget",
+    "overlay"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "bin/omarchy-whats-this",
+     "line": 82,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-rewisch__omarchy-homeassistant",
+   "batch": "A",
+   "repo": "rewisch/omarchy-homeassistant",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "ha-ws-bridge.py",
+     "line": 70,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-ribattrw__todochy",
+   "batch": "A",
+   "repo": "ribattrw/todochy",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-rishadtharayil__omarchy-plugin-ryzenadj",
+   "batch": "A",
+   "repo": "rishadtharayil/omarchy-plugin-ryzenadj",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC06",
+     "file": "systemd/install-service.sh",
+     "line": 35,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-rizmi__omarchy-browser-downloads-plugin",
+   "batch": "A",
+   "repo": "rizmi/omarchy-browser-downloads-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "DownloadManager.qml",
+     "line": 266,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-robertlindomar__omarchy-ptbr-weather",
+   "batch": "A",
+   "repo": "robertlindomar/omarchy-ptbr-weather",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "Panel.qml",
+     "line": 184,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-robiabebe__2d-workspace-omarchy",
+   "batch": "A",
+   "repo": "robiabebe/2d-workspace-omarchy",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-robzolkos__omarchy-github",
+   "batch": "A",
+   "repo": "robzolkos/omarchy-github",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC06",
+     "file": "omarchy-github-fetch",
+     "line": 370,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-roddygithub__omarseafile",
+   "batch": "A",
+   "repo": "roddygithub/omarseafile",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "js/SeafileAPI.qml",
+     "line": 39,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-rs7y__tapzap-for-linux",
+   "batch": "A",
+   "repo": "rs7y/tapzap-for-linux",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "install-omarchy.sh",
+     "line": 9,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-rushisompurawork__songbook",
+   "batch": "A",
+   "repo": "rushisompurawork/songbook",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "scripts/voices.py",
+     "line": 372,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-sahzudin__omarchy-snapshot-manager",
+   "batch": "A",
+   "repo": "sahzudin/omarchy-snapshot-manager",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "Panel.qml",
+     "line": 38,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-saigkill__omarchy-bluesky",
+   "batch": "A",
+   "repo": "saigkill/omarchy-bluesky",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "bluesky_helper.py",
+     "line": 304,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-saigkill__omarchy-mastodon",
+   "batch": "A",
+   "repo": "saigkill/omarchy-mastodon",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "mastodon_helper.py",
+     "line": 284,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC25",
+     "file": "mastodon_helper.py",
+     "line": 234,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-samcapshaw__dispatch",
+   "batch": "A",
+   "repo": "samcapshaw/dispatch",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC10",
+     "file": "reader.py",
+     "line": 146,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-sarr77__windowpeek",
+   "batch": "A",
+   "repo": "sarr77/windowpeek",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-L02",
+     "file": "tests/ui/pinned-search-native.qml",
+     "line": 57,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-sergiudanstan__omarchy-hardware",
+   "batch": "A",
+   "repo": "sergiudanstan/omarchy-hardware",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "bin/setup.sh",
+     "line": 134,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-shirak-semonian__deepspend-omarchy-plugin",
+   "batch": "A",
+   "repo": "shirak-semonian/deepspend-omarchy-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "Model.js",
+     "line": 379,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-shuuul__omarchy-token-monitor",
+   "batch": "A",
+   "repo": "shuuul/omarchy-token-monitor",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "collector/providers/grok.py",
+     "line": 205,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-sighmon__omarchy-spacex-tv",
+   "batch": "A",
+   "repo": "sighmon/omarchy-spacex-tv",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "Panel.qml",
+     "line": 193,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-signal-six__kaomarchy",
+   "batch": "A",
+   "repo": "signal-six/kaomarchy",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "build/build_kaomoji_dataset.py",
+     "line": 5,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-slogonomo__live-doom",
+   "batch": "A",
+   "repo": "slogonomo/live-doom",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "sdk/python/doomagent.py",
+     "line": 340,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC02",
+     "file": "src/controller.py",
+     "line": 246,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-smoothpixels__lock-designs",
+   "batch": "A",
+   "repo": "smoothpixels/lock-designs",
+   "plugin_root": ".",
+   "kinds": [
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "designs/Minecraft.qml",
+     "line": 34,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-smorshenniygus__omaconvert",
+   "batch": "A",
+   "repo": "smorshenniygus/omaconvert",
+   "plugin_root": ".",
+   "kinds": [
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "OmaConvert.qml",
+     "line": 216,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-sradetzky__omarchy-hermes-openrouter",
+   "batch": "A",
+   "repo": "sradetzky/omarchy-hermes-openrouter",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "collect.py",
+     "line": 170,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-sshbrian__omarchy-comfyui-status-plugin",
+   "batch": "A",
+   "repo": "sshbrian/omarchy-comfyui-status-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC24",
+     "file": "scripts/capture-readme.sh",
+     "line": 122,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-staccdotsol__openzoo-ingest",
+   "batch": "A",
+   "repo": "staccdotsol/openzoo-ingest",
+   "plugin_root": ".",
+   "kinds": [
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "install.sh",
+     "line": 88,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-stevenwtlafrance-ship-it__youtube-music-lite",
+   "batch": "A",
+   "repo": "stevenwtlafrance-ship-it/youtube-music-lite",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "install.sh",
+     "line": 29,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-stoneynutcase__omarchy-fx",
+   "batch": "A",
+   "repo": "stoneynutcase/omarchy-fx",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "other",
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "uninstall.sh",
+     "line": 29,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-susamn__omarchy-homeassistant-hud",
+   "batch": "A",
+   "repo": "susamn/omarchy-homeassistant-hud",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "scripts/config.sh",
+     "line": 216,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-syndicalt__omarchy-eventloom",
+   "batch": "A",
+   "repo": "syndicalt/omarchy-eventloom",
+   "plugin_root": ".",
+   "kinds": [
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "install.sh",
+     "line": 49,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-t-the-coder__more-weather",
+   "batch": "A",
+   "repo": "t-the-coder/more-weather",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "tools/build-basemap.py",
+     "line": 67,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-tamaker__omarchy-floating-player",
+   "batch": "A",
+   "repo": "tamaker/omarchy-floating-player",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "bin/floating-player-scan",
+     "line": 321,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-tcballard__omarchy-surfacecheck",
+   "batch": "A",
+   "repo": "tcballard/omarchy-surfacecheck",
+   "plugin_root": ".",
+   "kinds": [
+    "menu",
+    "panel",
+    "overlay"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "scripts/install-user.sh",
+     "line": 20,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-tdeckers__omarchy-openhab",
+   "batch": "A",
+   "repo": "tdeckers/omarchy-openhab",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "bin/openhab-api",
+     "line": 169,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-teevans__omarchy-apple-tv-remote",
+   "batch": "A",
+   "repo": "teevans/omarchy-apple-tv-remote",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "apple-tv-remote",
+     "line": 93,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-tenfingerseddy__voicebind",
+   "batch": "A",
+   "repo": "tenfingerseddy/voicebind",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC02",
+     "file": "desktop_core/desktop.py",
+     "line": 52,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC08",
+     "file": "desktop_core/plans.py",
+     "line": 121,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-terrifiedbug__omayap",
+   "batch": "A",
+   "repo": "terrifiedbug/omayap",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "overlay",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "setup.sh",
+     "line": 52,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-thebenwalther__omalab",
+   "batch": "A",
+   "repo": "thebenwalther/omalab",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "bin/omalab",
+     "line": 298,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-thetimmyman__tmos-ai-usage",
+   "batch": "A",
+   "repo": "thetimmyman/tmos-ai-usage",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "collector/test_task_runner.py",
+     "line": 34,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC20",
+     "file": "collector/console_report.py",
+     "line": 55,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-thinklinux__omacursorshake",
+   "batch": "A",
+   "repo": "thinklinux/omacursorshake",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC24",
+     "file": "bin/backend.sh",
+     "line": 177,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-thisisgm__omarchy-pods",
+   "batch": "A",
+   "repo": "thisisgm/omarchy-pods",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": ".claude/advloop-rules.md",
+     "line": 1,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC02",
+     "file": "daemon/hearing-aid-adjustments.py",
+     "line": 127,
+     "group": "skip_case"
+    },
+    {
+     "rule": "USB-HC13",
+     "file": "daemon/Main.qml",
+     "line": 199,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-tmn73__omarchy-obsidian-shelf",
+   "batch": "A",
+   "repo": "tmn73/omarchy-obsidian-shelf",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "helper/shelf_io.py",
+     "line": 71,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-tyrichards__omarchy-omaski",
+   "batch": "A",
+   "repo": "tyrichards/omarchy-omaski",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC24",
+     "file": "launch.sh",
+     "line": 131,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-ubruckhaus__omarchy-my-plugins",
+   "batch": "A",
+   "repo": "ubruckhaus/omarchy-my-plugins",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "monitor.py",
+     "line": 176,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-ubruckhaus__omarchy-video-trans",
+   "batch": "A",
+   "repo": "ubruckhaus/omarchy-video-trans",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "setup.sh",
+     "line": 12,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-vex-7k9__vex-system-monitor",
+   "batch": "A",
+   "repo": "vex-7k9/vex-system-monitor",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "StatsService.qml",
+     "line": 338,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-virajshoor__touchtype-for-kids",
+   "batch": "A",
+   "repo": "virajshoor/touchtype-for-kids",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "launch.sh",
+     "line": 17,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-vornashev__omarchy-yandex-music",
+   "batch": "A",
+   "repo": "vornashev/omarchy-yandex-music",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC19",
+     "file": "install.sh",
+     "line": 71,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-weedwhitesandwine__obsiduous",
+   "batch": "A",
+   "repo": "weedwhitesandwine/obsiduous",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "obsiduous-ctl.sh",
+     "line": 258,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-weedwhitesandwine__omafetti",
+   "batch": "A",
+   "repo": "weedwhitesandwine/omafetti",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "omafetti-ctl.sh",
+     "line": 166,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-weedwhitesandwine__omasnatch",
+   "batch": "A",
+   "repo": "weedwhitesandwine/omasnatch",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "Panel.qml",
+     "line": 252,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-weedwhitesandwine__plug",
+   "batch": "A",
+   "repo": "weedwhitesandwine/plug",
+   "plugin_root": ".",
+   "kinds": [
+    "panel",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "plug-ctl.sh",
+     "line": 362,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-weedwhitesandwine__zenbu",
+   "batch": "A",
+   "repo": "weedwhitesandwine/zenbu",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "zenbu-ctl.sh",
+     "line": 259,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-whiteovis__light",
+   "batch": "A",
+   "repo": "whiteovis/light",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "service/src/auth.js",
+     "line": 41,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-wico216__tcg-player-plugin",
+   "batch": "A",
+   "repo": "wico216/tcg-player-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "CardModel.js",
+     "line": 115,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-wirlen__omabuddy",
+   "batch": "A",
+   "repo": "wirlen/omabuddy",
+   "plugin_root": ".",
+   "kinds": [
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "scripts/ollama.sh",
+     "line": 24,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-wkuehler__omarchy-amateur-radio-exam-quiz",
+   "batch": "A",
+   "repo": "wkuehler/omarchy-amateur-radio-exam-quiz",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC18",
+     "file": "scripts/convert_pool.py",
+     "line": 9,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-wolften__omarchy-youtube-music",
+   "batch": "A",
+   "repo": "wolften/omarchy-youtube-music",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC24",
+     "file": "control.sh",
+     "line": 243,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-x3me__omarchy-nexthop",
+   "batch": "A",
+   "repo": "x3me/omarchy-nexthop",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC08",
+     "file": "nexthopd/speedtest.py",
+     "line": 28,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-xadacka__omarchy-razer-shortcuts",
+   "batch": "A",
+   "repo": "xadacka/omarchy-razer-shortcuts",
+   "plugin_root": ".",
+   "kinds": [
+    "service"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC15",
+     "file": "setup.sh",
+     "line": 69,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-xi4oh4o__omarchy-plugin-sing-box-dashboard",
+   "batch": "A",
+   "repo": "xi4oh4o/omarchy-plugin-sing-box-dashboard",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC09",
+     "file": "client.py",
+     "line": 1072,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-yaeloss__omuseful",
+   "batch": "A",
+   "repo": "yaeloss/omuseful",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC25",
+     "file": "companion/src/musegadget/muse_api.py",
+     "line": 100,
+     "group": "rule_sample"
+    },
+    {
+     "rule": "USB-HC02",
+     "file": "companion/src/musegadget/cli.py",
+     "line": 186,
+     "group": "skip_case"
+    },
+    {
+     "rule": "USB-HC08",
+     "file": "companion/src/musegadget/pairing.py",
+     "line": 50,
+     "group": "skip_case"
+    }
+   ]
+  },
+  {
+   "job": "a-yangass__omarchy-nova",
+   "batch": "A",
+   "repo": "yangass/omarchy-nova",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "novad/server.py",
+     "line": 528,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-yasino55__omarchy-plugin-marketplace",
+   "batch": "A",
+   "repo": "yasino55/omarchy-plugin-marketplace",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-yubinex__omarchy-grok-usage",
+   "batch": "A",
+   "repo": "yubinex/omarchy-grok-usage",
+   "plugin_root": ".",
+   "kinds": [
+    "service"
+   ],
+   "license_file_in_package": "MIT",
+   "claims": [
+    {
+     "rule": "USB-HC20",
+     "file": "bin/grok-usage",
+     "line": 87,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-yuler__omaports",
+   "batch": "A",
+   "repo": "yuler/omaports",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "overlay"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC16",
+     "file": "AGENTS.md",
+     "line": 1,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-zamak__omaizen",
+   "batch": "A",
+   "repo": "zamak/omaizen",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC04",
+     "file": "Service.qml",
+     "line": 55,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-zamkara__cleanmacaci",
+   "batch": "A",
+   "repo": "zamkara/cleanmacaci",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC05",
+     "file": "scripts/menu.py",
+     "line": 120,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-zerobearing2__omarchy-omatalk-plugin",
+   "batch": "A",
+   "repo": "zerobearing2/omarchy-omatalk-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC17",
+     "file": "Panel.qml",
+     "line": 93,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-zeus-deus__passpage-omarchy-plugin",
+   "batch": "A",
+   "repo": "zeus-deus/passpage-omarchy-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "Service.qml",
+     "line": 208,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-zeus-deus__proton-authenticator-omarchy-plugin",
+   "batch": "A",
+   "repo": "zeus-deus/proton-authenticator-omarchy-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-HC01",
+     "file": "scripts/setup-helper.sh",
+     "line": 134,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-syn.manifest.kind-without-key",
+   "batch": "A",
+   "repo": "synthetic/syn.manifest.kind-without-key",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-N01",
+     "file": "manifest.json",
+     "line": 0,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-syn.manifest.kind-used-as-key",
+   "batch": "A",
+   "repo": "synthetic/syn.manifest.kind-used-as-key",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-N01",
+     "file": "manifest.json",
+     "line": 0,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-syn.manifest.no-schema-version",
+   "batch": "A",
+   "repo": "synthetic/syn.manifest.no-schema-version",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-N02",
+     "file": "manifest.json",
+     "line": 0,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-syn.qml.required-injected-property",
+   "batch": "A",
+   "repo": "synthetic/syn.qml.required-injected-property",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": "USB-L03",
+     "file": "BarWidget.qml",
+     "line": 0,
+     "group": "rule_sample"
+    }
+   ]
+  },
+  {
+   "job": "a-syn.ok.overlay-open-close",
+   "batch": "A",
+   "repo": "synthetic/syn.ok.overlay-open-close",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay"
+   ],
+   "claims": [
+    {
+     "rule": null,
+     "file": "Overlay.qml",
+     "line": 0,
+     "group": "clean_control"
+    }
+   ]
+  },
+  {
+   "job": "a-syn.ok.panel-open-close",
+   "batch": "A",
+   "repo": "synthetic/syn.ok.panel-open-close",
+   "plugin_root": ".",
+   "kinds": [
+    "panel"
+   ],
+   "claims": [
+    {
+     "rule": null,
+     "file": "Panel.qml",
+     "line": 0,
+     "group": "clean_control"
+    }
+   ]
+  },
+  {
+   "job": "a-syn.ok.bash-c-shellquote",
+   "batch": "A",
+   "repo": "synthetic/syn.ok.bash-c-shellquote",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": null,
+     "file": "BarWidget.qml",
+     "line": 0,
+     "group": "clean_control"
+    }
+   ]
+  },
+  {
+   "job": "a-syn.ok.mktemp-guarded-cleanup",
+   "batch": "A",
+   "repo": "synthetic/syn.ok.mktemp-guarded-cleanup",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "claims": [
+    {
+     "rule": null,
+     "file": "BarWidget.qml",
+     "line": 0,
+     "group": "clean_control"
+    }
+   ]
+  },
+  {
+   "job": "b01-meviusisback__keybinds-plugin-pre",
+   "batch": "B",
+   "repo": "meviusisback/keybinds-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "panel"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "5023d62a7782406fdebc807adc9a808ba149e2a1",
+   "parent": "2b2f3371bbf83bc7b8859765895b04fba4e3b87d",
+   "side": "pre",
+   "pair": "b01-meviusisback__keybinds-plugin",
+   "bug_kind": "syntax-or-parse-error"
+  },
+  {
+   "job": "b01-meviusisback__keybinds-plugin-post",
+   "batch": "B",
+   "repo": "meviusisback/keybinds-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "panel"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "5023d62a7782406fdebc807adc9a808ba149e2a1",
+   "parent": "2b2f3371bbf83bc7b8859765895b04fba4e3b87d",
+   "side": "post",
+   "pair": "b01-meviusisback__keybinds-plugin",
+   "bug_kind": "syntax-or-parse-error"
+  },
+  {
+   "job": "b02-vex-7k9__vex-system-monitor-pre",
+   "batch": "B",
+   "repo": "vex-7k9/vex-system-monitor",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "4422d856104a60c58bed93c804c6148ed4a47707",
+   "parent": "49d79465d6247bcccbb39dec9416be16bef6fb42",
+   "side": "pre",
+   "pair": "b02-vex-7k9__vex-system-monitor",
+   "bug_kind": "syntax-or-parse-error"
+  },
+  {
+   "job": "b02-vex-7k9__vex-system-monitor-post",
+   "batch": "B",
+   "repo": "vex-7k9/vex-system-monitor",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "4422d856104a60c58bed93c804c6148ed4a47707",
+   "parent": "49d79465d6247bcccbb39dec9416be16bef6fb42",
+   "side": "post",
+   "pair": "b02-vex-7k9__vex-system-monitor",
+   "bug_kind": "syntax-or-parse-error"
+  },
+  {
+   "job": "b03-mtolhuys__omarchy-news-radar-pre",
+   "batch": "B",
+   "repo": "mtolhuys/omarchy-news-radar",
+   "plugin_root": ".",
+   "kinds": [
+    "panel",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "b7fa25530ab7c6e7ce12387ef7eb21559ef89bb6",
+   "parent": "47b5c8071b6bec9e98e0dc4baef46fd4baa2cd81",
+   "side": "pre",
+   "pair": "b03-mtolhuys__omarchy-news-radar",
+   "bug_kind": "syntax-or-parse-error"
+  },
+  {
+   "job": "b03-mtolhuys__omarchy-news-radar-post",
+   "batch": "B",
+   "repo": "mtolhuys/omarchy-news-radar",
+   "plugin_root": ".",
+   "kinds": [
+    "panel",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "b7fa25530ab7c6e7ce12387ef7eb21559ef89bb6",
+   "parent": "47b5c8071b6bec9e98e0dc4baef46fd4baa2cd81",
+   "side": "post",
+   "pair": "b03-mtolhuys__omarchy-news-radar",
+   "bug_kind": "syntax-or-parse-error"
+  },
+  {
+   "job": "b04-mahziyarng98__jalali-calendar-pre",
+   "batch": "B",
+   "repo": "mahziyarng98/jalali-calendar",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "11a177e2b2da607dc35a7493445714da1f48f9ed",
+   "parent": "01664425ec5c1cec07344c4b9c8044123c365eaa",
+   "side": "pre",
+   "pair": "b04-mahziyarng98__jalali-calendar",
+   "bug_kind": "api-compat-change"
+  },
+  {
+   "job": "b04-mahziyarng98__jalali-calendar-post",
+   "batch": "B",
+   "repo": "mahziyarng98/jalali-calendar",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "11a177e2b2da607dc35a7493445714da1f48f9ed",
+   "parent": "01664425ec5c1cec07344c4b9c8044123c365eaa",
+   "side": "post",
+   "pair": "b04-mahziyarng98__jalali-calendar",
+   "bug_kind": "api-compat-change"
+  },
+  {
+   "job": "b05-koyphish__omarchy-audio-visualizer-pre",
+   "batch": "B",
+   "repo": "koyphish/omarchy-audio-visualizer",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "67de304aff4e275629bc7eda6f32b38e23d094e7",
+   "parent": "6bd40b2159ef031ef91f1c70460fd95653993a2f",
+   "side": "pre",
+   "pair": "b05-koyphish__omarchy-audio-visualizer",
+   "bug_kind": "api-compat-change"
+  },
+  {
+   "job": "b05-koyphish__omarchy-audio-visualizer-post",
+   "batch": "B",
+   "repo": "koyphish/omarchy-audio-visualizer",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "67de304aff4e275629bc7eda6f32b38e23d094e7",
+   "parent": "6bd40b2159ef031ef91f1c70460fd95653993a2f",
+   "side": "post",
+   "pair": "b05-koyphish__omarchy-audio-visualizer",
+   "bug_kind": "api-compat-change"
+  },
+  {
+   "job": "b06-davedes83__fossfetch-pre",
+   "batch": "B",
+   "repo": "davedes83/fossfetch",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "198af1b388b7a419a35fd035b5af054fcc322d29",
+   "parent": "d0e8b3c13afc84e54a1bc8f9b073cf712cb0e4bc",
+   "side": "pre",
+   "pair": "b06-davedes83__fossfetch",
+   "bug_kind": "api-compat-change"
+  },
+  {
+   "job": "b06-davedes83__fossfetch-post",
+   "batch": "B",
+   "repo": "davedes83/fossfetch",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "198af1b388b7a419a35fd035b5af054fcc322d29",
+   "parent": "d0e8b3c13afc84e54a1bc8f9b073cf712cb0e4bc",
+   "side": "post",
+   "pair": "b06-davedes83__fossfetch",
+   "bug_kind": "api-compat-change"
+  },
+  {
+   "job": "b07-silvaio__emoji-access-pre",
+   "batch": "B",
+   "repo": "silvaio/emoji-access",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "a640835f8f396a204d7a17adf5192f12e941d199",
+   "parent": "92106fcadfbfc127a17d3a897f331532a529baeb",
+   "side": "pre",
+   "pair": "b07-silvaio__emoji-access",
+   "bug_kind": "api-compat-change"
+  },
+  {
+   "job": "b07-silvaio__emoji-access-post",
+   "batch": "B",
+   "repo": "silvaio/emoji-access",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "a640835f8f396a204d7a17adf5192f12e941d199",
+   "parent": "92106fcadfbfc127a17d3a897f331532a529baeb",
+   "side": "post",
+   "pair": "b07-silvaio__emoji-access",
+   "bug_kind": "api-compat-change"
+  },
+  {
+   "job": "b08-sh1d0w__omatrack-pre",
+   "batch": "B",
+   "repo": "sh1d0w/omatrack",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "service",
+    "panel"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "1884207b29b34c8a758081ddd7c1f177934dc0c9",
+   "parent": "dced9da3d40ac5e58814d0f3ec0d0c2b465eb983",
+   "side": "pre",
+   "pair": "b08-sh1d0w__omatrack",
+   "bug_kind": "api-compat-change"
+  },
+  {
+   "job": "b08-sh1d0w__omatrack-post",
+   "batch": "B",
+   "repo": "sh1d0w/omatrack",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "service",
+    "panel"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "1884207b29b34c8a758081ddd7c1f177934dc0c9",
+   "parent": "dced9da3d40ac5e58814d0f3ec0d0c2b465eb983",
+   "side": "post",
+   "pair": "b08-sh1d0w__omatrack",
+   "bug_kind": "api-compat-change"
+  },
+  {
+   "job": "b09-omacheese__omastorm-nord-pre",
+   "batch": "B",
+   "repo": "omacheese/omastorm-nord",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "panel"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "2bfe838ce75c296bbd45cd7ddd4df274f1c0a2f0",
+   "parent": "9f0c75c3659cd272884c7638b1b10ae075a606c2",
+   "side": "pre",
+   "pair": "b09-omacheese__omastorm-nord",
+   "bug_kind": "null-or-missing-guard"
+  },
+  {
+   "job": "b09-omacheese__omastorm-nord-post",
+   "batch": "B",
+   "repo": "omacheese/omastorm-nord",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "panel"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "2bfe838ce75c296bbd45cd7ddd4df274f1c0a2f0",
+   "parent": "9f0c75c3659cd272884c7638b1b10ae075a606c2",
+   "side": "post",
+   "pair": "b09-omacheese__omastorm-nord",
+   "bug_kind": "null-or-missing-guard"
+  },
+  {
+   "job": "b10-itsvoid-tv__omarchy-chroma-pre",
+   "batch": "B",
+   "repo": "itsvoid-tv/omarchy-chroma",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "91bb2d16e06e45c34bea13d07861b841880e83d5",
+   "parent": "bec47ce88c54ad81afc012dfd46fc0fb3407950a",
+   "side": "pre",
+   "pair": "b10-itsvoid-tv__omarchy-chroma",
+   "bug_kind": "null-or-missing-guard"
+  },
+  {
+   "job": "b10-itsvoid-tv__omarchy-chroma-post",
+   "batch": "B",
+   "repo": "itsvoid-tv/omarchy-chroma",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "91bb2d16e06e45c34bea13d07861b841880e83d5",
+   "parent": "bec47ce88c54ad81afc012dfd46fc0fb3407950a",
+   "side": "post",
+   "pair": "b10-itsvoid-tv__omarchy-chroma",
+   "bug_kind": "null-or-missing-guard"
+  },
+  {
+   "job": "b11-devgtv__omarchy-docker-pre",
+   "batch": "B",
+   "repo": "devgtv/omarchy-docker",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "a20b825ff491a8e06698347ffbf0286dc88bb533",
+   "parent": "cea49503428e73348545e6bff159e3aae23d67c5",
+   "side": "pre",
+   "pair": "b11-devgtv__omarchy-docker",
+   "bug_kind": "null-or-missing-guard"
+  },
+  {
+   "job": "b11-devgtv__omarchy-docker-post",
+   "batch": "B",
+   "repo": "devgtv/omarchy-docker",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "a20b825ff491a8e06698347ffbf0286dc88bb533",
+   "parent": "cea49503428e73348545e6bff159e3aae23d67c5",
+   "side": "post",
+   "pair": "b11-devgtv__omarchy-docker",
+   "bug_kind": "null-or-missing-guard"
+  },
+  {
+   "job": "b12-knivfjell__omarchy-super-button-pre",
+   "batch": "B",
+   "repo": "knivfjell/omarchy-super-button",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "panel"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "c2d0261bdfbf2d45c70536e794d81e46e013154f",
+   "parent": "5dd5b15c2eed938117b77b09ae826d717b3a40dc",
+   "side": "pre",
+   "pair": "b12-knivfjell__omarchy-super-button",
+   "bug_kind": "wrong-path-or-command"
+  },
+  {
+   "job": "b12-knivfjell__omarchy-super-button-post",
+   "batch": "B",
+   "repo": "knivfjell/omarchy-super-button",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget",
+    "panel"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "c2d0261bdfbf2d45c70536e794d81e46e013154f",
+   "parent": "5dd5b15c2eed938117b77b09ae826d717b3a40dc",
+   "side": "post",
+   "pair": "b12-knivfjell__omarchy-super-button",
+   "bug_kind": "wrong-path-or-command"
+  },
+  {
+   "job": "b13-sudoapwh__omarchy-protonvpn-pre",
+   "batch": "B",
+   "repo": "sudoapwh/omarchy-protonvpn",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "ef8cf9bcf3117e6a61fddae46f0e0f70b28f818b",
+   "parent": "f8c8b77d1d3cb1fdc2690f222e6aaf1bf7f3ee75",
+   "side": "pre",
+   "pair": "b13-sudoapwh__omarchy-protonvpn",
+   "bug_kind": "wrong-path-or-command"
+  },
+  {
+   "job": "b13-sudoapwh__omarchy-protonvpn-post",
+   "batch": "B",
+   "repo": "sudoapwh/omarchy-protonvpn",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "ef8cf9bcf3117e6a61fddae46f0e0f70b28f818b",
+   "parent": "f8c8b77d1d3cb1fdc2690f222e6aaf1bf7f3ee75",
+   "side": "post",
+   "pair": "b13-sudoapwh__omarchy-protonvpn",
+   "bug_kind": "wrong-path-or-command"
+  },
+  {
+   "job": "b14-szaidi-code__quran-plugin-pre",
+   "batch": "B",
+   "repo": "szaidi-code/quran-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "2e028adbd73cf8c034921bb8926565ce7dae148a",
+   "parent": "8c204b8059d4a468ebf4ef9b3be06ca68681adda",
+   "side": "pre",
+   "pair": "b14-szaidi-code__quran-plugin",
+   "bug_kind": "wrong-path-or-command"
+  },
+  {
+   "job": "b14-szaidi-code__quran-plugin-post",
+   "batch": "B",
+   "repo": "szaidi-code/quran-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "2e028adbd73cf8c034921bb8926565ce7dae148a",
+   "parent": "8c204b8059d4a468ebf4ef9b3be06ca68681adda",
+   "side": "post",
+   "pair": "b14-szaidi-code__quran-plugin",
+   "bug_kind": "wrong-path-or-command"
+  },
+  {
+   "job": "b15-ekollof__omaconnect-pre",
+   "batch": "B",
+   "repo": "ekollof/omaconnect",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "42fb5a8ebf56af186a479dc2f848ccea5f57ed42",
+   "parent": "a081605e119f73acfb0292c8da0de81c89296e4a",
+   "side": "pre",
+   "pair": "b15-ekollof__omaconnect",
+   "bug_kind": "error-handling"
+  },
+  {
+   "job": "b15-ekollof__omaconnect-post",
+   "batch": "B",
+   "repo": "ekollof/omaconnect",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "42fb5a8ebf56af186a479dc2f848ccea5f57ed42",
+   "parent": "a081605e119f73acfb0292c8da0de81c89296e4a",
+   "side": "post",
+   "pair": "b15-ekollof__omaconnect",
+   "bug_kind": "error-handling"
+  },
+  {
+   "job": "b16-guiestrela__weather-pre",
+   "batch": "B",
+   "repo": "guiestrela/weather",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "commit": "648ff8f7e982613d88d950e33f4592243a3273d7",
+   "parent": "cb5cca8827ed73c479b13be62f8ea1635bd76fc4",
+   "side": "pre",
+   "pair": "b16-guiestrela__weather",
+   "bug_kind": "error-handling"
+  },
+  {
+   "job": "b16-guiestrela__weather-post",
+   "batch": "B",
+   "repo": "guiestrela/weather",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "commit": "648ff8f7e982613d88d950e33f4592243a3273d7",
+   "parent": "cb5cca8827ed73c479b13be62f8ea1635bd76fc4",
+   "side": "post",
+   "pair": "b16-guiestrela__weather",
+   "bug_kind": "error-handling"
+  },
+  {
+   "job": "b17-ferc10110__omarchy-runbook-pre",
+   "batch": "B",
+   "repo": "ferc10110/omarchy-runbook",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "c1cc7b3f5dc4cf3499b546b1016545a4f8033693",
+   "parent": "798a3a59b3c5d2777385c4933e203e77655e94f0",
+   "side": "pre",
+   "pair": "b17-ferc10110__omarchy-runbook",
+   "bug_kind": "error-handling"
+  },
+  {
+   "job": "b17-ferc10110__omarchy-runbook-post",
+   "batch": "B",
+   "repo": "ferc10110/omarchy-runbook",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "c1cc7b3f5dc4cf3499b546b1016545a4f8033693",
+   "parent": "798a3a59b3c5d2777385c4933e203e77655e94f0",
+   "side": "post",
+   "pair": "b17-ferc10110__omarchy-runbook",
+   "bug_kind": "error-handling"
+  },
+  {
+   "job": "b18-dawestheperson__hyperwyrm-pre",
+   "batch": "B",
+   "repo": "dawestheperson/hyperwyrm",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "41306eb6eb12adf8e747101b8292426b4caf7529",
+   "parent": "ad5d02c20c068e9788c537db77f88242dc3c6628",
+   "side": "pre",
+   "pair": "b18-dawestheperson__hyperwyrm",
+   "bug_kind": "process-or-resource-lifecycle"
+  },
+  {
+   "job": "b18-dawestheperson__hyperwyrm-post",
+   "batch": "B",
+   "repo": "dawestheperson/hyperwyrm",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "41306eb6eb12adf8e747101b8292426b4caf7529",
+   "parent": "ad5d02c20c068e9788c537db77f88242dc3c6628",
+   "side": "post",
+   "pair": "b18-dawestheperson__hyperwyrm",
+   "bug_kind": "process-or-resource-lifecycle"
+  },
+  {
+   "job": "b19-davedes83__omarchy-netspeed-plugin-pre",
+   "batch": "B",
+   "repo": "davedes83/omarchy-netspeed-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "5818071f2b2dc9883cd874095aefb3cb8bb5c87f",
+   "parent": "0fb84b7a3311b3e9f84e497f029274d4c5593c14",
+   "side": "pre",
+   "pair": "b19-davedes83__omarchy-netspeed-plugin",
+   "bug_kind": "process-or-resource-lifecycle"
+  },
+  {
+   "job": "b19-davedes83__omarchy-netspeed-plugin-post",
+   "batch": "B",
+   "repo": "davedes83/omarchy-netspeed-plugin",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "5818071f2b2dc9883cd874095aefb3cb8bb5c87f",
+   "parent": "0fb84b7a3311b3e9f84e497f029274d4c5593c14",
+   "side": "post",
+   "pair": "b19-davedes83__omarchy-netspeed-plugin",
+   "bug_kind": "process-or-resource-lifecycle"
+  },
+  {
+   "job": "b20-znow01__veilleuse-pre",
+   "batch": "B",
+   "repo": "znow01/veilleuse",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "b1b1375ee6ad76e54e0b563c5481e716a6302e84",
+   "parent": "e1fb96ae80df068de4843cab92781b479168044c",
+   "side": "pre",
+   "pair": "b20-znow01__veilleuse",
+   "bug_kind": "process-or-resource-lifecycle"
+  },
+  {
+   "job": "b20-znow01__veilleuse-post",
+   "batch": "B",
+   "repo": "znow01/veilleuse",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "b1b1375ee6ad76e54e0b563c5481e716a6302e84",
+   "parent": "e1fb96ae80df068de4843cab92781b479168044c",
+   "side": "post",
+   "pair": "b20-znow01__veilleuse",
+   "bug_kind": "process-or-resource-lifecycle"
+  },
+  {
+   "job": "b21-murankar__omarchy-eso-server-status-pre",
+   "batch": "B",
+   "repo": "murankar/omarchy-eso-server-status",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "4ef0adc0192bc3655f0c6519fa5f1e20acfe0319",
+   "parent": "77db01b44cd8034c80b494954ad55e5755798f42",
+   "side": "pre",
+   "pair": "b21-murankar__omarchy-eso-server-status",
+   "bug_kind": "env-or-config-assumption"
+  },
+  {
+   "job": "b21-murankar__omarchy-eso-server-status-post",
+   "batch": "B",
+   "repo": "murankar/omarchy-eso-server-status",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "4ef0adc0192bc3655f0c6519fa5f1e20acfe0319",
+   "parent": "77db01b44cd8034c80b494954ad55e5755798f42",
+   "side": "post",
+   "pair": "b21-murankar__omarchy-eso-server-status",
+   "bug_kind": "env-or-config-assumption"
+  },
+  {
+   "job": "b22-kristijan-k__omarchy-youtube-suggester-pre",
+   "batch": "B",
+   "repo": "kristijan-k/omarchy-youtube-suggester",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "9a7adae802b65f13a1171cfe41df14f497c0658c",
+   "parent": "4a48d3850d895bf5ec5ec383b162cbbda93db9b0",
+   "side": "pre",
+   "pair": "b22-kristijan-k__omarchy-youtube-suggester",
+   "bug_kind": "env-or-config-assumption"
+  },
+  {
+   "job": "b22-kristijan-k__omarchy-youtube-suggester-post",
+   "batch": "B",
+   "repo": "kristijan-k/omarchy-youtube-suggester",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "9a7adae802b65f13a1171cfe41df14f497c0658c",
+   "parent": "4a48d3850d895bf5ec5ec383b162cbbda93db9b0",
+   "side": "post",
+   "pair": "b22-kristijan-k__omarchy-youtube-suggester",
+   "bug_kind": "env-or-config-assumption"
+  },
+  {
+   "job": "b23-tiagovello__paper-cast-pre",
+   "batch": "B",
+   "repo": "tiagovello/paper-cast",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "29dcb633685fc38eb113d52ee794ab3353638bbb",
+   "parent": "ac8e3359d8ca08f97b4bef54a24404ab3df3e180",
+   "side": "pre",
+   "pair": "b23-tiagovello__paper-cast",
+   "bug_kind": "race-or-timing"
+  },
+  {
+   "job": "b23-tiagovello__paper-cast-post",
+   "batch": "B",
+   "repo": "tiagovello/paper-cast",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "29dcb633685fc38eb113d52ee794ab3353638bbb",
+   "parent": "ac8e3359d8ca08f97b4bef54a24404ab3df3e180",
+   "side": "post",
+   "pair": "b23-tiagovello__paper-cast",
+   "bug_kind": "race-or-timing"
+  },
+  {
+   "job": "b24-alanfortlink__clipboard-history-pre",
+   "batch": "B",
+   "repo": "alanfortlink/clipboard-history",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "8127ae4bbadbe6ad7b7cbfab11f614c6ad8b103c",
+   "parent": "4662c8002d2f6187089c8c212294b32c88b7fc88",
+   "side": "pre",
+   "pair": "b24-alanfortlink__clipboard-history",
+   "bug_kind": "race-or-timing"
+  },
+  {
+   "job": "b24-alanfortlink__clipboard-history-post",
+   "batch": "B",
+   "repo": "alanfortlink/clipboard-history",
+   "plugin_root": ".",
+   "kinds": [
+    "overlay"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "8127ae4bbadbe6ad7b7cbfab11f614c6ad8b103c",
+   "parent": "4662c8002d2f6187089c8c212294b32c88b7fc88",
+   "side": "post",
+   "pair": "b24-alanfortlink__clipboard-history",
+   "bug_kind": "race-or-timing"
+  },
+  {
+   "job": "b25-nixfred__pastey-pre",
+   "batch": "B",
+   "repo": "nixfred/pastey",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "c2c29f6ef02fe368d0d4425bf4a74689b24dd561",
+   "parent": "c3548c7b5eb69623e38188e66dbccc506e5bd94f",
+   "side": "pre",
+   "pair": "b25-nixfred__pastey",
+   "bug_kind": "missing-dependency-or-install"
+  },
+  {
+   "job": "b25-nixfred__pastey-post",
+   "batch": "B",
+   "repo": "nixfred/pastey",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "c2c29f6ef02fe368d0d4425bf4a74689b24dd561",
+   "parent": "c3548c7b5eb69623e38188e66dbccc506e5bd94f",
+   "side": "post",
+   "pair": "b25-nixfred__pastey",
+   "bug_kind": "missing-dependency-or-install"
+  },
+  {
+   "job": "b26-gdeyoung__omarchy-sysmon-pre",
+   "batch": "B",
+   "repo": "gdeyoung/omarchy-sysmon",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "commit": "87860309962122b63fdcc9cb5c045671c8152dec",
+   "parent": "7315285b3da989bed994894b2ca7ef411ae24a86",
+   "side": "pre",
+   "pair": "b26-gdeyoung__omarchy-sysmon",
+   "bug_kind": "ui-layout-or-state"
+  },
+  {
+   "job": "b26-gdeyoung__omarchy-sysmon-post",
+   "batch": "B",
+   "repo": "gdeyoung/omarchy-sysmon",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "commit": "87860309962122b63fdcc9cb5c045671c8152dec",
+   "parent": "7315285b3da989bed994894b2ca7ef411ae24a86",
+   "side": "post",
+   "pair": "b26-gdeyoung__omarchy-sysmon",
+   "bug_kind": "ui-layout-or-state"
+  },
+  {
+   "job": "b27-harbefas__omarchy-almanac-pre",
+   "batch": "B",
+   "repo": "harbefas/omarchy-almanac",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget",
+    "overlay"
+   ],
+   "commit": "28150abcb5efde83e4d94becbb23dff7fd825139",
+   "parent": "33130ae5fe85b8d9a83baeb909c67d5df487c84f",
+   "side": "pre",
+   "pair": "b27-harbefas__omarchy-almanac",
+   "bug_kind": "ui-layout-or-state"
+  },
+  {
+   "job": "b27-harbefas__omarchy-almanac-post",
+   "batch": "B",
+   "repo": "harbefas/omarchy-almanac",
+   "plugin_root": ".",
+   "kinds": [
+    "service",
+    "bar-widget",
+    "overlay"
+   ],
+   "commit": "28150abcb5efde83e4d94becbb23dff7fd825139",
+   "parent": "33130ae5fe85b8d9a83baeb909c67d5df487c84f",
+   "side": "post",
+   "pair": "b27-harbefas__omarchy-almanac",
+   "bug_kind": "ui-layout-or-state"
+  },
+  {
+   "job": "b28-mlambert-uk__omarchy-govee-pre",
+   "batch": "B",
+   "repo": "mlambert-uk/omarchy-govee",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "commit": "97fabf9044b77e719ff5bec5ee6d27acef6d8400",
+   "parent": "c29b36c10270a658836fc0804e4eaf3d3dc6a595",
+   "side": "pre",
+   "pair": "b28-mlambert-uk__omarchy-govee",
+   "bug_kind": "wrong-condition-or-logic"
+  },
+  {
+   "job": "b28-mlambert-uk__omarchy-govee-post",
+   "batch": "B",
+   "repo": "mlambert-uk/omarchy-govee",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "commit": "97fabf9044b77e719ff5bec5ee6d27acef6d8400",
+   "parent": "c29b36c10270a658836fc0804e4eaf3d3dc6a595",
+   "side": "post",
+   "pair": "b28-mlambert-uk__omarchy-govee",
+   "bug_kind": "wrong-condition-or-logic"
+  },
+  {
+   "job": "b29-herman6888__newswire-omarchy-pre",
+   "batch": "B",
+   "repo": "herman6888/newswire-omarchy",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "commit": "7f786bcdc2518c6101b0096c3b1f166415ce61cf",
+   "parent": "2acdf92c059cb8e24cf547e7c0518a03ed39b46f",
+   "side": "pre",
+   "pair": "b29-herman6888__newswire-omarchy",
+   "bug_kind": "wrong-condition-or-logic"
+  },
+  {
+   "job": "b29-herman6888__newswire-omarchy-post",
+   "batch": "B",
+   "repo": "herman6888/newswire-omarchy",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "commit": "7f786bcdc2518c6101b0096c3b1f166415ce61cf",
+   "parent": "2acdf92c059cb8e24cf547e7c0518a03ed39b46f",
+   "side": "post",
+   "pair": "b29-herman6888__newswire-omarchy",
+   "bug_kind": "wrong-condition-or-logic"
+  },
+  {
+   "job": "b30-petealeon__dailybiblereadings-pre",
+   "batch": "B",
+   "repo": "petealeon/dailybiblereadings",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "73f3f17ee44bdd55036055e3137792866b7cde18",
+   "parent": "43a5047ef6014cb9c88a28f237df971b35efc359",
+   "side": "pre",
+   "pair": "b30-petealeon__dailybiblereadings",
+   "bug_kind": "security"
+  },
+  {
+   "job": "b30-petealeon__dailybiblereadings-post",
+   "batch": "B",
+   "repo": "petealeon/dailybiblereadings",
+   "plugin_root": ".",
+   "kinds": [
+    "bar-widget"
+   ],
+   "license_file_in_package": "MIT",
+   "commit": "73f3f17ee44bdd55036055e3137792866b7cde18",
+   "parent": "43a5047ef6014cb9c88a28f237df971b35efc359",
+   "side": "post",
+   "pair": "b30-petealeon__dailybiblereadings",
+   "bug_kind": "security"
+  }
+ ]
+}

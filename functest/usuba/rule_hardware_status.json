@@ -1,0 +1,125 @@
+{
+ "source": "Dell hit-check, 2026-10-15; tables in results/hitcheck/table.md",
+ "definition": "direct = the claimed defect was observed in the run; n = sampled plugins. breaks_on_hardware is true only where a defect was observed directly.",
+ "rules": {
+  "USB-HC01": {
+   "hardware_evidence": "observed_always",
+   "direct": 20,
+   "n": 20,
+   "breaks_on_hardware": true,
+   "note": "Defect observed on every sampled plugin (20/20). Caution: the 6 plugins that the v3-fixes skip conditions suppress also showed it (6/6), so a skip may hide a real defect."
+  },
+  "USB-HC04": {
+   "hardware_evidence": "observed_sometimes",
+   "direct": 1,
+   "n": 20,
+   "breaks_on_hardware": true,
+   "note": "Observed on a minority of samples only; most hits are latent code-hygiene or security findings."
+  },
+  "USB-HC08": {
+   "hardware_evidence": "observed_sometimes",
+   "direct": 3,
+   "n": 20,
+   "breaks_on_hardware": true,
+   "note": "Observed on a minority of samples only; most hits are latent code-hygiene or security findings."
+  },
+  "USB-HC10": {
+   "hardware_evidence": "observed_sometimes",
+   "direct": 2,
+   "n": 20,
+   "breaks_on_hardware": true,
+   "note": "Observed on a minority of samples only; most hits are latent code-hygiene or security findings."
+  },
+  "USB-HC15": {
+   "hardware_evidence": "observed_sometimes",
+   "direct": 2,
+   "n": 20,
+   "breaks_on_hardware": true,
+   "note": "Observed on a minority of samples only; most hits are latent code-hygiene or security findings."
+  },
+  "USB-L03": {
+   "hardware_evidence": "observed_synthetic_only",
+   "direct": 1,
+   "n": 1,
+   "breaks_on_hardware": true,
+   "note": "Observed on one synthetic sample plugin written to trigger it, not on a third-party plugin."
+  },
+  "USB-N02": {
+   "hardware_evidence": "observed_synthetic_only",
+   "direct": 1,
+   "n": 1,
+   "breaks_on_hardware": true,
+   "note": "Observed on one synthetic sample plugin written to trigger it, not on a third-party plugin."
+  },
+  "USB-L02": {
+   "hardware_evidence": "executed_only",
+   "direct": 0,
+   "n": 7,
+   "breaks_on_hardware": false,
+   "note": "The flagged code ran on hardware but no defect was observed. Static advisory."
+  },
+  "USB-HC19": {
+   "hardware_evidence": "executed_only",
+   "direct": 0,
+   "n": 20,
+   "breaks_on_hardware": false,
+   "note": "The flagged code ran on hardware but no defect was observed. Static advisory."
+  },
+  "USB-HC20": {
+   "hardware_evidence": "executed_only",
+   "direct": 0,
+   "n": 20,
+   "breaks_on_hardware": false,
+   "note": "The flagged code ran on hardware but no defect was observed. Static advisory."
+  },
+  "USB-HC25": {
+   "hardware_evidence": "executed_only",
+   "direct": 0,
+   "n": 20,
+   "breaks_on_hardware": false,
+   "note": "The flagged code ran on hardware but no defect was observed. Static advisory."
+  },
+  "USB-HC16": {
+   "hardware_evidence": "static_only",
+   "direct": 0,
+   "n": 20,
+   "breaks_on_hardware": false,
+   "note": "Static policy rule (agent control file shipped); nothing to observe at runtime."
+  },
+  "USB-HC02": {
+   "hardware_evidence": "no_hardware_signal",
+   "direct": 0,
+   "n": 20,
+   "breaks_on_hardware": false,
+   "note": "No hardware effect observed. Static advisory (security, hygiene or robustness); must not be described as breaking on hardware."
+  },
+  "USB-HC05": {
+   "hardware_evidence": "no_hardware_signal",
+   "direct": 0,
+   "n": 19,
+   "breaks_on_hardware": false,
+   "note": "No hardware effect observed. Static advisory (security, hygiene or robustness); must not be described as breaking on hardware."
+  },
+  "USB-HC09": {
+   "hardware_evidence": "no_hardware_signal",
+   "direct": 0,
+   "n": 20,
+   "breaks_on_hardware": false,
+   "note": "No hardware effect observed. Static advisory (security, hygiene or robustness); must not be described as breaking on hardware."
+  },
+  "USB-HC17": {
+   "hardware_evidence": "no_hardware_signal",
+   "direct": 0,
+   "n": 20,
+   "breaks_on_hardware": false,
+   "note": "No hardware effect observed. Static advisory (security, hygiene or robustness); must not be described as breaking on hardware."
+  },
+  "USB-N01": {
+   "hardware_evidence": "no_hardware_signal",
+   "direct": 0,
+   "n": 2,
+   "breaks_on_hardware": false,
+   "note": "No hardware effect observed. Static advisory (security, hygiene or robustness); must not be described as breaking on hardware."
+  }
+ }
+}

@@ -40,7 +40,7 @@ python3 -m pip install pytest && python3 -m pytest -q
 
 ## What is deliberately not here
 Private device run output, the hardware-verified answer key and labels, raw review text, the sealed holdout contents, raw outputs of proprietary models, and
-third-party plugin source trees without a permissive LICENSE file. See [`docs/REPLICATION.md`](docs/REPLICATION.md) for what that means for replication and
+third-party plugin source trees without a permissive LICENSE file. Hit-check on real hardware: [`docs/DELL_HITCHECK.md`](docs/DELL_HITCHECK.md) (results in `results/hitcheck/`, tooling in `tools/hitcheck/`). See [`docs/REPLICATION.md`](docs/REPLICATION.md) for what that means for replication and
 how to rebuild the corpora from public sources.
 
 ## Licence
