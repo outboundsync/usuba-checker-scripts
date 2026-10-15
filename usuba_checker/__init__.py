@@ -19,11 +19,21 @@ import sys
 __version__ = "0.1.0"
 
 
+_REPO_LAYOUT = {"usuba_checker.functest": "functest", "usuba_checker.holdout": os.path.join("eval", "hancore_holdout")}
+
+
 def _pkg_dir(name):
-    spec = importlib.util.find_spec(name)
-    if spec is None or not spec.submodule_search_locations:
-        raise ImportError(f"{name} is not installed (is usuba-checker installed from the repo's pyproject.toml?)")
-    return list(spec.submodule_search_locations)[0]
+    """Installed wheel / editable install: the mapped sub-package. Plain checkout on sys.path (no install): the repo's own directory."""
+    try:
+        spec = importlib.util.find_spec(name)
+    except ModuleNotFoundError:
+        spec = None
+    if spec is not None and spec.submodule_search_locations:
+        return list(spec.submodule_search_locations)[0]
+    here = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), _REPO_LAYOUT[name])
+    if os.path.isdir(here):
+        return here
+    raise ImportError(f"{name} is not installed (install usuba-checker from the repo's pyproject.toml)")
 
 
 def functest_dir():
@@ -60,5 +70,8 @@ def holdout_ids():
 
 def __getattr__(name):
     if name == "scoring":
-        return importlib.import_module("usuba_checker.holdout.scoring")
+        spec = importlib.util.spec_from_file_location("usuba_checker_scoring", os.path.join(_pkg_dir("usuba_checker.holdout"), "scoring.py"))
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod
     raise AttributeError(name)

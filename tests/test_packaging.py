@@ -56,3 +56,11 @@ def test_missing_reference_tree_is_an_error_not_empty_tables(installed, tmp_path
     r = subprocess.run([sys.executable, "-c", "import usuba_checker as uc; uc.report_meta()"], capture_output=True, text=True, env=env,
                        cwd=str(tmp_path), check=False)
     assert r.returncode != 0 and "reference tree" in r.stderr.lower()
+
+
+def test_works_from_a_plain_checkout_on_pythonpath(tmp_path):
+    """No install at all (what the models repo's contract test and the GPU box scripts do): the facade falls back to the repo layout."""
+    code = "import usuba_checker as uc; print(len(uc.holdout_ids()), len(uc.scoring.SCORED), uc.report_meta()['schema_version'])"
+    env = dict(os.environ, PYTHONPATH=ROOT, FT_OMARCHY=os.path.join(ROOT, "dell-ref", "omarchy-4.0.4"), PYTHONDONTWRITEBYTECODE="1")
+    r = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, env=env, cwd=str(tmp_path), check=False)
+    assert r.returncode == 0 and r.stdout.split() == ["329", "13", "1"], r.stderr[-500:]
