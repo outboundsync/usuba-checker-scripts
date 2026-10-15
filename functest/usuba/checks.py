@@ -12,6 +12,14 @@ COMPS, MODS = T["comps"], T["modules"]
 SHELL_API = set(T.get("shell_api", [])) | {"pluginId", "objectName", "toString"}
 
 # ---------------------------------------------------------------- text helpers
+def _not_a_command(w, files):
+    """False-positive filter for binary-name checks: `w` is a function defined in the plugin, a case/glob pattern or literal word, snake_case/trailing-dash token, or a MIME type"""
+    if w.endswith("-") or re.match(r"(image|text|audio|video|application|font)/", w) or ("_" in w and not w.startswith(("/", "."))) or not re.fullmatch(r"[\w.+@-]+", w): return True
+    rx_pos = re.compile(r"(^|[;&|(`]|\bthen\b|\bdo\b|\belse\b|\bsudo\b|\bexec\b|\bxargs\b|\$\(|-c\s+[\'\"])\s*" + re.escape(w) + r"(\s|$|['\"`;)|&])", re.M)
+    if not any(rx_pos.search(re.sub(r"(?m)^\s*(#|//).*$", "", c)) for p, c in files.items() if p.endswith((".sh", ".bash", ".qml", ".js", ".py"))): return True   # never in command position anywhere: prose/identifier, not an executable
+    rx_fn = re.compile(r"(^|\n)\s*(function\s+" + re.escape(w) + r"\b|" + re.escape(w) + r"\s*\(\s*\)\s*\{?)")
+    rx_case = re.compile(r"(^|\n)\s*(\(\s*)?(\S+\s*\|\s*)*" + re.escape(w) + r"\s*(\|[^\n)]*)?\)\s*($|\n|[^\n]*;;)")
+    return any(p.endswith((".sh", ".bash")) and (rx_fn.search(c) or rx_case.search(c)) for p, c in files.items())
 def sanitize(s):
     """Blank out comments and string contents (keeping offsets and quote chars)."""
     out, i, n = list(s), 0, len(s)
@@ -291,6 +299,11 @@ CLI_OPTS = {"fcitx5-remote": ("nchortTeamsgqx", {"--check", "--help"}),   # fcit
             "wl-paste": ("nlpwt", {"--no-newline", "--list-types", "--primary", "--watch", "--type", "--seat", "--help", "--version"})}
 HYPRSUNSET_FLAGS = {"-t", "--temperature", "-g", "--gamma", "--gamma_max", "-i", "--identity", "-h", "--help", "-v", "--verbose", "--version"}
 HYPRSUNSET_IPC = {"temperature", "identity", "gamma", "reset"}
+ARCH_BASE = set("""gpasswd useradd usermod userdel groupadd groupdel groupmod newgrp chsh chfn chpasswd passwd su sudo systemd-tmpfiles systemctl loginctl journalctl udevadm timedatectl hostnamectl localectl busctl
+modinfo modprobe lsmod insmod rmmod depmod gcc cc g++ c++ make pkg-config pkgconf wayland-scanner ld as ar nm objdump strip patch m4 autoconf automake libtool bison flex awk gawk sed grep egrep fgrep find xargs tar gzip gunzip bzip2 xz zstd file which
+diff cmp bash sh dash env cat ls cp mv rm mkdir rmdir ln chmod chown chgrp touch stat date sleep tee tr cut sort uniq wc head tail dirname basename readlink realpath mktemp install df du ps kill pkill pgrep top free uptime mount umount lsblk blkid findmnt dmesg lscpu nproc
+id whoami hostname uname logger flock timeout nice nohup printf echo test true false yes seq tty stty od hexdump base64 sha256sum sha1sum md5sum cksum python python3 perl curl wget git jq less nano vim vi ip ss ping tput getent iconv column paste join split comm expand fold fmt nl rev shuf tac truncate unlink
+runuser setsid script getopt nsenter unshare renice mountpoint fallocate wipefs losetup fdisk agetty pacman makepkg pidof killall free vmstat lsof strace mkfifo mknod sync dd cpio rsync openssl gpg ssh scp sftp ssh-keygen ssh-add""".split())
 SH_WORDS = set("""if then else elif fi for while until do done case esac in function select time exec eval set export unset local
 readonly declare typeset source . cd test [ [[ ] ]] echo printf read return exit break continue shift trap wait true false command builtin
 type hash alias let getopts pushd popd umask ulimit shopt kill { } ! : pwd mapfile readarray disown bg fg jobs coproc compgen complete
@@ -446,11 +459,13 @@ def check(files, man=None):
         if via != "argv" and via != "script" or via == "script":
             # binaries inside sh -c strings / scripts / os.system; argv[0] of plain arrays is dell_checks' exec-unknown-binary
             if "/" in w and not w.startswith("/"):
+                if not (w.startswith(("./", "../", "$")) or re.search(r"\.\w{1,5}$", w)): continue   # MIME types (image/png), dir names (usr/lib), path fragments are not helper scripts
                 if w.lstrip("./") not in shipped and base not in shipped_base:
                     k = ("helper", p, w)
                     if k not in seen: seen.add(k); add("USB-F01", "error", p, f"{via} runs helper `{w}`, which the plugin does not ship", f"add `{w}` to the plugin (and reference it via the plugin directory), or inline the logic")
                 continue
             if w.startswith("/") or base in shipped_base or w in SH_WORDS: continue
+            if _not_a_command(w, files) or base in ARCH_BASE: continue   # keyword/pattern/function name or a tool every Arch base install has
             if not resolves(w, shipped) and w not in docs:
                 k = ("bin", p, w)
                 if k not in seen:
@@ -503,6 +518,7 @@ def check(files, man=None):
             if not re.search(r"(command\s*[:=]|exec\w*\s*\(|resolvedUrl\s*\(|\[\s*(['\"])(?:ba)?sh\2|\b(?:pluginDir|pluginPath|scriptDir|scriptsDir|binDir|shellDir|dir|path|Path|Dir)\s*\+\s*$|\+\s*$)", ctxt) and not lit.startswith(("./", "bin/", "scripts/")): continue
             for m in re.finditer(r"(?:^|[\s/\"'])((?:\.{0,2}/)?(?:[\w.-]+/)*[\w.-]+\.(?:sh|py|rb|pl|bash))(?=$|[\s\"'])", lit):
                 ref = m.group(1)
+                if ref.startswith("/"): continue   # absolute paths (e.g. under the shell or ~/.local) are not helpers the plugin is expected to ship
                 if ref.startswith(("/usr", "/bin", "/etc", "/opt")) or "omarchy/bin" in lit: continue
                 b = posixpath.basename(ref)
                 if b not in shipped_base and not resolves(b, shipped):
@@ -541,6 +557,7 @@ def check(files, man=None):
         for m in re.finditer(r"Qt\.resolvedUrl\([^()]*\)(\s*\.toString\(\))?", cf):
             after = cf[m.end():m.end() + 60]; before = cf[max(0, m.start() - 200):m.start()]
             if re.search(r"\.(replace|slice|substring|substr)\s*\(|toLocalFile", after[:45]): continue
+            if re.search(r"\b\w*(pathFromUrl|pluginPath|urlToPath|fileUrlToPath|stripScheme|toLocalPath|localPath|toPath|fromUrl)\w*\s*\(\s*$", before[-80:], re.I): continue   # wrapped in a helper that strips file://
             if re.search(r"(command\s*[:=]\s*\[|exec\w*\(\s*\[)[^\]]*$", before):
                 add("USB-J04", "error", p, f"line {lineno(c, m.start())}: passes Qt.resolvedUrl(...) (a file:// URL) as a command argument; programs need a filesystem path", "strip the scheme: `Qt.resolvedUrl(\"bin/x.sh\").toString().replace(\"file://\", \"\")`, or use a plugin-dir path")
                 break
@@ -615,6 +632,7 @@ def check(files, man=None):
         for m in re.finditer(r"(?<![\w.])([A-Z]\w*)\.([a-z_]\w*)\b(\s*\()?", san):
             root, mem, call = m.group(1), m.group(2), m.group(3)
             if root == "Qt":
+                if re.match(r"\s*import\b", san[san.rfind("\n", 0, m.start()) + 1:m.start()] + "x") or re.match(r"\s*import\b", c[c.rfind("\n", 0, m.start()) + 1:m.start()] + "x"): continue   # `import Qt.labs.*` is a module import, not the Qt global object
                 if mem not in QT_GLOBAL: add("USB-A01", "error", p, f"line {lineno(c, m.start())}: `Qt.{mem}` does not exist on the Qt global object", "see https://doc.qt.io/qt-6/qml-qtqml-qt.html for the real members")
                 continue
             if root == "Quickshell" and "Quickshell" in env:
