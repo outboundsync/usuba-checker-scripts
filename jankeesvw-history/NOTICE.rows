@@ -1,0 +1,34 @@
+NOTICE for rows*.jsonl (source=jankeesvw-history)
+
+Text sources only (QML, JS, shell, Python, Rust, JSON, TOML, systemd units); no binary, audio or image assets are included (sound/screenshot/preview files are excluded by extension and by UTF-8 decode).
+
+All rows reproduce code from the repositories below, published under the MIT License. Each repository carries:
+
+    MIT License
+
+    Copyright (c) 2026 Jankees van Woezik
+
+Only commits authored by Jankees van Woezik are used as defect/fix pairs; the trees may also contain merged contributions that the repository license (MIT) covers. Permission notice (MIT): the above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND (see each repository LICENSE for the full text).
+
+Repositories used (https://github.com/jankeesvw/<name>):
+- jankeesvw/omableep
+- jankeesvw/omarchy-bambu-lab
+- jankeesvw/omarchy-downloads
+- jankeesvw/omarchy-framework-desktop-rgb
+- jankeesvw/omarchy-github-build-monitor
+- jankeesvw/omarchy-gmail-inbox
+- jankeesvw/omarchy-herdr
+- jankeesvw/omarchy-icloud-photos
+- jankeesvw/omarchy-meetings
+- jankeesvw/omarchy-nag
+- jankeesvw/omarchy-notification-center
+- jankeesvw/omarchy-screen-time
+- jankeesvw/omarchy-stripe-mrr
+- jankeesvw/omarchy-tesla
+- jankeesvw/omarchy-text-transform
+- jankeesvw/omarchy-unifi-protect
+- jankeesvw/omarchy-workspace-name
+- jankeesvw/omasweeper
+
+Excluded entirely: jankeesvw/omarchy-clippy (HANCORE holdout), jankeesvw/omarchy-time-machine (existing holdout).
+Secrets, e-mail addresses and /home paths in code are redacted by the same scrub used for the v3 rows.

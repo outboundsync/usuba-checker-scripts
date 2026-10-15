@@ -1,0 +1,27 @@
+{
+ "commits": 462,
+ "by_class": {
+  "bug_fix": 178,
+  "docs": 40,
+  "chore": 44,
+  "feature": 126,
+  "merge": 54,
+  "refactor": 4,
+  "release": 14,
+  "compat": 2
+ },
+ "bug_verified": 174,
+ "real": 156,
+ "real_jankees": 121,
+ "origin": {
+  "version_change": 22,
+  "original_bug": 69,
+  "missed_edge_case": 44,
+  "regression_in_recent_feature": 8,
+  "fix_of_fix": 13
+ },
+ "tier": {
+  "A": 115,
+  "B": 41
+ }
+}

@@ -1,0 +1,148 @@
+{
+ "USB-JV01": {
+  "summary": "secret passed in a curl header/auth argument (visible in /proc/PID/cmdline); feed it on stdin (`curl -K -` / `-H @-`)",
+  "pre_hits_at_defect": [
+   "omarchy-tesla:603fef7530",
+   "omarchy-unifi-protect:6d997197c1",
+   "omarchy-unifi-protect:f980f88ee7"
+  ],
+  "pre_hits_elsewhere": 18,
+  "post_still_fires_at_defect": 0,
+  "head_fires": 0,
+  "head_files": [],
+  "external_plugins_firing": 0,
+  "pre_hits_at_defect_n": 3,
+  "external_plugins_sampled": 250
+ },
+ "USB-JV02": {
+  "summary": "jq `--arg`/`--argjson` carries a secret-named value (argv is world-readable); use `--rawfile`/stdin or `env.NAME` inside jq",
+  "pre_hits_at_defect": [
+   "omarchy-tesla:0f73bb689a"
+  ],
+  "pre_hits_elsewhere": 19,
+  "post_still_fires_at_defect": 0,
+  "head_fires": 2,
+  "head_files": [
+   "omarchy-gmail-inbox:bin/gmail-inbox:320",
+   "omarchy-gmail-inbox:bin/gmail-inbox:576"
+  ],
+  "external_plugins_firing": 13,
+  "pre_hits_at_defect_n": 1,
+  "external_plugins_sampled": 250
+ },
+ "USB-JV03": {
+  "summary": "secret exported into the environment of a long-lived process (readable by every process of the same account via /proc/PID/environ)",
+  "pre_hits_at_defect": [
+   "omarchy-unifi-protect:ed5835a834"
+  ],
+  "pre_hits_elsewhere": 9,
+  "post_still_fires_at_defect": 0,
+  "head_fires": 0,
+  "head_files": [],
+  "external_plugins_firing": 1,
+  "pre_hits_at_defect_n": 1,
+  "external_plugins_sampled": 250
+ },
+ "USB-JV04": {
+  "summary": "urllib `urlopen` on a non-literal URL follows redirects, so an https feed can be redirected to http; install an opener that refuses scheme changes",
+  "pre_hits_at_defect": [
+   "omarchy-meetings:52c795149d",
+   "omarchy-meetings:99cf3b590a"
+  ],
+  "pre_hits_elsewhere": 1,
+  "post_still_fires_at_defect": 0,
+  "head_fires": 0,
+  "head_files": [],
+  "external_plugins_firing": 14,
+  "pre_hits_at_defect_n": 2,
+  "external_plugins_sampled": 250
+ },
+ "USB-JV05": {
+  "summary": "external value passed as the first positional argument to a media/opener tool with no `--`; a value starting with `-` becomes an option",
+  "pre_hits_at_defect": [
+   "omarchy-unifi-protect:8e062b3f83"
+  ],
+  "pre_hits_elsewhere": 3,
+  "post_still_fires_at_defect": 0,
+  "head_fires": 0,
+  "head_files": [],
+  "external_plugins_firing": 0,
+  "pre_hits_at_defect_n": 1,
+  "external_plugins_sampled": 250
+ },
+ "USB-JV06": {
+  "summary": "value taken from jq/curl output used in `$(( ))` or `[[ -gt ]]` with no numeric check; bash evaluates `a[$(cmd)]` in arithmetic context",
+  "pre_hits_at_defect": [
+   "omarchy-tesla:8d979b5094"
+  ],
+  "pre_hits_elsewhere": 4,
+  "post_still_fires_at_defect": 0,
+  "head_fires": 0,
+  "head_files": [],
+  "external_plugins_firing": 6,
+  "pre_hits_at_defect_n": 1,
+  "external_plugins_sampled": 250
+ },
+ "USB-JV07": {
+  "summary": "QML uses the unqualified `Color.` singleton next to `import qs.Commons`; Qt 6.12 ships its own `Color`, so it must be read as `Commons.Color` (version-dependent)",
+  "pre_hits_at_defect": [
+   "omableep:730ac5bed0",
+   "omarchy-bambu-lab:7006f9d9b8",
+   "omarchy-downloads:a2df3bdeb8",
+   "omarchy-framework-desktop-rgb:c54374b0bb",
+   "omarchy-github-build-monitor:babbf18187",
+   "omarchy-gmail-inbox:69f816fcdb",
+   "omarchy-herdr:4513202f75",
+   "omarchy-herdr:c8f3c276b0",
+   "omarchy-meeting-recorder:3d1a1a80cc",
+   "omarchy-meetings:9b907e4caa",
+   "omarchy-nag:bea1680f6e",
+   "omarchy-screen-time:a6458344bf",
+   "omarchy-stripe-mrr:c9cc12c710",
+   "omarchy-tesla:7f6f3494a5",
+   "omarchy-unifi-protect:bb04e95e68",
+   "omarchy-workspace-name:465dceea6b",
+   "omasweeper:3724f71584"
+  ],
+  "pre_hits_elsewhere": 198,
+  "post_still_fires_at_defect": 1,
+  "head_fires": 0,
+  "head_files": [],
+  "external_plugins_firing": 191,
+  "pre_hits_at_defect_n": 17,
+  "external_plugins_sampled": 250
+ },
+ "USB-JV08": {
+  "summary": "`iconComponent:` content with text/badge; the shell scales an iconComponent to bar-icon size (Omarchy shell of 2026-10-13), so counts become unreadable (version-dependent)",
+  "pre_hits_at_defect": [
+   "omarchy-downloads:918c0a4191",
+   "omarchy-gmail-inbox:85db432e09",
+   "omarchy-herdr:b00a6ca91c",
+   "omarchy-nag:7bdbedf05d"
+  ],
+  "pre_hits_elsewhere": 54,
+  "post_still_fires_at_defect": 0,
+  "head_fires": 2,
+  "head_files": [
+   "omarchy-screen-time:BarWidget.qml:592",
+   "omarchy-text-transform:Panel.qml:752"
+  ],
+  "external_plugins_firing": 53,
+  "pre_hits_at_defect_n": 4,
+  "external_plugins_sampled": 250
+ },
+ "USB-JV09": {
+  "summary": "tooltipText built by concatenating external strings; the tooltip is rich text, so markup in the data is interpreted (wrap in a plain-text escape)",
+  "pre_hits_at_defect": [
+   "omarchy-tesla:c56cf4832d",
+   "omarchy-unifi-protect:b0045ac251"
+  ],
+  "pre_hits_elsewhere": 7,
+  "post_still_fires_at_defect": 0,
+  "head_fires": 0,
+  "head_files": [],
+  "external_plugins_firing": 6,
+  "pre_hits_at_defect_n": 2,
+  "external_plugins_sampled": 250
+ }
+}
