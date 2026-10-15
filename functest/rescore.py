@@ -129,8 +129,11 @@ def score_row(i, h, g):
             # non-reserved id (SYS prompt: "a namespaced id that never uses the reserved omarchy.* namespace")
             try: mid = str(json.loads(t.get("manifest.json", "{}")).get("id", ""))
             except Exception: mid = ""
-            if "." not in mid.strip(".") or mid.startswith("omarchy."):
-                r["static_fails"].append(["fix-id-not-namespaced", f"manifest id {mid!r} is not a namespaced, non-reserved id"])
+            # v3-fixes: only the reserved omarchy.* namespace fails (PluginRegistry rejects nothing else); an un-namespaced id is a warning (USB-M05)
+            if mid.startswith("omarchy."):
+                r["static_fails"].append(["fix-id-not-namespaced", f"manifest id {mid!r} uses the reserved omarchy.* namespace"])
+            elif "." not in mid.strip("."):
+                r.setdefault("warnings", []).append(["fix-id-not-namespaced", f"manifest id {mid!r} is not namespaced (warning)"])
     if tf or task not in FULL:
         r = json.loads(json.dumps(r)) if task in FULL else r
         r["static_fails"] = tf + list(r["static_fails"])

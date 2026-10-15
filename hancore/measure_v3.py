@@ -8,7 +8,7 @@ Definitions (findings = HANCORE strong/likely category findings at the reviewed 
  hit-file precision: a hit file in a reviewed plugin is TP if HANCORE named that file in a same-category finding; FP if the plugin has no same-category finding
    or only findings that name other files; INDETERMINATE if its same-category findings name no file (excluded from strict, counted TP in upper, FP in lower).
  plugin-file precision: same, per fired plugin (TP if any hit file is named)."""
-import sys, os, json, collections, argparse
+import sys, os, json, collections, argparse, re
 H = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(H)
 sys.path[:0] = [os.path.join(ROOT, "functest/usuba"), H]
 OUT = "/workspace/usuba-runs/checker-rules"
@@ -18,7 +18,7 @@ def load(rule_cat):
     for fn in ("hits.jsonl", "hits_model.jsonl"):
         if os.path.exists(OUT + "/" + fn):
             for l in open(OUT + "/" + fn):
-                d = json.loads(l); hits.setdefault(d["repo"], []).extend(d["hits"])
+                d = json.loads(l); hits.setdefault(d["repo"], []).extend(dict(h, rule=re.sub(r"^USB-H(\d\d)$", r"USB-HC\1", h["rule"])) for h in d["hits"])   # v3-fixes rename
     return pool, F, hits
 def stat(rows, F, hits, cat, rules, excl_clean=True):
     """returns dict of finding-level and hit-level counts for category cat and rule set."""

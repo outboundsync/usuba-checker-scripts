@@ -1,47 +1,69 @@
 {
  "criterion": "decided on the design split only: plugin precision >=0.30 and lift >=1.38, or file-level precision >=0.17; false-hit rate on works-without-finding <=0.10",
  "enabled": [
-  "USB-H01",
-  "USB-H02",
-  "USB-H04",
-  "USB-H05",
-  "USB-H08",
-  "USB-H09",
-  "USB-H10",
-  "USB-H15",
-  "USB-H16",
-  "USB-H17"
+  "USB-HC01",
+  "USB-HC02",
+  "USB-HC04",
+  "USB-HC05",
+  "USB-HC08",
+  "USB-HC09",
+  "USB-HC10",
+  "USB-HC15",
+  "USB-HC16",
+  "USB-HC17"
  ],
  "experimental": [
-  "USB-H06",
-  "USB-H11",
-  "USB-H13",
-  "USB-H14"
+  "USB-HC06",
+  "USB-HC11",
+  "USB-HC13",
+  "USB-HC14"
  ],
  "dropped": [
-  "USB-H03",
-  "USB-H07",
-  "USB-H12",
-  "USB-H18"
+  "USB-HC03",
+  "USB-HC07",
+  "USB-HC12",
+  "USB-HC18"
  ],
  "enabled_v3": [
-  "USB-H01",
-  "USB-H02",
-  "USB-H04",
-  "USB-H05",
-  "USB-H08",
-  "USB-H09",
-  "USB-H10",
-  "USB-H15",
-  "USB-H16",
-  "USB-H17",
-  "USB-H19",
-  "USB-H20",
-  "USB-H21",
-  "USB-H22",
-  "USB-H23",
-  "USB-H24",
-  "USB-H25"
+  "USB-HC01",
+  "USB-HC02",
+  "USB-HC04",
+  "USB-HC05",
+  "USB-HC08",
+  "USB-HC09",
+  "USB-HC10",
+  "USB-HC15",
+  "USB-HC16",
+  "USB-HC17",
+  "USB-HC19",
+  "USB-HC20",
+  "USB-HC21",
+  "USB-HC22",
+  "USB-HC23",
+  "USB-HC24",
+  "USB-HC25"
  ],
- "criterion_v3": "model rules H19+: design lift>=1.5, false-hit<=0.05, >=20 fired reviewed plugins, manual review"
+ "criterion_v3": "model rules H19+: design lift>=1.5, false-hit<=0.05, >=20 fired reviewed plugins, manual review",
+ "enabled_v3_fixes": [
+  "USB-HC01",
+  "USB-HC02",
+  "USB-HC04",
+  "USB-HC05",
+  "USB-HC08",
+  "USB-HC09",
+  "USB-HC10",
+  "USB-HC15",
+  "USB-HC16",
+  "USB-HC17",
+  "USB-HC19",
+  "USB-HC20",
+  "USB-HC25"
+ ],
+ "demoted_to_experimental_v3_fixes": [
+  "USB-HC21",
+  "USB-HC22",
+  "USB-HC23",
+  "USB-HC24"
+ ],
+ "renamed": "USB-H01..H25 of this family became USB-HC01..HC25 in v3-fixes (the ids USB-H01..H07 belong to functest/usuba/rules.py heuristics)"
 }

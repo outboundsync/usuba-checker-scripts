@@ -1,0 +1,27 @@
+{
+ "enabled": [
+  "USB-L02",
+  "USB-L03",
+  "USB-N01",
+  "USB-N02"
+ ],
+ "experimental": [
+  "USB-L01",
+  "USB-W11",
+  "USB-W12",
+  "USB-W13",
+  "USB-W14"
+ ],
+ "reasons": {
+  "USB-L01": "experimental: design fired 33, precision_broken 0.25, lift 1.72, file-level strict None",
+  "USB-L02": "design precision_broken 0.75 lift 5.17",
+  "USB-L03": "host-verified (Quickshell 0.3.2 offscreen Loader test: 'Required property shell was not initialized' (docs/V3_FIXES.md)); design fired 0, works-hits 0",
+  "USB-N01": "host-verified (shell.qml entryPointUrl(manifest,kind); PluginRegistry.entryPointUrl); design fired 0, works-hits 0",
+  "USB-N02": "host-verified (services/PluginRegistry.qml validateManifest); design fired 0, works-hits 0",
+  "USB-W11": "experimental: design fired 6, precision_broken 0.0, lift 0.0, file-level strict 0.0",
+  "USB-W12": "experimental: design fired 448, precision_broken 0.23, lift 1.58, file-level strict 0.038",
+  "USB-W13": "experimental: design fired 4, precision_broken 0.25, lift 1.72, file-level strict 0.0",
+  "USB-W14": "experimental: design fired 0, precision_broken None, lift None, file-level strict None"
+ },
+ "decided_on": "design split only"
+}
