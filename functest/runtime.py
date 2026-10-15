@@ -7,14 +7,14 @@ inside a bubblewrap sandbox (read-only /, private /tmp, no network). Enable it v
 loader / bar-geometry state through one harness-only IPC function (ftProbe). Log lines attributable to the
 plugin's directory (or the shell's per-plugin failure messages) are collected as load/runtime errors.
 """
-import json, os, re, shutil, subprocess, tempfile, hashlib, time, sys, threading
+import json, os, re, shutil, stat, subprocess, tempfile, hashlib, time, sys, threading
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "dell_env"))
 import setup as dell_setup
 from binaries import resolves, KNOWN
 
 QS = "/opt/qs611/bin/qs"
-OMARCHY = os.environ.get("FT_OMARCHY", "/opt/ft/omarchy-4.0.4")   # Omarchy 4.0.4-1 (Dell, 2026-10-12); shell/ still == c668141
+OMARCHY = os.environ.get("FT_OMARCHY", "/opt/ft/omarchy-4.0.4")   # the BUILT runtime tree (dell_env/setup.py builds it, incl. the ftProbe patch); the static Checker's API reference is separate, see refpaths.py
 THEME = os.environ.get("FT_THEME", "catppuccin-latte")   # light theme like the Dell's: dark-hardcoded widgets lose contrast
 SHIMS = "/opt/ft/shims-dell"
 HYPRCTL = os.path.join(HERE, "dell_env/hyprctl.py")
@@ -100,9 +100,74 @@ def _color_ref(ln, pdir):
     to its default and the plugin still works on the Dell (dell_ground_truth: limon.todo WORKS). Anything else stays hard."""
     m = COLOR_REF.search(ln)
     if not m: return False
-    try: src = open(os.path.join(pdir, m.group(1))).read().splitlines()[int(m.group(2)) - 1]
+    try: src = safe_read(os.path.join(pdir, m.group(1)), root=pdir).splitlines()[int(m.group(2)) - 1]
     except Exception: return False
     return bool(re.match(r"\s*(readonly\s+)?(property\s+color\s+\w+|[\w.]*[cC]olor)\s*:", src)) and m.group(3) in src
+
+def safe_read(path, cap=2_000_000, root=None, binary=False):
+    """Read a file the PLUGIN may have written (audit C1): refuse symlinks (O_NOFOLLOW), FIFOs/devices (regular files only,
+    O_NONBLOCK so a planted FIFO cannot hang the harness), anything whose real path leaves ``root``, and cap the size."""
+    if root is not None:
+        rp, rr = os.path.realpath(path), os.path.realpath(root)
+        if rp != rr and not rp.startswith(rr.rstrip("/") + "/"): raise OSError("path escapes " + root)
+    fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK | os.O_CLOEXEC)
+    try:
+        if not stat.S_ISREG(os.fstat(fd).st_mode): raise OSError("not a regular file: " + path)
+        data = b""
+        while len(data) < cap:
+            chunk = os.read(fd, min(65536, cap - len(data)))
+            if not chunk: break
+            data += chunk
+    finally: os.close(fd)
+    return data if binary else data.decode("utf-8", "replace")
+
+# Minimal /etc for the sandbox (audit C1): no real home, no /run sockets, no credentials. Extend with FT_SANDBOX_ETC_EXTRA=a,b
+SANDBOX_ETC = ("ld.so.cache", "ld.so.conf", "ld.so.conf.d", "fonts", "localtime", "os-release", "passwd", "group", "nsswitch.conf",
+               "alternatives", "sway", "xdg", "vulkan", "drirc", "locale.alias", "mime.types")
+SANDBOX_OPT = ("/opt/qs611", "/opt/qt", "/opt/wl", "/opt/ft")
+def sandbox_cmd(S, env, inner, runs=None, omarchy=None, here=None):
+    """bwrap argv for one plugin run. Never binds /; the real /home, /root, /run (D-Bus, docker.sock), /var are replaced by tmpfs;
+    a new session (no TIOCSTI into the driver's tty); env scrubbed. Pure function so tests can inspect it."""
+    runs, omarchy, here = runs or RUNS, omarchy or OMARCHY, here or HERE
+    c = ["bwrap", "--unshare-net", "--unshare-pid", "--unshare-ipc", "--unshare-uts", "--unshare-cgroup-try",
+         "--die-with-parent", "--new-session", "--clearenv", "--ro-bind", "/usr", "/usr"]
+    for d in ("bin", "sbin", "lib", "lib64"):
+        if os.path.islink("/" + d): c += ["--symlink", os.readlink("/" + d), "/" + d]
+        elif os.path.isdir("/" + d): c += ["--ro-bind", "/" + d, "/" + d]
+    c += ["--dir", "/etc"]
+    for e in SANDBOX_ETC + tuple(x for x in os.environ.get("FT_SANDBOX_ETC_EXTRA", "").split(",") if x):
+        if os.path.exists("/etc/" + e): c += ["--ro-bind", "/etc/" + e, "/etc/" + e]
+    c += ["--proc", "/proc", "--dev", "/dev", "--ro-bind-try", "/sys", "/sys",
+          "--tmpfs", "/tmp", "--tmpfs", "/home", "--tmpfs", "/root", "--tmpfs", "/run", "--tmpfs", "/var"]
+    for o in SANDBOX_OPT:
+        if os.path.isdir(o): c += ["--ro-bind", o, o]
+    if os.path.realpath(runs).startswith(("/opt/ft/", "/opt/ft")): c += ["--tmpfs", runs]   # other runs stay invisible
+    for ro in dict.fromkeys([omarchy, here]):
+        c += ["--ro-bind-try", ro, ro]
+    c += ["--bind", S, S]
+    for k, v in env.items(): c += ["--setenv", k, v]
+    return c + list(inner)
+
+def run_capped(cmd, timeout, cap=64 * 1024 * 1024):
+    """subprocess with stdin=/dev/null and a hard cap on captured stdout (audit D8). Returns (stdout bytes, timed_out)."""
+    proc = subprocess.Popen(cmd, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, start_new_session=True)
+    buf, over = [], threading.Event()
+    def pump():
+        n = 0
+        for chunk in iter(lambda: proc.stdout.read(65536), b""):
+            n += len(chunk)
+            if n > cap: over.set(); os.killpg(proc.pid, 9); break
+            buf.append(chunk)
+    t = threading.Thread(target=pump, daemon=True); t.start()
+    timed_out = False
+    try: proc.wait(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        timed_out = True
+        try: os.killpg(proc.pid, 9)
+        except ProcessLookupError: pass
+        proc.wait()
+    t.join(5)
+    return b"".join(buf), timed_out or over.is_set()
 
 def _hash(p):
     try: return hashlib.sha1(open(p, "rb").read()).hexdigest()
@@ -199,7 +264,7 @@ def baseline():
 def parse_exec_log(path):
     """-> list of dicts {pid, parent, argv, rc} from the shim log."""
     recs, by = [], {}
-    try: data = open(path, errors="replace").read().splitlines()
+    try: data = safe_read(path, cap=8_000_000).splitlines()   # written inside the sandbox dir: no symlinks/FIFOs (audit C1)
     except Exception: return recs
     for ln in data:
         f = ln.split("\t")
@@ -217,7 +282,7 @@ def _uses_gpu_effects(root):
         for f in fs:
             if f.endswith(".qml"):
                 try:
-                    if _GPU_FX.search(open(os.path.join(dp, f), errors="replace").read()): return True
+                    if _GPU_FX.search(safe_read(os.path.join(dp, f), root=root)): return True
                 except Exception: pass
     return False
 
@@ -226,19 +291,20 @@ def _plugin_text(root):
     for dp, _, fs in os.walk(root):
         for f in fs:
             if f.endswith((".qml", ".js", ".sh", ".py", ".lua")) or "." not in f:
-                try: out.append(open(os.path.join(dp, f), errors="replace").read()[:400000])
+                try: out.append(safe_read(os.path.join(dp, f), cap=400000, root=root))
                 except Exception: pass
     return "\n".join(out)
 
 def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
     """files: {relpath: text} or src_dir: a plugin folder. Returns dict."""
     os.makedirs(RUNS, exist_ok=True)
-    S = tempfile.mkdtemp(dir=RUNS, prefix="r")
-    home = os.path.join(S, "home"); os.makedirs(home)
     res = {"errors": [], "soft": [], "checks": {}}
-    if not _baseline: dell_setup.build(); base = baseline()
-    else: base = None
+    S = None
     try:
+        S = tempfile.mkdtemp(dir=RUNS, prefix="r")   # inside the try: the run dir is removed even if build/baseline fail (audit D8)
+        home = os.path.join(S, "home"); os.makedirs(home)
+        if not _baseline: dell_setup.build(); base = baseline()
+        else: base = None
         if _baseline is True:
             man = {"id": "ft.none", "kinds": []}
         elif src_dir:
@@ -261,7 +327,7 @@ def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
         import dell_checks
         _docs = {}
         for f_ in dell_checks.DOC_FILES:
-            try: _docs[f_] = open(os.path.join(pdir, f_), errors="replace").read()
+            try: _docs[f_] = safe_read(os.path.join(pdir, f_), root=pdir)
             except Exception: pass
         # a binary the shell actually tried to launch must exist on a stock Omarchy install, even if the README documents it
         # (Dell ground truth: voxtype-audio-bridge / cava plugins are BROKEN). FT_DOC_DEPS=1 restores the lenient mode.
@@ -278,15 +344,10 @@ def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
         env = dict(ENV_BASE, HOME=home, FT_EXECLOG=os.path.join(S, "exec.log"), XDG_RUNTIME_DIR=rt, FT_DIR=S, FT_ID=pid, QS=QS, FT_SUMMON="1" if summon else "", FT_LIVE_ENABLE="1" if live else "",
                    XDG_CONFIG_HOME=os.path.join(home, ".config"), XDG_CACHE_HOME=os.path.join(home, ".cache"),
                    XDG_DATA_HOME=os.path.join(home, ".local/share"), XDG_STATE_HOME=os.path.join(home, ".local/state"))
-        cmd = ["bwrap", "--ro-bind", "/", "/", "--dev", "/dev", "--proc", "/proc", "--tmpfs", "/tmp",
-               "--bind", S, S, "--unshare-net", "--unshare-pid",
-               "--unshare-ipc", "--die-with-parent", "--clearenv"]
-        for k, v in env.items(): cmd += ["--setenv", k, v]
-        cmd += ["/bin/bash", os.path.join(S, "driver.sh")]
+        cmd = sandbox_cmd(S, env, ["/bin/bash", os.path.join(S, "driver.sh")])
         t0 = time.time()
-        try: out = subprocess.run(cmd, timeout=timeout, capture_output=True).stdout
-        except subprocess.TimeoutExpired as te:
-            out = te.stdout or b""; res["errors"].append("harness timeout (shell hung)")
+        out, timed_out = run_capped(cmd, timeout)
+        if timed_out: res["errors"].append("harness timeout (shell hung)")
         res["elapsed"] = round(time.time() - t0, 1)
         stream = {}
         for ln in out.decode("utf-8", "replace").split("\n"):
@@ -318,7 +379,8 @@ def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
             res["rss_kb"] = [m0, m3]; g = (m3 - m0) // 1024
             if g > MEM_FAIL_MB: res["errors"].append(f"runaway memory USB-D05: shell RSS grew {g} MB in ~9 s after the plugin loaded")
             elif g > MEM_WARN_MB: res["soft"].append(f"memory growth USB-D05: shell RSS grew {g} MB in ~9 s")
-        except Exception: pass
+        except (KeyError, IndexError, ValueError):   # RSS could not be measured: say so instead of silently passing (audit D7)
+            res.setdefault("unmeasured", []).append("rss (USB-D05): M0/M3 samples missing from the driver stream")
         if res["alive"] is False and stream.get("U") and stream.get("P2") and not stream.get("P3"):
             res["errors"].append("shell died during the usage cycle USB-D04 (close/reopen via IPC)")
         res["summon"] = (stream.get("SUMMON") or [None])[-1]
@@ -386,7 +448,7 @@ def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
                 E(f"exec: `{argv[0]} -c` hit 'command not found' (exit 127) on the Dell PATH: {argv[2][:120]!r}")
         if gap_service:
             hreq = ""
-            try: hreq = open(os.path.join(S, "hypr_requests.log"), errors="replace").read()
+            try: hreq = safe_read(os.path.join(S, "hypr_requests.log"), cap=8_000_000, root=S)
             except Exception: pass
             calls = [" ".join(e["argv"]) for e in execs if e["argv"] and os.path.basename(e["argv"][0]) == "hyprctl"] + hreq.splitlines()
             setters = [c for c in calls if re.search(r"(keyword|eval|BATCH|--batch|hl\.config|setoption)", c) and re.search(r"gaps_(out|in)", c)]
@@ -473,11 +535,12 @@ def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
                         res["errors"].append(f"replacement bar is not visible on screen without fullscreen apps (edge ink {C['bar_ink']})")
             except Exception as e:
                 res["soft"].append(f"screenshot analysis failed: {e}")
+                res.setdefault("unmeasured", []).append(f"screenshot analysis: {type(e).__name__}")   # audit D7
         # filesystem side effects
         after = _snapshot(home)
         for rel, txt in SENTINELS.items():
             fp = os.path.join(home, rel)
-            if not os.path.exists(fp) or open(fp, errors="replace").read() != txt:
+            if not os.path.lexists(fp) or os.path.islink(fp) or safe_read(fp, cap=len(txt) + 1024, root=home) != txt:
                 res["soft"].append(f"WARN[high] USB-S01: modified/deleted protected file ~/{rel}")
         bad = [r for r in after if (r not in before or after[r] != before[r]) and not ALLOWED_WRITE.match(r) and r not in SENTINELS]
         for r in bad[:10]: res["soft"].append(f"WARN[medium] USB-S01: wrote outside plugin data dirs: ~/{r}")
@@ -487,8 +550,8 @@ def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
     except Exception as e:
         res["errors"].append(f"harness: {type(e).__name__}: {e}")
     finally:
-        if not keep: shutil.rmtree(S, ignore_errors=True)
-        else: res["dir"] = S
+        if S and not keep: shutil.rmtree(S, ignore_errors=True)
+        elif S: res["dir"] = S
     res["pass"] = not res["errors"]
     return res
 

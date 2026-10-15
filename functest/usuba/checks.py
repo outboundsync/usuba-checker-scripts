@@ -5,8 +5,11 @@ severity: "error" (always blocking), "high" (heuristic, blocking), "medium"/"low
 import json, os, re, posixpath, sys, functools
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(os.path.dirname(HERE), "dell_env"))
+sys.path.insert(0, os.path.dirname(HERE))
+import refpaths
 from binaries import resolves, KNOWN
-STANDARD = "Usuba Standard v0.1 (Omarchy 4.0.4)"
+from usuba import rules as _rules
+STANDARD = "Usuba Standard v%s (Omarchy 4.0.4)" % _rules.VERSION   # single source: usuba/rules.py (audit D4)
 T = json.load(open(os.path.join(HERE, "types.json")))
 COMPS, MODS = T["comps"], T["modules"]
 SHELL_API = set(T.get("shell_api", [])) | {"pluginId", "objectName", "toString"}
@@ -28,7 +31,7 @@ def _not_a_command(w, files):
         return False
     if not any(_cmd_pos(c) for p, c in files.items() if p.endswith((".sh", ".bash", ".qml", ".js", ".py"))): return True   # never in command position anywhere: prose/identifier, not an executable
     rx_fn = re.compile(r"(^|\n)\s*(function\s+" + re.escape(w) + r"\b|" + re.escape(w) + r"\s*\(\s*\)\s*\{?)")
-    rx_case = re.compile(r"(^|\n)\s*(\(\s*)?(\S+\s*\|\s*)*" + re.escape(w) + r"\s*(\|[^\n)]*)?\)\s*($|\n|[^\n]*;;)")
+    rx_case = re.compile(r"(^|\n)\s*(\(\s*)?([^\s|]+\s*\|\s*)*" + re.escape(w) + r"\s*(\|[^\n)]*)?\)\s*($|\n|[^\n]*;;)")
     return any(p.endswith((".sh", ".bash")) and (rx_fn.search(c) or rx_case.search(c)) for p, c in files.items())
 def sanitize(s):
     """Blank out comments and string contents (keeping offsets and quote chars)."""
@@ -355,13 +358,18 @@ def guarded_words(script):
     """tools probed with `command -v` / `which` / `type` / `hash` - optional fallbacks, not hard requirements"""
     return set(re.findall(r"\b(?:command\s+-v|which|type\s+-[pP]|hash)\s+([\w.+-]+)", script))
 
+HELPER_MISS = set()   # sourced Omarchy helpers whose file could not be read (so their function names came from HELPER_FUNCS only)
+HELPER_FUNCS = {"omarchy-shell-config": {"commit"}}   # functions known to be defined by helpers that are not readable off the reference box
 def shell_words(script):
     """first words of each simple command in a shell string; also returns (word, rest) pairs."""
     funcs0 = set(re.findall(r"(?m)^\s*(?:function\s+)?([A-Za-z_][\w-]*)\s*\(\s*\)", script)) | set(re.findall(r"\bfunction\s+([\w-]+)", script))
     for src in re.findall(r"(?m)^\s*(?:source|\.)\s+([\w./$-]+)", script):     # functions from sourced Omarchy helpers (e.g. omarchy-shell-config: commit)
-        sp = os.path.join(T.get("source", {}).get("omarchy", "/opt/ft/omarchy-4.0.4/shell").rsplit("/shell", 1)[0], "bin", os.path.basename(src))
-        try: funcs0 |= set(re.findall(r"(?m)^\s*(?:function\s+)?([A-Za-z_][\w-]*)\s*\(\s*\)", open(sp).read()))
-        except OSError: pass
+        sp = os.path.join(refpaths.omarchy_root(), "bin", os.path.basename(src))
+        try:
+            with open(sp) as fh: funcs0 |= set(re.findall(r"(?m)^\s*(?:function\s+)?([A-Za-z_][\w-]*)\s*\(\s*\)", fh.read()))
+        except OSError:   # dell-ref/bin entries are symlinks into /usr/bin of the capture device: not readable off-box (audit D2)
+            HELPER_MISS.add(os.path.basename(src))
+            funcs0 |= HELPER_FUNCS.get(os.path.basename(src), set())
     s = re.sub(r"\$\{[^}]*\}", "X", script.replace("\\\n", " "))   # join `\` line continuations
     s = re.sub(r"(?ms)<<-?\s*['\"]?(\w+)['\"]?([^\n]*)\n.*?^\s*\1\s*$", r"\2", s)   # heredoc bodies are data (python/json), not shell
     for _ in range(3): s = re.sub(r'"\$\(([^()"]*(?:"[^"`()]*"[^()"]*)*)\)"', r" $( \1 ) ", s)   # unwrap "$(cmd "$x")" so inner quotes stay balanced

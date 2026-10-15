@@ -7,7 +7,7 @@ import re, os, sys, json
 HERE = os.path.dirname(os.path.abspath(__file__))
 try:
     sys.path.insert(0, os.path.join(os.path.dirname(HERE), "dell_env")); from binaries import KNOWN
-except Exception: KNOWN = set()
+except ImportError as _e: raise RuntimeError("cannot load the Dell binary table (dell_env/binaries.py): %s" % _e)   # audit D3: no silent empty KNOWN
 CODE_EXT = (".qml", ".js", ".mjs", ".sh", ".bash", ".zsh", ".py", ".lua")
 SHELLY = (".sh", ".bash", ".zsh")
 DOC_RE = re.compile(r"(?i)(^|/)(readme[^/]*|install[^/]*\.md|docs?/.*|manifest\.json|pkgbuild|deps?[^/]*|requirements[^/]*\.txt)$")

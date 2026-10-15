@@ -12,23 +12,20 @@ Also counts hallucinations: invented commit SHAs (hex runs of 7-40 chars not pre
 
 usage: python3 eval/dellkey/reason_grade.py RESULT_NAME [...] [--judge] [--judge-model M]
 Reads eval/hancore_holdout/results/<name>.raw.jsonl, writes <name>.reason.json and adds keys to <name>.json."""
-import argparse, json, os, re, sys, time, urllib.request, collections
+import argparse, json, os, re, sys, time, urllib.request, urllib.error, collections
 OPEN_JUDGES = ["openai/gpt-oss-120b", "qwen/qwen3.5-397b-a17b"]   # open-weights (Apache-2.0) judges, grading only
 EXCLUDED_ID_PREFIXES = ("b3.opus55.",)   # Claude-written plugins are not used as eval items (86 decided rows remain of 90; the 6 plugins include 2 undecided rows)
 H = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(os.path.dirname(H)); RES = os.path.join(ROOT, "eval", "hancore_holdout", "results")
-sys.path[:0] = [os.path.join(ROOT, "functest")]
+sys.path[:0] = [os.path.join(ROOT, "functest"), os.path.join(ROOT, "eval", "hancore_holdout")]
+import scoring
 RUB = json.load(open(os.path.join(H, "reason_rubric.json"))); TOL = RUB["line_tolerance"]
 JUDGE_SYS = open(os.path.join(H, "judge_rubric.md")).read()
 KEY = {g["id"]: g for g in map(json.loads, open(os.path.join(ROOT, "functest", "dell_ground_truth.jsonl"))) if g["real_verdict"] in ("WORKS", "BROKEN") and not g["id"].startswith(EXCLUDED_ID_PREFIXES)}
 
 
-def parse(txt):
-    if (txt or "").startswith(("ERROR ", "SKIPPED")): return None   # transport/context errors are invalid output, even though they contain JSON
-    txt = re.sub(r"<think>.*?</think>", "", txt or "", flags=re.S).strip()
-    m = re.search(r"\{.*\}", txt, re.S)
-    if not m: return None
-    try: return json.loads(m.group(0))
-    except Exception: return None
+def parse(txt, finish_reason=None):
+    """Schema-validated answer or None: the same parser run_eval/rescore use (audit B3: this file had its own loose copy)."""
+    return scoring.parse_answer(txt, finish_reason)[0]
 def findings(out):
     F = [f for f in (out or {}).get("findings") or [] if isinstance(f, dict)]
     B = [f for f in F if str(f.get("severity", "")).lower() == "blocker"]
@@ -78,6 +75,7 @@ def hallucinations(pid, raw, out, cache={}):
         if m.lower() not in own and m not in inp: names.add(m)
     return shas, sorted(names)
 
+JUDGE_KEY = None
 def judge(a, pid, F):
     g = KEY[pid]
     user = json.dumps(dict(plugin=pid, ground_truth=g["reason"], summary=RUB["rules"][pid]["summary"],
@@ -85,13 +83,17 @@ def judge(a, pid, F):
     body = dict(model=a.judge_model, temperature=0, max_tokens=4000, messages=[{"role": "system", "content": JUDGE_SYS}, {"role": "user", "content": user}],
                 reasoning={"effort": "low"}, provider={"zdr": True, "data_collection": "deny"}, usage={"include": True})
     req = urllib.request.Request("https://openrouter.ai/api/v1/chat/completions", data=json.dumps(body).encode(),
-                                 headers={"Content-Type": "application/json", "Authorization": "Bearer " + os.environ["OPENROUTER_API_KEY"]})
+                                 headers={"Content-Type": "application/json", "Authorization": "Bearer " + JUDGE_KEY})
     for i in range(4):
         try:
             with urllib.request.urlopen(req, timeout=120) as r: j = json.load(r)
             spent = (j.get("usage") or {}).get("cost", 0) or 0; o = parse(j["choices"][0]["message"].get("content"))
             if not o or "match" not in o: raise ValueError("judge reply was not the JSON asked for")
             return bool(o.get("match")), o.get("why"), spent
+        except urllib.error.HTTPError as e:
+            if e.code in (401, 403): sys.exit("ABORT: judge API key rejected (HTTP %d)" % e.code)   # fail fast, do not score every row as "no match"
+            if i == 3: return None, f"judge error HTTP {e.code}", 0
+            time.sleep(4 * (i + 1))
         except Exception as e:
             if i == 3: return None, f"judge error {type(e).__name__}", 0
             time.sleep(4 * (i + 1))
@@ -105,7 +107,7 @@ def grade(a, name):
         pid = r["plugin"]; out = parse(r.get("raw")) if r.get("raw") is not None else None
         flagged = r.get("verdict") == "changes_requested"
         shas, names = hallucinations(pid, r.get("raw"), out)
-        row = dict(plugin=pid, label=r["label"], flagged=flagged, valid=out is not None, secs=r.get("secs"), invented_shas=shas, invented_names=names)
+        row = dict(plugin=pid, label=r["label"], flagged=flagged, valid=out is not None, invalid=out is None, secs=r.get("secs"), invented_shas=shas, invented_names=names)
         if r["label"] == "positive":
             F = findings(out); row["det"], row["det_idx"] = det_match(pid, F) if flagged else (False, None)
             if a.judge and flagged and F:
@@ -116,17 +118,21 @@ def grade(a, name):
     caught = [x for x in pos if x["flagged"]]
     rr = lambda k: sum(bool(x.get(k)) for x in pos)
     s = sorted(x["secs"] for x in rows if x["secs"] is not None)
-    res = dict(name=name, n=len(rows), n_broken=len(pos), verdict_accuracy=round((len(caught) + sum(not x["flagged"] for x in neg)) / len(rows), 3),
-               broken_caught=round(len(caught) / len(pos), 3), false_alarm=round(sum(x["flagged"] for x in neg) / len(neg), 3),
-               parse_rate=round(sum(x["valid"] for x in rows) / len(rows), 3), secs_median=s[len(s) // 2] if s else None,
-               right_reason_det=rr("det"), right_reason_det_of_broken=round(rr("det") / len(pos), 3), right_reason_det_of_flagged=round(rr("det") / max(1, len(caught)), 3),
+    ratio = lambda a_, b_, nd=3: round(a_ / b_, nd) if b_ else None   # undefined stays None, never a made-up 0 or a ZeroDivisionError
+    res = dict(name=name, n=len(rows), n_broken=len(pos), n_negative=len(neg),
+               # an invalid answer (error / unparseable / schema) is NOT a correct approval of a clean plugin (audit B1)
+               verdict_accuracy=ratio(len(caught) + sum(not x["flagged"] and not x["invalid"] for x in neg), len(rows)),
+               broken_caught=ratio(len(caught), len(pos)), false_alarm=ratio(sum(x["flagged"] for x in neg), len(neg)),
+               n_invalid=sum(x["invalid"] for x in rows), n_invalid_negative=sum(x["invalid"] for x in neg),
+               parse_rate=ratio(sum(x["valid"] for x in rows), len(rows)), secs_median=s[len(s) // 2] if s else None,
+               right_reason_det=rr("det"), right_reason_det_of_broken=ratio(rr("det"), len(pos)), right_reason_det_of_flagged=ratio(rr("det"), len(caught)),
                invented_sha_rows=sum(bool(x["invented_shas"]) for x in rows), invented_sha_count=sum(len(x["invented_shas"]) for x in rows),
                invented_name_rows=sum(bool(x["invented_names"]) for x in rows), invented_name_count=sum(len(x["invented_names"]) for x in rows))
     if a.judge:
         both = [x for x in pos if x["flagged"] and x.get("judge") is not None]
-        res.update(right_reason_judge=rr("judge"), right_reason_judge_of_broken=round(rr("judge") / len(pos), 3),
-                   right_reason_judge_of_flagged=round(rr("judge") / max(1, len(caught)), 3),
-                   det_judge_agreement=round(sum(bool(x["det"]) == bool(x["judge"]) for x in both) / max(1, len(both)), 3), judge_cost_usd=round(cost, 4), judge_model=a.judge_model)
+        res.update(right_reason_judge=rr("judge"), right_reason_judge_of_broken=ratio(rr("judge"), len(pos)),
+                   right_reason_judge_of_flagged=ratio(rr("judge"), len(caught)), judge_errors=sum(1 for x in pos if x.get("judge") is None and x["flagged"]),
+                   det_judge_agreement=ratio(sum(bool(x["det"]) == bool(x["judge"]) for x in both), len(both)), judge_cost_usd=round(cost, 4), judge_model=a.judge_model)
     res["right_reason_of_flagged"] = res.get("right_reason_judge_of_flagged", res["right_reason_det_of_flagged"])
     json.dump(dict(summary=res, rows=rows), open(os.path.join(RES, name + sfx + ".reason.json"), "w"), indent=1)
     p = os.path.join(RES, name + ".json")
@@ -143,4 +149,7 @@ if __name__ == "__main__":
     if a.judge:
         if a.judge_model.lower().startswith("anthropic/") or "claude" in a.judge_model.lower(): sys.exit("refusing: Anthropic/Claude models may not be used as judges here; use an open-weights judge")
         if a.judge_model not in OPEN_JUDGES and not a.allow_closed_judge: sys.exit(f"judge {a.judge_model} is not on the open-weights list {OPEN_JUDGES}; pass --allow-closed-judge to override")
+    if a.judge:
+        JUDGE_KEY = os.environ.get("OPENROUTER_API_KEY")
+        if not JUDGE_KEY: sys.exit("ABORT: --judge needs $OPENROUTER_API_KEY (a missing key used to be swallowed and scored as 'judge says no')")
     for n in a.names: print(json.dumps(grade(a, n)))

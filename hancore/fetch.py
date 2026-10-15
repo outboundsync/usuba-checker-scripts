@@ -1,6 +1,6 @@
 """Read-only fetch of a plugin repo at a commit via the GitHub tarball API -> cache dir of text sources.
 Usage: fetch(repo, sha) -> path or None. Keeps text files <=256KB with code/config extensions."""
-import os, subprocess, tarfile, io, json, sys
+import os, posixpath, subprocess, tarfile, io, json, sys
 CACHE = os.environ.get("HANCORE_CACHE", "/workspace/hancore_cache")
 EXT = (".qml", ".js", ".mjs", ".sh", ".bash", ".py", ".json", ".lua", ".conf", ".toml", ".md", ".txt", ".yaml", ".yml", ".desktop", ".service", ".rules", ".ini", "qmldir", "PKGBUILD", "Makefile", ".zsh", ".fish", ".ts", ".css", ".rs", ".go", ".c", ".h", ".cpp")
 def fetch(repo, sha):
@@ -18,7 +18,11 @@ def fetch(repo, sha):
             data = t.extractfile(m).read()
             try: data.decode("utf-8")
             except UnicodeDecodeError: continue
-            p = os.path.join(d, rel); os.makedirs(os.path.dirname(p), exist_ok=True); open(p, "wb").write(data); n += 1
+            rel = posixpath.normpath(rel)
+            if rel.startswith(("/", "..")) or "\0" in rel: continue   # zip-slip: never write outside d (audit C3)
+            p = os.path.join(d, rel)
+            if not os.path.realpath(p).startswith(os.path.realpath(d) + os.sep): continue
+            os.makedirs(os.path.dirname(p), exist_ok=True); open(p, "wb").write(data); n += 1
         open(d + "/.ok", "w").write(str(n)); return d
     except Exception as e:
         open(d + "/.fail", "w").write(repr(e)[:300]); return None

@@ -353,28 +353,28 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 - Rationale: Unpinned git build of remote code.
 - Failing example: `cargo install --git https://x/y`
 - Fix: add --rev <sha> --locked
-- Checked by: usuba/lifecycle_rules.py
+- Checked by: usuba/lifecycle_rules.py (Checker report only: NOT enforced by functest.test pass/fail, see usuba/registry.py)
 
 ### USB-W12: GitHub Actions pinned to a commit SHA
 - Level: warn experimental
 - Rationale: Mutable action tags in the plugin repo's workflows.
 - Failing example: `uses: actions/checkout@v4`
 - Fix: pin to a 40-hex commit
-- Checked by: usuba/lifecycle_rules.py
+- Checked by: usuba/lifecycle_rules.py (Checker report only: NOT enforced by functest.test pass/fail, see usuba/registry.py)
 
 ### USB-W13: No broad passwordless sudoers
 - Level: warn experimental
 - Rationale: NOPASSWD for ALL or an interpreter hands root to any process of the user.
 - Failing example: `u ALL=(ALL) NOPASSWD: ALL`
 - Fix: fixed root-owned helper + one polkit action
-- Checked by: usuba/lifecycle_rules.py
+- Checked by: usuba/lifecycle_rules.py (Checker report only: NOT enforced by functest.test pass/fail, see usuba/registry.py)
 
 ### USB-W14: No bundled native binaries
 - Level: warn experimental (needs raw bytes; text corpus cannot fire it)
 - Rationale: ELF/PE/Mach-O in the tree.
 - Failing example: `bin/helper (ELF)`
 - Fix: build on install or declare the dependency
-- Checked by: usuba/lifecycle_rules.py
+- Checked by: usuba/lifecycle_rules.py (Checker report only: NOT enforced by functest.test pass/fail, see usuba/registry.py)
 
 ## Manifest (v3-fixes)
 
@@ -383,14 +383,14 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 - Rationale: The shell reads entryPoints.<key> per kind: bar-widget -> barWidget, panel/overlay/menu/service/bar -> same name. A declared kind without its key never instantiates (shell.qml entryPointUrl; 'has no barWidget entry point').
 - Failing example: `kinds ["bar-widget"] with entryPoints {"panel": "Panel.qml"}`
 - Fix: add the key for each kind
-- Checked by: usuba/lifecycle_rules.py
+- Checked by: usuba/lifecycle_rules.py (Checker report only: NOT enforced by functest.test pass/fail, see usuba/registry.py)
 
 ### USB-N02: Manifest passes the registry validation
 - Level: error (high)
 - Rationale: services/PluginRegistry.qml rejects a manifest whose schemaVersion is not the number 1 or that lacks id/name/version/kinds/entryPoints.
 - Failing example: `no schemaVersion`
 - Fix: add schemaVersion 1 and the required fields
-- Checked by: usuba/lifecycle_rules.py
+- Checked by: usuba/lifecycle_rules.py (Checker report only: NOT enforced by functest.test pass/fail, see usuba/registry.py)
 
 ## Lifecycle (v3-fixes)
 
@@ -399,21 +399,21 @@ The type and member allowlists (USB-Q01, USB-A01, USB-A02, USB-A04) are generate
 - Rationale: The shell summons with item.open(payload) and hides with item.close(), both silently skipped when absent (shell.qml deliverIfLoaded/invokeIfLoaded). Persistent HUDs driven by a service legitimately omit them, so the rule skips service plugins and unresolved root types.
 - Failing example: `Item { function toggle() {} } as overlay`
 - Fix: define function open(payloadJson) and function close()
-- Checked by: usuba/lifecycle_rules.py
+- Checked by: usuba/lifecycle_rules.py (Checker report only: NOT enforced by functest.test pass/fail, see usuba/registry.py)
 
 ### USB-L02: No ShellRoot entry root / second quickshell
 - Level: warn (medium)
 - Rationale: Entry points are hosted Items. Measured on the corpus (design 3 of 4, test 2 of 3 labelled broken); a direct Quickshell 0.3.2 test showed a nested ShellRoot can still instantiate, so it is a lead, not proof.
 - Failing example: `ShellRoot { PanelWindow {} } as entry`
 - Fix: use Item / Panel / BarWidget roots
-- Checked by: usuba/lifecycle_rules.py
+- Checked by: usuba/lifecycle_rules.py (Checker report only: NOT enforced by functest.test pass/fail, see usuba/registry.py)
 
 ### USB-L03: No `required property` for host-injected names
 - Level: error (high)
 - Rationale: The host assigns shell/manifest/omarchyPath/pluginRegistry/barWidgetRegistry/barConfig/service after the Loader finishes; a required property fails creation ('Required property shell was not initialized', verified with Quickshell 0.3.2).
 - Failing example: `required property var shell`
 - Fix: property var shell: null
-- Checked by: usuba/lifecycle_rules.py
+- Checked by: usuba/lifecycle_rules.py (Checker report only: NOT enforced by functest.test pass/fail, see usuba/registry.py)
 
 ## Heuristics (graded)
 

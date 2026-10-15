@@ -6,16 +6,20 @@ import static_checks, runtime, dell_checks, dell_learned
 from usuba import checks as usuba_checks
 
 SKIP_DIRS = {".git", "node_modules", "tests", "test", "__pycache__", "preview", "stubs", "lint", ".github", "fixtures", "docs", "screenshots", "assets"}
-def read_dir(d):
-    files = {}
+def read_dir_ex(d):
+    """-> (files, skipped). Deterministic (sorted walk); files that cannot be checked are LISTED, not silently dropped (audit D5/D7)."""
+    files, skipped = {}, []
     for r, ds, fs in os.walk(d):
-        ds[:] = [x for x in ds if x not in SKIP_DIRS]
-        for f in fs:
+        ds[:] = sorted(x for x in ds if x not in SKIP_DIRS)
+        for f in sorted(fs):
             p = os.path.relpath(os.path.join(r, f), d)
-            if os.path.getsize(os.path.join(r, f)) > 2_000_000: continue
-            try: files[p] = open(os.path.join(r, f), encoding="utf-8").read()
-            except Exception: pass
-    return files
+            if os.path.getsize(os.path.join(r, f)) > 2_000_000: skipped.append((p, "larger than 2 MB")); continue
+            try:
+                with open(os.path.join(r, f), encoding="utf-8") as fh: files[p] = fh.read()
+            except UnicodeDecodeError: skipped.append((p, "not UTF-8"))
+            except OSError as e: skipped.append((p, type(e).__name__))
+    return dict(sorted(files.items())), skipped
+def read_dir(d): return read_dir_ex(d)[0]
 
 def categories(st_fails, rt):
     cats = sorted({c for c, _ in st_fails})
@@ -40,7 +44,8 @@ def categories(st_fails, rt):
     return sorted(set(cats))
 
 def test(files=None, src_dir=None, run_runtime=True):
-    if src_dir: files = read_dir(src_dir)
+    skipped = []
+    if src_dir: files, skipped = read_dir_ex(src_dir)
     sf, sw = static_checks.check(files)
     df, dw = dell_checks.check(files, doc_deps=not os.environ.get("FT_STRICT_DEPS"))
     sf, sw = sf + df, sw + dw
@@ -69,7 +74,7 @@ def test(files=None, src_dir=None, run_runtime=True):
                 rt["errors"].remove(e); rt.setdefault("soft", []).append(e + " (conditionally hidden by design)")
         rt["pass"] = not rt["errors"]
     ok = not sf and (rt is None or rt.get("pass"))
-    return {"pass": ok, "static_fails": sf, "static_flags": sw, "runtime": rt, "categories": categories(sf, rt), "usuba": uf}
+    return {"pass": ok, "static_fails": sf, "static_flags": sw, "runtime": rt, "categories": categories(sf, rt), "usuba": uf, "skipped_files": skipped}
 
 if __name__ == "__main__":
     r = test(src_dir=sys.argv[1])
@@ -79,4 +84,7 @@ if __name__ == "__main__":
         for l in rules.explain(r["static_fails"], (r["runtime"] or {}).get("errors", [])): print("  " + l)
         for c, d in r["static_flags"]:
             if c.startswith("usuba-"): print("  warn " + d)
-    else: print(json.dumps({k: v for k, v in r.items()}, indent=1)[:6000])
+    else:
+        from usuba import provenance
+        r = dict(r, meta=provenance.report_meta())   # schema_version, checker_git_sha, rules_hash, reference tree (audit D6)
+        print(json.dumps(r, indent=1))                 # never truncated: a cut-off JSON document is not JSON

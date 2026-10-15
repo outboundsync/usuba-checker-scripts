@@ -20,8 +20,9 @@ RULES = {
  "USB-W14": ("privileged-system", "bundled native binary (ELF/PE/Mach-O magic) in the plugin tree"),
 }
 _f = os.path.join(HERE, "lifecycle_rules_enabled.json")
-_cfg = json.load(open(_f)) if os.path.exists(_f) else {}
-ENABLED = set(_cfg.get("enabled", RULES))
+with open(_f) as _fh: _cfg = json.load(_fh)   # missing enabled-list = error, not "everything enabled" (audit D3)
+ENABLED = set(_cfg["enabled"])
+if ENABLED - set(RULES): raise ValueError("lifecycle_rules_enabled.json names unknown rules: %s" % sorted(ENABLED - set(RULES)))
 EXPERIMENTAL = set(RULES) - ENABLED
 INJECTED = ("shell", "manifest", "omarchyPath", "pluginRegistry", "barWidgetRegistry", "barConfig", "service")
 # qs.Ui roots that already provide open() AND close() (verified in shell/Ui/*.qml); KeyboardPanel / PopupCard only provide close()

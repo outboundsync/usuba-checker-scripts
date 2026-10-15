@@ -17,10 +17,29 @@ DST, THEMES, SHIMS = os.environ.get("FT_OMARCHY", "/opt/ft/omarchy-4.0.4"), "/op
 THEME_LIST = ("catppuccin-latte", "tokyo-night")
 STAMP = os.path.join(DST, ".ft-stamp")
 
+def _check_dst(path):
+    """The build rmtree()s DST: refuse anything that is not clearly an omarchy build dir (audit C3: FT_OMARCHY=$HOME must not be wiped)."""
+    rp = os.path.realpath(path)
+    if rp in ("/", os.path.realpath(os.path.expanduser("~"))) or not os.path.basename(rp).startswith("omarchy") or rp.count("/") < 2:
+        raise SystemExit("refusing to build into %r: FT_OMARCHY must name a dedicated directory called omarchy*" % path)
+    return path
+_check_dst(DST)
+
+def _tree_digest(h, root):
+    for r, ds, fs in os.walk(root):
+        ds.sort()
+        for f in sorted(fs):
+            p = os.path.join(r, f)
+            h.update(os.path.relpath(p, root).encode())
+            h.update(os.readlink(p).encode() if os.path.islink(p) else open(p, "rb").read())
+
 def stamp():
+    """Everything a rebuild depends on: this dir, the in-repo reference tree and the fixtures (audit D8: they were not in the stamp)."""
     h = hashlib.sha1()
     for f in sorted(os.listdir(HERE)):
         if f.endswith((".py", ".txt", ".part", ".gz", ".sh")): h.update(f.encode()); h.update(open(os.path.join(HERE, f), "rb").read())
+    for extra in (os.path.join(HERE, "../../dell-ref/omarchy-4.0.4"), os.path.join(HERE, "../fixtures")):
+        if os.path.isdir(extra): _tree_digest(h, os.path.normpath(extra))
     return h.hexdigest()
 
 SHIM = r'''#!/bin/bash
@@ -55,7 +74,9 @@ def _build():
     tmp = DST + ".tmp"; shutil.rmtree(tmp, ignore_errors=True); os.makedirs(tmp)
     if not os.path.isdir(GIT):
         subprocess.run(["git", "clone", "-q", "https://github.com/basecamp/omarchy", GIT], check=True)
-    subprocess.run(f"git -C {GIT} archive {OMARCHY_COMMIT} | tar x -C {tmp}", shell=True, check=True)
+    arc = subprocess.run(["git", "-C", GIT, "archive", OMARCHY_COMMIT], check=True, capture_output=True).stdout   # no shell, no string-built command (audit C3)
+    import io
+    with tarfile.open(fileobj=io.BytesIO(arc)) as t: t.extractall(tmp, filter="data")
     # verify against the Dell's real shell tree
     ref = tempfile.mkdtemp()
     with tarfile.open(os.path.join(HERE, "omarchy-shell-ref.tar.gz")) as t: t.extractall(ref, filter="data")

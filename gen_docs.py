@@ -1,4 +1,15 @@
-import json,collections,os,shutil,subprocess
+import argparse,json,collections,os,shutil,subprocess,sys
+# Legacy v1 seed-dataset generator. It reads sources/ and data/ that live in the MODELS repo, so it needs an explicit --root (audit C3:
+# it used to rmtree('sources/licenses') relative to the cwd and read /tmp/omarchy-src and /workspace/<repo>/LICENSE). For the current
+# NOTICE use tools/gen_notice.py in the models repo.
+_ap=argparse.ArgumentParser(description=__doc__ or "legacy seed docs generator")
+_ap.add_argument("--root",required=True,help="checkout of usuba-checker-models (must contain sources/sources.json)")
+_ap.add_argument("--omarchy-src",required=True,help="checkout of basecamp/omarchy at the pinned commit (its LICENSE is copied)")
+_ap.add_argument("--house-dir",required=True,help="directory holding the first-party repos <name>/LICENSE")
+_A=_ap.parse_args()
+ROOT_=os.path.realpath(_A.root)
+if not os.path.isfile(os.path.join(ROOT_,"sources","sources.json")): sys.exit("--root %s has no sources/sources.json"%ROOT_)
+os.chdir(ROOT_)
 c=collections.Counter
 S=json.load(open('sources/sources.json'))
 rows=[json.loads(l) for f in ['data/train.jsonl','data/holdout.jsonl'] for l in open(f)]
@@ -7,15 +18,15 @@ L=["| Plugin id | Repo | Commit | Stars | Commits | Author | Core contrib (commi
 for s in sorted(S,key=lambda s:-(s['stars'] or 0)):
     L.append(f"| {s['id']} | {s['repo']} | `{s['commit'][:10]}` | {s['stars']} | {s['commits']} | {s['author']} | {'yes' if s['core'] else 'no'} ({s['coreCommits']}) | {s['authorPlugins']} | {s['licenseVerified']} ({s['licenseFile']}) | {s['catalogLicense']} | {', '.join(str(x) for x in s['manifestLicense'])} | {'; '.join(s['copyright'])} | {', '.join(s['vendored']) or '-'} | {s['bucket']} | {usedrepos.get(s['repo'],0)} |")
 open('sources/SOURCES.md','w').write("\n".join(L)+"\n")
-shutil.rmtree('sources/licenses',ignore_errors=True); os.makedirs('sources/licenses')
+shutil.rmtree(os.path.join(ROOT_,'sources','licenses'),ignore_errors=True); os.makedirs('sources/licenses')
 N=["NOTICE — Omarchy Specialist seed dataset","","Training text is derived from the sources below. Every source's LICENSE file was read at the pinned commit; all are MIT.",
 "MIT requires the copyright notice and permission notice in all copies or substantial portions: ship this file and sources/licenses/* with the dataset and with the model.","",
 "- basecamp/omarchy @ 9480d1b6a98156314dbabe6bfef08f39f8b9cd07 — MIT — Copyright (c) David Heinemeier Hansson"]
-shutil.copy('/tmp/omarchy-src/LICENSE','sources/licenses/basecamp-omarchy.LICENSE')
+shutil.copy(os.path.join(_A.omarchy_src,'LICENSE'),'sources/licenses/basecamp-omarchy.LICENSE')
 house=sorted({(r['meta']['repo'],r['meta']['commit']) for r in rows if r['meta']['origin']=='house'})
 for repo,sha in house:
-    n=repo.split('/')[-1]; lt=open(f'/workspace/{n}/LICENSE').read(); cr=[l for l in lt.splitlines() if l.startswith('Copyright')][0]
-    N.append(f"- kenhara/{n} @ {sha} — MIT — {cr}"); shutil.copy(f'/workspace/{n}/LICENSE',f'sources/licenses/kenhara-{n}.LICENSE')
+    n=repo.split('/')[-1]; lt=open(os.path.join(_A.house_dir,n,'LICENSE')).read(); cr=[l for l in lt.splitlines() if l.startswith('Copyright')][0]
+    N.append(f"- kenhara/{n} @ {sha} — MIT — {cr}"); shutil.copy(os.path.join(_A.house_dir,n,'LICENSE'),f'sources/licenses/kenhara-{n}.LICENSE')
 for s in sorted(S,key=lambda s:s['repo'].lower()):
     if usedrepos.get(s['repo']):
         N.append(f"- {s['repo'].replace('https://github.com/','')} @ {s['commit']} — {s['licenseVerified']} — {s['copyright'][0]}")

@@ -1,17 +1,58 @@
 #!/bin/bash
 # Usuba Dell hit-check runner. USER SPACE ONLY: no sudo, no system changes, writes only under ~/usuba-hitcheck.
 # Each plugin gets its own fake HOME, its own copy of the shell tree and its own quickshell instance on the live Wayland session (no keyboard/mouse input,
-# no screenshots), inside a bubblewrap sandbox when available (real $HOME hidden, / read-only, /tmp private, network off, audio/dbus/hyprland sockets masked).
+# no screenshots), inside a bubblewrap sandbox when available (/ is NOT bound: only /usr and a minimal /etc, read-only; /home /root /run /var are tmpfs, so the
+# real $HOME, D-Bus, systemd and agent sockets are absent; minimal /dev; env cleared; new session; /tmp private; network off).
 # usage:  run_hitcheck.sh --preflight
 #         run_hitcheck.sh [A|B|all]            env: P=3 (parallel) TIMEOUT=70 (s per plugin) NET=0|1  SESSION_ACCESS=0|1  ALLOW_NO_SANDBOX=0|1  SHELL_SRC=/usr/share/omarchy/shell  ONLY=job1,job2  LIMIT=n
 # results: ~/usuba-hitcheck/results/hitcheck-results.jsonl  (one line per plugin; resumable: finished jobs are skipped; `touch ~/usuba-hitcheck/STOP` ends the run after the running jobs)
-set -u
+set -euo pipefail
 BASE="$HOME/usuba-hitcheck"; PKG="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 SHELL_SRC=${SHELL_SRC:-/usr/share/omarchy/shell}; P=${P:-3}; TIMEOUT=${TIMEOUT:-70}; RUNSEC=${RUNSEC:-24}; NET=${NET:-0}; SESSION_ACCESS=${SESSION_ACCESS:-0}; ALLOW_NO_SANDBOX=${ALLOW_NO_SANDBOX:-0}
 QS=${QS:-$(command -v quickshell)}; RES="$BASE/results"; JSONL="$RES/hitcheck-results.jsonl"
 export BASE PKG SHELL_SRC P TIMEOUT RUNSEC NET SESSION_ACCESS ALLOW_NO_SANDBOX QS RES JSONL
 
-sandbox_ok() { command -v bwrap >/dev/null 2>&1 && bwrap --ro-bind / / --dev-bind /dev /dev --proc /proc --unshare-pid --unshare-ipc --die-with-parent true >/dev/null 2>&1; }
+# Job names / plugin ids end up in `rm -rf` paths: letters, digits, . _ - only, and never "." / ".." / leading "-".
+valid_name() { [[ "${1:-}" =~ ^[A-Za-z0-9._-]+$ ]] && [[ "$1" != "." && "$1" != ".." && "$1" != -* ]]; }
+
+# Fills the global array BW with the bubblewrap arguments. Usage: build_bwrap_args JOBDIR REALHOME XDG_RUNTIME_DIR   (env: NET SESSION_ACCESS WAYLAND_DISPLAY)
+# Never binds /; minimal /etc; tmpfs over /home /root /run /var; --dev (null, zero, random, tty... only) plus /dev/dri if present for Mesa.
+build_bwrap_args() {
+  local J=$1 RH=$2 XRD=$3 d e W=${WAYLAND_DISPLAY:-wayland-1}
+  BW=(--unshare-ipc --unshare-uts --new-session --die-with-parent --clearenv --ro-bind /usr /usr)
+  for d in bin sbin lib lib64; do
+    if [ -L "/$d" ]; then BW+=(--symlink "$(readlink "/$d")" "/$d"); elif [ -d "/$d" ]; then BW+=(--ro-bind "/$d" "/$d"); fi
+  done
+  BW+=(--dir /etc)
+  for e in ld.so.cache ld.so.conf ld.so.conf.d fonts localtime os-release passwd group nsswitch.conf alternatives xdg vulkan drirc ssl; do
+    [ -e "/etc/$e" ] && BW+=(--ro-bind "/etc/$e" "/etc/$e")
+  done
+  BW+=(--proc /proc --dev /dev --dev-bind-try /dev/dri /dev/dri --ro-bind-try /sys /sys
+       --tmpfs /tmp --tmpfs /home --tmpfs /root --tmpfs /run --tmpfs /var --tmpfs "$RH"
+       --bind "$J" "$J" --bind "$J/tmp" /tmp)
+  [ "${NET:-0}" = 1 ] || BW+=(--unshare-net)
+  if [ "${SESSION_ACCESS:-0}" != 1 ]; then
+    # private runtime dir: only the Wayland socket is passed in (no dbus, pipewire, pulse, hyprland, systemd, ssh/gpg agent sockets). Own pid namespace.
+    BW+=(--unshare-pid --perms 0700 --tmpfs "$XRD")
+    [ -S "$XRD/$W" ] && BW+=(--bind "$XRD/$W" "$XRD/$W")
+  else BW+=(--bind "$XRD" "$XRD"); fi   # SESSION_ACCESS=1: shared runtime dir (hyprctl read-only shim still applies); no pid namespace, because quickshell derives its instance id from pid+time
+  # allow-listed environment only (NOT DBUS_SESSION_BUS_ADDRESS, tokens, SSH_AUTH_SOCK, ...): job variables first, then a few display/locale ones
+  local v
+  for v in "${ENVV[@]:-}"; do [ -n "$v" ] && BW+=(--setenv "${v%%=*}" "${v#*=}"); done
+  for v in LANG LC_ALL TERM WAYLAND_DISPLAY XDG_SESSION_TYPE XDG_CURRENT_DESKTOP QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME XDG_RUNTIME_DIR; do
+    [ -n "${!v:-}" ] && BW+=(--setenv "$v" "${!v}")
+  done
+  return 0
+}
+
+sandbox_ok() {
+  command -v bwrap >/dev/null 2>&1 || return 1
+  local t; t=$(mktemp -d) || return 1; mkdir -p "$t/tmp"
+  local ENVV=() rc=0
+  build_bwrap_args "$t" "$HOME" "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+  bwrap "${BW[@]}" true >/dev/null 2>&1 || rc=$?
+  rm -rf "$t"; return $rc
+}
 
 # ------------------------------------------------------------------ preflight
 preflight() {
@@ -22,7 +63,7 @@ preflight() {
   [ -d "$SHELL_SRC" ] && ok "shell tree $SHELL_SRC" || no "shell tree $SHELL_SRC missing"
   command -v python3 >/dev/null && ok "python3" || no "python3"
   [ -n "${WAYLAND_DISPLAY:-}" ] && [ -S "${XDG_RUNTIME_DIR:-/nonexistent}/$WAYLAND_DISPLAY" ] && ok "wayland session: $WAYLAND_DISPLAY" || no "no live Wayland session in this shell (run from a terminal inside the desktop, not over ssh)"
-  if sandbox_ok; then ok "bwrap sandbox works (real HOME hidden, / read-only, network off, /tmp private)"
+  if sandbox_ok; then ok "bwrap sandbox works (no host /, real HOME/run/var hidden, env cleared, network off, /tmp private)"
   else warn "bwrap sandbox NOT available. Without it plugins can write outside ~/usuba-hitcheck (e.g. /tmp). Install is a system change, so it is not done here. To run anyway: ALLOW_NO_SANDBOX=1"; fi
   command -v systemd-run >/dev/null && systemd-run --user --scope -q true 2>/dev/null && ok "systemd user scope (10 GB memory cap)" || warn "no systemd user scope: memory cap skipped (jobs are still limited to $TIMEOUT s each)"
   local avail; avail=$(awk '/MemAvailable/{print int($2/1024)}' /proc/meminfo); [ "$avail" -gt 4000 ] && ok "MemAvailable ${avail} MB" || warn "MemAvailable only ${avail} MB; use P=2"
@@ -34,14 +75,19 @@ preflight() {
 
 # ------------------------------------------------------------------ one job, orchestrator side (prepares the fake HOME, runs the driver in the sandbox, extracts signals)
 job_main() {
-  local JOB=$1 DIR ID KINDS; IFS=$'\t' read -r _ DIR ID KINDS < <(awk -F'\t' -v j="$JOB" '$1==j' "$PKG/jobs.tsv")
+  local JOB=${1:-} DIR="" ID="" KINDS=""
+  valid_name "$JOB" || { echo "refusing job name '$JOB' (allowed: ^[A-Za-z0-9._-]+\$)" >&2; return 2; }
+  IFS=$'\t' read -r _ DIR ID KINDS < <(awk -F'\t' -v j="$JOB" '$1==j' "$PKG/jobs.tsv") || true
   [ -z "$ID" ] && { echo "unknown job $JOB" >&2; return 2; }
+  valid_name "$ID" || { echo "refusing plugin id '$ID'" >&2; return 2; }
+  case "$DIR" in ""|/*|*..*) echo "refusing plugin dir '$DIR'" >&2; return 2;; esac
   [ -e "$BASE/STOP" ] && { echo "stop requested, skipping $JOB"; return 0; }
   while [ "$(awk '/MemAvailable/{print int($2/1024)}' /proc/meminfo)" -lt 1500 ]; do sleep 5; done      # never push the desktop into memory pressure
+  [ -n "$BASE" ] && [ "$BASE" != / ] || { echo "bad BASE" >&2; return 2; }
   local J="$BASE/work/$JOB" H="$BASE/work/$JOB/home" D="$BASE/work/$JOB/out"
-  rm -rf "$J"; mkdir -p "$H/.config/omarchy/plugins" "$H/.cache" "$H/.local/state" "$H/.local/share" "$J/tmp" "$J/shims" "$D"
+  rm -rf -- "$J"; mkdir -p "$H/.config/omarchy/plugins" "$H/.cache" "$H/.local/state" "$H/.local/share" "$J/tmp" "$J/shims" "$D"
   cp -r "$SHELL_SRC" "$J/shell" && cp -r "$BASE/src/$DIR" "$H/.config/omarchy/plugins/$ID" || { echo "copy failed $JOB" >&2; return 2; }
-  for x in current shell.toml bar extensions; do [ -e "$HOME/.config/omarchy/$x" ] && cp -rL "$HOME/.config/omarchy/$x" "$H/.config/omarchy/$x" 2>/dev/null; done
+  for x in current shell.toml bar extensions; do [ -e "$HOME/.config/omarchy/$x" ] && cp -rL "$HOME/.config/omarchy/$x" "$H/.config/omarchy/$x" 2>/dev/null || true; done
   python3 - "$H/.config/omarchy/shell.json" "$ID" "$KINDS" "$HOME/.config/omarchy/shell.json" <<'PY'
 import json,sys,os
 p,i,k,src=sys.argv[1:]; k=k.split(",")
@@ -81,27 +127,27 @@ SHIM
   local RC=0 T0 MODE=sandbox; T0=$(date +%s); sandbox_ok || MODE=nosandbox
   ENVV+=(HC_MODE="$MODE")
   if [ "$MODE" = sandbox ]; then
-    local XRD=${XDG_RUNTIME_DIR:-/run/user/$(id -u)} RH="$HOME" args=()
-    args=(--ro-bind / / --dev-bind /dev /dev --proc /proc --tmpfs "$RH" --bind "$J" "$J" --bind "$J/tmp" /tmp --unshare-ipc --new-session --die-with-parent)
-    [ "$NET" = 1 ] || args+=(--unshare-net)
-    if [ "$SESSION_ACCESS" != 1 ]; then
-      # private runtime dir: only the Wayland socket is passed in (no dbus, pipewire, pulse, hyprland, systemd, ssh/gpg agent sockets). Own pid namespace.
-      args+=(--unshare-pid --perms 0700 --tmpfs "$XRD" --bind "$XRD/${WAYLAND_DISPLAY:-wayland-1}" "$XRD/${WAYLAND_DISPLAY:-wayland-1}")
-      ENVV+=(HC_PIDNS=1)
-    else args+=(--bind "$XRD" "$XRD"); fi   # SESSION_ACCESS=1: shared runtime dir (hyprctl read-only shim still applies); no pid namespace, because quickshell derives its instance id from pid+time
-    timeout -k 5 "$TIMEOUT" env "${ENVV[@]}" bwrap "${args[@]}" /bin/bash "$J/driver.sh" --driver >"$D/driver_stdout.txt" 2>&1; RC=$?; echo sandbox > "$D/mode.txt"
+    local XRD=${XDG_RUNTIME_DIR:-/run/user/$(id -u)} RH="$HOME"
+    [ "$SESSION_ACCESS" = 1 ] || ENVV+=(HC_PIDNS=1)
+    build_bwrap_args "$J" "$RH" "$XRD"
+    # stdin from /dev/null; env is rebuilt inside bwrap (--clearenv), so nothing from the user's shell leaks in
+    timeout -k 5 "$TIMEOUT" env -i PATH="$PATH" bwrap "${BW[@]}" /bin/bash "$J/driver.sh" --driver >"$D/driver_stdout.txt" 2>&1 </dev/null || RC=$?
+    echo sandbox > "$D/mode.txt"
   elif [ "$ALLOW_NO_SANDBOX" = 1 ]; then
-    timeout -k 5 "$TIMEOUT" env "${ENVV[@]}" /bin/bash "$J/driver.sh" --driver >"$D/driver_stdout.txt" 2>&1; RC=$?; echo nosandbox > "$D/mode.txt"
-    pkill -9 -f "$H" 2>/dev/null
-  else echo "no bwrap sandbox; set ALLOW_NO_SANDBOX=1 to run without" >&2; rm -rf "$J"; return 3; fi
+    echo "WARNING: running $JOB WITHOUT a sandbox (ALLOW_NO_SANDBOX=1): the plugin has your user's full access" >&2
+    timeout -k 5 "$TIMEOUT" env "${ENVV[@]}" /bin/bash "$J/driver.sh" --driver >"$D/driver_stdout.txt" 2>&1 </dev/null || RC=$?
+    echo nosandbox > "$D/mode.txt"
+    pkill -9 -f "$H" 2>/dev/null || true
+  else echo "no bwrap sandbox; set ALLOW_NO_SANDBOX=1 to run without" >&2; rm -rf -- "$J"; return 3; fi
   echo "$RC $(( $(date +%s) - T0 ))" > "$D/rc.txt"
   rm -rf "$RES/raw/$JOB"; mkdir -p "$RES/raw"; mv "$D" "$RES/raw/$JOB"
-  python3 "$PKG/hc_signal.py" "$RES/raw/$JOB" "$PKG/jobs.json" "$JOB" "$ID" | flock "$RES/.lock" tee -a "$JSONL" >/dev/null
-  rm -rf "$J"; echo "done $JOB"
+  python3 "$PKG/hc_signal.py" "$RES/raw/$JOB" "$PKG/jobs.json" "$JOB" "$ID" | flock "$RES/.lock" tee -a "$JSONL" >/dev/null || echo "hc_signal failed for $JOB" >&2
+  rm -rf -- "$J"; echo "done $JOB"
 }
 
 # ------------------------------------------------------------------ driver: runs INSIDE the sandbox
 driver_main() {
+  set +e   # inside the sandbox every probe may fail (timeouts, missing IPC); keep -u and pipefail from the top of the file
   cd "$HC_J" || exit 1; D=$HC_D; H=$HC_H; J=$HC_J; ID=$HC_ID
   export PATH="$J/shims:$HC_REALPATH"; : > "$HC_SHIMLOG"
   date +%s > "$D/t0.txt"; touch "$D/t0.stamp"
@@ -154,6 +200,7 @@ PY
 }
 
 # ------------------------------------------------------------------ main
+[ -n "${HC_SOURCE_ONLY:-}" ] && return 0 2>/dev/null   # tests source the functions above without running anything
 case "${1:-}" in
   --driver) driver_main; exit 0;;
   --job) job_main "$2"; exit $?;;
@@ -179,6 +226,6 @@ N=$(wc -l < "$BASE/todo.txt"); echo "$(date +%T) running $N jobs (batch $BATCH),
 RUNNER=(xargs -a "$BASE/todo.txt" -P "$P" -I{} "$PKG/run_hitcheck.sh" --job {})
 if command -v systemd-run >/dev/null && systemd-run --user --scope -q true 2>/dev/null; then
   systemd-run --user --scope -q -p MemoryMax=10G -p MemorySwapMax=0 "${RUNNER[@]}" 2>&1 | tee -a "$RES/run.log"
-else "${RUNNER[@]}" 2>&1 | tee -a "$RES/run.log"; fi
+else "${RUNNER[@]}" 2>&1 | tee -a "$RES/run.log"; fi || echo "some jobs failed (see $RES/run.log)" >&2
 echo "$(date +%T) finished: $(wc -l < "$JSONL") result lines in $JSONL"
 rmdir "$BASE/work" 2>/dev/null; true

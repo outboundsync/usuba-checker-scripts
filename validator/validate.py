@@ -1,7 +1,18 @@
 #!/usr/bin/env python3
 """Faithful Python port of basecamp/omarchy bin/omarchy-plugin-validate @ 9480d1b6 (MIT, (c) DHH).
 Also used to validate in-memory dataset examples ({path: content}). Exit 0 + silent = pass."""
-import json, os, re, sys, tempfile
+import json, os, posixpath, re, sys, tempfile
+
+def safe_join(base, rel):
+    """Join ``rel`` (taken from untrusted text: model output, tar members) under ``base``; ValueError if it would escape (audit C3)."""
+    rel = posixpath.normpath(str(rel).replace("\\", "/"))
+    if rel in ("", ".") or rel.startswith("/") or rel == ".." or rel.startswith("../") or "\0" in rel:
+        raise ValueError("unsafe path: %r" % (rel,))
+    p = os.path.join(base, rel)
+    rb = os.path.realpath(base)
+    if not os.path.realpath(p).startswith(rb.rstrip("/") + "/"):
+        raise ValueError("path escapes %s: %r" % (base, rel))
+    return p
 KIND_EP = {"bar":"bar","bar-widget":"barWidget","menu":"menu","overlay":"overlay","panel":"panel","service":"service"}
 def validate_dir(d):
     m = os.path.join(d, "manifest.json")
@@ -43,10 +54,13 @@ def validate_dir(d):
 def validate_files(files, symlinks=None):
     """files: {relpath: text}; symlinks: {relpath: target}"""
     with tempfile.TemporaryDirectory() as t:
-        for p, c in files.items():
-            fp = os.path.join(t, p); os.makedirs(os.path.dirname(fp), exist_ok=True); open(fp, "w").write(c)
-        for p, tgt in (symlinks or {}).items():
-            fp = os.path.join(t, p); os.makedirs(os.path.dirname(fp), exist_ok=True); os.symlink(tgt, fp)
+        try:
+            for p, c in files.items():
+                fp = safe_join(t, p); os.makedirs(os.path.dirname(fp), exist_ok=True); open(fp, "w").write(c)
+            for p, tgt in (symlinks or {}).items():
+                fp = safe_join(t, p); os.makedirs(os.path.dirname(fp), exist_ok=True); os.symlink(tgt, fp)
+        except ValueError as e:
+            return f"unsafe file path in answer: {e}"
         return validate_dir(t)
 if __name__ == "__main__":
     e = validate_dir(sys.argv[1] if len(sys.argv) > 1 else "")

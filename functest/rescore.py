@@ -25,9 +25,8 @@ def tree_dir(h):
     return os.path.join(ROOT, "sources/repos", REPO_FOR[m["repo"]])
 CACHE = os.path.join(HERE, "cache"); os.makedirs(CACHE, exist_ok=True)
 # cache entries are only valid for the functest version that produced them
-FT_VERSION = hashlib.sha1(b"".join(open(os.path.join(HERE, f), "rb").read() for f in
-    ("functest.py", "runtime.py", "static_checks.py", "dell_checks.py", "dell_env/setup.py", "dell_env/hyprctl.py", "dell_env/binaries.py",
-     "dell_env/system_bins.txt", "dell_env/ftprobe.qml.part", "usuba/checks.py", "usuba/types.json"))).hexdigest()[:12]
+from usuba import provenance as _prov
+FT_VERSION = _prov.rules_hash()[:12]   # every rule/config file (dell_learned, rules, hancore_rules*, omarchy_bins.txt, enabled-lists, ...) is in the key (audit D6)
 
 CODE_EXT = (".qml", ".js", ".mjs", ".sh", ".py", ".bash")
 def task_findings(h, files, output=None):

@@ -3,7 +3,7 @@
 Read-only over existing data. Parse file/line/kind with regex, verify against source at the reviewed commit.
 No model calls. Never reads Dell key labels (only id/path of functest/dell_ground_truth.jsonl, all 116 rows, to exclude).
 Outputs -> /workspace/usuba-runs/hancore-labels/"""
-import sys, os, re, json, hashlib, subprocess, collections, tarfile, io
+import sys, os, posixpath, re, json, hashlib, subprocess, collections, tarfile, io
 H = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(H); sys.path.insert(0, H)
 import common
 from findings_v3 import KINDS, CLEAN_RE
@@ -107,7 +107,11 @@ def full_fetch(real, sha):
                 b = t.extractfile(m).read()
                 try: b.decode("utf-8")
                 except UnicodeDecodeError: continue
-                pth = os.path.join(d, rel); os.makedirs(os.path.dirname(pth), exist_ok=True); open(pth, "wb").write(b)
+                rel = posixpath.normpath(rel)
+                if rel.startswith(("/", "..")) or "\0" in rel: continue   # zip-slip guard (audit C3)
+                pth = os.path.join(d, rel)
+                if not os.path.realpath(pth).startswith(os.path.realpath(d) + os.sep): continue
+                os.makedirs(os.path.dirname(pth), exist_ok=True); open(pth, "wb").write(b)
             open(d + "/.ok", "w").write("1")
         except Exception as e:
             open(d + "/.fail", "w").write(repr(e)[:200]); return None

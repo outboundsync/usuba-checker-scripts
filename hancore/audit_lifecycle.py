@@ -39,7 +39,7 @@ def main():
     json.dump(res, open(a.out + "/audit_rows.json", "w"), indent=1)
     print(json.dumps({k: v for k, v in res.items() if k not in ("drop_or_relabel", "confirmed_broken")}, indent=1))
     if a.pool:
-        sys.path.insert(0, "/tmp"); import static_checks as N
+        import static_checks as N   # the in-repo functest/static_checks.py (was: sys.path.insert(0, "/tmp"), i.e. whatever sits in a world-writable dir)
         import importlib.util as U
         spec = U.spec_from_file_location("static_old", os.path.join(a.out, "static_checks_before.py")); O = U.module_from_spec(spec); spec.loader.exec_module(O)
         from rules_v2_pool import read_tree

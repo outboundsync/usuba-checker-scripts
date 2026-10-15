@@ -12,6 +12,7 @@ def _kind(p, c):
         if re.search(r"\b(ba|z|da)?sh\b", h): return ".sh"
         if "python" in h: return ".py"
     return None
+SLOW_REGEX_SECONDS = 0.5
 def compile_spec(s):
     """returns compiled dict or raises; rejects slow (catastrophic) regexes."""
     fl = re.I if s.get("ignore_case") else 0
@@ -22,8 +23,8 @@ def compile_spec(s):
     if not out["line_regex_c"]: raise ValueError("no line_regex")
     for k in [k for k in out if k.endswith("_c") and out[k]]:
         for bad in ("a" * 3000, "a, " * 1000, ("x" * 20 + " ") * 150, "{" * 2000, "$" * 2000 + " "):
-            t = time.time(); out[k].search(bad)
-            if time.time() - t > 0.05: raise ValueError("slow regex " + k)
+            t = time.perf_counter(); out[k].search(bad)
+            if time.perf_counter() - t > SLOW_REGEX_SECONDS: raise ValueError("slow regex " + k)   # load-time only; generous so a busy CI box cannot flip it
     if out["line_regex_c"].search(""): raise ValueError("matches empty")
     return out
 def check_model(files, rules, per_file=50):

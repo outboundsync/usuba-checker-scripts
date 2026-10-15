@@ -31,7 +31,7 @@ def check(files):
     try: man = json.loads(files.get("manifest.json", "") or "{}")
     except Exception: man = {}
     if not isinstance(man, dict): man = {}
-    for p, body in files.items():
+    for p, body in sorted(files.items()):   # sorted: the first matching file must not depend on directory order (audit D5)
         if p.endswith((".md", ".txt", ".json")): continue
         m = AUDIO.search(_strip(body))
         if m:
@@ -49,7 +49,7 @@ def check(files):
                 if not re.search(r"IpcHandler|onToggle|function\s+\w*[Tt]oggle\w*\s*\(", files[f]):
                     out.append(dict(rule="USB-D02", severity="medium", file=f, reason=f"{k} entry point has no toggle()/open()/show() function, so `shell toggle <id>` has nothing to call",
                                     hint=f"add `function toggle() {{ ... }}` (and open/close) to the {k} root so the shell can summon it"))
-    for p, body in files.items():
+    for p, body in sorted(files.items()):
         if p.endswith((".qml", ".js")) and CLOSE_RO.search(_strip(body)):
             out.append(dict(rule="USB-D06", severity="medium", file=p, reason="writes the shell's read-only centerHoverRevealSuppressed; on Omarchy 4.0.3+ this throws on close, so the panel cannot be dismissed (Esc/outside click) and may trap keyboard focus",
                             hint="drop the assignment (the shell manages hover reveal itself) or wrap it in try/catch so close() still runs"))

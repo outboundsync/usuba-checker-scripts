@@ -104,8 +104,9 @@ print(json.dumps(res))
 def old_hits(dirs):
     """hits of the pre-skip rule code (branch checker-rules-v2) on given trees"""
     tmp = tempfile.mkdtemp(prefix="oldcr2.")
-    p = subprocess.run(f"git -C {REPO} archive checker-rules-v2 functest | tar -x -C {tmp}", shell=True, capture_output=True)
+    p = subprocess.run(["git", "-C", REPO, "archive", "checker-rules-v2", "functest"], capture_output=True)   # no shell (audit C3)
     if p.returncode: raise SystemExit("git archive checker-rules-v2 failed: " + p.stderr.decode())
+    with tarfile.open(fileobj=io.BytesIO(p.stdout)) as t: t.extractall(tmp, filter="data")
     q = subprocess.run([sys.executable, "-c", OLD_RUNNER, tmp] + dirs, capture_output=True, text=True)
     shutil.rmtree(tmp, ignore_errors=True)
     if q.returncode: raise SystemExit("old runner failed: " + q.stderr[-500:])

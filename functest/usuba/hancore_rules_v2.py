@@ -36,20 +36,30 @@ RULES = {
 def _model_specs():
     import json
     f = os.path.join(HERE, "model_rules_v3.json")
-    return json.load(open(f))["rules"] if os.path.exists(f) else {}
+    with open(f) as fh: return json.load(fh)["rules"]   # a missing config file is an error, not "no rules" (audit D3)
 MODEL_SPECS = _model_specs()   # USB-HC19+: data-only specs proposed by qwen/qwen3.5-397b-a17b, kept on design (see model_rules_v3.json)
 for _k, _s in MODEL_SPECS.items(): RULES[_k] = (_s["category"], _s["summary"])
+_COMPILED = {}
+def _compiled_model_specs(en):
+    """Compile (and timing-validate) the model-proposed specs ONCE per process, not inside every check() (audit D3)."""
+    import hancore_rules_model as MR
+    for k in sorted(k for k in MODEL_SPECS if k in en and k not in _COMPILED):
+        _COMPILED[k] = dict(MR.compile_spec(MODEL_SPECS[k]), summary=MODEL_SPECS[k]["summary"])
+    return {k: v for k, v in _COMPILED.items() if k in en}
 def load_enabled():
     import json
     f = os.path.join(HERE, "rules_v2_enabled.json")
-    if not os.path.exists(f): return set(RULES)
-    d = json.load(open(f)); return set(d.get("enabled_v3_fixes", d.get("enabled_v3", d["enabled"])))
+    with open(f) as fh: d = json.load(fh)   # missing enabled-list = error; previously every rule silently became enabled (audit D3)
+    en = set(d.get("enabled_v3_fixes", d.get("enabled_v3", d["enabled"])))
+    unknown = en - set(RULES)
+    if unknown: raise ValueError("rules_v2_enabled.json names unknown rules: %s" % sorted(unknown))
+    return en
 ENABLED = load_enabled()
 def hardware_status():
     """Hit-check evidence per rule (results/hitcheck): which rules were observed breaking a plugin on real hardware, which are static advisories only."""
     import json
     f = os.path.join(HERE, "rule_hardware_status.json")
-    return json.load(open(f))["rules"] if os.path.exists(f) else {}
+    with open(f) as fh: return json.load(fh)["rules"]
 HARDWARE_STATUS = hardware_status()
 EXPERIMENTAL = set(RULES) - ENABLED   # measured below the keep bar; pass enabled=set(RULES) to run them
 
@@ -297,7 +307,7 @@ def check(files, enabled=None, per_file=3):
     ms = {k: v for k, v in MODEL_SPECS.items() if k in en}
     if ms:
         import hancore_rules_model as MR
-        comp = {k: dict(MR.compile_spec(v), summary=v["summary"]) for k, v in ms.items()}
+        comp = _compiled_model_specs(en)
         for h in MR.check_model(files, comp, per_file=per_file):
             add(h["rule"], h["file"], h["line"], h["reason"] + " (model-proposed rule)", "see rule summary; validate/escape the value or pin/verify before use", "medium")
     return out

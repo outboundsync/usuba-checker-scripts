@@ -4,13 +4,13 @@ dell/sweep/build_results.py): a QML message fails a plugin only when it stops a 
 toggle on a panel/overlay/menu, or runaway memory also fail it. Everything else is a warning. Evidence fields (shim_calls, child_cmds, tmp_entries,
 files_written, ipc_out, log_lines) feed analyze_results.py.   usage: hc_signal.py RAWDIR jobs.json JOB PLUGIN_ID"""
 import json, os, re, sys, statistics
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from hc_safe import safe_lines
 raw, jobsf, job, pid = sys.argv[1:5]
 FATAL = re.compile(r"is not a type|is not installed|module \S+ (is )?not (found|installed)|Failed to load|failed to load|SyntaxError|Expected token|Unexpected token|Type \S+ unavailable|Cannot open: \S+\.qml|Cannot create delegate|Required property .* was not initialized", re.I)
 ERR = re.compile(r"TypeError|ReferenceError|SyntaxError|is not a type|is not installed|module .* not found|Cannot assign|Unable to assign|Non-existent|unavailable|Cannot read propert|not a function|Binding loop|Failed to load|failed to load|Invalid property|Cannot anchor|Expected token|is not defined|Cannot open|Required property|ShellRoot|Cannot create delegate|Unexpected token", re.I)
 IMG = re.compile(r"Cannot open: \S+\.(png|jpe?g|gif|webp|svg|ico|mp4|webm)", re.I)
-def lines(n):
-    try: return open(os.path.join(raw, n), errors="replace").read().splitlines()
-    except Exception: return []
+def lines(n): return safe_lines(os.path.join(raw, n))   # O_NOFOLLOW, regular files only, size-capped (audit C2)
 meta = next((j for j in json.load(open(jobsf))["jobs"] if j["job"] == job), {})
 rec = dict(job=job, plugin_id=pid, batch=meta.get("batch"), kinds=meta.get("kinds"))
 rec["meta"] = {k: v for k, v in meta.items() if k not in ("dropped",)}

@@ -10,12 +10,13 @@
 import json, os, re, posixpath, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "dell_env"))
+sys.path.insert(0, HERE)
 from binaries import resolves, KNOWN
-SHELL = os.environ.get("FT_OMARCHY", "/opt/ft/omarchy-4.0.4") + "/shell"
+import refpaths
+SHELL = refpaths.omarchy_root() + "/shell"   # raises ReferenceTreeMissing instead of loading empty API tables (audit D2)
 
 def _members(path):
-    try: s = open(path).read()
-    except Exception: return set()
+    with open(path) as fh: s = fh.read()   # a missing reference file is an error, never an empty member set (audit D2/D7)
     s = re.sub(r"//[^\n]*", "", s)
     m = set(re.findall(r"\bproperty\s+[\w.<>]+\s+(\w+)", s)) | set(re.findall(r"\bfunction\s+(\w+)", s)) | set(re.findall(r"\bsignal\s+(\w+)", s))
     m |= set(re.findall(r"^\s*(\w+)\s*:", s, re.M))  # grouped/attached defaults
@@ -27,6 +28,8 @@ def _api():
         "Util": _members(SHELL + "/Commons/Util.qml"), "Border": _members(SHELL + "/Commons/Border.qml"),
     }
 API = _api()
+_empty = [k for k, v in API.items() if len(v) <= 4]   # only the 4 always-added names left -> the file parsed to nothing
+if _empty: raise refpaths.ReferenceTreeMissing("reference API tables are empty for %s under %s" % (_empty, SHELL))
 def _ui_types_with(prop):
     out = set()
     d = SHELL + "/Ui"
