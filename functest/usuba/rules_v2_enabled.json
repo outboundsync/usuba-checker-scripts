@@ -23,5 +23,25 @@
   "USB-H07",
   "USB-H12",
   "USB-H18"
- ]
+ ],
+ "enabled_v3": [
+  "USB-H01",
+  "USB-H02",
+  "USB-H04",
+  "USB-H05",
+  "USB-H08",
+  "USB-H09",
+  "USB-H10",
+  "USB-H15",
+  "USB-H16",
+  "USB-H17",
+  "USB-H19",
+  "USB-H20",
+  "USB-H21",
+  "USB-H22",
+  "USB-H23",
+  "USB-H24",
+  "USB-H25"
+ ],
+ "criterion_v3": "model rules H19+: design lift>=1.5, false-hit<=0.05, >=20 fired reviewed plugins, manual review"
 }

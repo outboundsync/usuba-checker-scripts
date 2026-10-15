@@ -1,0 +1,158 @@
+{
+ "enabled": [
+  "USB-H19",
+  "USB-H20",
+  "USB-H21",
+  "USB-H22",
+  "USB-H23",
+  "USB-H24",
+  "USB-H25"
+ ],
+ "note": "Model-proposed (qwen/qwen3.5-397b-a17b via OpenRouter) data-only specs; kept on DESIGN split only: lift>=1.5, false-hit<=0.05, >=20 fired reviewed plugins, manual semantic/redundancy review. See cands_decisions.json.",
+ "rules": {
+  "USB-H19": {
+   "name": "pip-install-without-hash",
+   "category": "remote-code-pinning",
+   "summary": "pip/pipx install without --hash",
+   "file_types": [
+    ".sh",
+    ".py"
+   ],
+   "line_regex": "pip[\"']?\\s+install\\s+(?!-r|--requirement)",
+   "line_exclude_regex": null,
+   "file_must_contain_regex": null,
+   "file_must_not_contain_regex": "--hash=",
+   "window_must_not_contain_regex": null,
+   "ignore_case": false,
+   "why": "Installing Python dependencies without hash verification allows supply chain attacks via compromised packages",
+   "example_hit": "\"${VENV_DIR}/bin/pip\" install -q \"androidtvremote2>=0.0.14\" \"cryptography\"",
+   "example_ok": "\"${VENV_DIR}/bin/pip\" install --hash=sha256:abc123 \"cryptography\"",
+   "model": "qwen/qwen3.5-397b-a17b",
+   "proposed_from": "remote-code-pinning.1.json",
+   "candidate_id": "C047"
+  },
+  "USB-H20": {
+   "name": "python-urllib-auth-redirect",
+   "category": "secrets-credentials",
+   "summary": "Python urllib request with Authorization header follows redirects",
+   "file_types": [
+    ".py"
+   ],
+   "line_regex": "Request\\s*\\([^)]*headers\\s*=",
+   "file_must_contain_regex": "Authorization",
+   "file_must_not_contain_regex": "redirect=False",
+   "ignore_case": false,
+   "why": "Credentials can be leaked to attacker-controlled hosts via 3xx redirects if redirect handling is not disabled.",
+   "example_hit": "request = Request( USAGE_URL, headers={ \"Authorization\": f\"Bearer {api_key}\",",
+   "example_ok": "request = Request( USAGE_URL, headers={...}, redirect=False)",
+   "model": "qwen/qwen3.5-397b-a17b",
+   "proposed_from": "secrets-credentials.1.json",
+   "candidate_id": "C079"
+  },
+  "USB-H21": {
+   "name": "Omarchy bar.run String Concatenation",
+   "category": "shell-lua-injection",
+   "summary": "bar.run('...' + value) string concatenation into a shell",
+   "file_types": [
+    ".qml",
+    ".js"
+   ],
+   "line_regex": "bar\\.run\\s*\\(\\s*['\"][^'\"]*['\"]\\s*\\+",
+   "line_exclude_regex": "bar\\.run\\s*\\(\\s*\\[",
+   "file_must_contain_regex": null,
+   "file_must_not_contain_regex": null,
+   "window_must_not_contain_regex": "shellQuote|escapeShell|shlex\\.quote",
+   "ignore_case": false,
+   "why": "bar.run invokes a shell; concatenating unescaped variables into the command string allows shell injection.",
+   "example_hit": "root.bar.run('omarchy-launch-floating-terminal-with-presentation \"' + root.action + arg + '\"')",
+   "example_ok": "bar.run([\"echo\", \"safe\"])",
+   "model": "qwen/qwen3.5-397b-a17b",
+   "proposed_from": "shell-lua-injection.0.json",
+   "candidate_id": "C087"
+  },
+  "USB-H22": {
+   "name": "QML Process Command Shell Flag",
+   "category": "shell-lua-injection",
+   "summary": "QML Process command [.., '-c', '..' + value]",
+   "file_types": [
+    ".qml"
+   ],
+   "line_regex": "command\\s*:\\s*\\[.*[\"']-c[\"'].*\\+",
+   "line_exclude_regex": null,
+   "file_must_contain_regex": "Process\\s*\\{",
+   "file_must_not_contain_regex": null,
+   "window_must_not_contain_regex": "shellQuote|escapeShell|shlex\\.quote",
+   "ignore_case": false,
+   "why": "QML Process command with -c invokes a shell; concatenation into the script string allows injection.",
+   "example_hit": "command: [\"/bin/bash\", \"-c\", \"while inotifywait ...; do python3 \" + Qt.resolvedUrl",
+   "example_ok": "command: [\"/bin/echo\", \"hello\"]",
+   "model": "qwen/qwen3.5-397b-a17b",
+   "proposed_from": "shell-lua-injection.0.json",
+   "candidate_id": "C089"
+  },
+  "USB-H23": {
+   "name": "Bash -c Array Invocation",
+   "category": "shell-lua-injection",
+   "summary": "'bash','-c', '..' + value argv concatenation",
+   "file_types": [
+    ".qml",
+    ".js",
+    ".py",
+    ".lua",
+    ".sh"
+   ],
+   "line_regex": "[\"']bash[\"']\\s*,\\s*[\"']-c[\"']\\s*,\\s*.*\\+",
+   "line_exclude_regex": null,
+   "file_must_contain_regex": null,
+   "file_must_not_contain_regex": null,
+   "window_must_not_contain_regex": "shellQuote|escapeShell|shlex\\.quote",
+   "ignore_case": false,
+   "why": "bash -c is equivalent to sh -c but may be missed by rules looking specifically for 'sh'; concatenation enables injection.",
+   "example_hit": "[\"/bin/bash\", \"-c\", \"echo \" + user_input]",
+   "example_ok": "[\"/bin/bash\", \"-c\", \"echo static\"]",
+   "model": "qwen/qwen3.5-397b-a17b",
+   "proposed_from": "shell-lua-injection.0.json",
+   "candidate_id": "C092"
+  },
+  "USB-H24": {
+   "name": "Shell Script Eval Usage",
+   "category": "shell-lua-injection",
+   "summary": "shell eval of a variable-expanded string",
+   "file_types": [
+    ".sh"
+   ],
+   "line_regex": "\\beval\\b.*\\$",
+   "line_exclude_regex": "^\\s*#",
+   "file_must_contain_regex": null,
+   "file_must_not_contain_regex": null,
+   "window_must_not_contain_regex": null,
+   "ignore_case": false,
+   "why": "eval executes the argument as shell code; using variables allows arbitrary command execution.",
+   "example_hit": "eval \"$cmd\"",
+   "example_ok": "echo \"$var\"",
+   "model": "qwen/qwen3.5-397b-a17b",
+   "proposed_from": "shell-lua-injection.0.json",
+   "candidate_id": "C094"
+  },
+  "USB-H25": {
+   "name": "HTTP Redirect With Credentials",
+   "category": "url-scheme-network",
+   "summary": "HTTP request with Authorization/API-key header and default redirects",
+   "file_types": [
+    ".py",
+    ".js",
+    ".lua"
+   ],
+   "line_regex": "(?:Authorization|Bearer|api_key|apikey).*?(?:header|Header|headers)",
+   "line_exclude_regex": "(?:RedirectHandler|redirect.*false|allow.*redirect.*false)",
+   "file_must_contain_regex": "(?:urlopen|Request|fetch|http\\.request|XMLHttpRequest)",
+   "ignore_case": true,
+   "why": "Default HTTP redirect handlers may carry Authorization headers to attacker-controlled redirect targets",
+   "example_hit": "\"Authorization\": f\"Bearer {api_key}\",",
+   "example_ok": "opener = build_opener(NoRedirectHandler()); response = opener.open(req)",
+   "model": "qwen/qwen3.5-397b-a17b",
+   "proposed_from": "url-scheme-network.1.json",
+   "candidate_id": "C105"
+  }
+ }
+}

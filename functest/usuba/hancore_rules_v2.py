@@ -33,10 +33,17 @@ RULES = {
  "USB-H17": ("remote-code-pinning", "remote code fetched/installed without an immutable pin"),
  "USB-H18": ("process-lifecycle-timeouts", "network/subprocess call without a timeout"),
 }
+def _model_specs():
+    import json
+    f = os.path.join(HERE, "model_rules_v3.json")
+    return json.load(open(f))["rules"] if os.path.exists(f) else {}
+MODEL_SPECS = _model_specs()   # USB-H19+: data-only specs proposed by qwen/qwen3.5-397b-a17b, kept on design (see model_rules_v3.json)
+for _k, _s in MODEL_SPECS.items(): RULES[_k] = (_s["category"], _s["summary"])
 def load_enabled():
     import json
     f = os.path.join(HERE, "rules_v2_enabled.json")
-    return set(json.load(open(f))["enabled"]) if os.path.exists(f) else set(RULES)
+    if not os.path.exists(f): return set(RULES)
+    d = json.load(open(f)); return set(d.get("enabled_v3", d["enabled"]))
 ENABLED = load_enabled()
 EXPERIMENTAL = set(RULES) - ENABLED   # measured below the keep bar; pass enabled=set(RULES) to run them
 
@@ -241,6 +248,12 @@ def check(files, enabled=None, per_file=3):
                     add("USB-H13", p, ln_no, f"{typ} renders `{expr[:40]}` as {tf.group(1)}; markup in command output/files/network/other apps can inject links or resource loads", "use textFormat: Text.PlainText for non-literal text")
                 elif not tf and EXT_SRC.search(c) and DATA_ID.search(expr) and not re.search(r"^\s*(?:root|parent)?\.?(?:is|has|show|count|index)\w*\s*[?!&|]", expr) and not re.search(r"Qt\.formatDateTime|toFixed|Math\.round|\.length\s*\+|Number\(|parseInt|parseFloat|toLocale|Qt\.formatTime|i18n|qsTr", expr):
                     add("USB-H13", p, ln_no, f"{typ} binds `{expr[:40]}` with the default AutoText format; externally supplied text starting with markup is interpreted as rich text (link/image loads)", "set textFormat: Text.PlainText on every Text that shows external/untrusted data")
+    ms = {k: v for k, v in MODEL_SPECS.items() if k in en}
+    if ms:
+        import hancore_rules_model as MR
+        comp = {k: dict(MR.compile_spec(v), summary=v["summary"]) for k, v in ms.items()}
+        for h in MR.check_model(files, comp, per_file=per_file):
+            add(h["rule"], h["file"], h["line"], h["reason"] + " (model-proposed rule)", "see rule summary; validate/escape the value or pin/verify before use", "medium")
     return out
 if __name__ == "__main__":
     sys.path.insert(0, os.path.dirname(HERE)); import functest
