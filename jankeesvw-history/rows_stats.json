@@ -1,0 +1,33 @@
+{
+ "main": {
+  "rows": 72,
+  "broken": 66,
+  "approve": 6,
+  "max_tokens": 31735,
+  "over_v3_builder_caps": 22
+ },
+ "tierB": {
+  "rows": 23,
+  "broken": 22,
+  "approve": 1,
+  "max_tokens": 30561,
+  "over_v3_builder_caps": 11
+ },
+ "extra": {
+  "rows": 23,
+  "broken": 14,
+  "approve": 9,
+  "max_tokens": 30630,
+  "over_v3_builder_caps": 4
+ },
+ "drops": {
+  "not_jankees_or_not_real": 53,
+  "description_hygiene": 4,
+  "not_a_code_file": 2,
+  "file_not_in_tree": 2,
+  "over_token_cap": 11
+ },
+ "approve_dropped": {
+  "later_defect_still_present": 86
+ }
+}
