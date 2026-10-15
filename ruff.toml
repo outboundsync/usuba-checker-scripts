@@ -9,6 +9,8 @@ include = [
   "functest/usuba/provenance.py",
   "functest/usuba/registry.py",
   "tools/hitcheck/hc_safe.py",
+  "tools/derive_provenance.py",
+  "functest/usuba/policy.py",
   "tests/*.py",
 ]
 

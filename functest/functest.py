@@ -4,8 +4,24 @@ import json, os, sys, re
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import static_checks, runtime, dell_checks, dell_learned
 from usuba import checks as usuba_checks
+from usuba import policy
 
 SKIP_DIRS = {".git", "node_modules", "tests", "test", "__pycache__", "preview", "stubs", "lint", ".github", "fixtures", "docs", "screenshots", "assets"}
+_PARDON_RX = re.compile(r"^\s*(visible|implicitWidth|width|opacity)\s*:[^\n]*(\?|&&|\|\||>|<|===|!==)", re.M)
+
+
+def apply_zero_size_pardon(rt, src):
+    """Historical policy: a zero-size / draws-nothing error is downgraded to soft when the entry-point source conditionally hides itself.
+    Audit D9: disabled under FT_STRICT_D9=1 (see usuba/policy.py, docs/POLICY_D9.md). Mutates and returns rt."""
+    if policy.strict_d9():
+        return rt
+    for e in list(rt.get("errors", [])):
+        if ("zero size" in e or "draws nothing visible" in e) and _PARDON_RX.search(src):
+            rt["errors"].remove(e)
+            rt.setdefault("soft", []).append(e + " (conditionally hidden by design)")
+    return rt
+
+
 def read_dir_ex(d):
     """-> (files, skipped). Deterministic (sorted walk); files that cannot be checked are LISTED, not silently dropped (audit D5/D7)."""
     files, skipped = {}, []
@@ -69,9 +85,7 @@ def test(files=None, src_dir=None, run_runtime=True):
     if rt and isinstance(man_ok, bool) and man_ok:
         ep = (m.get("entryPoints") or {}).get("barWidget") if isinstance(m.get("entryPoints"), dict) else None
         src = files.get(ep or "", "")
-        for e in list(rt.get("errors", [])):
-            if ("zero size" in e or "draws nothing visible" in e) and re.search(r"^\s*(visible|implicitWidth|width|opacity)\s*:[^\n]*(\?|&&|\|\||>|<|===|!==)", src, re.M):
-                rt["errors"].remove(e); rt.setdefault("soft", []).append(e + " (conditionally hidden by design)")
+        apply_zero_size_pardon(rt, src)
         rt["pass"] = not rt["errors"]
     ok = not sf and (rt is None or rt.get("pass"))
     return {"pass": ok, "static_fails": sf, "static_flags": sw, "runtime": rt, "categories": categories(sf, rt), "usuba": uf, "skipped_files": skipped}

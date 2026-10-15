@@ -20,7 +20,7 @@ RULE_FILES = (
     "dell_env/ftprobe.qml.part",
     "usuba/checks.py", "usuba/rules.py", "usuba/hancore_rules.py", "usuba/hancore_rules_v2.py", "usuba/hancore_rules_model.py",
     "usuba/lifecycle_rules.py", "usuba/types.json", "usuba/rules_v2_enabled.json", "usuba/lifecycle_rules_enabled.json",
-    "usuba/model_rules_v3.json", "usuba/rule_hardware_status.json",
+    "usuba/model_rules_v3.json", "usuba/policy.py", "usuba/rule_hardware_status.json",
 )
 
 
@@ -43,6 +43,11 @@ def git_state(repo=REPO):
         return None, None
 
 
+def _policy_active():
+    from usuba import policy
+    return policy.active()
+
+
 def report_meta():
     import refpaths
     sha, dirty = git_state()
@@ -52,6 +57,7 @@ def report_meta():
         "checker_git_sha": sha,
         "checker_git_dirty": dirty,
         "rules_hash": rules_hash(),
+        "policies": _policy_active(),
         "reference_tree": {"path": os.path.relpath(root, REPO) if root.startswith(REPO) else root,
                            "sha256": refpaths.reference_tree_hash(root)},
     }

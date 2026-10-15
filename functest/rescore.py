@@ -26,7 +26,7 @@ def tree_dir(h):
 CACHE = os.path.join(HERE, "cache"); os.makedirs(CACHE, exist_ok=True)
 # cache entries are only valid for the functest version that produced them
 from usuba import provenance as _prov
-FT_VERSION = _prov.rules_hash()[:12]   # every rule/config file (dell_learned, rules, hancore_rules*, omarchy_bins.txt, enabled-lists, ...) is in the key (audit D6)
+FT_VERSION = _prov.rules_hash()[:12] + ("-d9" if _prov._policy_active()["strict_d9"] else "")   # every rule/config file (dell_learned, rules, hancore_rules*, omarchy_bins.txt, enabled-lists, ...) is in the key (audit D6)
 
 CODE_EXT = (".qml", ".js", ".mjs", ".sh", ".py", ".bash")
 def task_findings(h, files, output=None):

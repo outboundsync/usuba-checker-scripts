@@ -1,0 +1,201 @@
+{
+ "note": "Derived bounds, not write-time records (F5). See docs/RELEASE_TAGS.md.",
+ "artifacts": [
+  {
+   "path": "functest/results.json",
+   "sha256": "54fd8fd8bb93afdb3bd70c149f84a6f470edb4d0e02e57e8d8c3c57e281eb13e",
+   "bytes": 1015984,
+   "commits": [
+    {
+     "sha": "b47b950756dcacc6e57ff81997637a53b0640db8",
+     "date": "2026-10-12T08:28:27-06:00"
+    }
+   ],
+   "checker_sha_upper_bound": "b47b950756dcacc6e57ff81997637a53b0640db8",
+   "checker_sha_lower_bound": "b47b950756dcacc6e57ff81997637a53b0640db8",
+   "confidence": "single writing commit: Checker is that commit's parent tree plus uncommitted edits (dirty state unrecorded)",
+   "recorded_at_write_time": false
+  },
+  {
+   "path": "functest/recal_registry.jsonl",
+   "sha256": "718dae4be73cd9e2643405f2750f0a4014a64bac4160b10c2f4ddf0b2d464954",
+   "bytes": 253269,
+   "commits": [
+    {
+     "sha": "40b3a04f17e948cd5c01b3d8558daec95658d860",
+     "date": "2026-10-12T14:54:00-06:00"
+    }
+   ],
+   "checker_sha_upper_bound": "40b3a04f17e948cd5c01b3d8558daec95658d860",
+   "checker_sha_lower_bound": "40b3a04f17e948cd5c01b3d8558daec95658d860",
+   "confidence": "single writing commit: Checker is that commit's parent tree plus uncommitted edits (dirty state unrecorded)",
+   "recorded_at_write_time": false
+  },
+  {
+   "path": "functest/ref49_results.json",
+   "sha256": "23df4f928105a75d905f672c5eb28116660a7098fbcd7171e841803d9b3b9da4",
+   "bytes": 22248,
+   "commits": [
+    {
+     "sha": "5e15c4a69e10cc01848e035998a107934f08a43e",
+     "date": "2026-10-13T09:37:23-06:00"
+    },
+    {
+     "sha": "d20d25e1c1af845f1d290357a5305d9736a5697b",
+     "date": "2026-10-13T08:58:15-06:00"
+    },
+    {
+     "sha": "84fcff7996191a4ad522786f92cdb1e532a15dfc",
+     "date": "2026-10-12T17:58:33-06:00"
+    },
+    {
+     "sha": "40b3a04f17e948cd5c01b3d8558daec95658d860",
+     "date": "2026-10-12T14:54:00-06:00"
+    }
+   ],
+   "checker_sha_upper_bound": "5e15c4a69e10cc01848e035998a107934f08a43e",
+   "checker_sha_lower_bound": "40b3a04f17e948cd5c01b3d8558daec95658d860",
+   "confidence": "file rewritten/merged across several commits: rows may come from different Checker versions; re-run to get a single SHA",
+   "recorded_at_write_time": false
+  },
+  {
+   "path": "functest/calibration.json",
+   "sha256": "895872a75b854d5e784ec542be2d0d3a2153d8e6174c9a9288f000775d0a9da4",
+   "bytes": 20360,
+   "commits": [
+    {
+     "sha": "40b3a04f17e948cd5c01b3d8558daec95658d860",
+     "date": "2026-10-12T14:54:00-06:00"
+    },
+    {
+     "sha": "b47b950756dcacc6e57ff81997637a53b0640db8",
+     "date": "2026-10-12T08:28:27-06:00"
+    }
+   ],
+   "checker_sha_upper_bound": "40b3a04f17e948cd5c01b3d8558daec95658d860",
+   "checker_sha_lower_bound": "b47b950756dcacc6e57ff81997637a53b0640db8",
+   "confidence": "file rewritten/merged across several commits: rows may come from different Checker versions; re-run to get a single SHA",
+   "recorded_at_write_time": false
+  },
+  {
+   "path": "winners/checker_results.json",
+   "sha256": "548c08138a0e6f5238a2a5111b8da56298ff2f129f44342dfa4aaba7af37affb",
+   "bytes": 9045,
+   "commits": [
+    {
+     "sha": "e42876ba519d1e1e6ea8e050110a717e70266460",
+     "date": "2026-10-15T07:37:01-06:00"
+    }
+   ],
+   "checker_sha_upper_bound": "e42876ba519d1e1e6ea8e050110a717e70266460",
+   "checker_sha_lower_bound": "e42876ba519d1e1e6ea8e050110a717e70266460",
+   "confidence": "single writing commit: Checker is that commit's parent tree plus uncommitted edits (dirty state unrecorded)",
+   "recorded_at_write_time": false
+  },
+  {
+   "path": "winners/winners_profile.json",
+   "sha256": "bba3e76b0fbef16805b59f8b5aa5901186891101e689968df834fc7ccf9bf8c8",
+   "bytes": 5741,
+   "commits": [
+    {
+     "sha": "e42876ba519d1e1e6ea8e050110a717e70266460",
+     "date": "2026-10-15T07:37:01-06:00"
+    }
+   ],
+   "checker_sha_upper_bound": "e42876ba519d1e1e6ea8e050110a717e70266460",
+   "checker_sha_lower_bound": "e42876ba519d1e1e6ea8e050110a717e70266460",
+   "confidence": "single writing commit: Checker is that commit's parent tree plus uncommitted edits (dirty state unrecorded)",
+   "recorded_at_write_time": false
+  },
+  {
+   "path": "jankeesvw-history/jv_rules_metrics.json",
+   "sha256": "72541cd12860bb2331e81569d81c37b01c3b5bd05278e7321d3b37a7facba0e7",
+   "bytes": 4940,
+   "commits": [
+    {
+     "sha": "b3ebf4af79bfef8a6db0a692e7f9b4feab4251f3",
+     "date": "2026-10-15T08:34:27-06:00"
+    }
+   ],
+   "checker_sha_upper_bound": "b3ebf4af79bfef8a6db0a692e7f9b4feab4251f3",
+   "checker_sha_lower_bound": "b3ebf4af79bfef8a6db0a692e7f9b4feab4251f3",
+   "confidence": "single writing commit: Checker is that commit's parent tree plus uncommitted edits (dirty state unrecorded)",
+   "recorded_at_write_time": false
+  },
+  {
+   "path": "jankeesvw-history/rows_stats.json",
+   "sha256": "ca460c8c7d5d0aad3e9e525ecaa258c33f4623f37d119c6721543a9d6fcfef39",
+   "bytes": 552,
+   "commits": [
+    {
+     "sha": "b3ebf4af79bfef8a6db0a692e7f9b4feab4251f3",
+     "date": "2026-10-15T08:34:27-06:00"
+    }
+   ],
+   "checker_sha_upper_bound": "b3ebf4af79bfef8a6db0a692e7f9b4feab4251f3",
+   "checker_sha_lower_bound": "b3ebf4af79bfef8a6db0a692e7f9b4feab4251f3",
+   "confidence": "single writing commit: Checker is that commit's parent tree plus uncommitted edits (dirty state unrecorded)",
+   "recorded_at_write_time": false
+  },
+  {
+   "path": "jankeesvw-history/summary.json",
+   "sha256": "a55f6b9ead031d1e1ca69163c4f759adc04a557214bcd4f36f83b8552f3b4299",
+   "bytes": 406,
+   "commits": [
+    {
+     "sha": "b3ebf4af79bfef8a6db0a692e7f9b4feab4251f3",
+     "date": "2026-10-15T08:34:27-06:00"
+    }
+   ],
+   "checker_sha_upper_bound": "b3ebf4af79bfef8a6db0a692e7f9b4feab4251f3",
+   "checker_sha_lower_bound": "b3ebf4af79bfef8a6db0a692e7f9b4feab4251f3",
+   "confidence": "single writing commit: Checker is that commit's parent tree plus uncommitted edits (dirty state unrecorded)",
+   "recorded_at_write_time": false
+  },
+  {
+   "path": "results/hitcheck/hc_A_claims.csv",
+   "sha256": "061b098c3e60efe13adfaff6336f403f2acff6b03b8f52b637b3d5523ebfb0a9",
+   "bytes": 42058,
+   "commits": [
+    {
+     "sha": "e2ec3fe80dad3852076249152aceb90a16c680b4",
+     "date": "2026-10-15T11:35:18-06:00"
+    }
+   ],
+   "checker_sha_upper_bound": "e2ec3fe80dad3852076249152aceb90a16c680b4",
+   "checker_sha_lower_bound": "e2ec3fe80dad3852076249152aceb90a16c680b4",
+   "confidence": "single writing commit: Checker is that commit's parent tree plus uncommitted edits (dirty state unrecorded)",
+   "recorded_at_write_time": false
+  },
+  {
+   "path": "results/hitcheck/hc_B_pairs.csv",
+   "sha256": "4c28a55e6a79ebc4a1ee65937f67ee4710564080123dbe797af74e41afe3dbf2",
+   "bytes": 4136,
+   "commits": [
+    {
+     "sha": "e2ec3fe80dad3852076249152aceb90a16c680b4",
+     "date": "2026-10-15T11:35:18-06:00"
+    }
+   ],
+   "checker_sha_upper_bound": "e2ec3fe80dad3852076249152aceb90a16c680b4",
+   "checker_sha_lower_bound": "e2ec3fe80dad3852076249152aceb90a16c680b4",
+   "confidence": "single writing commit: Checker is that commit's parent tree plus uncommitted edits (dirty state unrecorded)",
+   "recorded_at_write_time": false
+  },
+  {
+   "path": "results/hitcheck/table.md",
+   "sha256": "9ff2117d54a7aeef550908376fe28724e794e3d8e42e46d44653933b11d4140e",
+   "bytes": 8834,
+   "commits": [
+    {
+     "sha": "e2ec3fe80dad3852076249152aceb90a16c680b4",
+     "date": "2026-10-15T11:35:18-06:00"
+    }
+   ],
+   "checker_sha_upper_bound": "e2ec3fe80dad3852076249152aceb90a16c680b4",
+   "checker_sha_lower_bound": "e2ec3fe80dad3852076249152aceb90a16c680b4",
+   "confidence": "single writing commit: Checker is that commit's parent tree plus uncommitted edits (dirty state unrecorded)",
+   "recorded_at_write_time": false
+  }
+ ]
+}

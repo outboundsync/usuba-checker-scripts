@@ -11,6 +11,8 @@ import json, os, re, shutil, stat, subprocess, tempfile, hashlib, time, sys, thr
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "dell_env"))
 import setup as dell_setup
+sys.path.insert(0, os.path.dirname(HERE))
+from usuba import policy as _policy
 from binaries import resolves, KNOWN
 
 QS = "/opt/qs611/bin/qs"
@@ -398,7 +400,8 @@ def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
             if not attributed: continue
             s = re.sub(r"file://\S*?/plugins/[^/]+/", "", ln.strip())[:300]
             if usage_from is not None and i >= usage_from: s = "usage: " + s
-            if SOFT_PAT.search(ln) or DOWNGRADE.search(ln) or _color_ref(ln, pdir): res["soft"].append(s)
+            if _policy.strict_d9() and "Binding loop detected" in ln: res["errors"].append(s + " (binding loop; strict D9)")
+            elif SOFT_PAT.search(ln) or DOWNGRADE.search(ln) or _color_ref(ln, pdir): res["soft"].append(s)
             # the plugin's own console.log/console.info output (DEBUG/INFO level) is never a hard error: the longer
             # USB-D04 usage window started catching graceful "optional file missing" logs (io.github.jondkinney.omapop)
             elif re.match(r"^\s*(DEBUG|INFO)\b", ln): res["soft"].append(s)

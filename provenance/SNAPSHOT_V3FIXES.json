@@ -1,0 +1,119 @@
+{
+ "note": "Snapshot hashes of the v3-fixes WIP tree, resolved to the commit holding each exact blob. Original .sha256 is kept as the historical record; it cannot verify against HEAD because those files have since changed.",
+ "files": [
+  {
+   "path": "functest/usuba/_patch_skip.py",
+   "sha256": "6bddd6c54bec7b29dd4148b6287aee083ce0450f43e39a757485bbfe33c097b0",
+   "repo": "scripts",
+   "matching_commit": "8d9c3129ed8e86689b60d4316b3e840d0ca78dbe"
+  },
+  {
+   "path": "functest/usuba/bug_eval_usuba.json",
+   "sha256": "3f5dc4613af54db1860fe35bcb3d228f0e3590bc2dd51c359ec1ccc5b87d3d7c",
+   "repo": "scripts",
+   "matching_commit": "6a4f712aa2dca15ab13a8ad1bb3355e9dfe8fa19"
+  },
+  {
+   "path": "functest/usuba/build_types.py",
+   "sha256": "a592d985d2a6eef72fc3cbbfda26e0941a3325a61d3ba30a4db7538b1afd622f",
+   "repo": "scripts",
+   "matching_commit": "e9992430e5c444304edd69611b78e1e9e91c2058"
+  },
+  {
+   "path": "functest/usuba/calib_fixer.json",
+   "sha256": "ac2c88349ab5da7e7560398ffbbc6a3f79d20e7687d6a5d693780c096a9dc1f6",
+   "repo": "scripts",
+   "matching_commit": "24c972b23a3a89e50ddab347a065d3f3c59deb7e"
+  },
+  {
+   "path": "functest/usuba/calib_fixer.py",
+   "sha256": "e1bc6413364ac42b47ded64b83050e651b3684d7a523204b57b854dff8834e62",
+   "repo": "scripts",
+   "matching_commit": "25cc6fdde3b175fbf7efe21cec88746d32ee1d96"
+  },
+  {
+   "path": "functest/usuba/calib_harvest.json",
+   "sha256": "5e47990427e7dbc692d74ce33c7b2f7aae65d4e2f9601ddb60523323abbfcd03",
+   "repo": "scripts",
+   "matching_commit": "e9992430e5c444304edd69611b78e1e9e91c2058"
+  },
+  {
+   "path": "functest/usuba/calib_harvest.py",
+   "sha256": "2d11747babf61520ff08833edc61c6f078503c7f4a20a92c1293e9d2885b3842",
+   "repo": "scripts",
+   "matching_commit": "e9992430e5c444304edd69611b78e1e9e91c2058"
+  },
+  {
+   "path": "functest/usuba/checks.py",
+   "sha256": "195325d569379f3f64d2ddd5a9e16e19f22d3f586cbab54cbdb0b05061957649",
+   "repo": "scripts",
+   "matching_commit": "4c9258b12dd8b3d5b770e4ed0377ebe32e04e299"
+  },
+  {
+   "path": "functest/usuba/hancore_rules.py",
+   "sha256": "47151e5f952ac05fba438b7b9cb7a6a61fecbfac647abc5791148246c0facffd",
+   "repo": "scripts",
+   "matching_commit": "be4fd5fe24c02573fbd475cfe970f9b05156a4c7"
+  },
+  {
+   "path": "functest/usuba/hancore_rules_model.py",
+   "sha256": "ed10e0ea20defd2f234d980ae9ca6cd99ca7fef4e698193c26ce6bb72a0c307c",
+   "repo": "scripts",
+   "matching_commit": "8d9c3129ed8e86689b60d4316b3e840d0ca78dbe"
+  },
+  {
+   "path": "functest/usuba/hancore_rules_v2.py",
+   "sha256": "26cfacd7a02f71e9c4ce244d6072e468398b5e17661ee8b95959881c06bd9702",
+   "repo": "scripts",
+   "matching_commit": "8d9c3129ed8e86689b60d4316b3e840d0ca78dbe"
+  },
+  {
+   "path": "functest/usuba/lifecycle_rules.py",
+   "sha256": "1cd8b6e3e28344828e52eb1b7754cfd13ad4082818c4e47955184e55ca661b08",
+   "repo": "scripts",
+   "matching_commit": "8d9c3129ed8e86689b60d4316b3e840d0ca78dbe"
+  },
+  {
+   "path": "functest/usuba/lifecycle_rules_enabled.json",
+   "sha256": "644f47d5aba074c0c307fe3f5a75ffe7175ffd26da70b3c0414cee961c7dc76d",
+   "repo": "scripts",
+   "matching_commit": "8d9c3129ed8e86689b60d4316b3e840d0ca78dbe"
+  },
+  {
+   "path": "functest/usuba/model_rules_v3.json",
+   "sha256": "2a2742f6ad2ec9a29230fc454d120a50aecc3c2f0ba9b80ca5721a7d598a245f",
+   "repo": "scripts",
+   "matching_commit": "8d9c3129ed8e86689b60d4316b3e840d0ca78dbe"
+  },
+  {
+   "path": "functest/usuba/rules.py",
+   "sha256": "03e603a6ab416700ef0524950d092d099b57fca4fcfec57416f0514b66f4dd12",
+   "repo": "scripts",
+   "matching_commit": "8d9c3129ed8e86689b60d4316b3e840d0ca78dbe"
+  },
+  {
+   "path": "functest/usuba/rules_v2_enabled.json",
+   "sha256": "275cc9f5ba32afc7377424a3f678283a9348e37e583d02fbe94588e584e128ae",
+   "repo": "scripts",
+   "matching_commit": "8d9c3129ed8e86689b60d4316b3e840d0ca78dbe"
+  },
+  {
+   "path": "functest/usuba/types.json",
+   "sha256": "e3ddf967197875aac2fa0e0f56aef90852e216803a1df8260e3041fb71c8133e",
+   "repo": "scripts",
+   "matching_commit": "e9992430e5c444304edd69611b78e1e9e91c2058"
+  },
+  {
+   "path": "train/checker_report.py",
+   "sha256": "619ea651157da1464c9df4284a8fe3506a197984a741d39e50e50b555e70e337",
+   "repo": "models",
+   "matching_commit": "6f94e8851bcda200a2f95419fc694c4b25f6a961"
+  },
+  {
+   "path": "train/prompt_v3.py",
+   "sha256": "c258bd0c204fb2f104bab07322c8170b128a8b5c6f28281888a0dfd05745d32c",
+   "repo": "models",
+   "matching_commit": "6f94e8851bcda200a2f95419fc694c4b25f6a961"
+  }
+ ]
+}
