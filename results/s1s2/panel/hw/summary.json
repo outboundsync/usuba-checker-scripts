@@ -6,31 +6,31 @@
   "deepseek/deepseek-v3.2"
  ],
  "n_items": 645,
- "spent_usd": 8.0662,
- "calls": 2099,
+ "spent_usd": 13.3621,
+ "calls": 3080,
  "by_kind": {
   "S1": {
    "n": 378,
    "majority": {
-    "real": 101,
-    "unsure": 115,
-    "no_majority": 53,
-    "false_alarm": 109
+    "real": 107,
+    "unsure": 122,
+    "no_majority": 32,
+    "false_alarm": 117
    },
-   "unanimous_rate": 0.3466,
-   "needs_human": 287,
-   "needs_human_rate": 0.7593,
-   "fleiss_kappa": 0.3447,
+   "unanimous_rate": 0.3783,
+   "needs_human": 278,
+   "needs_human_rate": 0.7354,
+   "fleiss_kappa": 0.3674,
    "pairwise": {
     "qwen/qwen3.5-397b-a17b | openai/gpt-oss-120b": {
-     "n": 313,
-     "agreement": 0.5974,
-     "cohen_kappa": 0.3935
+     "n": 350,
+     "agreement": 0.6029,
+     "cohen_kappa": 0.4017
     },
     "qwen/qwen3.5-397b-a17b | deepseek/deepseek-v3.2": {
-     "n": 313,
-     "agreement": 0.6805,
-     "cohen_kappa": 0.5225
+     "n": 350,
+     "agreement": 0.6686,
+     "cohen_kappa": 0.5051
     },
     "openai/gpt-oss-120b | deepseek/deepseek-v3.2": {
      "n": 378,
@@ -40,9 +40,9 @@
    },
    "per_model_label_counts": {
     "qwen/qwen3.5-397b-a17b": {
-     "real": 103,
-     "unsure": 102,
-     "false_alarm": 108
+     "real": 118,
+     "unsure": 112,
+     "false_alarm": 120
     },
     "openai/gpt-oss-120b": {
      "unsure": 82,
@@ -56,7 +56,7 @@
     }
    },
    "failed_calls": {
-    "qwen/qwen3.5-397b-a17b": 65,
+    "qwen/qwen3.5-397b-a17b": 28,
     "openai/gpt-oss-120b": 0,
     "deepseek/deepseek-v3.2": 0
    }
@@ -64,49 +64,53 @@
   "S2": {
    "n": 267,
    "majority": {
-    "unsure": 1,
-    "no_majority": 258,
-    "clean": 8
+    "unsure": 8,
+    "not_clean": 43,
+    "clean": 193,
+    "no_majority": 23
    },
-   "unanimous_rate": 0.0075,
-   "needs_human": 265,
-   "needs_human_rate": 0.9925,
-   "fleiss_kappa": 0.0266,
+   "unanimous_rate": 0.5318,
+   "needs_human": 125,
+   "needs_human_rate": 0.4682,
+   "fleiss_kappa": 0.2951,
    "pairwise": {
     "qwen/qwen3.5-397b-a17b | openai/gpt-oss-120b": {
-     "n": 8,
-     "agreement": 0.375,
-     "cohen_kappa": 0.0698
+     "n": 243,
+     "agreement": 0.7778,
+     "cohen_kappa": 0.4151
     },
     "qwen/qwen3.5-397b-a17b | deepseek/deepseek-v3.2": {
-     "n": 5,
-     "agreement": 1.0,
-     "cohen_kappa": 1.0
+     "n": 242,
+     "agreement": 0.686,
+     "cohen_kappa": 0.2288
     },
     "openai/gpt-oss-120b | deepseek/deepseek-v3.2": {
-     "n": 9,
-     "agreement": 0.5556,
-     "cohen_kappa": 0.122
+     "n": 266,
+     "agreement": 0.6504,
+     "cohen_kappa": 0.2891
     }
    },
    "per_model_label_counts": {
     "qwen/qwen3.5-397b-a17b": {
-     "unsure": 1,
-     "clean": 7
+     "unsure": 14,
+     "clean": 199,
+     "not_clean": 30
     },
     "openai/gpt-oss-120b": {
-     "not_clean": 8,
-     "clean": 12
+     "not_clean": 78,
+     "clean": 184,
+     "unsure": 5
     },
     "deepseek/deepseek-v3.2": {
-     "unsure": 1,
-     "clean": 8
+     "unsure": 52,
+     "not_clean": 33,
+     "clean": 181
     }
    },
    "failed_calls": {
-    "qwen/qwen3.5-397b-a17b": 259,
-    "openai/gpt-oss-120b": 247,
-    "deepseek/deepseek-v3.2": 258
+    "qwen/qwen3.5-397b-a17b": 24,
+    "openai/gpt-oss-120b": 0,
+    "deepseek/deepseek-v3.2": 1
    }
   }
  }
