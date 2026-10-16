@@ -1,0 +1,113 @@
+{
+ "provisional": true,
+ "panel": [
+  "qwen/qwen3.5-397b-a17b",
+  "openai/gpt-oss-120b",
+  "deepseek/deepseek-v3.2"
+ ],
+ "n_items": 645,
+ "spent_usd": 8.0662,
+ "calls": 2099,
+ "by_kind": {
+  "S1": {
+   "n": 378,
+   "majority": {
+    "real": 101,
+    "unsure": 115,
+    "no_majority": 53,
+    "false_alarm": 109
+   },
+   "unanimous_rate": 0.3466,
+   "needs_human": 287,
+   "needs_human_rate": 0.7593,
+   "fleiss_kappa": 0.3447,
+   "pairwise": {
+    "qwen/qwen3.5-397b-a17b | openai/gpt-oss-120b": {
+     "n": 313,
+     "agreement": 0.5974,
+     "cohen_kappa": 0.3935
+    },
+    "qwen/qwen3.5-397b-a17b | deepseek/deepseek-v3.2": {
+     "n": 313,
+     "agreement": 0.6805,
+     "cohen_kappa": 0.5225
+    },
+    "openai/gpt-oss-120b | deepseek/deepseek-v3.2": {
+     "n": 378,
+     "agreement": 0.4947,
+     "cohen_kappa": 0.2845
+    }
+   },
+   "per_model_label_counts": {
+    "qwen/qwen3.5-397b-a17b": {
+     "real": 103,
+     "unsure": 102,
+     "false_alarm": 108
+    },
+    "openai/gpt-oss-120b": {
+     "unsure": 82,
+     "real": 107,
+     "false_alarm": 189
+    },
+    "deepseek/deepseek-v3.2": {
+     "real": 127,
+     "unsure": 178,
+     "false_alarm": 73
+    }
+   },
+   "failed_calls": {
+    "qwen/qwen3.5-397b-a17b": 65,
+    "openai/gpt-oss-120b": 0,
+    "deepseek/deepseek-v3.2": 0
+   }
+  },
+  "S2": {
+   "n": 267,
+   "majority": {
+    "unsure": 1,
+    "no_majority": 258,
+    "clean": 8
+   },
+   "unanimous_rate": 0.0075,
+   "needs_human": 265,
+   "needs_human_rate": 0.9925,
+   "fleiss_kappa": 0.0266,
+   "pairwise": {
+    "qwen/qwen3.5-397b-a17b | openai/gpt-oss-120b": {
+     "n": 8,
+     "agreement": 0.375,
+     "cohen_kappa": 0.0698
+    },
+    "qwen/qwen3.5-397b-a17b | deepseek/deepseek-v3.2": {
+     "n": 5,
+     "agreement": 1.0,
+     "cohen_kappa": 1.0
+    },
+    "openai/gpt-oss-120b | deepseek/deepseek-v3.2": {
+     "n": 9,
+     "agreement": 0.5556,
+     "cohen_kappa": 0.122
+    }
+   },
+   "per_model_label_counts": {
+    "qwen/qwen3.5-397b-a17b": {
+     "unsure": 1,
+     "clean": 7
+    },
+    "openai/gpt-oss-120b": {
+     "not_clean": 8,
+     "clean": 12
+    },
+    "deepseek/deepseek-v3.2": {
+     "unsure": 1,
+     "clean": 8
+    }
+   },
+   "failed_calls": {
+    "qwen/qwen3.5-397b-a17b": 259,
+    "openai/gpt-oss-120b": 247,
+    "deepseek/deepseek-v3.2": 258
+   }
+  }
+ }
+}
