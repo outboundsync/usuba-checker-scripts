@@ -71,7 +71,41 @@ def code_blob(files, **kw):
 
 def line_visible(info, path, line):
     i = info.get(path)
-    return bool(i) and not i["omitted"] and 1 <= line <= i["shown"]
+    if not i: return False
+    if not i["omitted"] and 1 <= line <= i["shown"]: return True
+    return any(a <= line <= b for a, b in i.get("windows", ()))
+
+
+# ---- anchored windows (code_blob/v2): the cited-line windows of the Checker findings that are in the prompt ------------------------------------
+# A pure function of (files, anchors) where anchors = the (file, line) pairs of the Checker report that is ALSO in the prompt. Anchors never depend on
+# a label, so train and inference render the same bytes. Findings whose line is already visible add nothing; the rest get +-WINDOW lines,
+# appended after the normal blob as `### path [window lines a-b of M]` blocks, within ANCHOR_CAP characters and MAX_WINDOWS windows.
+WINDOW = 30
+WIN_CHARS = 5000
+ANCHOR_CAP = 24000
+MAX_WINDOWS = 16
+POLICY_ID_V2 = POLICY_ID.replace("code_blob/v1", "code_blob/v2") + f" window={WINDOW} anchor_cap={ANCHOR_CAP}"
+
+
+def render_anchored(files, anchors, **kw):
+    """-> (blob, info). Same as render() plus windows around anchors that the base render hides. anchors: iterable of (path, line)."""
+    blob, info = render(files, **kw)
+    norm = {p: norm_newlines(t).split("\n") for p, t in files.items()}
+    want = sorted({(p, int(l)) for p, l in anchors if p in norm and isinstance(l, int) and 1 <= l <= len(norm[p]) and not line_visible(info, p, l)},
+                  key=lambda x: (order_key(x[0]), x[1]))
+    blocks, used, nwin = [], 0, 0
+    for p, l in want:
+        if nwin >= MAX_WINDOWS: break
+        if line_visible(info, p, l): continue                # covered by an earlier window of the same file
+        ls = norm[p]; a, b = max(1, l - WINDOW), min(len(ls), l + WINDOW)
+        while b > a and sum(len(x) + 8 for x in ls[a - 1:b]) > WIN_CHARS:       # shrink away from the anchor, keeping it inside
+            if b - l >= l - a: b -= 1
+            else: a += 1
+        cost = sum(len(x) + 8 for x in ls[a - 1:b])
+        if used + cost > ANCHOR_CAP: continue
+        blocks.append(f"### {p} [window lines {a}-{b} of {len(ls)}]\n```\n{_numbered(ls[a - 1:b], a)}\n```")
+        info[p].setdefault("windows", []).append((a, b)); used += cost; nwin += 1
+    return ("\n\n".join([blob] + blocks) if blocks else blob), info
 
 
 def blob_sha(files):
