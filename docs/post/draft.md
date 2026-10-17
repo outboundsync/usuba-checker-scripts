@@ -2,10 +2,6 @@
 
 *By Harris Kenny · OutboundSync · DRAFT v0.7 (epochs, decision context, appendices; post-update pass of Friday evening, Oct 16, 2026) · usuba.dev*
 
-> Draft status: this is a work-in-progress post, not a launch. Every number below comes from our working repo and run files. Anything we haven't confirmed or built yet is marked [TK]. Set 3 (Epoch 9) is complete for all 8 models. The post is one file in three marked parts (Build, Evaluate, Own) so it can be split later. Each epoch keeps a "Decisions and context" note and a "What we learned" box, and the appendices hold the decision log, the mistakes we caught and spend by phase.
->
-> Release plan (not announced): the Usuba Checker model is planned for release on Monday, 2026-10-19, labelled **"In Training"**. The release note will say plainly that it did not clear the bar we set, and it will invite help. Nothing is announced until I say so.
-
 ## TL;DR
 
 **A plain piece of code, the Usuba Checker scripts, judges Omarchy plugins better than any small model we tested.** On the 75-plugin Dell exam it scores 0.773 verdict accuracy [0.667-0.853], with no model. In one-shot runs no model scores above 0.56. With a Checker feedback loop the best model (Gemma 4 26B) reaches 0.65 [0.55-0.76]. Always answering "broken" would score 0.373. Our fine-tuned model, Usuba run 2, learned the answer format (99% valid answers on the Dell set against 89% for its stock base) but not the judgment (0.48 [0.37-0.59] against 0.51 [0.40-0.61] for stock). So the first release is the Checker scripts and a public standard. The model ships labelled "In Training," as an invitation to help, not as a win.

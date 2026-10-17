@@ -9,7 +9,8 @@ Nothing here runs on the Dell by itself: the scripts build a package on the box;
 
 ## Replicate the build
 ```
-python3 tools/hitcheck/build_package.py            # needs /workspace/usuba-runs/{checker-rules,v3-fixes,version-history}, /workspace/hancore_cache, /workspace/vh_repos, /workspace/sweep_repos
+python3 tools/hitcheck/build_package.py --runs-dir /path/to/usuba-runs   # or USUBA_RUNS_DIR=...; default <repo>/../usuba-runs
+# needs <runs-dir>/{checker-rules,v3-fixes,version-history}, /workspace/hancore_cache, /workspace/vh_repos, /workspace/sweep_repos (these three are still fixed paths)
 tools/hitcheck/finalize_package.sh
 ```
 Seed `dell-hitcheck-1`; selection is deterministic.

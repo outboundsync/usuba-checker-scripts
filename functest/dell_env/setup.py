@@ -111,7 +111,7 @@ def _build():
     for n in sorted(KNOWN):
         if "/" in n or n in (".", "..", "["): continue
         p = os.path.join(SHIMS, n); open(p, "w").write(SHIM); os.chmod(p, 0o755)
-    # reference replacement bar = the stock 4.0.0.alpha bar packaged as a third-party bar plugin. Hot-swapping to ANY bar makes the
+    # reference replacement bar = the stock 4.0.4-1 bar packaged as a third-party bar plugin. Hot-swapping to ANY bar makes the
     # stock shell's own weather/power/network panels log "Cannot read property 'foreground' of null" (Omarchy bug, seen on the
     # Dell too); runtime.py subtracts what this reference bar triggers so only plugin-caused breakage counts.
     rb = "/opt/ft/refbar"; shutil.rmtree(rb, ignore_errors=True); shutil.copytree(os.path.join(DST, "shell/plugins/bar"), rb)
