@@ -1,12 +1,16 @@
 # Release and exam tag plan (audit F5)
 
-**No tags exist yet and none are created by this document.** Harris decides when to cut them; tags are cheap to add and, once pushed,
-should never be moved (we never force-push).
+Harris decides when to cut tags; tags are cheap to add and, once pushed, should never be moved (we never force-push).
+
+## Released
+| Tag | Release | Date | Notes |
+|---|---|---|---|
+| `checker-v0.1.0` | Usuba Checker Scripts v0.1.0 | 2026-10-17 | Enforces Usuba Standard v0.2 (66 rules). Static checks run on any machine; the runtime stage needs the reference build. Sibling: `model-v0.1.0` in `usuba-checker-models`. |
 
 ## Naming
 | Tag | Meaning | Applied to |
 |---|---|---|
-| `checker-vMAJOR.MINOR` | A Checker Scripts/rules release that produced published numbers | scripts |
+| `checker-vMAJOR.MINOR.PATCH` | A Usuba Checker Scripts release (matches `pyproject.toml` `version`) | scripts |
 | `exam-<name>-YYYY-MM-DD` (e.g. `exam-v1-2026-10-14`) | The code that scored a published exam run | scripts (scorer) **and** models (prompt, code_blob) at the same date |
 | `data-rN` (e.g. `data-r4`, `data-r5`) | A training-set build; points at the models commit that holds the builders + GATE_REPORT | models |
 | `model-<run-name>` (e.g. `model-usuba-9b-v1-q4km`) | A trained artefact whose weights sha256 is recorded in the repo | models |

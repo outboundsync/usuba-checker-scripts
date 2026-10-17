@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "usuba-checker"
-version = "0.1.0"          # not a release: no tags exist (docs/RELEASE_TAGS.md). Pin by commit SHA.
+version = "0.1.0"          # Usuba Checker Scripts v0.1.0: git tag checker-v0.1.0 (docs/RELEASE_TAGS.md)
 description = "Usuba Checker (static + runtime plugin checks), holdout ids and the pure eval scorer"
 requires-python = ">=3.10"
 dependencies = []          # stdlib only; the runtime check needs bwrap + Quickshell on the host, the static Checker needs neither
