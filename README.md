@@ -52,4 +52,4 @@ third-party plugin source trees without a permissive LICENSE file. Hit-check on 
 how to rebuild the corpora from public sources.
 
 ## Licence
-Code: MIT (see `LICENSE`). Third-party material keeps its own licence: `dell-ref/` and `validator/OMARCHY-LICENSE` are from basecamp/omarchy (MIT); see `NOTICE`.
+Checker scripts and all repository code: MIT (see `LICENSE`). The Usuba model weights and adapters are Apache-2.0, matching the Qwen base model; they live on Hugging Face (`osiharris/usuba-checker-adapters`) and are documented in `outboundsync/usuba-checker-models`. Third-party material keeps its own licence: `dell-ref/` and `validator/OMARCHY-LICENSE` are from basecamp/omarchy (MIT); see `NOTICE`.
