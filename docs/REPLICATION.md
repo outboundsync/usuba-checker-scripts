@@ -23,8 +23,8 @@ Plugin source trees are **not** stored here. Repos used as test subjects or data
 - `winners/run_all.sh`: Checker profile of the marketplace winners.
 
 ## 4. Evaluation harness
-`eval/hancore_holdout/run_eval.py` (+ `serve_llama.sh` for a local GGUF with 32k context per slot) scores a model on the sealed holdout. **It does not run standalone**: it imports the prompt and `checker_report` modules from `train/` in the sibling `usuba-checker-models` repo (check both repos out side by side), and `select.py` and `run_eval.py` both need the private `manifest.jsonl` plus the `eval/hancore_holdout/code/` trees it points to. The pure scorer, `scoring.py`, has no such dependency (it is what `usuba_checker.scoring` exports). The holdout manifest is private;
-ids and the SHA-256 of the manifest are in `eval/hancore_holdout/`. To use your own holdout, produce a `manifest.jsonl` with the same fields and run `select.py`/`run_eval.py` against it.
+`eval/hancore_holdout/run_eval.py` (+ `serve_llama.sh` for a local GGUF with 32k context per slot) scores a model on the sealed holdout. **It does not run standalone**: it imports the prompt and `checker_report` modules from `train/` in the sibling `usuba-checker-models` repo (check both repos out side by side), and `select_holdout.py` and `run_eval.py` both need the private `manifest.jsonl` plus the `eval/hancore_holdout/code/` trees it points to. The pure scorer, `scoring.py`, has no such dependency (it is what `usuba_checker.scoring` exports). The holdout manifest is private;
+ids and the SHA-256 of the manifest are in `eval/hancore_holdout/`. To use your own holdout, produce a `manifest.jsonl` with the same fields and run `select_holdout.py`/`run_eval.py` against it.
 
 ## 5. What is not reproducible from public material, and why
 | Item | Reason |

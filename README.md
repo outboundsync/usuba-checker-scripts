@@ -29,7 +29,7 @@ Without them the static checks still run and the runtime stage says why it could
 | `hancore/` | Scripts that mine public marketplace review threads into rule evidence (`rule_metrics.json`); re-fetch with `hancore/fetch.py` |
 | `winners/`, `build_dataset*.py`, `tools_analyze.py`, `gen_docs.py` | Corpus analysis and dataset-building tools |
 | `train/version_history/`, `jankeesvw-history/` | Bug-fix history mining pipelines (scripts, rules USB-JV01..09, metrics) |
-| `eval/hancore_holdout/` | Exam harness (`run_eval.py`, `rescore.py`, `select.py`, `serve_llama.sh`); the sealed holdout is published as **ids + manifest hash only** |
+| `eval/hancore_holdout/` | Exam harness (`run_eval.py`, `rescore.py`, `select_holdout.py`, `serve_llama.sh`); the sealed holdout is published as **ids + manifest hash only** |
 | `eval/dellkey/` | Reason-grading harness and rubric (the answer key itself is private) |
 | `tests/`, `functest/tests/` | Unit tests, CPU only |
 
