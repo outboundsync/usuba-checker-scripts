@@ -113,7 +113,7 @@ def check(files, doc_deps=True, extra_bins=()):
                     seg = body[max(0, m.start() - 200):m.start()]
                     in_cmd = re.search(r"(command\s*:\s*\[|exec\w*\(\s*\[)[^\]]*$", seg)
                     if in_cmd: F("exec-undefined-arg", f"{p}: command argv uses bar.{m.group(1)}, which the real PluginBarApi does not provide (= 'undefined')")
-                    else: W("bar-api-unknown", f"{p}: bar.{m.group(1)} is not a PluginBarApi member on Omarchy 4.0.0.alpha (always undefined)")
+                    else: W("bar-api-unknown", f"{p}: bar.{m.group(1)} is not a PluginBarApi member on Omarchy 4.0.4-1 (always undefined)")
         # real singleton members
         if re.search(r"^\s*import\s+qs\.Commons", body, re.M):
             for m in re.finditer(r"(?<![\w.])(Color|Style|Util|Border)\.([A-Za-z_]\w*)", body):

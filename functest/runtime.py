@@ -435,7 +435,7 @@ def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
             if not resolves(argv[0], plugin_files, pdir) and os.path.basename(argv[0]) in doc_deps:
                 res["soft"].append(f"exec: documented external dependency `{argv[0]}` is not installed on the Dell")
             elif not resolves(argv[0], plugin_files, pdir):
-                E(f"exec: `{argv[0]}` does not exist on the Dell (Omarchy 4.0.0.alpha bin + system) and is not shipped by the plugin; argv={argv[:6]}")
+                E(f"exec: `{argv[0]}` does not exist on the Dell (Omarchy 4.0.4-1 bin + system) and is not shipped by the plugin; argv={argv[:6]}")
             else:
                 res["soft"].append(f"exec: `{argv[0]}` failed to start in the box (exists on the Dell)")
             bad = [a for a in argv[1:] if BAD_ARG.search(a)]

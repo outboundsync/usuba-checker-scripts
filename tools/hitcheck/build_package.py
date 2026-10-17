@@ -6,10 +6,12 @@ Batch A: Checker rule hit-check. For every rule enabled on branch v3-fixes (USB-
   code produced that the v3-fixes skip conditions now suppress (incl. the winners report cases), expected defect NOT observable.
 Batch B: version-history pairs (pre-fix = parent commit, post-fix = fix commit) from verified_pairs.jsonl, permissive (MIT/ISC/BSD) licences only.
 Exclusions (ids/paths only, labels never read): Dell answer-key ids + near-duplicate trees, hancore_holdout repos/ids/trees, jankeesvw repos.
-usage: python3 build_package.py [--out $PACKAGE_DIR] [--per-rule 20] [--pairs 30]"""
+usage: python3 build_package.py [--runs-dir DIR | $USUBA_RUNS_DIR] [--out DIR] [--per-rule 20] [--pairs 30]"""
 import os, sys, re, json, io, hashlib, random, shutil, subprocess, tarfile, argparse, collections, tempfile
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-R = "/workspace/usuba-runs"
+# Root of the run artifacts (checker-rules/, v3-fixes/, version-history/ ...). Set with --runs-dir or $USUBA_RUNS_DIR;
+# default: a sibling "usuba-runs" directory next to this repo checkout (<repo>/../usuba-runs).
+R = os.environ.get("USUBA_RUNS_DIR") or os.path.join(os.path.dirname(REPO), "usuba-runs")
 sys.path[:0] = [REPO + "/functest/usuba", REPO + "/functest", REPO + "/hancore", REPO + "/train", REPO + "/train/v2"]
 MAXFILE = 1_000_000; MAXTREE = 6_000_000
 SKIPDIR = {".git", "node_modules", "target", "__pycache__", ".venv", "venv", "dist", ".github"}
@@ -143,9 +145,13 @@ def excluded(X, repo, tree_files, mid):
     return None
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--out", default=R + "/dell-hitcheck"); ap.add_argument("--per-rule", type=int, default=20); ap.add_argument("--pairs", type=int, default=30)
+    global R
+    ap = argparse.ArgumentParser(); ap.add_argument("--runs-dir", default=None, help="run-artifacts root (default: $USUBA_RUNS_DIR, else <repo>/../usuba-runs)")
+    ap.add_argument("--out", default=None, help="output dir (default: <runs-dir>/dell-hitcheck)"); ap.add_argument("--per-rule", type=int, default=20); ap.add_argument("--pairs", type=int, default=30)
     ap.add_argument("--seed", default="dell-hitcheck-1"); a = ap.parse_args()
-    OUT = a.out; STAGE = OUT + "/_stage"; shutil.rmtree(STAGE, ignore_errors=True); os.makedirs(STAGE + "/A/plugins"); os.makedirs(STAGE + "/B/plugins")
+    if a.runs_dir: R = os.path.abspath(a.runs_dir)
+    if not os.path.isdir(R): raise SystemExit("runs dir not found: %s (pass --runs-dir or set USUBA_RUNS_DIR)" % R)
+    OUT = a.out or R + "/dell-hitcheck"; os.makedirs(OUT, exist_ok=True); STAGE = OUT + "/_stage"; shutil.rmtree(STAGE, ignore_errors=True); os.makedirs(STAGE + "/A/plugins"); os.makedirs(STAGE + "/B/plugins")
     X = exclusions(); B = X["B"]
     rnd = random.Random(a.seed)
     pool = json.load(open(R + "/checker-rules/pool.json"))
