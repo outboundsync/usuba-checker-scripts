@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+.envrc
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+functest/cache/

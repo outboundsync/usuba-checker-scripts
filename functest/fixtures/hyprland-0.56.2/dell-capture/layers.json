@@ -1,0 +1,36 @@
+{
+"eDP-1": {
+    "levels": {
+
+        "0": [
+                {
+                    "address": "0x578a62c81d40",
+                    "x": 0,
+                    "y": 0,
+                    "w": 1536,
+                    "h": 864,
+                    "alpha": 1,
+                    "namespace": "omarchy-background",
+                    "pid": 104771
+                }
+        ],
+        "1": [
+],
+        "2": [
+                {
+                    "address": "0x578a6327b7b0",
+                    "x": 0,
+                    "y": 0,
+                    "w": 1536,
+                    "h": 28,
+                    "alpha": 1,
+                    "namespace": "omarchy-bar",
+                    "pid": 104771
+                }
+        ],
+        "3": [
+]
+    }
+}
+}
+

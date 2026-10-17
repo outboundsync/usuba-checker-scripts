@@ -1,0 +1,6 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Hyprland keybind captures use a \"key\" field (e.g. XF86AudioMute), not credentials"
+paths = ['''functest/fixtures/hyprland-0\.56\.2/.*\.json''']
