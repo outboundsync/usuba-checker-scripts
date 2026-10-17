@@ -27,3 +27,7 @@ usuba_checker = "usuba_checker"
 "usuba_checker.holdout" = ["plugin_ids.txt", "MANIFEST.sha256"]
 # The Omarchy reference tree (dell-ref/, 605 files + absolute symlinks) is NOT shipped in the wheel. Editable installs and checkouts use
 # the in-repo copy; anything else must set FT_OMARCHY (functest/refpaths.py raises, it never silently runs with empty API tables).
+
+[tool.pytest.ini_options]
+# legacy/ holds archived copies from the retired scripts-private repo; they share basenames with live tests and are not run in CI.
+norecursedirs = ["legacy", "dell-ref", "jankeesvw-history"]
