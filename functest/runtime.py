@@ -297,12 +297,33 @@ def _plugin_text(root):
                 except Exception: pass
     return "\n".join(out)
 
+class RuntimeUnavailable(RuntimeError):
+    """The runtime stage cannot start on this machine (it needs the reference build from dell_env/setup.py)."""
+
+
+def available():
+    """-> (ok, reason). The runtime stage boots the real shell, so it needs the reference build: Linux x86_64, Quickshell at QS and Qt 6.11.3
+    under /opt (dell_env/setup.py), sway, bwrap and grim on PATH, and a writable RUNS. Static checks need none of this."""
+    if not sys.platform.startswith("linux"):
+        return False, f"the runtime stage needs Linux, this is {sys.platform}"
+    if not os.access(QS, os.X_OK):
+        return False, f"no Quickshell build at {QS} (see functest/dell_env/setup.py)"
+    for b in ("bwrap", "sway", "grim"):
+        if not shutil.which(b):
+            return False, f"`{b}` is not on PATH"
+    try:
+        os.makedirs(RUNS, exist_ok=True)
+    except OSError as e:
+        return False, f"cannot create {RUNS} ({e.strerror})"
+    return True, ""
+
+
 def run(files=None, src_dir=None, timeout=40, keep=False, _baseline=False):
     """files: {relpath: text} or src_dir: a plugin folder. Returns dict."""
-    os.makedirs(RUNS, exist_ok=True)
     res = {"errors": [], "soft": [], "checks": {}}
     S = None
     try:
+        os.makedirs(RUNS, exist_ok=True)   # inside the try: a missing /opt/ft is a runtime error in the report, not a crash
         S = tempfile.mkdtemp(dir=RUNS, prefix="r")   # inside the try: the run dir is removed even if build/baseline fail (audit D8)
         home = os.path.join(S, "home"); os.makedirs(home)
         if not _baseline: dell_setup.build(); base = baseline()

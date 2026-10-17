@@ -4,8 +4,12 @@ What you can reproduce from this repository alone, and what needs inputs that ar
 
 ## 1. The Checker Scripts (fully reproducible)
 1. `git clone` this repository, Python 3.10+.
-2. Static checks need nothing else: `python3 functest/functest.py <plugin dir> --reasons`.
-3. Runtime checks: install `quickshell` (0.3.x) and `sway`, then run the same command. The reference shell tree is `dell-ref/omarchy-4.0.4/` (override with `FT_DELL_FULL`).
+2. Static checks need nothing else: `python3 functest/functest.py <plugin dir> --reasons` (or `--static`). On a machine without the runtime build the
+   first line says `(static checks only: runtime skipped, <reason>)`.
+3. Runtime checks need the reference build on Linux x86_64: run `functest/dell_env/setup.py` (it builds the Omarchy tree and shims under `/opt/ft`),
+   with Quickshell at `/opt/qs611` on Qt 6.11.3, and `sway`, `bwrap` and `grim` on `PATH`; then run the same command (add `--require-runtime` to make a
+   missing runtime an error). `setup.py` builds from the reference shell tree `dell-ref/omarchy-4.0.4/` (override with `FT_DELL_FULL`); the static
+   checks read the same tree as their API reference (override with `FT_OMARCHY`).
 4. Unit tests: `python3 -m pytest -q`. `functest/tests/test_dell_learned.py` skips two tests that need private sweep tooling.
 5. `functest/STANDARD.md` is generated: `cd functest && python3 -m usuba.rules > STANDARD.md` (a test checks it is in sync).
 
