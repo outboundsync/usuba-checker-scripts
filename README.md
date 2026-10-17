@@ -1,6 +1,6 @@
 # usuba-checker-scripts
 
-The **Usuba Checker** decides whether an [Omarchy](https://omarchy.org) shell plugin actually works. It is plain Python, not AI: deterministic static
+The **Usuba Checker Scripts** decide whether an [Omarchy](https://omarchy.org) shell plugin actually works. It is plain Python, not AI: deterministic static
 checks plus a real headless run of the plugin inside a reference Omarchy 4.0.4 / Quickshell environment. The same plugin always gets the same verdict.
 Every failure carries a rule id from the Usuba Standard ([`functest/STANDARD.md`](functest/STANDARD.md)), so a report can be read by a person or handed
 to a reviewer model.
@@ -12,9 +12,16 @@ exam results and model card are in the sibling repository `outboundsync/usuba-ch
 ```sh
 python3 functest/functest.py <plugin dir>             # full JSON report
 python3 functest/functest.py <plugin dir> --reasons   # PASS/FAIL plus one line per rule hit
+python3 functest/functest.py <plugin dir> --static    # static checks only
 ```
-Python 3.10+, standard library only. The runtime stage needs `quickshell` and a headless Wayland compositor (`sway`) on `PATH`; `qmllint` is used by some checks.
-Without them the static checks still run and the runtime stage says why it could not start.
+Python 3.10+, standard library only. The static checks run on any machine. The runtime stage boots the real shell, so it needs the reference
+build: Linux x86_64, Quickshell and Qt 6.11.3 under `/opt` (built by `functest/dell_env/setup.py`), and `sway`, `bwrap` and `grim` on `PATH`.
+Where that build is missing, the command still judges the plugin on the static checks and says so on the first line, for example
+`FAIL (static checks only: runtime skipped, the runtime stage needs Linux, this is darwin)`; the JSON report has `"scope": "static"`.
+`--require-runtime` makes a missing runtime an error instead. The exit code is 0 whether the plugin passes or fails (2 means bad usage).
+From Python, `functest.test()` requires the runtime by default (it raises `runtime.RuntimeUnavailable`); pass `run_runtime="auto"` or `False`.
+Two different trees are involved: the static checks read the API reference in `dell-ref/omarchy-4.0.4/` (override with `FT_OMARCHY`, see
+`functest/refpaths.py`), while the runtime stage boots the built tree at `/opt/ft/omarchy-4.0.4`.
 
 ## Layout
 | Path | What it is |

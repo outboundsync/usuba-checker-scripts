@@ -60,7 +60,10 @@ def categories(st_fails, rt):
     return sorted(set(cats))
 
 def test(files=None, src_dir=None, run_runtime=True):
+    """run_runtime: True = the runtime stage is required (raises runtime.RuntimeUnavailable when it cannot start, so scoring jobs never
+    silently drop it); "auto" = run it when available, else judge on the static checks and say so; False = static checks only."""
     skipped = []
+    rt_skip = None
     if src_dir: files, skipped = read_dir_ex(src_dir)
     sf, sw = static_checks.check(files)
     df, dw = dell_checks.check(files, doc_deps=not os.environ.get("FT_STRICT_DEPS"))
@@ -73,6 +76,10 @@ def test(files=None, src_dir=None, run_runtime=True):
     man_ok = True
     try: m = json.loads(files.get("manifest.json", "")); man_ok = isinstance(m, dict) and "id" in m
     except Exception: man_ok = False
+    if run_runtime and man_ok:   # only a plugin with a valid manifest needs the runtime, so only then does its absence matter
+        ok_rt, why = runtime.available()
+        if not ok_rt and run_runtime != "auto": raise runtime.RuntimeUnavailable(why)
+        if not ok_rt: run_runtime, rt_skip = False, why
     if run_runtime and man_ok:
         rt = runtime.run(src_dir=src_dir) if src_dir else runtime.run(files=files)
         timing = ("never instantiated", "not instantiated", "not created", "not active", "IPC unreachable", "harness timeout",
@@ -82,19 +89,36 @@ def test(files=None, src_dir=None, run_runtime=True):
             rt2["retried"] = True
             if len(rt2.get("errors", [])) <= len(rt["errors"]): rt = rt2
     elif run_runtime: rt = {"pass": False, "errors": ["no valid manifest.json"]}
-    if rt and isinstance(man_ok, bool) and man_ok:
+    elif rt_skip and man_ok: rt = {"skipped": True, "reason": rt_skip, "errors": []}
+    if rt and not rt.get("skipped") and isinstance(man_ok, bool) and man_ok:
         ep = (m.get("entryPoints") or {}).get("barWidget") if isinstance(m.get("entryPoints"), dict) else None
         src = files.get(ep or "", "")
         apply_zero_size_pardon(rt, src)
         rt["pass"] = not rt["errors"]
-    ok = not sf and (rt is None or rt.get("pass"))
-    return {"pass": ok, "static_fails": sf, "static_flags": sw, "runtime": rt, "categories": categories(sf, rt), "usuba": uf, "skipped_files": skipped}
+    ok = not sf and (rt is None or rt.get("skipped") or rt.get("pass"))
+    scope = "static+runtime" if rt and not rt.get("skipped") and "id" in rt else "static"
+    return {"pass": bool(ok), "scope": scope, "static_fails": sf, "static_flags": sw, "runtime": rt, "categories": categories(sf, rt), "usuba": uf,
+            "skipped_files": skipped}
 
-if __name__ == "__main__":
-    r = test(src_dir=sys.argv[1])
-    if "--reasons" in sys.argv:
+USAGE = """usage: functest.py <plugin dir> [--reasons] [--static | --require-runtime]
+  --reasons          PASS/FAIL plus one line per rule hit (default: the full JSON report)
+  --static           static checks only
+  --require-runtime  fail with an error if the runtime stage cannot start (default: skip it and say so)
+Exit code is 0 whether the plugin passes or fails; read the first line or the "pass" field. 2 means bad usage."""
+
+def main(argv):
+    flags = {a for a in argv if a.startswith("--")}
+    args = [a for a in argv if not a.startswith("--")]
+    if "--help" in flags or len(args) != 1 or not os.path.isdir(args[0]) or flags - {"--reasons", "--static", "--require-runtime"}:
+        print(USAGE, file=sys.stderr)
+        return 0 if "--help" in flags else 2
+    mode = False if "--static" in flags else True if "--require-runtime" in flags else "auto"
+    r = test(src_dir=args[0], run_runtime=mode)
+    if "--reasons" in flags:
         from usuba import rules
-        print("PASS" if r["pass"] else "FAIL")
+        rt = r["runtime"] or {}
+        note = f" (static checks only: runtime skipped, {rt['reason']})" if rt.get("skipped") else " (static checks only)" if mode is False else ""
+        print(("PASS" if r["pass"] else "FAIL") + note)
         for l in rules.explain(r["static_fails"], (r["runtime"] or {}).get("errors", [])): print("  " + l)
         for c, d in r["static_flags"]:
             if c.startswith("usuba-"): print("  warn " + d)
@@ -102,3 +126,7 @@ if __name__ == "__main__":
         from usuba import provenance
         r = dict(r, meta=provenance.report_meta())   # schema_version, checker_git_sha, rules_hash, reference tree (audit D6)
         print(json.dumps(r, indent=1))                 # never truncated: a cut-off JSON document is not JSON
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
