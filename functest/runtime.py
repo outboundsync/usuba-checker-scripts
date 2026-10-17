@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Runtime functional test: install one plugin into a throwaway HOME and boot the REAL Omarchy shell
-(Omarchy 4.0.0.alpha = basecamp/omarchy @ c668141, whose shell/ is byte-identical to /usr/share/omarchy/shell on a reference Omarchy laptop;
+(Omarchy 4.0.4-1, whose tree's own version file reads 4.0.0.alpha; its shell/ is basecamp/omarchy @ c668141 and byte-identical to /usr/share/omarchy/shell on a reference Omarchy laptop;
 built by dell_env/setup.py) with Quickshell master @4f508be on Qt 6.11.3 on a headless sway (wlroots) compositor,
 inside a bubblewrap sandbox (read-only /, private /tmp, no network). Enable it via shell.json exactly like
 `omarchy plugin enable`, summon it through the shell's own IPC (`shell summon <id>`), then probe registry /

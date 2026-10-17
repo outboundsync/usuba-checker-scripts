@@ -42,9 +42,9 @@ python3 -m pip install pytest && python3 -m pytest -q
 `pyproject.toml` makes this repo installable as `usuba-checker` (import name `usuba_checker`; stdlib only). `usuba-checker-models` pins it:
 `pip install -e ../usuba-checker-scripts` locally, or `pip install "usuba-checker @ git+https://github.com/outboundsync/usuba-checker-scripts@<SHA>"`
 (always a commit SHA: there are no tags, see `docs/RELEASE_TAGS.md`). Public surface: `check_files()`, `report_meta()`, `holdout_ids()`, `scoring`.
-The Omarchy reference tree is not in the wheel: editable installs use `dell-ref/`, anything else must set `FT_OMARCHY` (the Checker refuses to run without it).
+The Omarchy reference tree is not in the wheel: editable installs use `dell-ref/`, anything else must set `FT_OMARCHY` (the Checker Scripts refuse to run without it).
 `eval/hancore_holdout/run_eval.py` and `rescore.py` are shipped as modules but still need the models repo's `train/` (they are scripts, not API).
-`tests/test_packaging.py` builds the wheel and runs the Checker from the installed copy.
+`tests/test_packaging.py` builds the wheel and runs the Checker Scripts from the installed copy.
 
 ## What is deliberately not here
 Private device run output, the hardware-verified answer key and labels, raw review text, the sealed holdout contents, raw outputs of proprietary models, and
@@ -52,4 +52,4 @@ third-party plugin source trees without a permissive LICENSE file. Hit-check on 
 how to rebuild the corpora from public sources.
 
 ## Licence
-Checker scripts and all repository code: MIT (see `LICENSE`). The Usuba model weights and adapters are Apache-2.0, matching the Qwen base model; they live on Hugging Face (`osiharris/usuba-checker-adapters`) and are documented in `outboundsync/usuba-checker-models`. Third-party material keeps its own licence: `dell-ref/` and `validator/OMARCHY-LICENSE` are from basecamp/omarchy (MIT); see `NOTICE`.
+Checker Scripts and all repository code: MIT (see `LICENSE`). The Usuba model weights and adapters are Apache-2.0, matching the Qwen base model; they live on Hugging Face (`osiharris/usuba-checker-adapters`) and are documented in `outboundsync/usuba-checker-models`. Third-party material keeps its own licence: `dell-ref/` and `validator/OMARCHY-LICENSE` are from basecamp/omarchy (MIT); see `NOTICE`.
