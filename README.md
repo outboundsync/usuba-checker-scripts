@@ -5,6 +5,10 @@ checks plus a real headless run of the plugin inside a reference Omarchy 4.0.4 /
 Every failure carries a rule id from the Usuba Standard ([`functest/STANDARD.md`](functest/STANDARD.md)), so a report can be read by a person or handed
 to a reviewer model.
 
+**Latest release: [Usuba Checker Scripts v0.1.0](https://github.com/outboundsync/usuba-checker-scripts/releases/tag/checker-v0.1.0)** (tag `checker-v0.1.0`),
+enforcing Usuba Standard v0.2. The model that reads these reports is the Usuba Checker Model, released as v0.1.0 in
+[`outboundsync/usuba-checker-models`](https://github.com/outboundsync/usuba-checker-models/releases/tag/model-v0.1.0). Project site: [usuba.dev](https://usuba.dev).
+
 This repository holds everything that **decides, mines, builds data from, or measures**. The code that **trains and ships the reviewer model**, the data policy,
 exam results and model card are in the sibling repository `outboundsync/usuba-checker-models`.
 
@@ -48,7 +52,7 @@ python3 -m pip install pytest && python3 -m pytest -q
 ## Install as a package (audit G)
 `pyproject.toml` makes this repo installable as `usuba-checker` (import name `usuba_checker`; stdlib only). `usuba-checker-models` pins it:
 `pip install -e ../usuba-checker-scripts` locally, or `pip install "usuba-checker @ git+https://github.com/outboundsync/usuba-checker-scripts@<SHA>"`
-(always a commit SHA: there are no tags, see `docs/RELEASE_TAGS.md`). Public surface: `check_files()`, `report_meta()`, `holdout_ids()`, `scoring`.
+(a release tag such as `@checker-v0.1.0`, or a commit SHA; see `docs/RELEASE_TAGS.md`). Public surface: `check_files()`, `report_meta()`, `holdout_ids()`, `scoring`.
 The Omarchy reference tree is not in the wheel: editable installs use `dell-ref/`, anything else must set `FT_OMARCHY` (the Checker Scripts refuse to run without it).
 `eval/hancore_holdout/run_eval.py` and `rescore.py` are shipped as modules but still need the models repo's `train/` (they are scripts, not API).
 `tests/test_packaging.py` builds the wheel and runs the Checker Scripts from the installed copy.
