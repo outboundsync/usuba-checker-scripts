@@ -7,4 +7,4 @@ The exam set has 329 public marketplace plugins with reviewer findings. To keep 
   numbers were computed on; nobody else can read the answers.
 
 The manifest, the plugin archives and the raw per-plugin results stay private (`.gitignore` blocks them). Score tables are in `outboundsync/usuba-checker-models`.
-The harness (`run_eval.py`, `rescore.py`, `select.py`, `serve_llama.sh`) is here; it needs the private manifest to run an exam. `select.py` documents how the set was drawn.
+The harness (`run_eval.py`, `rescore.py`, `select_holdout.py`, `serve_llama.sh`) is here; it needs the private manifest to run an exam. `select_holdout.py` documents how the set was drawn.

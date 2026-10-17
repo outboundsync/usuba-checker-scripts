@@ -9,7 +9,7 @@
 set -euo pipefail
 BASE="${BASE:-$HOME/usuba-hitcheck}"; PKG="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 SHELL_SRC=${SHELL_SRC:-/usr/share/omarchy/shell}; P=${P:-3}; TIMEOUT=${TIMEOUT:-70}; RUNSEC=${RUNSEC:-24}; NET=${NET:-0}; SESSION_ACCESS=${SESSION_ACCESS:-0}; ALLOW_NO_SANDBOX=${ALLOW_NO_SANDBOX:-0}
-OBSERVE=${OBSERVE:-0}; QS=${QS:-$(command -v quickshell)}; RES="$BASE/results"; JSONL="$RES/hitcheck-results.jsonl"
+OBSERVE=${OBSERVE:-0}; QS=${QS:-$(command -v quickshell || true)}; RES="$BASE/results"; JSONL="$RES/hitcheck-results.jsonl"
 export BASE PKG OBSERVE SHELL_SRC P TIMEOUT RUNSEC NET SESSION_ACCESS ALLOW_NO_SANDBOX QS RES JSONL
 
 # Job names / plugin ids end up in `rm -rf` paths: letters, digits, . _ - only, and never "." / ".." / leading "-".
