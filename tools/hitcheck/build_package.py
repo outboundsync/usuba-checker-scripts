@@ -19,6 +19,19 @@ ENABLED_LIFE = ["USB-L02", "USB-L03", "USB-N01", "USB-N02"]
 CHECKER_V2_REF = os.environ.get("CHECKER_V2_REF", "8754bc4d8900814697f7fc951b3b8521a77b17eb")   # branch checker-rules-v2 no longer exists in this repo (audit J)
 SKIP_RULES_OLD = ["USB-H01", "USB-H02", "USB-H06", "USB-H24", "USB-H18"]   # rules the v3-fixes skip conditions touch (H06/H18/H24 are experimental/dropped)
 
+def tar_extract(t, member=None, path="."):
+    """extract with the 'data' filter where this Python has it (3.12+, and the 3.8.17/3.9.17/3.10.12/3.11.4 backports); older 3.10 patch releases
+    have no filter= argument, so refuse unsafe members (absolute/.. paths, links, devices) by hand and extract without it."""
+    kw = {"filter": "data"} if hasattr(tarfile, "data_filter") else {}
+    members = [member] if member is not None else t.getmembers()
+    if not kw:
+        root = os.path.realpath(path)
+        for m in members:
+            dest = os.path.realpath(os.path.join(path, m.name))
+            if os.path.isabs(m.name) or (dest != root and not dest.startswith(root + os.sep)) or m.issym() or m.islnk() or m.isdev():
+                raise tarfile.TarError("unsafe tar member refused: %r" % m.name)
+    for m in members: t.extract(m, path, **kw)
+
 def slug(s): return re.sub(r"[^A-Za-z0-9._-]+", "-", s).strip("-")[:60]
 def sh(*a, **k): return subprocess.run(a, capture_output=True, **k)
 
@@ -107,7 +120,7 @@ def old_hits(dirs):
     tmp = tempfile.mkdtemp(prefix="oldcr2.")
     p = subprocess.run(["git", "-C", REPO, "archive", CHECKER_V2_REF, "functest"], capture_output=True)   # no shell (audit C3)
     if p.returncode: raise SystemExit("git archive %s failed: " % CHECKER_V2_REF + p.stderr.decode())
-    with tarfile.open(fileobj=io.BytesIO(p.stdout)) as t: t.extractall(tmp, filter="data")
+    with tarfile.open(fileobj=io.BytesIO(p.stdout)) as t: tar_extract(t, path=tmp)
     q = subprocess.run([sys.executable, "-c", OLD_RUNNER, tmp] + dirs, capture_output=True, text=True)
     shutil.rmtree(tmp, ignore_errors=True)
     if q.returncode: raise SystemExit("old runner failed: " + q.stderr[-500:])
@@ -301,7 +314,7 @@ def select_pairs(a, X, STAGE):
         with tarfile.open(fileobj=io.BytesIO(p.stdout)) as t:
             for m in t.getmembers():
                 if m.issym() or m.islnk() or m.isdev(): continue
-                m.name = m.name; t.extract(m, tmp, filter="data")
+                m.name = m.name; tar_extract(t, m, tmp)
         base = tmp if root == "." else os.path.join(tmp, root)
         dropped = copy_tree(base, dst); shutil.rmtree(tmp); return dropped
     good = []

@@ -1,6 +1,6 @@
 usuba-checker-scripts
 
-Copyright (c) 2026 OutboundSync. Licensed under the MIT License (LICENSE) for the Checker scripts and all code in this repository. The Usuba model weights and adapters are not part of this repository; they are Apache-2.0, matching the Qwen base model (see usuba-checker-models).
+Copyright (c) 2026 OutboundSync. Licensed under the MIT License (LICENSE) for the Checker Scripts and all code in this repository. The Usuba model weights and adapters are not part of this repository; they are Apache-2.0, matching the Qwen base model (see usuba-checker-models).
 
 Third-party material included in this repository:
 

@@ -4,6 +4,8 @@ Hyprland 0.56.2 `hyprctl` reply shapes for the functest's hyprctl emulator (`fun
   `src/debug/HyprCtl.cpp` dispatchGetOption (Int/Color->int, Bool->bool, Float->float, String->str, CssGap->css,
   Gradient->gradient, Vec2->vec2, FontWeight->font_weight). CssGap is `css`, not `custom`/`int`.
 - `fixtures.json`: monitors/clients/workspaces/devices/layers/binds/version JSON with the exact key sets of HyprCtl.cpp at that tag.
-  Values are **sanitised**: monitor make/model, input device names and window class/title are generic placeholders. The original
-  raw device capture is not published.
+  Values are **sanitised**: monitor make/model, input device names and window class/title are generic placeholders.
+- `dell-capture/*.json` and `getoption.txt`: the raw `hyprctl <cmd> -j` replies from the reference Dell laptop (Hyprland 0.56.2, 2026-10).
+  They are **public, on purpose**. Harris Kenny decided on 2026-10-16 that the Dell captures and images are not sensitive and are
+  allowlisted: `tools/scan_public.py` exempts exactly this directory (`PRIVATE_EXEMPT`) from its private-file-name rule. No history was rewritten.
 Hyprland is BSD-3-Clause (Copyright (c) 2022-2026, vaxerski); only output formats are reproduced here.

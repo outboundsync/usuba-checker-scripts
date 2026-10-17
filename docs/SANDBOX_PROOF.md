@@ -79,7 +79,7 @@ SUMMARY blocked=46 info=12 leak=0
 ```
 
 ## Residual risk (not removed by this sandbox)
-- **The Wayland socket is passed in** (Quickshell cannot run without it). A hostile client can speak any Wayland protocol the compositor exposes to ordinary clients (screen capture, virtual keyboard/pointer protocols if Hyprland enables them for all clients). The probe does not and cannot show this blocked. Mitigation: run only plugins that already passed the static Checker and hand-review, short runs (24 s), and do not run on a session with sensitive windows open. This is why the S2 candidates are Checker-passing, previously-run-clean plugins.
+- **The Wayland socket is passed in** (Quickshell cannot run without it). A hostile client can speak any Wayland protocol the compositor exposes to ordinary clients (screen capture, virtual keyboard/pointer protocols if Hyprland enables them for all clients). The probe does not and cannot show this blocked. Mitigation: run only plugins that already passed the static Checker Scripts and hand-review, short runs (24 s), and do not run on a session with sensitive windows open. This is why the S2 candidates are Checker-passing, previously-run-clean plugins.
 - `/dev/dri` is bound (Mesa needs it) and `/sys` is read-only visible (hardware info, not secrets: the DMI serial files are unreadable).
 - Kernel and bubblewrap bugs are out of scope (shared kernel; user namespaces).
 - The observer (OBSERVE=1) runs on the host: it calls `hyprctl layers/clients/monitors` and `grim` on rectangles of surfaces owned by the job's own Quickshell pid. Screenshots can include whatever is visible under a transparent plugin surface; they stay on the Dell and the build box and are not committed.

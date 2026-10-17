@@ -10,10 +10,10 @@ We aim to acknowledge within 5 business days and to fix or remove the material w
 ## In scope
 - Credentials, tokens or private keys committed in any file or in history.
 - Personal data (home paths, hostnames, e-mail addresses other than the maintainer's) that should not be public.
-- Code that could execute untrusted plugin code outside the intended sandbox when running the Checker.
+- Code that could execute untrusted plugin code outside the intended sandbox when running the Checker Scripts.
 
 ## Out of scope
-- Findings the Checker reports about third-party plugins (report those to the plugin's authors).
+- Findings the Checker Scripts report about third-party plugins (report those to the plugin's authors).
 - Quality of model output.
 
 ## Rules for contributors

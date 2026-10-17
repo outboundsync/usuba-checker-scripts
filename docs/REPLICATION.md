@@ -2,7 +2,7 @@
 
 What you can reproduce from this repository alone, and what needs inputs that are not published.
 
-## 1. The Checker (fully reproducible)
+## 1. The Checker Scripts (fully reproducible)
 1. `git clone` this repository, Python 3.10+.
 2. Static checks need nothing else: `python3 functest/functest.py <plugin dir> --reasons`.
 3. Runtime checks: install `quickshell` (0.3.x) and `sway`, then run the same command. The reference shell tree is `dell-ref/omarchy-4.0.4/` (override with `FT_DELL_FULL`).
@@ -19,8 +19,8 @@ Plugin source trees are **not** stored here. Repos used as test subjects or data
 
 ## 3. Mining pipelines
 - `hancore/fetch.py` downloads **plugin code** (a read-only GitHub tarball of a repo at a commit, through `gh api`, needs a logged-in `gh`/`GH_TOKEN`, cached under `HANCORE_CACHE`). It does **not** fetch review threads: the marketplace review threads (`dell/sweep/hancore_reviews.jsonl`) are a private input that has to be re-collected from the thread URLs yourself; their text is not redistributed. `hancore/measure_*.py` then recompute `hancore/rule_metrics.json` from those two inputs.
-- `train/version_history/01..05_*.py` and `jankeesvw-history/scripts/01..10_*.py`: bug-fix history mining, run in numeric order. They clone public repos and call the Checker; LLM steps (`hancore/label_recover.py`, `retraction_check.py`, `llm_rules_v3.py`, `jankeesvw-history/scripts/02,09`, `train/version_history/04`) call OpenRouter directly (endpoint and `OPENROUTER_API_KEY` are hardcoded per script; there is no shared client or provider switch yet), open-weights models only. Failed calls are not cached, so a re-run retries them; cached verdicts are not published.
-- `winners/run_all.sh`: Checker profile of the marketplace winners.
+- `train/version_history/01..05_*.py` and `jankeesvw-history/scripts/01..10_*.py`: bug-fix history mining, run in numeric order. They clone public repos and call the Checker Scripts; LLM steps (`hancore/label_recover.py`, `retraction_check.py`, `llm_rules_v3.py`, `jankeesvw-history/scripts/02,09`, `train/version_history/04`) call OpenRouter directly (endpoint and `OPENROUTER_API_KEY` are hardcoded per script; there is no shared client or provider switch yet), open-weights models only. Failed calls are not cached, so a re-run retries them; cached verdicts are not published.
+- `winners/run_all.sh`: Checker Scripts profile of the marketplace winners.
 
 ## 4. Evaluation harness
 `eval/hancore_holdout/run_eval.py` (+ `serve_llama.sh` for a local GGUF with 32k context per slot) scores a model on the sealed holdout. **It does not run standalone**: it imports the prompt and `checker_report` modules from `train/` in the sibling `usuba-checker-models` repo (check both repos out side by side), and `select_holdout.py` and `run_eval.py` both need the private `manifest.jsonl` plus the `eval/hancore_holdout/code/` trees it points to. The pure scorer, `scoring.py`, has no such dependency (it is what `usuba_checker.scoring` exports). The holdout manifest is private;
@@ -29,7 +29,7 @@ ids and the SHA-256 of the manifest are in `eval/hancore_holdout/`. To use your 
 ## 5. What is not reproducible from public material, and why
 | Item | Reason |
 |---|---|
-| Hardware-verified answer key and labels for real-device runs | Private by decision; the Checker is validated against it internally only |
+| Hardware-verified answer key and labels for real-device runs | Private by decision; the Checker Scripts are validated against it internally only |
 | Device run output, screenshots, device captures | Private (contains hardware and path details) |
 | Raw review text | Written by other people, no licence; re-fetch from the thread URLs |
 | Sealed holdout contents | Kept sealed to prevent contamination; ids and hash published |

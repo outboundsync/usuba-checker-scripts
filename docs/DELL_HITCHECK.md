@@ -1,6 +1,6 @@
 # Dell hit-check: package, results and what they mean
 
-Goal: confirm on the real Dell (Omarchy 4.0.4, real Quickshell) (A) that the Checker rules enabled on branch v3-fixes fire on plugins that load or misbehave in the way the rule claims, and (B) that 30 version-history bug pairs break before the fix and work after it.
+Goal: confirm on the real Dell (Omarchy 4.0.4, real Quickshell) (A) that the Checker Scripts rules enabled on branch v3-fixes fire on plugins that load or misbehave in the way the rule claims, and (B) that 30 version-history bug pairs break before the fix and work after it.
 Nothing here runs on the Dell by itself: the scripts build a package on the box; a person copies it to the Dell and runs one script. Package: `$PACKAGE_DIR/` (about 55 MB).
 
 ## Files (`tools/hitcheck/`)

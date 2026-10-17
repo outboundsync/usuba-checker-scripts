@@ -8,7 +8,7 @@ Never train on anything listed in `results/s1s2/*_exclude_from_training.txt`. Ha
 
 ## Counts (after the current guard)
 - S2: 267 selected -> 46 dropped by the new guard -> **221 run on hardware; 220 works, 1 unsure (dependency)**. Auto verdict: 169 PASS_AUTO, 51 REVIEW, 1 FAIL. Human spot-check set: **81** (all REVIEW + seeded 10% of PASS_AUTO). Nobody has hand-reviewed them: they are candidates, not a clean set yet. `human_verdict` columns in `review_sheet.csv` are empty.
-- S1 hardware-observable: 912 -> 185 plugins dropped by the guard -> **666 items**. LOAD group: real_hw 22, warn_hw 55, no_symptom_hw 150 (Checker FAIL on a plugin that works = false alarm). BIN group: present_hw 100, absent_hw 304 (real candidates), unresolved 35. 614 finding categories are not hardware-observable and are excluded.
+- S1 hardware-observable: 912 -> 185 plugins dropped by the guard -> **666 items**. LOAD group: real_hw 22, warn_hw 55, no_symptom_hw 150 (Checker Scripts FAIL on a plugin that works = false alarm). BIN group: present_hw 100, absent_hw 304 (real candidates), unresolved 35. 614 finding categories are not hardware-observable and are excluded.
 - Screenshots of the opened surfaces stay on the Dell (`~/usuba-janus/s2-run/results/raw/*/obs`); they are not in the repo.
 
 ## Caveats

@@ -6,7 +6,7 @@ should never be moved (we never force-push).
 ## Naming
 | Tag | Meaning | Applied to |
 |---|---|---|
-| `checker-vMAJOR.MINOR` | A Checker/rules release that produced published numbers | scripts |
+| `checker-vMAJOR.MINOR` | A Checker Scripts/rules release that produced published numbers | scripts |
 | `exam-<name>-YYYY-MM-DD` (e.g. `exam-v1-2026-10-14`) | The code that scored a published exam run | scripts (scorer) **and** models (prompt, code_blob) at the same date |
 | `data-rN` (e.g. `data-r4`, `data-r5`) | A training-set build; points at the models commit that holds the builders + GATE_REPORT | models |
 | `model-<run-name>` (e.g. `model-usuba-9b-v1-q4km`) | A trained artefact whose weights sha256 is recorded in the repo | models |
@@ -29,9 +29,9 @@ write-time provenance existed, so a tag on them can only say "code as of commit 
 | `audit-A-2026-10-15` | both | tips after stream A merges | audit baseline for this review |
 
 ## Older committed artefacts
-`functest/results.json`, `functest/recal_registry.jsonl`, `winners/checker_results.json` and `results/hitcheck/*` have no write-time Checker SHA.
+`functest/results.json`, `functest/recal_registry.jsonl`, `winners/checker_results.json` and `results/hitcheck/*` have no write-time Checker Scripts SHA.
 `provenance/ARTIFACTS.json` records sha256 plus the bracketing commits; files touched by more than one commit are flagged as possibly mixing
-Checker versions. The only way to get an exact SHA for those is to re-run them with the current Checker (which now stamps itself).
+Checker Scripts versions. The only way to get an exact SHA for those is to re-run them with the current Checker Scripts (which now stamps itself).
 
 `jankeesvw-history/v3fixes_wip_snapshot.sha256` is the hash list of a WIP tree. It cannot verify against HEAD (the files moved on, two live in
 the models repo). `provenance/SNAPSHOT_V3FIXES.json` resolves every listed hash to the exact commit holding that blob (19/19 resolved).

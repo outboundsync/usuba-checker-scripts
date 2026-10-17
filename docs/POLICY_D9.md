@@ -1,6 +1,6 @@
 # D9: two long-standing verdict pardons (decision needed)
 
-The earlier reviews (`reviews/SYNTHESIS.md`) flagged two places where the Checker is more lenient than the rule text:
+The earlier reviews (`reviews/SYNTHESIS.md`) flagged two places where the Checker Scripts are more lenient than the rule text:
 
 | Item | Where | Default (historical) | Strict (`FT_STRICT_D9=1`) |
 |---|---|---|---|
