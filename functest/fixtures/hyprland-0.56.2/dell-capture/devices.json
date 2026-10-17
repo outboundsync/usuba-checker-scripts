@@ -1,0 +1,153 @@
+{
+"mice": [
+    {
+        "address": "0x578a624d1470",
+        "name": "ven_06cb:00-06cb:ceb6-mouse",
+        "defaultSpeed": 0.00000,
+        "scrollFactor": -1.00
+    },    {
+        "address": "0x578a620aba60",
+        "name": "ven_06cb:00-06cb:ceb6-touchpad",
+        "defaultSpeed": 0.00000,
+        "scrollFactor": -1.00
+    },    {
+        "address": "0x578a62699250",
+        "name": "ps/2-generic-mouse",
+        "defaultSpeed": 0.00000,
+        "scrollFactor": -1.00
+    }
+],
+"keyboards": [
+    {
+        "address": "0x578a621785a0",
+        "name": "video-bus",
+        "rules": "",
+        "model": "",
+        "layout": "us",
+        "variant": "",
+        "options": "compose:caps,shift:both_capslock_cancel",
+        "active_layout_index": 0,
+        "active_keymap": "English (US)",
+        "capsLock": false,
+        "numLock": true,
+        "main": false
+    },    {
+        "address": "0x578a62178ee0",
+        "name": "intel-hid-events",
+        "rules": "",
+        "model": "",
+        "layout": "us",
+        "variant": "",
+        "options": "compose:caps,shift:both_capslock_cancel",
+        "active_layout_index": 0,
+        "active_keymap": "English (US)",
+        "capsLock": false,
+        "numLock": true,
+        "main": false
+    },    {
+        "address": "0x578a62512a40",
+        "name": "intel-hid-5-button-array",
+        "rules": "",
+        "model": "",
+        "layout": "us",
+        "variant": "",
+        "options": "compose:caps,shift:both_capslock_cancel",
+        "active_layout_index": 0,
+        "active_keymap": "English (US)",
+        "capsLock": false,
+        "numLock": true,
+        "main": false
+    },    {
+        "address": "0x578a625583e0",
+        "name": "power-button",
+        "rules": "",
+        "model": "",
+        "layout": "us",
+        "variant": "",
+        "options": "compose:caps,shift:both_capslock_cancel",
+        "active_layout_index": 0,
+        "active_keymap": "English (US)",
+        "capsLock": false,
+        "numLock": true,
+        "main": false
+    },    {
+        "address": "0x578a625741c0",
+        "name": "sleep-button",
+        "rules": "",
+        "model": "",
+        "layout": "us",
+        "variant": "",
+        "options": "compose:caps,shift:both_capslock_cancel",
+        "active_layout_index": 0,
+        "active_keymap": "English (US)",
+        "capsLock": false,
+        "numLock": true,
+        "main": false
+    },    {
+        "address": "0x578a625b2a70",
+        "name": "dell-privacy-driver",
+        "rules": "",
+        "model": "",
+        "layout": "us",
+        "variant": "",
+        "options": "compose:caps,shift:both_capslock_cancel",
+        "active_layout_index": 0,
+        "active_keymap": "English (US)",
+        "capsLock": false,
+        "numLock": true,
+        "main": false
+    },    {
+        "address": "0x578a625f34e0",
+        "name": "dell-wmi-hotkeys",
+        "rules": "",
+        "model": "",
+        "layout": "us",
+        "variant": "",
+        "options": "compose:caps,shift:both_capslock_cancel",
+        "active_layout_index": 0,
+        "active_keymap": "English (US)",
+        "capsLock": false,
+        "numLock": true,
+        "main": false
+    },    {
+        "address": "0x578a62659310",
+        "name": "at-translated-set-2-keyboard",
+        "rules": "",
+        "model": "",
+        "layout": "us",
+        "variant": "",
+        "options": "compose:caps,shift:both_capslock_cancel",
+        "active_layout_index": 0,
+        "active_keymap": "English (US)",
+        "capsLock": false,
+        "numLock": true,
+        "main": false
+    },    {
+        "address": "0x578a620f0790",
+        "name": "hl-virtual-keyboard-fcitx5",
+        "rules": "",
+        "model": "",
+        "layout": "us",
+        "variant": "",
+        "options": "compose:caps,shift:both_capslock_cancel",
+        "active_layout_index": 0,
+        "active_keymap": "English (US)",
+        "capsLock": false,
+        "numLock": true,
+        "main": true
+    }
+],
+"tablets": [
+
+],
+"touch": [
+
+],
+"switches": [
+    {
+        "address": "0x578a61629560",
+        "name": "Lid Switch"
+    }
+]
+}
+

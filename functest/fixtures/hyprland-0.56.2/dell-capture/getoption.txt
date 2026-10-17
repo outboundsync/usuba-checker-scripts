@@ -1,0 +1,16 @@
+== general:gaps_out
+css gap data: 16 16 16 16
+set: true
+{"option": "general:gaps_out", "css": "16 16 16 16", "set": true }
+== general:gaps_in
+css gap data: 8 8 8 8
+set: true
+{"option": "general:gaps_in", "css": "8 8 8 8", "set": true }
+== general:border_size
+int: 4
+set: true
+{"option": "general:border_size", "int": 4, "set": true }
+== decoration:rounding
+int: 24
+set: true
+{"option": "decoration:rounding", "int": 24, "set": true }
