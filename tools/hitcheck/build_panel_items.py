@@ -11,7 +11,7 @@ import os
 import random
 import re
 
-SWEEP = "/workspace/usuba-model-checker/dell/sweep"
+SWEEP = "/workspace/usuba-checker-scripts/dell/sweep"
 RISK = re.compile(r"Process\s*\{|execDetached|command\s*:|exec\(|execute\(|os\.system|subprocess|Popen|\beval\b|\bsudo\b|pkexec|\bcurl\b|\bwget\b|XMLHttpRequest|fetch\(|https?://|\brm\s+-|\brmdir\b|\bdd\b\s+if|mkfs|chmod|chown|\bssh\b|\bscp\b|base64|/etc/|~/\.ssh|\.ssh/|\.gnupg|/dev/|systemctl|dbus|hyprctl\s+dispatch|FileView|writeFile|WRITE|open\([^)]*['\"]w|>\s*~|>>|\bsh\s+-c|bash\s+-c|\bnc\b|socat|token|password|secret|apikey|api_key|Authorization", re.I)
 
 

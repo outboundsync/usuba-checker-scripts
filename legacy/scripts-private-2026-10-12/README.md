@@ -37,4 +37,4 @@ The Omarchy reference files in `dell-ref/` and `functest/dell_env/omarchy-shell-
 
 ## Related
 
-The reviewer model that reads these reports lives in a separate repo, `outboundsync/usuba-checker-model`.
+The reviewer model that reads these reports lives in a separate repo, `outboundsync/usuba-checker-models`.

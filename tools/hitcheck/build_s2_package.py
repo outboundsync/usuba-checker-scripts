@@ -24,7 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import build_package as bp  # noqa: E402  (copy_tree, plugin_root, read_manifest: shared tree-copy rules, no ELF/symlinks/oversize)
 
-SWEEP = "/workspace/usuba-model-checker/dell/sweep"
+SWEEP = "/workspace/usuba-checker-scripts/dell/sweep"
 QUOTA = {"panel": 70, "overlay": 60, "menu": 25, "bar": 20, "service": 45, "bar-widget": 60}   # by primary kind; hardware checklist matters most for surfaces that open
 VALID = re.compile(r"^[A-Za-z0-9._-]+$")
 

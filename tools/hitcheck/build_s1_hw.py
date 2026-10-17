@@ -21,7 +21,7 @@ import os
 import re
 import sys
 
-SWEEP = "/workspace/usuba-model-checker/dell/sweep"
+SWEEP = "/workspace/usuba-checker-scripts/dell/sweep"
 LOAD = {"rt-load-failed", "rt-not-instantiated", "rt-qml-syntax", "rt-unresolved-type/import", "bad-import", "rt-shell-broken", "rt-bad-property", "rt-js-error",
         "rt-undefined-arg", "rt-plugin-warn", "rt-other", "singleton-unknown", "exec-undefined-arg"}
 BIN = {"rt-missing-binary", "exec-unknown-binary", "usuba-USB-B01"}
