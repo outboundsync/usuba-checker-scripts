@@ -1,0 +1,9 @@
+model,dell_verdict_accuracy,dell_positive_recall,dell_false_alarm,dell_schema_valid,s4_schema_valid,s4_bug_recall,holdout_schema_valid,holdout_negatives_with_blocker
+Usuba run 2,0.48,0.607,0.574,0.987,0.917,0.133,0.939,0.276
+Stock Qwen3.5 9B (base),0.507,0.286,0.277,0.893,0.567,0.067,0.638,0.379
+Gemma 4 26B,0.56,0.5,0.255,0.853,0.783,0.1,0.824,0.138
+Qwen3-Coder 30B,0.48,0.679,0.426,0.84,0.733,0.167,0.763,0.345
+GLM 4.7 Flash,0.333,0.607,0.702,0.88,0.717,0.117,0.781,0.345
+Nemotron 3 Nano 30B,0.333,0.607,0.596,0.813,0.633,0.1,0.65,0.138
+Ministral 14B,0.173,0.393,0.638,0.68,0.467,0.15,0.571,0.345
+Llama 3.1 8B,0.2,0.25,0.234,0.493,0.417,0.033,0.453,0.552

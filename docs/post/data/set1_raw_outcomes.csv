@@ -1,0 +1,540 @@
+model,license,prompt_id,task,outcome,checker_first,passing_attempt,hand_first,hand_final,hand_note
+claude-opus-5.5,proprietary,0,build_from_spec,passed on first try,pass,0,accept,,"service follows ~/.config/omarchy/current/background via readlink; middle/right click run omarchy-theme-bg-next/omarchy-menu [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,1,build_from_spec,passed on first try,pass,0,accept,,"readlink of Omarchy current/background, real click commands [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,2,build_from_spec,passed after Checker fixes,fail,2,,accept,"wl-paste polling history, re-copy via wl-copy [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,3,build_from_spec,passed after Checker fixes,fail,1,,accept,"wl-paste poll history persisted to cache, wl-copy [hw: could not run (candidate contains destructive commands: sudo; skipped to stay non-destructive)]"
+claude-opus-5.5,proprietary,4,build_from_spec,passed on first try,pass,0,accept,,"NotificationServer with popups, DND, history [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,5,build_from_spec,passed on first try,pass,0,accept,,"NotificationServer, popups, DND, history [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,6,build_from_spec,passed after Checker fixes,fail,1,,accept,"dropbox.sh wraps dropbox CLI status/du/find, login link [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,7,build_from_spec,passed after Checker fixes,fail,2,,accept,"local status/du/find, login xdg-open [hw: could not run (candidate contains destructive commands: pkill; skipped to stay non-destructive)]"
+claude-opus-5.5,proprietary,8,add_panel,passed on first try,pass,0,accept,,"dropbox status/du/find, login url [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,9,build_from_spec,passed after Checker fixes,fail,1,,accept,"brightnessctl -m + hyprctl monitor toggle [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set, hyprsunset, pkill; skipped to stay non-destructive)]"
+claude-opus-5.5,proprietary,10,build_from_spec,passed after Checker fixes,fail,1,,accept,"brightnessctl -m, hyprctl monitor toggle [hw: could not run (candidate contains destructive commands: brightnessctl"", ""-q"", ""set, dpms, hyprctl keyword; skipped to stay non-destructive)]"
+claude-opus-5.5,proprietary,11,add_panel,passed on first try,pass,0,accept,,"brightnessctl + hyprctl monitor toggle [hw: could not run (candidate contains destructive commands: brightnessctl"", ""-q"", ""set; skipped to stay non-destructive)]"
+claude-opus-5.5,proprietary,12,build_from_spec,passed after Checker fixes,fail,1,,accept,"/sys battery, /proc stats, power profile [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,13,build_from_spec,passed after Checker fixes,fail,1,,accept,"/sys battery, /proc stats, powerprofilesctl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,14,add_panel,passed after Checker fixes,fail,1,,accept,"UPower battery panel + stats [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,15,build_from_spec,passed on first try,pass,0,accept,,"real curl against speed.cloudflare.com down/up [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,16,build_from_spec,passed after Checker fixes,fail,1,,accept,"curl against speed.cloudflare.com [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,17,build_from_spec,passed after Checker fixes,fail,1,,accept,"wttr.in j1 via curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,18,build_from_spec,passed after Checker fixes,fail,1,,accept,"wttr.in j1 via curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,19,add_panel,passed on first try,pass,0,accept,,"wttr.in j1 via curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,20,build_from_spec,passed after Checker fixes,fail,1,,accept,"lenient: real verse API labs.bible.org votd (Midvash endpoint unverified) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,21,build_from_spec,failed checks,fail,1,,reject,"feedUrl empty by default; shows nothing [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,22,build_from_spec,failed checks,fail,1,,reject,"hardcoded verse list by day [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,23,add_panel,passed on first try,pass,0,accept,,"lenient: midvash.com votd API via XHR (unverified) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,24,build_from_spec,passed after Checker fixes,fail,1,,accept,"restic via config.json repos, scheduled [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,25,add_panel,failed checks,pass,0,reject,,relies on nonexistent omarchy-time-machine.service user unit [hw: could not run (candidate contains destructive commands: systemctl; skipped to stay non-destructive)]
+claude-opus-5.5,proprietary,26,build_from_spec,passed on first try,pass,0,accept,,"hyprctl binds -j, notify-send on menu launch [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,27,build_from_spec,passed on first try,pass,0,accept,,"Hyprland.toplevels hints, actions via Hyprland.dispatch (legacy dispatch syntax; unverified on Lua dispatcher) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,28,build_from_spec,passed after Checker fixes,fail,1,,accept,"managed block in looknfeel.lua + live hyprctl --batch preview [hw: could not run (candidate contains destructive commands: hyprctl keyword, hyprctl reload; skipped to stay non-destructive)]"
+claude-opus-5.5,proprietary,29,build_from_spec,passed after Checker fixes,fail,1,,accept,"ical sources via curl/file list, calendar popup [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,30,build_from_spec,passed after Checker fixes,fail,1,,accept,"hyprctl getoption/keyword general:gaps_out to make bar flush [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,31,build_from_spec,passed after Checker fixes,fail,1,,accept,"ss -ltnpH, kill -TERM/-KILL, open localhost [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,36,chunk_manifest_entry,passed after Checker fixes,fail,1,,accept,"DesktopEntries apps, omarchy-* actions, web shortcuts, maths [hw: could not run (candidate contains destructive commands: hyprctl dispatch exit, poweroff, reboot; skipped to stay non-destructive)]"
+claude-opus-5.5,proprietary,37,chunk_component,failed checks,fail,2,,reject,"lib/menu.js lacks the API the real MenuSource.qml/Beam.qml call (parseMenuJsonc, mergeMenuSources, searchable, hintFor...); breaks Beam [hw: could not run (candidate contains destructive commands: loginctl, poweroff, reboot; skipped to stay non-destructive)]"
+claude-opus-5.5,proprietary,38,chunk_component,failed checks,pass,0,reject,,"SettingsView lacks properties Beam.qml assigns (store, jevStatus, foreground, rowHeight...); breaks Beam [hw: failed (dev.reuk.beam/Beam.qml[816:13]: Cannot assign to non-existent property ""detailRowHeight"")]"
+claude-opus-5.5,proprietary,39,chunk_manifest_entry,passed after Checker fixes,fail,1,,accept,"own bar: Hyprland workspaces, Pipewire, UPower (lenient: not sibling Pill) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,40,chunk_component,failed checks,pass,0,reject,,"WifiSurface lacks the interface Pill assigns (s, open, morphCloseness, requestClose); fails when the wifi surface is opened (code-read, nmcli use otherwise real) [hw: could not run (candidate contains destructive commands: nmcli; skipped to stay non-destructive)]"
+claude-opus-5.5,proprietary,41,chunk_component,failed checks,pass,0,reject,,"Singletons/Plugins.qml lacks most of the API pix.bar calls (surfaceDisabled, capabilityFor, barEntryFor, setEnabled...); breaks the bar (code-read) [hw: failed (pix.bar/Singletons/StripLayout.qml[106:-1]: TypeError: Cannot read property 'length' of undefined)]"
+claude-opus-5.5,proprietary,45,chunk_manifest_entry,passed after Checker fixes,fail,1,,accept,"self-contained service via state files/hyprctl/wvkbd (lenient) [hw: could not run (candidate contains destructive commands: hyprctl reload, pkill; skipped to stay non-destructive)]"
+claude-opus-5.5,proprietary,46,chunk_add_kind:bar,failed checks,fail,2,,reject,"mode toggle only writes a state file, does not switch modes [hw: could not run (candidate contains destructive commands: pkill; skipped to stay non-destructive)]"
+claude-opus-5.5,proprietary,47,chunk_add_kind:service,failed checks,fail,1,,reject,"service only counts keyboards, never switches modes [hw: failed (surface.tablet/Bar.qml[130:-1]: TypeError: Cannot read property 'keyboardAvailable' of undefined)]"
+claude-opus-5.5,proprietary,48,chunk_add_kind:menu,failed checks,fail,3,,reject,"menu calls tablet.py toggle/tablet/desktop/keyboard/layout/dictate that real tablet.py lacks (real: daemon/status) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-opus-5.5,proprietary,49,chunk_component,failed checks,fail,2,,reject,"tablet.py lacks the 'daemon' mode (stdin/stdout JSON protocol) Service.qml starts (real: daemon/status); breaks the plugin [hw: could not run (candidate contains destructive commands: hyprctl"", ""reload; skipped to stay non-destructive)]"
+claude-opus-5.5,proprietary,50,chunk_component,passed after Checker fixes,fail,2,,accept,DesktopEntries app grid with service property (lenient: reads nonexistent service.tabletMode only) [hw: could not run (candidate contains destructive commands: pkill; skipped to stay non-destructive)]
+claude-opus-5.5,proprietary,51,fix_manifest:reserved_id,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+claude-opus-5.5,proprietary,52,fix_manifest:bad_path_dotdot,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+claude-opus-5.5,proprietary,53,fix_manifest:reserved_id,passed after Checker fixes,fail,2,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+claude-opus-5.5,proprietary,54,fix_manifest:bad_path_absolute,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+claude-opus-5.5,proprietary,55,fix_manifest:reserved_id,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+claude-sonnet-5.5,proprietary,0,build_from_spec,passed on first try,pass,0,accept,,follows ~/.config/omarchy/current/background with crossfade and click handling [hw: loaded OK with runtime warnings (QML QQuickImage* at acme.background/Service.qml[85:13]: Cannot open: file:///home/USER/)]
+claude-sonnet-5.5,proprietary,1,build_from_spec,failed checks,fail,1,,reject,"wallpapers list empty by default, nothing shown [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,2,build_from_spec,passed after Checker fixes,fail,1,,accept,"history.sh via wl-paste --watch, list/copy/delete, wtype paste [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,3,build_from_spec,passed after Checker fixes,fail,1,,accept,cliphist list/paste/wipe via scripts [hw: could not run (candidate contains destructive commands: sudo; skipped to stay non-destructive)]
+claude-sonnet-5.5,proprietary,4,build_from_spec,passed on first try,pass,0,accept,,"NotificationServer with popups, DND, history [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,5,build_from_spec,passed on first try,pass,0,accept,,"NotificationServer, popups, DND, history [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,6,build_from_spec,passed after Checker fixes,fail,1,,accept,"du/find on ~/Dropbox, login via xdg-open [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,7,build_from_spec,passed after Checker fixes,fail,2,,accept,"helper script status/usage/recent, login [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,8,add_panel,passed after Checker fixes,fail,1,,accept,"status script + start/login [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,9,build_from_spec,passed after Checker fixes,fail,1,,accept,"brightnessctl + hyprctl monitor toggle [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set, hyprctl keyword; skipped to stay non-destructive)]"
+claude-sonnet-5.5,proprietary,10,build_from_spec,passed after Checker fixes,fail,1,,accept,"brightnessctl, hyprsunset, dpms [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set, dpms, hyprsunset; skipped to stay non-destructive)]"
+claude-sonnet-5.5,proprietary,11,add_panel,passed after Checker fixes,fail,2,,accept,"brightnessctl real (lenient: brightness only) [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set; skipped to stay non-destructive)]"
+claude-sonnet-5.5,proprietary,12,build_from_spec,passed after Checker fixes,fail,2,,accept,"/sys battery, powerprofilesctl get/set, /proc stats [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,13,build_from_spec,passed after Checker fixes,fail,1,,accept,"/sys battery, powerprofilesctl, /proc [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,14,add_panel,failed checks,fail,1,,reject,"no data source, static UI [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,15,build_from_spec,passed after Checker fixes,fail,2,,accept,"speedtest.sh curl to speed.cloudflare.com [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,16,build_from_spec,passed after Checker fixes,fail,1,,accept,"real curl down/up cloudflare [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,17,build_from_spec,passed after Checker fixes,fail,1,,accept,"wttr.in j1 via curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,18,build_from_spec,passed after Checker fixes,fail,2,,accept,"wttr.in j1 via curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,19,add_panel,passed after Checker fixes,fail,1,,accept,"wttr.in via curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,20,build_from_spec,failed checks,fail,2,,reject,"hardcoded rotating verse list [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,21,build_from_spec,failed checks,fail,1,,reject,"endpoint empty by default [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,22,build_from_spec,failed checks,fail,2,,reject,"hardcoded verse list [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,23,add_panel,passed after Checker fixes,fail,1,,accept,"lenient: midvash.com votd API (unverified) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,24,build_from_spec,passed after Checker fixes,fail,1,,accept,"tm.sh real restic status/drives/backup/snapshots/restore [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,25,add_panel,passed after Checker fixes,fail,1,,accept,"restic snapshots/init/backup via destination file [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,26,build_from_spec,passed after Checker fixes,fail,1,,accept,"hyprctl binds -j, openlayer event -> notify [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,27,build_from_spec,passed after Checker fixes,fail,1,,accept,"Hyprland.toplevels hints + dispatch [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,28,build_from_spec,passed after Checker fixes,fail,1,,accept,"managed block markers in looknfeel.lua, hyprctl --batch preview [hw: could not run (candidate contains destructive commands: hyprctl reload; skipped to stay non-destructive)]"
+claude-sonnet-5.5,proprietary,29,build_from_spec,passed after Checker fixes,fail,2,,accept,"local ~/.local/share/intemporel/*.ics parsed, lenient (no remote) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,30,build_from_spec,passed after Checker fixes,fail,1,,accept,"hyprctl --batch gaps, getoption [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,31,build_from_spec,passed after Checker fixes,fail,1,,accept,ss listening ports + stop via kill [hw: loaded OK with runtime warnings (zeru.portwatch/BarWidget.qml[147:33]: Unable to assign [undefined] to QColor)]
+claude-sonnet-5.5,proprietary,36,chunk_manifest_entry,failed checks,fail,2,,reject,"63L stub, no apps or omarchy actions [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,37,chunk_component,failed checks,pass,0,reject,,"lib/menu.js lacks the API the real MenuSource.qml/Beam.qml call (parseMenuJsonc, mergeMenuSources, searchable, hintFor...); breaks Beam [hw: failed (dev.reuk.beam/services/MenuSource.qml[57:-1]: TypeError: Property 'searchable' of object [object Object] is no)]"
+claude-sonnet-5.5,proprietary,38,chunk_component,failed checks,pass,0,reject,,"SettingsView lacks properties Beam.qml assigns (store, jevStatus, foreground, rowHeight...); breaks Beam [hw: failed (dev.reuk.beam/Beam.qml[816:13]: Cannot assign to non-existent property ""detailRowHeight"")]"
+claude-sonnet-5.5,proprietary,39,chunk_manifest_entry,passed after Checker fixes,fail,2,,accept,"own bar with real Hyprland workspaces, clock, UPower (lenient: does not use sibling Pill) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,40,chunk_component,failed checks,pass,0,reject,,"WifiSurface lacks the interface Pill assigns (s, open, morphCloseness, requestClose); fails when the wifi surface is opened (code-read, nmcli use otherwise real) [hw: could not run (candidate contains destructive commands: nmcli; skipped to stay non-destructive)]"
+claude-sonnet-5.5,proprietary,41,chunk_component,failed checks,pass,0,reject,,"Singletons/Plugins.qml lacks most of the API pix.bar calls (surfaceDisabled, capabilityFor, barEntryFor, setEnabled...); breaks the bar (code-read) [hw: failed (pix.bar/Singletons/StripLayout.qml[106:-1]: TypeError: Cannot read property 'length' of undefined)]"
+claude-sonnet-5.5,proprietary,45,chunk_manifest_entry,passed after Checker fixes,fail,2,,accept,self-contained mode toggle + voxtype (lenient) [hw: could not run (candidate contains destructive commands: pkill; skipped to stay non-destructive)]
+claude-sonnet-5.5,proprietary,46,chunk_add_kind:bar,failed checks,pass,0,reject,,"wrote plugin.json not manifest.json; local boolean toggle [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,47,chunk_add_kind:service,failed checks,fail,1,,reject,"wrote plugin.json not manifest.json; keyboard watcher only [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,48,chunk_add_kind:menu,failed checks,fail,3,,reject,"wrote plugin.json not manifest.json [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+claude-sonnet-5.5,proprietary,49,chunk_component,failed checks,pass,0,reject,,"tablet.py lacks the 'daemon' mode (stdin/stdout JSON protocol) Service.qml starts (real: daemon/status); breaks the plugin [hw: could not run (candidate contains destructive commands: hyprctl"", ""reload; skipped to stay non-destructive)]"
+claude-sonnet-5.5,proprietary,50,chunk_component,failed checks,pass,0,reject,,"no `service` property, but Bar.qml assigns HomeContent { service: ... }; fails to instantiate [hw: failed (surface.tablet/Bar.qml[242:52]: Cannot assign to non-existent property ""service"")]"
+claude-sonnet-5.5,proprietary,51,fix_manifest:reserved_id,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+claude-sonnet-5.5,proprietary,52,fix_manifest:bad_path_dotdot,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+claude-sonnet-5.5,proprietary,53,fix_manifest:reserved_id,failed checks,fail,,,,
+claude-sonnet-5.5,proprietary,54,fix_manifest:bad_path_absolute,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+claude-sonnet-5.5,proprietary,55,fix_manifest:reserved_id,failed checks,fail,2,,reject,changed author besides the id [hw: could not run (manifest-only row; upstream entry files absent)]
+gemini-3.1-pro,proprietary,0,build_from_spec,no usable code,fail,,,,
+gemini-3.1-pro,proprietary,1,build_from_spec,failed checks,fail,1,,reject,"click handlers console.log only [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,2,build_from_spec,no usable code,fail,,,,
+gemini-3.1-pro,proprietary,3,build_from_spec,failed checks,fail,2,,reject,"mock hardcoded ListElements, console.log copy [hw: could not run (candidate contains destructive commands: rm -rf, sudo; skipped to stay non-destructive)]"
+gemini-3.1-pro,proprietary,4,build_from_spec,failed checks,pass,0,reject,,"holds untracked notification objects, no auto-expire, no history view [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,5,build_from_spec,failed checks,fail,2,,reject,"invented onNotificationAdded handler, notifications untracked [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,6,build_from_spec,no usable code,fail,,,,
+gemini-3.1-pro,proprietary,7,build_from_spec,failed checks,fail,2,,reject,"no login at all; only df and ls [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,8,add_panel,no usable code,fail,,,,
+gemini-3.1-pro,proprietary,9,build_from_spec,failed checks,fail,3,,reject,"slider writes hard-set 75% on load, no laptop display controls [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set; skipped to stay non-destructive)]"
+gemini-3.1-pro,proprietary,10,build_from_spec,failed checks,fail,3,,reject,"wlr-randr (not on Omarchy) with hardcoded eDP-1 for display toggle [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set, wlr-randr; skipped to stay non-destructive)]"
+gemini-3.1-pro,proprietary,11,add_panel,failed checks,fail,1,,reject,"no brightness binding at all, static UI [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,12,build_from_spec,failed checks,fail,2,,reject,"hardcoded values (85%, 14% cpu) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,13,build_from_spec,failed checks,fail,2,,reject,"static widget, no data source [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,14,add_panel,failed checks,fail,1,,reject,"no data source [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,15,build_from_spec,no usable code,fail,,,,
+gemini-3.1-pro,proprietary,16,build_from_spec,no usable code,fail,,,,
+gemini-3.1-pro,proprietary,17,build_from_spec,no usable code,fail,,,,
+gemini-3.1-pro,proprietary,18,build_from_spec,no usable code,fail,,,,
+gemini-3.1-pro,proprietary,19,add_panel,failed checks,fail,2,,reject,"no data source [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,20,build_from_spec,passed after Checker fixes,fail,2,,accept,"lenient: real verse API OurManna [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,21,build_from_spec,passed after Checker fixes,fail,2,,accept,"lenient: real verse API labs.bible.org [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,22,build_from_spec,failed checks,fail,2,,reject,"fixed static passage (Psalm 119:105), not verse of the day [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,23,add_panel,passed after Checker fixes,fail,2,,accept,"lenient: midvash.com votd API [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,24,build_from_spec,failed checks,fail,2,,reject,"mock hardcoded snapshots, random ids [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,25,add_panel,failed checks,fail,2,,reject,"hardcoded snapshot ListElements [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,26,build_from_spec,failed checks,fail,1,,reject,"only a bindings lookup singleton, nothing watches the menu or shows a hint [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,27,build_from_spec,failed checks,pass,0,reject,,"mock window hints, console.log key capture [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,28,build_from_spec,no usable code,fail,,,,
+gemini-3.1-pro,proprietary,29,build_from_spec,failed checks,fail,1,,reject,"mock hardcoded iCal string [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,30,build_from_spec,failed checks,fail,1,,reject,"only writes own json config, nothing changes the bar [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,31,build_from_spec,no usable code,fail,,,,
+gemini-3.1-pro,proprietary,36,chunk_manifest_entry,failed checks,fail,2,,reject,"97L stub, no app/action sources [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,37,chunk_component,failed checks,pass,0,reject,,"lib/menu.js lacks the API the real MenuSource.qml/Beam.qml call (parseMenuJsonc, mergeMenuSources, searchable, hintFor...); breaks Beam [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,38,chunk_component,failed checks,fail,1,,reject,"SettingsView lacks properties Beam.qml assigns (store, jevStatus, foreground, rowHeight...); breaks Beam [hw: failed (dev.reuk.beam/Beam.qml[817:13]: Cannot assign to non-existent property ""onCloseRequested"")]"
+gemini-3.1-pro,proprietary,39,chunk_manifest_entry,failed checks,fail,2,,reject,"stub shows Initializing... [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,40,chunk_component,failed checks,fail,3,,reject,"WifiSurface lacks the interface Pill assigns (s, open, morphCloseness, requestClose); fails when the wifi surface is opened (code-read, nmcli use otherwise real) [hw: failed (pix.bar/surfaces/WifiSurface.qml[20:9]: Cannot assign to non-existent property ""icon"")]"
+gemini-3.1-pro,proprietary,41,chunk_component,failed checks,fail,3,,reject,"Singletons/Plugins.qml lacks most of the API pix.bar calls (surfaceDisabled, capabilityFor, barEntryFor, setEnabled...); breaks the bar (code-read) [hw: failed (pix.bar/Singletons/StripLayout.qml[106:-1]: TypeError: Cannot read property 'length' of undefined)]"
+gemini-3.1-pro,proprietary,45,chunk_manifest_entry,failed checks,fail,,,,
+gemini-3.1-pro,proprietary,46,chunk_add_kind:bar,failed checks,fail,1,,reject,"local boolean toggle, clock only [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,47,chunk_add_kind:service,failed checks,fail,1,,reject,calls invented tablet.py --monitor (real: daemon/status) [hw: failed (surface.tablet/Bar.qml[130:-1]: TypeError: Cannot read property 'keyboardAvailable' of undefined)]
+gemini-3.1-pro,proprietary,48,chunk_add_kind:menu,failed checks,fail,3,,reject,"calls invented tablet.py --toggle-keyboard/--dictation [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,49,chunk_component,failed checks,pass,0,reject,,tablet.py lacks the 'daemon' mode (stdin/stdout JSON protocol) Service.qml starts (real: daemon/status); breaks the plugin [hw: could not run (candidate contains destructive commands: pkill; skipped to stay non-destructive)]
+gemini-3.1-pro,proprietary,50,chunk_component,failed checks,fail,2,,reject,"calls invented service.launchApp [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-3.1-pro,proprietary,51,fix_manifest:reserved_id,passed after Checker fixes,fail,3,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+gemini-3.1-pro,proprietary,52,fix_manifest:bad_path_dotdot,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+gemini-3.1-pro,proprietary,53,fix_manifest:reserved_id,passed after Checker fixes,fail,3,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+gemini-3.1-pro,proprietary,54,fix_manifest:bad_path_absolute,passed after Checker fixes,fail,3,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+gemini-3.1-pro,proprietary,55,fix_manifest:reserved_id,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+gemini-4-argon,proprietary,0,build_from_spec,failed checks,fail,2,,reject,currentWallpaper empty and nothing sets it [hw: failed (acme.background/Service.qml[10:-1]: ReferenceError: Theme is not defined)]
+gemini-4-argon,proprietary,1,build_from_spec,failed checks,fail,2,,reject,"source from empty cfg, typeof guards on pluginApi [hw: failed (acme.background/Service.qml[53:-1]: ReferenceError: Theme is not defined)]"
+gemini-4-argon,proprietary,2,build_from_spec,failed checks,fail,2,,reject,"close relies on invented pluginApi.closeOverlay/close behind typeof guards [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,3,build_from_spec,passed on first try,pass,0,accept,,"cliphist list/decode, wl-paste fallback [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,4,build_from_spec,failed checks,fail,1,,reject,"state only, no popup window rendered [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,5,build_from_spec,failed checks,fail,1,,reject,"no popup window; uses invented pluginApi.settings [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,6,build_from_spec,passed after Checker fixes,fail,1,,accept,"local dropbox status/pgrep plus optional OAuth (lenient: default app key looks invented) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,7,build_from_spec,failed checks,fail,3,,reject,"needs Dropbox developer App Key in settings; shows nothing out of the box [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,8,add_panel,passed after Checker fixes,fail,1,,accept,"dropbox CLI start, local panel [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,9,build_from_spec,passed after Checker fixes,fail,1,,accept,"brightnessctl, hyprsunset, hyprctl monitor [hw: could not run (candidate contains destructive commands: brightnessctl set, dpms, hyprctl keyword; skipped to stay non-destructive)]"
+gemini-4-argon,proprietary,10,build_from_spec,passed after Checker fixes,fail,3,,accept,"brightnessctl, hyprctl monitor toggle [hw: could not run (candidate contains destructive commands: brightnessctl"", ""-q"", ""set; skipped to stay non-destructive)]"
+gemini-4-argon,proprietary,11,add_panel,passed after Checker fixes,fail,1,,accept,"brightnessctl, hyprsunset, dpms [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set, dpms, hyprsunset; skipped to stay non-destructive)]"
+gemini-4-argon,proprietary,12,build_from_spec,failed checks,fail,2,,reject,"UPower battery + profile but no system stats [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,13,build_from_spec,failed checks,fail,2,,reject,"UPower battery only, no profile/real stats [hw: loaded OK with runtime warnings (acme.power/BarWidget.qml[14:5]: Unable to assign [undefined] to bool)]"
+gemini-4-argon,proprietary,14,add_panel,passed after Checker fixes,fail,1,,accept,"UPower, powerprofilesctl, /proc [hw: loaded OK with runtime warnings (acme.power/Panel.qml[14:5]: Unable to assign [undefined] to bool)]"
+gemini-4-argon,proprietary,15,build_from_spec,passed on first try,pass,0,accept,,"real curl download test (typeof guards cosmetic) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,16,build_from_spec,passed after Checker fixes,fail,1,,accept,"real curl speed test with dial (pluginApi guard only for bar button) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,17,build_from_spec,passed after Checker fixes,fail,1,,accept,"wttr.in j1 via curl, settings optional [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,18,build_from_spec,passed after Checker fixes,fail,1,,accept,"wttr.in via curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,19,add_panel,failed checks,fail,2,,reject,"no data fetch at all [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,20,build_from_spec,passed after Checker fixes,fail,1,,accept,"lenient: fetches from midvash.vercel.app (endpoint unverified) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,21,build_from_spec,failed checks,fail,,,,
+gemini-4-argon,proprietary,22,build_from_spec,passed after Checker fixes,fail,1,,accept,"lenient: OurManna daily API with fallback list [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,23,add_panel,failed checks,fail,,,,
+gemini-4-argon,proprietary,24,build_from_spec,passed after Checker fixes,fail,1,,accept,"real restic backup/snapshots (lenient: fabricates local snapshot entry after backup; /tmp default repo) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,25,add_panel,passed after Checker fixes,fail,1,,accept,"restic snapshots/backup/restore window (lenient) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,26,build_from_spec,passed after Checker fixes,fail,1,,accept,"hyprctl binds -j with notify-send hints [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,27,build_from_spec,passed after Checker fixes,fail,1,,accept,"hyprctl clients -j hints + dispatch (lenient) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,28,build_from_spec,passed after Checker fixes,fail,2,,accept,"omaland.py writes looknfeel block, hyprctl --batch preview [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,29,build_from_spec,passed after Checker fixes,fail,1,,accept,"ics file fetch + parser clock/calendar [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,30,build_from_spec,passed after Checker fixes,fail,2,,accept,"hyprctl gaps_out keyword with restore (lenient: Settings typeof guard) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,31,build_from_spec,passed after Checker fixes,fail,1,,accept,"ss -tulpnH, kill, open/copy URL [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,36,chunk_manifest_entry,failed checks,fail,1,,reject,"imports qs.Commons/qs.Ui (not in Omarchy shell); invented imports [hw: could not run (candidate contains destructive commands: hyprctl"", ""reload, loginctl, poweroff; skipped to stay non-destructive)]"
+gemini-4-argon,proprietary,37,chunk_component,failed checks,pass,0,reject,,"lib/menu.js lacks the API the real MenuSource.qml/Beam.qml call (parseMenuJsonc, mergeMenuSources, searchable, hintFor...); breaks Beam [hw: could not run (candidate contains destructive commands: reboot, shutdown, suspend; skipped to stay non-destructive)]"
+gemini-4-argon,proprietary,38,chunk_component,failed checks,fail,1,,reject,"SettingsView lacks properties Beam.qml assigns (store, jevStatus, foreground, rowHeight...); breaks Beam [hw: failed (dev.reuk.beam/Beam.qml[816:13]: Cannot assign to non-existent property ""detailRowHeight"")]"
+gemini-4-argon,proprietary,39,chunk_manifest_entry,passed after Checker fixes,fail,1,,accept,"bar shell hosting Pill per screen (pending hw) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,40,chunk_component,failed checks,fail,3,,reject,"WifiSurface lacks the interface Pill assigns (s, open, morphCloseness, requestClose); fails when the wifi surface is opened (code-read, nmcli use otherwise real) [hw: could not run (candidate contains destructive commands: nmcli; skipped to stay non-destructive)]"
+gemini-4-argon,proprietary,41,chunk_component,failed checks,fail,1,,reject,"Singletons/Plugins.qml lacks most of the API pix.bar calls (surfaceDisabled, capabilityFor, barEntryFor, setEnabled...); breaks the bar (code-read) [hw: failed (pix.bar/Singletons/StripLayout.qml[106:-1]: TypeError: Cannot read property 'length' of undefined)]"
+gemini-4-argon,proprietary,45,chunk_manifest_entry,failed checks,fail,3,,reject,"calls tablet.py subcommands toggle/toggle-home that real tablet.py lacks (real: daemon/status) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,46,chunk_add_kind:bar,failed checks,fail,3,,reject,invented pluginApi.mainInstance / service methods behind typeof guards [hw: failed (surface.tablet/Bar.qml[25:29]: Cannot assign a value to a signal (expecting a script to be run))]
+gemini-4-argon,proprietary,47,chunk_add_kind:service,failed checks,fail,3,,reject,relies on invented pluginApi [hw: failed (surface.tablet/Bar.qml[130:-1]: TypeError: Cannot read property 'keyboardAvailable' of undefined)]
+gemini-4-argon,proprietary,48,chunk_add_kind:menu,failed checks,fail,1,,reject,"invented tablet.py subcommands (toggle/home/switcher...) and pluginApi [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,49,chunk_component,failed checks,pass,0,reject,,"tablet.py lacks the 'daemon' mode (stdin/stdout JSON protocol) Service.qml starts (real: daemon/status); breaks the plugin [hw: could not run (candidate contains destructive commands: hyprctl reload, hyprctl(""reload, pkill; skipped to stay non-destructive)]"
+gemini-4-argon,proprietary,50,chunk_component,failed checks,fail,1,,reject,"no `service` property, but Bar.qml assigns HomeContent { service: ... }; fails to instantiate [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gemini-4-argon,proprietary,51,fix_manifest:reserved_id,failed checks,pass,0,reject,,changed entryPoints key barWidget -> bar-widget besides the id [hw: could not run (manifest-only row; upstream entry files absent)]
+gemini-4-argon,proprietary,52,fix_manifest:bad_path_dotdot,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+gemini-4-argon,proprietary,53,fix_manifest:reserved_id,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+gemini-4-argon,proprietary,54,fix_manifest:bad_path_absolute,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+gemini-4-argon,proprietary,55,fix_manifest:reserved_id,failed checks,fail,2,,reject,changed entryPoints key and author besides the id [hw: could not run (manifest-only row; upstream entry files absent)]
+gpt-5.6-sol,proprietary,0,build_from_spec,failed checks,pass,0,reject,,"wallpaper list only from env var; empty default shows nothing [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,1,build_from_spec,failed checks,pass,0,reject,,"shows bundled placeholder svg, not Omarchy background [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,2,build_from_spec,passed after Checker fixes,fail,2,,accept,"wl-paste poll history, wl-copy + wtype/ydotool paste [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,3,build_from_spec,passed on first try,pass,0,accept,,"wl-paste/wl-copy history with wtype paste [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,4,build_from_spec,passed after Checker fixes,fail,1,,accept,"NotificationServer tracked, popups, DND, persisted history [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,5,build_from_spec,passed after Checker fixes,fail,1,,accept,"NotificationServer, popups per screen, DND, history [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,6,build_from_spec,passed after Checker fixes,fail,2,,accept,"dropboxctl.py local info.json/du plus API, login link [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,7,build_from_spec,failed checks,fail,1,,reject,"dropbox-info.py reads info.json/local files, login/install links [hw: failed (acme.dropbox/BarWidget.qml[48:-1]: TypeError: Cannot assign to read-only property ""text"")]"
+gpt-5.6-sol,proprietary,8,add_panel,passed on first try,pass,0,accept,,"local info.json/du panel, install link [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,9,build_from_spec,passed after Checker fixes,fail,1,,accept,brightness + hyprctl display toggle [hw: loaded OK with runtime warnings (acme.monitor/qml/DisplayWidget.qml[378:13]: Unable to assign [undefined] to QColor)]
+gpt-5.6-sol,proprietary,10,build_from_spec,passed after Checker fixes,fail,1,,accept,brightness + hyprctl display controls [hw: could not run (candidate contains destructive commands: dpms; skipped to stay non-destructive)]
+gpt-5.6-sol,proprietary,11,add_panel,passed on first try,pass,0,accept,,"brightnessctl read/set (lenient: no display toggle) [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set; skipped to stay non-destructive)]"
+gpt-5.6-sol,proprietary,12,build_from_spec,passed after Checker fixes,fail,1,,accept,"/sys battery, powerprofilesctl, /proc stats [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,13,build_from_spec,passed after Checker fixes,fail,1,,accept,"/sys battery, powerprofilesctl, /proc/thermal [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,14,add_panel,passed on first try,pass,0,accept,,"/sys battery, /proc stats panel [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,15,build_from_spec,passed on first try,pass,0,accept,,"real curl cloudflare __down/__up [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,16,build_from_spec,passed on first try,pass,0,accept,,"real curl cloudflare [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,17,build_from_spec,passed after Checker fixes,fail,1,,accept,"wttr.in j1 via XMLHttpRequest [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,18,build_from_spec,passed after Checker fixes,fail,1,,accept,"wttr.in via XHR [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,19,add_panel,passed after Checker fixes,fail,1,,accept,"wttr.in via XHR [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,20,build_from_spec,no usable code,fail,,,,
+gpt-5.6-sol,proprietary,21,build_from_spec,no usable code,fail,,,,
+gpt-5.6-sol,proprietary,22,build_from_spec,no usable code,fail,,,,
+gpt-5.6-sol,proprietary,23,add_panel,passed on first try,pass,0,accept,,"lenient: api.midvash.com votd via XHR (unverified) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,24,build_from_spec,passed after Checker fixes,fail,1,,accept,control.sh restic backup/snapshots/restore with systemd timer [hw: could not run (candidate contains destructive commands: systemctl; skipped to stay non-destructive)]
+gpt-5.6-sol,proprietary,25,add_panel,passed on first try,pass,0,accept,,"restic repository dialogs + backup/snapshots [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,26,build_from_spec,passed on first try,pass,0,accept,,hyprctl binds -j + cursorpos hint [hw: could not run (candidate contains destructive commands: poweroff; skipped to stay non-destructive)]
+gpt-5.6-sol,proprietary,27,build_from_spec,passed after Checker fixes,fail,1,,accept,"hyprctl clients/monitors hints + dispatch [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,28,build_from_spec,passed after Checker fixes,fail,1,,accept,"omaland.py read/write/watch + hyprctl --batch [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,29,build_from_spec,passed after Checker fixes,fail,1,,accept,"bin/ical.py reads configured sources [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,30,build_from_spec,failed checks,fail,1,,reject,"persists a bar height state, no effect on bar [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,31,build_from_spec,passed after Checker fixes,fail,2,,accept,"scan.py via /proc + ss, stop [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,36,chunk_manifest_entry,passed after Checker fixes,fail,1,,accept,"Beam.qml with bin/beam.py maths/units, web shortcuts, URLs [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,37,chunk_component,failed checks,pass,0,reject,,"lib/menu.js lacks the API the real MenuSource.qml/Beam.qml call (parseMenuJsonc, mergeMenuSources, searchable, hintFor...); breaks Beam [hw: failed (dev.reuk.beam/services/MenuSource.qml[57:-1]: TypeError: Property 'searchable' of object [object Object] is no)]"
+gpt-5.6-sol,proprietary,38,chunk_component,failed checks,pass,0,reject,,"SettingsView lacks properties Beam.qml assigns (store, jevStatus, foreground, rowHeight...); breaks Beam [hw: failed (dev.reuk.beam/Beam.qml[817:13]: Cannot assign to non-existent property ""onCloseRequested"")]"
+gpt-5.6-sol,proprietary,39,chunk_manifest_entry,passed after Checker fixes,fail,1,,accept,"own bar with SystemClock, battery/network processes (lenient: not sibling Pill) [hw: could not run (candidate contains destructive commands: nmcli; skipped to stay non-destructive)]"
+gpt-5.6-sol,proprietary,40,chunk_component,failed checks,pass,0,reject,,"WifiSurface lacks the interface Pill assigns (s, open, morphCloseness, requestClose); fails when the wifi surface is opened (code-read, nmcli use otherwise real) [hw: could not run (candidate contains destructive commands: nmcli; skipped to stay non-destructive)]"
+gpt-5.6-sol,proprietary,41,chunk_component,failed checks,fail,2,,reject,"Singletons/Plugins.qml lacks most of the API pix.bar calls (surfaceDisabled, capabilityFor, barEntryFor, setEnabled...); breaks the bar (code-read) [hw: failed (pix.bar/Singletons/StripLayout.qml[106:-1]: TypeError: Cannot read property 'length' of undefined)]"
+gpt-5.6-sol,proprietary,45,chunk_manifest_entry,passed after Checker fixes,fail,3,,accept,"own implementation via hyprctl/state, no invented tablet.py CLI (lenient) [hw: could not run (candidate contains destructive commands: hyprctl keyword, pkill; skipped to stay non-destructive)]"
+gpt-5.6-sol,proprietary,46,chunk_add_kind:bar,failed checks,pass,0,reject,,"wrote omarchy-plugin.json not manifest.json; bar is just a clock [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,47,chunk_add_kind:service,passed after Checker fixes,fail,2,,accept,"self-contained TabletController + own helper tablet.py status/tablet/desktop (lenient) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,48,chunk_add_kind:menu,failed checks,fail,2,,reject,"menu only writes a state file + notify-send [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+gpt-5.6-sol,proprietary,49,chunk_component,failed checks,pass,0,reject,,"tablet.py lacks the 'daemon' mode (stdin/stdout JSON protocol) Service.qml starts (real: daemon/status); breaks the plugin [hw: could not run (candidate contains destructive commands: dpms, hyprctl((""reload, systemctl; skipped to stay non-destructive)]"
+gpt-5.6-sol,proprietary,50,chunk_component,failed checks,fail,1,,reject,"calls service methods that don't exist (setTabletMode/toggleKeyboard/showKeyboard) on the real Service [hw: could not run (candidate contains destructive commands: loginctl, poweroff, reboot; skipped to stay non-destructive)]"
+gpt-5.6-sol,proprietary,51,fix_manifest:reserved_id,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+gpt-5.6-sol,proprietary,52,fix_manifest:bad_path_dotdot,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+gpt-5.6-sol,proprietary,53,fix_manifest:reserved_id,failed checks,fail,2,,reject,moved all entry points to qml/ paths besides the id change [hw: could not run (manifest-only row; upstream entry files absent)]
+gpt-5.6-sol,proprietary,54,fix_manifest:bad_path_absolute,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+gpt-5.6-sol,proprietary,55,fix_manifest:reserved_id,failed checks,fail,2,,reject,changed version besides the id [hw: could not run (manifest-only row; upstream entry files absent)]
+grok-4.7,proprietary,0,build_from_spec,failed checks,fail,1,,reject,"hardcoded placeholder ~/Pictures/Wallpapers/01-03.jpg, not Omarchy background [hw: loaded OK with runtime warnings (QML QQuickImage at acme.background/BackgroundService.qml[111:13]: Cannot open: file:///hom)]"
+grok-4.7,proprietary,1,build_from_spec,no usable code,fail,,,,
+grok-4.7,proprietary,2,build_from_spec,passed after Checker fixes,fail,1,,accept,"wl-paste poll with persisted history file, wl-copy [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,3,build_from_spec,passed after Checker fixes,fail,2,,accept,"wl-paste history file, wl-copy [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,4,build_from_spec,passed after Checker fixes,fail,1,,accept,"NotificationServer, popups, DND, history [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,5,build_from_spec,passed after Checker fixes,fail,1,,accept,"NotificationServer daemon with copied fields, popups overlay, DND, history [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,6,build_from_spec,passed after Checker fixes,fail,2,,accept,"status.py reads ~/.dropbox/info.json, statvfs, recent files, login [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,7,build_from_spec,passed after Checker fixes,fail,3,,accept,"pgrep + ~/.dropbox/info.json, recent files, login [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,8,add_panel,passed after Checker fixes,fail,1,,accept,"local scan panel, login link [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,9,build_from_spec,passed after Checker fixes,fail,2,,accept,"brightnessctl -m, hyprctl dpms [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set, dpms, hyprsunset; skipped to stay non-destructive)]"
+grok-4.7,proprietary,10,build_from_spec,passed after Checker fixes,fail,2,,accept,"brightnessctl real (lenient: brightness only, no display toggle) [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set; skipped to stay non-destructive)]"
+grok-4.7,proprietary,11,add_panel,passed on first try,pass,0,accept,,"brightnessctl, hyprsunset via hyprctl [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set, hyprsunset; skipped to stay non-destructive)]"
+grok-4.7,proprietary,12,build_from_spec,passed after Checker fixes,fail,3,,accept,"battery, profile, /proc stats [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,13,build_from_spec,passed after Checker fixes,fail,1,,accept,"battery/proc/powerprofilesctl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,14,add_panel,passed after Checker fixes,fail,1,,accept,"UPower, powerprofilesctl, /proc/stat [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,15,build_from_spec,passed on first try,pass,0,accept,,"real curl down/up with ping [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,16,build_from_spec,passed after Checker fixes,fail,1,,accept,"real curl down/up [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,17,build_from_spec,passed after Checker fixes,fail,3,,accept,"wttr.in via XHR [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,18,build_from_spec,passed after Checker fixes,fail,3,,accept,"open-meteo geocoding + forecast [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,19,add_panel,passed after Checker fixes,fail,1,,accept,"open-meteo forecast (default NYC coords) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,20,build_from_spec,no usable code,fail,,,,
+grok-4.7,proprietary,21,build_from_spec,passed after Checker fixes,fail,2,,accept,"lenient: real verse API OurManna daily [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,22,build_from_spec,failed checks,fail,2,,reject,"hardcoded verse list by day of year [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,23,add_panel,passed after Checker fixes,fail,1,,accept,"lenient: midvash.com votd via XHR with fallback [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,24,build_from_spec,passed after Checker fixes,fail,3,,accept,"restic backup/snapshots/restore popup [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,25,add_panel,no usable code,fail,,,,
+grok-4.7,proprietary,26,build_from_spec,passed after Checker fixes,fail,2,,accept,"hyprctl binds -j, layer-open hints [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,27,build_from_spec,passed after Checker fixes,fail,1,,accept,"Hyprland.toplevels hints + dispatch [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,28,build_from_spec,passed after Checker fixes,fail,1,,accept,"write_look.py managed block + live hyprctl batch [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,29,build_from_spec,passed after Checker fixes,fail,3,,accept,"finds ics files, parser, panel [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,30,build_from_spec,failed checks,fail,1,,reject,"typeof Bar/Shell guards for nonexistent objects, no commands [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,31,build_from_spec,passed after Checker fixes,fail,1,,accept,"ss -lntup, kill popup [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,36,chunk_manifest_entry,failed checks,fail,1,,reject,"hardcoded apps/actions arrays, no DesktopEntries [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,37,chunk_component,no usable code,fail,,,,
+grok-4.7,proprietary,38,chunk_component,failed checks,fail,3,,reject,"SettingsView lacks properties Beam.qml assigns (store, jevStatus, foreground, rowHeight...); breaks Beam [hw: failed (dev.reuk.beam/Beam.qml[817:13]: Cannot assign to non-existent property ""onCloseRequested"")]"
+grok-4.7,proprietary,39,chunk_manifest_entry,failed checks,fail,1,,reject,"island shows only clock and static Hyprland text [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,40,chunk_component,failed checks,fail,1,,reject,"WifiSurface lacks the interface Pill assigns (s, open, morphCloseness, requestClose); fails when the wifi surface is opened (code-read, nmcli use otherwise real) [hw: could not run (candidate contains destructive commands: nmcli; skipped to stay non-destructive)]"
+grok-4.7,proprietary,41,chunk_component,no usable code,fail,,,,
+grok-4.7,proprietary,45,chunk_manifest_entry,no usable code,fail,,,,
+grok-4.7,proprietary,46,chunk_add_kind:bar,failed checks,fail,1,,reject,"wrote plugin.json; invented Shell.pluginServiceFor behind typeof guards [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,47,chunk_add_kind:service,failed checks,fail,2,,reject,"wrote plugin.json; invented tablet.py set-mode [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,48,chunk_add_kind:menu,failed checks,fail,1,,reject,"wrote plugin.json; tablet.py status/exited invented use [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+grok-4.7,proprietary,49,chunk_component,failed checks,fail,1,,reject,tablet.py lacks the 'daemon' mode (stdin/stdout JSON protocol) Service.qml starts (real: daemon/status); breaks the plugin [hw: could not run (candidate contains destructive commands: pkill; skipped to stay non-destructive)]
+grok-4.7,proprietary,50,chunk_component,failed checks,fail,2,,reject,"no `service` property, but Bar.qml assigns HomeContent { service: ... }; fails to instantiate [hw: failed (surface.tablet/Bar.qml[242:52]: Cannot assign to non-existent property ""service"")]"
+grok-4.7,proprietary,51,fix_manifest:reserved_id,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+grok-4.7,proprietary,52,fix_manifest:bad_path_dotdot,failed checks,fail,3,,reject,changed id pix.bar -> pixllbeat.better-bar (rest should be unchanged) [hw: could not run (manifest-only row; upstream entry files absent)]
+grok-4.7,proprietary,53,fix_manifest:reserved_id,passed after Checker fixes,fail,3,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+grok-4.7,proprietary,54,fix_manifest:bad_path_absolute,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+grok-4.7,proprietary,55,fix_manifest:reserved_id,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+muse-wonder,proprietary,0,build_from_spec,failed checks,fail,2,,reject,"random from ~/Pictures/Wallpapers via find, not Omarchy current background; empty out of box [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,1,build_from_spec,failed checks,fail,1,,reject,"find in ~/Pictures/Wallpapers, not Omarchy background [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,2,build_from_spec,passed on first try,pass,0,accept,,"cliphist list/wipe, real UI [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,3,build_from_spec,passed after Checker fixes,fail,1,,accept,"wl-paste history + wl-copy [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,4,build_from_spec,passed on first try,pass,0,accept,,"NotificationServer, popups, persisted DND/history [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,5,build_from_spec,passed on first try,pass,0,accept,,"NotificationServer, popups, persisted DND/history [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,6,build_from_spec,passed after Checker fixes,fail,1,,accept,"helper script for status/usage/recent, login link [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,7,build_from_spec,passed after Checker fixes,fail,2,,accept,"helper script status/usage/recent + login [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,8,add_panel,passed after Checker fixes,fail,1,,accept,"status/usage/recent panel, login link [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,9,build_from_spec,passed after Checker fixes,fail,1,,accept,"brightnessctl -m/set, hyprctl monitors -j toggle [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set; skipped to stay non-destructive)]"
+muse-wonder,proprietary,10,build_from_spec,passed after Checker fixes,fail,1,,accept,"brightnessctl + hyprctl monitor toggle/mirror [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set, hyprctl keyword; skipped to stay non-destructive)]"
+muse-wonder,proprietary,11,add_panel,passed after Checker fixes,fail,1,,accept,"brightnessctl + hyprctl monitors toggle [hw: could not run (candidate contains destructive commands: brightnessctl set, brightnessctl"", ""set; skipped to stay non-destructive)]"
+muse-wonder,proprietary,12,build_from_spec,passed after Checker fixes,fail,2,,accept,"stats.sh battery/proc, powerprofilesctl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,13,build_from_spec,passed after Checker fixes,fail,2,,accept,"sys battery, powerprofilesctl, /proc [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,14,add_panel,passed on first try,pass,0,accept,,"UPower panel with stats [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,15,build_from_spec,passed on first try,pass,0,accept,,"speedtest.sh real curl; lenient: needle jitter random during run [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,16,build_from_spec,passed after Checker fixes,fail,1,,accept,"speedtest.sh real curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,17,build_from_spec,passed after Checker fixes,fail,1,,accept,"wttr.in via curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,18,build_from_spec,passed after Checker fixes,fail,1,,accept,"open-meteo real data (default Berlin coordinates) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,19,add_panel,passed after Checker fixes,fail,1,,accept,"open-meteo (default Berlin coords) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,20,build_from_spec,failed checks,fail,1,,reject,"bundled hardcoded verse list [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,21,build_from_spec,failed checks,fail,1,,reject,"bundled hardcoded verses.js [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,22,build_from_spec,failed checks,fail,1,,reject,"bundled hardcoded verses [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,23,add_panel,passed on first try,pass,0,accept,,"lenient: api.midvash.com verse-of-the-day [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,24,build_from_spec,passed after Checker fixes,fail,1,,accept,"time-machine.sh restic + lsblk destinations + systemd timer [hw: could not run (candidate contains destructive commands: sudo, systemctl; skipped to stay non-destructive)]"
+muse-wonder,proprietary,25,add_panel,passed after Checker fixes,fail,1,,accept,"restic with destination picker [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,26,build_from_spec,passed on first try,pass,0,accept,,"hyprctl binds -j with persisted state [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,27,build_from_spec,passed on first try,pass,0,accept,,"hyprctl clients hints + dispatch [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,28,build_from_spec,passed on first try,pass,0,accept,,"omaland.py managed block + live preview [hw: could not run (candidate contains destructive commands: hyprctl keyword, reboot; skipped to stay non-destructive)]"
+muse-wonder,proprietary,29,build_from_spec,passed after Checker fixes,fail,2,,accept,"calendars.json sources via FileView/XHR (lenient: empty until configured) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,30,build_from_spec,failed checks,pass,0,reject,,"object-tree walk for objects named bar; unverifiable in plugin sandbox [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,31,build_from_spec,passed after Checker fixes,fail,1,,accept,"ss -tulnp, kill [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,36,chunk_manifest_entry,failed checks,fail,2,,reject,"hardcoded apps catalogue [hw: could not run (candidate contains destructive commands: loginctl, reboot, shutdown; skipped to stay non-destructive)]"
+muse-wonder,proprietary,37,chunk_component,failed checks,pass,0,reject,,"lib/menu.js lacks the API the real MenuSource.qml/Beam.qml call (parseMenuJsonc, mergeMenuSources, searchable, hintFor...); breaks Beam [hw: could not run (candidate contains destructive commands: hyprsunset, poweroff, reboot; skipped to stay non-destructive)]"
+muse-wonder,proprietary,38,chunk_component,failed checks,pass,0,reject,,"SettingsView lacks properties Beam.qml assigns (store, jevStatus, foreground, rowHeight...); breaks Beam [hw: failed (dev.reuk.beam/Beam.qml[817:13]: Cannot assign to non-existent property ""onCloseRequested"")]"
+muse-wonder,proprietary,39,chunk_manifest_entry,passed after Checker fixes,fail,2,,accept,"bar shell using sibling Pill [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,40,chunk_component,failed checks,pass,0,reject,,"WifiSurface lacks the interface Pill assigns (s, open, morphCloseness, requestClose); fails when the wifi surface is opened (code-read, nmcli use otherwise real) [hw: could not run (candidate contains destructive commands: nmcli; skipped to stay non-destructive)]"
+muse-wonder,proprietary,41,chunk_component,failed checks,pass,0,reject,,"Singletons/Plugins.qml lacks most of the API pix.bar calls (surfaceDisabled, capabilityFor, barEntryFor, setEnabled...); breaks the bar (code-read) [hw: failed (pix.bar/Singletons/StripLayout.qml[106:-1]: TypeError: Cannot read property 'length' of undefined)]"
+muse-wonder,proprietary,45,chunk_manifest_entry,passed after Checker fixes,fail,2,,accept,"rewrites tablet.py with own CLI and matching Service (lenient) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,46,chunk_add_kind:bar,failed checks,fail,1,,reject,"tabletMode local boolean, never switches anything [hw: could not run (candidate contains destructive commands: pkill, sudo; skipped to stay non-destructive)]"
+muse-wonder,proprietary,47,chunk_add_kind:service,passed after Checker fixes,fail,1,,accept,"full tree with own tablet.py/Service (lenient; unverified toggle path) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,48,chunk_add_kind:menu,passed after Checker fixes,fail,3,,accept,menu with own bin/tablet.py subparsers (lenient) [hw: could not run (candidate contains destructive commands: pkill; skipped to stay non-destructive)]
+muse-wonder,proprietary,49,chunk_component,failed checks,fail,1,,reject,tablet.py lacks the 'daemon' mode (stdin/stdout JSON protocol) Service.qml starts (real: daemon/status); breaks the plugin [hw: could not run (candidate contains destructive commands: sudo; skipped to stay non-destructive)]
+muse-wonder,proprietary,50,chunk_component,failed checks,fail,2,,reject,"calls invented service.launchApp/setMode/dictationActive [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+muse-wonder,proprietary,51,fix_manifest:reserved_id,passed after Checker fixes,fail,2,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+muse-wonder,proprietary,52,fix_manifest:bad_path_dotdot,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+muse-wonder,proprietary,53,fix_manifest:reserved_id,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+muse-wonder,proprietary,54,fix_manifest:bad_path_absolute,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+muse-wonder,proprietary,55,fix_manifest:reserved_id,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+deepseek-v4-pro,open,0,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,1,build_from_spec,failed checks,fail,,,,
+deepseek-v4-pro,open,2,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,3,build_from_spec,failed checks,fail,,,,
+deepseek-v4-pro,open,4,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,5,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,6,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,7,build_from_spec,passed after Checker fixes,fail,3,,accept,"ps/du/find on ~/Dropbox, login URL [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+deepseek-v4-pro,open,8,add_panel,no usable code,fail,,,,
+deepseek-v4-pro,open,9,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,10,build_from_spec,passed after Checker fixes,fail,2,,accept,"brightnessctl + hyprctl display controls [hw: could not run (candidate contains destructive commands: brightnessctl"", [""set; skipped to stay non-destructive)]"
+deepseek-v4-pro,open,11,add_panel,no usable code,fail,,,,
+deepseek-v4-pro,open,12,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,13,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,14,add_panel,failed checks,fail,3,,reject,"placeholder system stats, no data [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+deepseek-v4-pro,open,15,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,16,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,17,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,18,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,19,add_panel,passed after Checker fixes,fail,2,,accept,"wttr.in via XHR [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+deepseek-v4-pro,open,20,build_from_spec,passed after Checker fixes,fail,2,,accept,"lenient: real verse API OurManna daily [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+deepseek-v4-pro,open,21,build_from_spec,passed after Checker fixes,fail,2,,accept,"lenient: midvash.com verse endpoint (unverified) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+deepseek-v4-pro,open,22,build_from_spec,passed after Checker fixes,fail,2,,accept,"lenient: real verse API OurManna daily [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+deepseek-v4-pro,open,23,add_panel,no usable code,fail,,,,
+deepseek-v4-pro,open,24,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,25,add_panel,no usable code,fail,,,,
+deepseek-v4-pro,open,26,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,27,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,28,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,29,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,30,build_from_spec,failed checks,fail,2,,reject,"41L stub, no hyprctl/restyle logic [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+deepseek-v4-pro,open,31,build_from_spec,no usable code,fail,,,,
+deepseek-v4-pro,open,36,chunk_manifest_entry,no usable code,fail,,,,
+deepseek-v4-pro,open,37,chunk_component,failed checks,pass,0,reject,,"lib/menu.js lacks the API the real MenuSource.qml/Beam.qml call (parseMenuJsonc, mergeMenuSources, searchable, hintFor...); breaks Beam [hw: failed (dev.reuk.beam/services/MenuSource.qml[57:-1]: TypeError: Property 'searchable' of object [object Object] is no)]"
+deepseek-v4-pro,open,38,chunk_component,failed checks,fail,1,,reject,"SettingsView lacks properties Beam.qml assigns (store, jevStatus, foreground, rowHeight...); breaks Beam [hw: failed (dev.reuk.beam/Beam.qml[817:13]: Cannot assign to non-existent property ""onCloseRequested"")]"
+deepseek-v4-pro,open,39,chunk_manifest_entry,no usable code,fail,,,,
+deepseek-v4-pro,open,40,chunk_component,failed checks,fail,3,,reject,"WifiSurface lacks the interface Pill assigns (s, open, morphCloseness, requestClose); fails when the wifi surface is opened (code-read, nmcli use otherwise real) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+deepseek-v4-pro,open,41,chunk_component,no usable code,fail,,,,
+deepseek-v4-pro,open,45,chunk_manifest_entry,no usable code,fail,,,,
+deepseek-v4-pro,open,46,chunk_add_kind:bar,failed checks,fail,3,,reject,"invented unix-socket protocol to nonexistent service [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+deepseek-v4-pro,open,47,chunk_add_kind:service,no usable code,fail,,,,
+deepseek-v4-pro,open,48,chunk_add_kind:menu,no usable code,fail,,,,
+deepseek-v4-pro,open,49,chunk_component,failed checks,fail,1,,reject,"tablet.py lacks the 'daemon' mode (stdin/stdout JSON protocol) Service.qml starts (real: daemon/status); breaks the plugin [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+deepseek-v4-pro,open,50,chunk_component,failed checks,fail,2,,reject,"no `service` property, but Bar.qml assigns HomeContent { service: ... }; fails to instantiate [hw: failed (surface.tablet/Bar.qml[242:52]: Cannot assign to non-existent property ""service"")]"
+deepseek-v4-pro,open,51,fix_manifest:reserved_id,failed checks,fail,,,,
+deepseek-v4-pro,open,52,fix_manifest:bad_path_dotdot,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+deepseek-v4-pro,open,53,fix_manifest:reserved_id,no usable code,fail,,,,
+deepseek-v4-pro,open,54,fix_manifest:bad_path_absolute,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+deepseek-v4-pro,open,55,fix_manifest:reserved_id,failed checks,fail,,,,
+kimi-k3,open,0,build_from_spec,failed checks,pass,0,reject,,"wallpaper and click commands empty by default; shows nothing [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,1,build_from_spec,failed checks,fail,2,,reject,"hardcoded wallpaper list, not Omarchy background [hw: loaded OK with runtime warnings (QML QQuickImage* at acme.background/BackgroundSurface.qml[73:9]: Cannot open: file:///usr/)]"
+kimi-k3,open,2,build_from_spec,passed after Checker fixes,fail,2,,accept,"wl-paste --watch helper scripts, paste via script [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,3,build_from_spec,passed on first try,pass,0,accept,,"cliphist list/decode/delete [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,4,build_from_spec,passed on first try,pass,0,accept,,"NotificationServer, popups, DND, history [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,5,build_from_spec,passed after Checker fixes,fail,1,,accept,"NotificationServer, popups, DND, history [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,6,build_from_spec,passed after Checker fixes,fail,1,,accept,"local dropbox path/du/find, xdg-open [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,7,build_from_spec,passed after Checker fixes,fail,2,,accept,"dropbox-cli status + du/find, login [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,8,add_panel,passed after Checker fixes,fail,1,,accept,"pgrep/df/find panel [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,9,build_from_spec,passed after Checker fixes,fail,2,,accept,"brightnessctl set/get, hyprctl monitor toggle [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set; skipped to stay non-destructive)]"
+kimi-k3,open,10,build_from_spec,passed after Checker fixes,fail,2,,accept,"brightnessctl via /sys backlight (lenient: brightness only) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,11,add_panel,passed after Checker fixes,fail,1,,accept,"brightnessctl read/set (lenient: brightness only) [hw: could not run (candidate contains destructive commands: brightnessctl"", ""set; skipped to stay non-destructive)]"
+kimi-k3,open,12,build_from_spec,passed after Checker fixes,fail,1,,accept,"UPower battery, powerprofilesctl, /proc stats [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,13,build_from_spec,passed after Checker fixes,fail,1,,accept,"UPower, powerprofilesctl, /proc [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,14,add_panel,passed after Checker fixes,fail,1,,accept,"UPower battery/profile/stats [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,15,build_from_spec,passed after Checker fixes,fail,3,,accept,"real curl (hetzner/httpbin); lenient: needle jitter is simulated during run [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,16,build_from_spec,failed checks,pass,0,reject,,falls back to simulated measurement; speedtest-cli not on Omarchy [hw: could not run (candidate contains destructive commands: sudo; skipped to stay non-destructive)]
+kimi-k3,open,17,build_from_spec,passed after Checker fixes,fail,1,,accept,"wttr.in via curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,18,build_from_spec,no usable code,fail,,,,
+kimi-k3,open,19,add_panel,passed after Checker fixes,fail,1,,accept,"wttr.in via curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,20,build_from_spec,passed after Checker fixes,fail,1,,accept,"lenient: real verse API OurManna daily via curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,21,build_from_spec,passed after Checker fixes,fail,1,,accept,"lenient: real verse API OurManna daily via curl [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,22,build_from_spec,passed after Checker fixes,fail,1,,accept,"lenient: real verse API labs.bible.org votd [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,23,add_panel,passed after Checker fixes,fail,1,,accept,"lenient: midvash.com votd [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,24,build_from_spec,no usable code,fail,,,,
+kimi-k3,open,25,add_panel,passed on first try,pass,0,accept,,"real restic snapshots/backup [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,26,build_from_spec,passed after Checker fixes,fail,2,,accept,"hyprctl binds -j, pgrep menu detection, tip [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,27,build_from_spec,failed checks,pass,0,reject,,hyprctl clients -j hints + dispatch [hw: failed (vimarchy.vimarchy/overlay/VimarchyOverlay.qml[214:13]: Unable to assign QVariantMap to QuickshellScreenInfo*!)]
+kimi-k3,open,28,build_from_spec,passed after Checker fixes,fail,3,,accept,"managed looknfeel.lua block + hyprctl --batch [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,29,build_from_spec,passed after Checker fixes,fail,1,,accept,"config.json calendars, FileView ics [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,30,build_from_spec,failed checks,fail,1,,reject,"writes invented ~/.config/omarchy-shell/flush-bar.json then reload [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,31,build_from_spec,passed after Checker fixes,fail,1,,accept,"ss -tlnpH, kill [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,36,chunk_manifest_entry,passed after Checker fixes,fail,1,,accept,"AppSource/Engine/beam.py with QML fallbacks, search shortcuts [hw: could not run (candidate contains destructive commands: hyprctl"", ""reload; skipped to stay non-destructive)]"
+kimi-k3,open,37,chunk_component,failed checks,pass,0,reject,,"lib/menu.js lacks the API the real MenuSource.qml/Beam.qml call (parseMenuJsonc, mergeMenuSources, searchable, hintFor...); breaks Beam [hw: failed (dev.reuk.beam/services/MenuSource.qml[57:-1]: TypeError: Property 'searchable' of object [object Object] is no)]"
+kimi-k3,open,38,chunk_component,failed checks,fail,2,,reject,"SettingsView lacks properties Beam.qml assigns (store, jevStatus, foreground, rowHeight...); breaks Beam [hw: failed (dev.reuk.beam/ui/SettingsView.qml[10:5]: SettingsStore is not a type)]"
+kimi-k3,open,39,chunk_manifest_entry,passed after Checker fixes,fail,1,,accept,"own bar: Hyprland workspaces/title/clock (lenient: not sibling Pill) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,40,chunk_component,failed checks,fail,1,,reject,"WifiSurface lacks the interface Pill assigns (s, open, morphCloseness, requestClose); fails when the wifi surface is opened (code-read, nmcli use otherwise real) [hw: could not run (candidate contains destructive commands: nmcli; skipped to stay non-destructive)]"
+kimi-k3,open,41,chunk_component,failed checks,pass,0,reject,,"Singletons/Plugins.qml lacks most of the API pix.bar calls (surfaceDisabled, capabilityFor, barEntryFor, setEnabled...); breaks the bar (code-read) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+kimi-k3,open,45,chunk_manifest_entry,passed after Checker fixes,fail,3,,accept,"self-contained state file + hyprctl + wvkbd (lenient) [hw: could not run (candidate contains destructive commands: hyprctl keyword, hyprctl reload, pkill; skipped to stay non-destructive)]"
+kimi-k3,open,46,chunk_add_kind:bar,failed checks,fail,2,,reject,mode toggle only writes a state file [hw: could not run (candidate contains destructive commands: pkill; skipped to stay non-destructive)]
+kimi-k3,open,47,chunk_add_kind:service,passed after Checker fixes,fail,2,,accept,self-contained service + own tablet.py enable/disable + state (lenient) [hw: could not run (candidate contains destructive commands: systemctl; skipped to stay non-destructive)]
+kimi-k3,open,48,chunk_add_kind:menu,passed after Checker fixes,fail,2,,accept,"menu runs hyprctl keyword, wvkbd, bundled dictate.sh (lenient) [hw: could not run (candidate contains destructive commands: hyprctl keyword, pkill; skipped to stay non-destructive)]"
+kimi-k3,open,49,chunk_component,no usable code,fail,,,,
+kimi-k3,open,50,chunk_component,failed checks,fail,1,,reject,"no `service` property, but Bar.qml assigns HomeContent { service: ... }; fails to instantiate [hw: failed (surface.tablet/Bar.qml[242:52]: Cannot assign to non-existent property ""service"")]"
+kimi-k3,open,51,fix_manifest:reserved_id,passed after Checker fixes,fail,1,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+kimi-k3,open,52,fix_manifest:bad_path_dotdot,failed checks,fail,2,,reject,changed id pix.bar -> pixllbeat.better-bar (rest should be unchanged) [hw: could not run (manifest-only row; upstream entry files absent)]
+kimi-k3,open,53,fix_manifest:reserved_id,passed after Checker fixes,fail,3,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+kimi-k3,open,54,fix_manifest:bad_path_absolute,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+kimi-k3,open,55,fix_manifest:reserved_id,passed after Checker fixes,fail,2,,accept,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+qwen3-coder,open,0,build_from_spec,failed checks,fail,3,,reject,"click is console.log only [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,1,build_from_spec,failed checks,fail,2,,reject,"no wallpaper source, clickCommand empty [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,2,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,3,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,4,build_from_spec,failed checks,fail,1,,reject,"no NotificationServer at all [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,5,build_from_spec,failed checks,fail,,,,
+qwen3-coder,open,6,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,7,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,8,add_panel,failed checks,fail,,,,
+qwen3-coder,open,9,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,10,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,11,add_panel,failed checks,fail,2,,reject,"static panel text, no commands [hw: failed (acme.monitor/Panel.qml[17:-1]: ReferenceError: Theme is not defined)]"
+qwen3-coder,open,12,build_from_spec,passed after Checker fixes,fail,3,,accept,"FileView on /sys battery/cpufreq/thermal (lenient: governor as profile) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,13,build_from_spec,failed checks,fail,1,,reject,"static placeholders for CPU/memory, invented UPower QML type [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,14,add_panel,failed checks,fail,2,,reject,"no data source in panel [hw: could not run (candidate contains destructive commands: shutdown, suspend; skipped to stay non-destructive)]"
+qwen3-coder,open,15,build_from_spec,failed checks,fail,3,,reject,"speed test is a simulation [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,16,build_from_spec,failed checks,fail,1,,reject,"timer-simulated speed test [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,17,build_from_spec,failed checks,fail,1,,reject,"static pill with hardcoded New York, no fetch [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,18,build_from_spec,failed checks,fail,2,,reject,"no data source [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,19,add_panel,failed checks,fail,3,,reject,"no data source [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,20,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,21,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,22,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,23,add_panel,failed checks,fail,3,,reject,"no data fetch, refresh is console.log only [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,24,build_from_spec,failed checks,fail,2,,reject,"simulated backup/restore with timers, no restic [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,25,add_panel,failed checks,fail,3,,reject,"hardcoded destinations/snapshots, console.log [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,26,build_from_spec,failed checks,fail,,,,
+qwen3-coder,open,27,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,28,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,29,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,30,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,31,build_from_spec,no usable code,fail,,,,
+qwen3-coder,open,36,chunk_manifest_entry,no usable code,fail,,,,
+qwen3-coder,open,37,chunk_component,failed checks,pass,0,reject,,"lib/menu.js lacks the API the real MenuSource.qml/Beam.qml call (parseMenuJsonc, mergeMenuSources, searchable, hintFor...); breaks Beam [hw: failed (dev.reuk.beam/lib/menu.js[37:-1]: TypeError: Property 'init' of object [object Object] is not a function)]"
+qwen3-coder,open,38,chunk_component,failed checks,pass,0,reject,,"SettingsView lacks properties Beam.qml assigns (store, jevStatus, foreground, rowHeight...); breaks Beam [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,39,chunk_manifest_entry,no usable code,fail,,,,
+qwen3-coder,open,40,chunk_component,failed checks,fail,2,,reject,"WifiSurface lacks the interface Pill assigns (s, open, morphCloseness, requestClose); fails when the wifi surface is opened (code-read, nmcli use otherwise real) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,41,chunk_component,failed checks,fail,2,,reject,"Singletons/Plugins.qml lacks most of the API pix.bar calls (surfaceDisabled, capabilityFor, barEntryFor, setEnabled...); breaks the bar (code-read) [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,45,chunk_manifest_entry,failed checks,fail,,,,
+qwen3-coder,open,46,chunk_add_kind:bar,failed checks,pass,0,reject,,"invented Shell.propertyStore [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,47,chunk_add_kind:service,failed checks,fail,1,,reject,"no process/state backing, invented properties only [hw: failed (surface.tablet/Bar.qml[130:-1]: TypeError: Cannot read property 'keyboardAvailable' of undefined)]"
+qwen3-coder,open,48,chunk_add_kind:menu,failed checks,fail,2,,reject,"Popup with null tabletService, nothing backs the actions [hw: failed (surface.tablet/Menu.qml[63:-1]: ReferenceError: hovered is not defined)]"
+qwen3-coder,open,49,chunk_component,failed checks,fail,2,,reject,tablet.py lacks the 'daemon' mode (stdin/stdout JSON protocol) Service.qml starts (real: daemon/status); breaks the plugin [hw: could not run (candidate contains destructive commands: pkill; skipped to stay non-destructive)]
+qwen3-coder,open,50,chunk_component,failed checks,fail,2,,reject,"no `service` property, but Bar.qml assigns HomeContent { service: ... }; fails to instantiate [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3-coder,open,51,fix_manifest:reserved_id,failed checks,fail,,,,
+qwen3-coder,open,52,fix_manifest:bad_path_dotdot,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+qwen3-coder,open,53,fix_manifest:reserved_id,failed checks,fail,,,,
+qwen3-coder,open,54,fix_manifest:bad_path_absolute,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+qwen3-coder,open,55,fix_manifest:reserved_id,failed checks,fail,,,,
+qwen3.6-27b,open,0,build_from_spec,failed checks,pass,0,reject,,"source empty, no window/default; shows nothing and click only console.log [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3.6-27b,open,1,build_from_spec,failed checks,fail,1,,reject,"console.log only clicks, no source [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3.6-27b,open,2,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,3,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,4,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,5,build_from_spec,failed checks,fail,,,,
+qwen3.6-27b,open,6,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,7,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,8,add_panel,no usable code,fail,,,,
+qwen3.6-27b,open,9,build_from_spec,failed checks,fail,,,,
+qwen3.6-27b,open,10,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,11,add_panel,failed checks,fail,,,,
+qwen3.6-27b,open,12,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,13,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,14,add_panel,failed checks,fail,1,,reject,"stub panel, no data source [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3.6-27b,open,15,build_from_spec,failed checks,fail,,,,
+qwen3.6-27b,open,16,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,17,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,18,build_from_spec,failed checks,fail,3,,reject,"mock weather data [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3.6-27b,open,19,add_panel,failed checks,fail,2,,reject,"Math.random fake weather [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3.6-27b,open,20,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,21,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,22,build_from_spec,failed checks,fail,,,,
+qwen3.6-27b,open,23,add_panel,failed checks,fail,,,,
+qwen3.6-27b,open,24,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,25,add_panel,failed checks,fail,2,,reject,"console.log-only stub [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3.6-27b,open,26,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,27,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,28,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,29,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,30,build_from_spec,failed checks,fail,,,,
+qwen3.6-27b,open,31,build_from_spec,no usable code,fail,,,,
+qwen3.6-27b,open,36,chunk_manifest_entry,no usable code,fail,,,,
+qwen3.6-27b,open,37,chunk_component,failed checks,fail,1,,reject,"lib/menu.js lacks the API the real MenuSource.qml/Beam.qml call (parseMenuJsonc, mergeMenuSources, searchable, hintFor...); breaks Beam [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3.6-27b,open,38,chunk_component,failed checks,fail,,,,
+qwen3.6-27b,open,39,chunk_manifest_entry,failed checks,fail,3,,reject,"static placeholder labels [hw: loaded OK (registered, no plugin errors in 45s isolated session)]"
+qwen3.6-27b,open,40,chunk_component,failed checks,fail,,,,
+qwen3.6-27b,open,41,chunk_component,failed checks,fail,2,,reject,"Singletons/Plugins.qml lacks most of the API pix.bar calls (surfaceDisabled, capabilityFor, barEntryFor, setEnabled...); breaks the bar (code-read) [hw: failed (pix.bar/Singletons/StripLayout.qml[106:-1]: TypeError: Cannot read property 'length' of undefined)]"
+qwen3.6-27b,open,45,chunk_manifest_entry,no usable code,fail,,,,
+qwen3.6-27b,open,46,chunk_add_kind:bar,failed checks,fail,,,,
+qwen3.6-27b,open,47,chunk_add_kind:service,no usable code,fail,,,,
+qwen3.6-27b,open,48,chunk_add_kind:menu,failed checks,fail,,,,
+qwen3.6-27b,open,49,chunk_component,failed checks,fail,1,,reject,tablet.py lacks the 'daemon' mode (stdin/stdout JSON protocol) Service.qml starts (real: daemon/status); breaks the plugin [hw: could not run (candidate contains destructive commands: pkill; skipped to stay non-destructive)]
+qwen3.6-27b,open,50,chunk_component,failed checks,fail,,,,
+qwen3.6-27b,open,51,fix_manifest:reserved_id,no usable code,fail,,,,
+qwen3.6-27b,open,52,fix_manifest:bad_path_dotdot,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+qwen3.6-27b,open,53,fix_manifest:reserved_id,no usable code,fail,,,,
+qwen3.6-27b,open,54,fix_manifest:bad_path_absolute,passed on first try,pass,0,accept,,"manifest fix: valid id/path, rest unchanged [hw: could not run (manifest-only row; upstream entry files absent)]"
+qwen3.6-27b,open,55,fix_manifest:reserved_id,no usable code,fail,,,,
