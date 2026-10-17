@@ -46,6 +46,14 @@ INFRA = {   # GPU-cloud instance ids and object-storage buckets
 MAX_DECOMPRESSED = 200_000_000
 RAW_FIELD = re.compile(r'"(?:raw|raw_output|completion|generation|output_text|output)"\s*:\s*"(?:[^"\\]|\\.){2000,}"')
 PRIVATE_NAMES = re.compile(r"(?i)(dell_ground_truth|(^|/)labels_(draft|final)|ground_truth_(rows|additions)|dellkey.*\.(raw|reason)|\.raw\.jsonl$|\.reason\.json$|(^|/)teacher-|dell-capture/|^dell/|dell_rounds/|dell-batch|dell-smoke|(^|/)\.env(\.|$)|\.pem$|id_rsa|hancore_labels|data/reviews/|hancore_reviewer/|hancore_holdout/(manifest\.jsonl|code/))")
+# reviewed 2026-10-16 by Harris: Dell hyprland captures are not sensitive (no history rewrite; this path is exempt from the private-file-name rule)
+PRIVATE_EXEMPT = "functest/fixtures/hyprland-0.56.2/dell-capture/"
+
+
+def is_private(path):
+    return PRIVATE_NAMES.search(path) is not None and PRIVATE_EXEMPT not in path
+
+
 ALLOW_ABS = {"/home/user", "/home/runner", "/root/.cache", "/root/.config"}   # neutral paths that may appear in docs (prefixes)
 # Exact (path, rule) pairs reviewed and accepted. These are historical blobs that cannot be rewritten (no force-push): /root/... paths
 # on throwaway rented GPU boxes (not a person's home) and ids of rented, already-stopped GPU instances (useless without the account).
@@ -65,6 +73,9 @@ ACCEPTED = {(p, r) for p, r in [
     ("legacy/runs/smoke-2026-10-11/PROGRESS.md", "vast-instance-id-bare"),
     ("legacy/runs/v3/run_404.log", "home-path"),
     ("legacy/runs/smoke-2026-10-11/hf4bit_adapter_v2_check.json", "raw-model-output"),
+    # reviewed 2026-10-16 by Harris: Dell hyprland captures are not sensitive; the rented-instance number in earlier docs/post/draft.md
+    # revisions (history only, removed from the tree, no history rewrite) is accepted. dell-capture/ itself is exempt via PRIVATE_EXEMPT.
+    ("docs/post/draft.md", "vast-instance-id-bare"),
 ]}
 
 
@@ -116,7 +127,7 @@ def scan_bytes(label, path, data, out):
                 with tarfile.open(fileobj=io.BytesIO(raw)) as t:
                     for m in t:
                         if m.isfile() and m.size < 20_000_000:
-                            if PRIVATE_NAMES.search(m.name):
+                            if is_private(m.name):
                                 out.append((label, path + "!" + m.name, "private-file-name"))
                                 continue
                             body = t.extractfile(m).read()
@@ -138,7 +149,7 @@ def main():
     for f in filter(None, files):
         if f == SELF:
             continue
-        if PRIVATE_NAMES.search(f):
+        if is_private(f):
             out.append(("tree", f, "private-file-name"))
             continue
         try:
@@ -170,7 +181,7 @@ def main():
             p = ps[0]
             if int(size) > 20_000_000:
                 out.append(("history", p, "blob>20MB"))
-            bad = [q for q in ps if PRIVATE_NAMES.search(q)]
+            bad = [q for q in ps if is_private(q)]
             for q in bad:
                 out.append(("history", q, "private-file-name"))
             if bad:

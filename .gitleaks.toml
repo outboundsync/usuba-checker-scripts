@@ -2,6 +2,6 @@
 useDefault = true
 
 [allowlist]
-description = "Hyprland keybind captures use a 'key' field (e.g. XF86AudioMute), not credentials; redaction markers"
-paths = ['''functest/fixtures/hyprland-0\.56\.2/.*\.json''']
+description = "Post chart data uses 'key' for model ids (e.g. stock-qwen3.5-9b). Hyprland keybind captures use a 'key' field (e.g. XF86AudioMute), not credentials; redaction markers"
+paths = ['''functest/fixtures/hyprland-0\.56\.2/.*\.json''', '''docs/post/data/set3_feedback\.json''']
 regexes = ['''REDACTED_[A-Z_]+''']

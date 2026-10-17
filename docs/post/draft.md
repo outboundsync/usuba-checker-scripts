@@ -261,7 +261,7 @@ On the 329-plugin HANCORE holdout, run 1's verdict accuracy was 0.812. But alway
 
 Run 1 had a lot of data and didn't clear the bar. For run 2 we tried a different, much smaller and cleaner set: **221 train and 23 validation rows**, from 40 shards, with scope prompt v4. It was 28 training steps. The final validation loss was 0.263. The base is stock Qwen3.5-9B with a LoRA on top (the base weights were not changed). The LoRA adapter file is about 350 MB (346,294,736 bytes on disk). For scoring we merged it back into the base in bf16.
 
-**Files and the rented GPU (as of Fri, Oct 16, 2026, evening).** The 4-bit export (Q4_K_M, a GGUF file) is **5.63 GB (5,629,108,800 bytes)**, sha256 `7d2b54a24f335aa31d53a47fca8e0848add83bef8246f0f7f831c0e80c9e4f8e` (it matches the copy on the rented instance). **Run 2 was scored on the bf16 merge, not on this Q4 file.** The Q4 file has not been tested on any exam set. The Vast instance that trained and served run 2 (56245451, H100 PCIe, $2.624/h) was **destroyed on 2026-10-16 at about 7 PM MT** (my account; the last on-disk watch note, at 6:58 PM, still shows it running). The adapter, the merged-model exam outputs and the GGUF are on our box.
+**Files and the rented GPU (as of Fri, Oct 16, 2026, evening).** The 4-bit export (Q4_K_M, a GGUF file) is **5.63 GB (5,629,108,800 bytes)**, sha256 `7d2b54a24f335aa31d53a47fca8e0848add83bef8246f0f7f831c0e80c9e4f8e` (it matches the copy on the rented instance). **Run 2 was scored on the bf16 merge, not on this Q4 file.** The Q4 file has not been tested on any exam set. The Vast instance that trained and served run 2 (H100 PCIe, $2.624/h) was **destroyed on 2026-10-16 at about 7 PM MT** (my account; the last on-disk watch note, at 6:58 PM, still shows it running). The adapter, the merged-model exam outputs and the GGUF are on our box.
 
 We scored it one-shot on three exam sets, against the same stock Qwen3.5 9B ("B0") under the same harness, schema and quote filter, with greedy decoding:
 
@@ -870,7 +870,7 @@ Only figures that appear in files are listed. **TK** means no figure was found. 
 | Epoch 8 (Oct 15 to 16) | Data build LLM spend (caps $20, then $29.5, then $40) | $30.74 | `STATUS.md`; `LIVE_STATUS.md` |
 | | First scope-v4 run (H100, $3.031/h) | preflight estimate $5 (cap $36); actual TK | `post_chain/gates.log` |
 | | Exam A100s ($1.125/h and $1.325/h) | cap about $4; actual TK | `STATUS.md` |
-| | Run 2 (instance 56245451, H100 PCIe, $2.624/h, started 6:30 AM; destroyed about 7 PM MT) | credit fell from $52.36 (7:20 AM) to $21.97 (6:58 PM) = $30.39; final bill not yet read (about 12.5 h at $2.624/h would be about $33, an estimate) | `STATUS.md` watch lines; `56245451/rental.txt` |
+| | Run 2 (rented H100 PCIe, $2.624/h, started 6:30 AM; destroyed about 7 PM MT) | credit fell from $52.36 (7:20 AM) to $21.97 (6:58 PM) = $30.39; final bill not yet read (about 12.5 h at $2.624/h would be about $33, an estimate) | `STATUS.md` watch lines; `56245451/rental.txt` |
 | | Stock 9B baseline on the scope exam | $1.84 (all scope-v4 runs) | `scope-v4/spend.json` |
 | Epoch 9 (Oct 16) | Set 1 valid run + discarded run | $34.00 + $63.47 = **$97.47** | `uplift-fresh/spend.json`; tainted ledger |
 | | Set 2: 8-model one-shot peers | $3.67 ($3.668 in the file) | `scope-v4/peers/spend.json` |
