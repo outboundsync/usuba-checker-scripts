@@ -10,7 +10,7 @@ import json
 import os
 import sys
 
-SWEEP = "/workspace/usuba-model-checker/dell/sweep"
+SWEEP = "/workspace/usuba-checker-scripts/dell/sweep"
 
 
 def tree(d):
